@@ -90,7 +90,7 @@
   }
   const ZONES = { title: 'Title', championsLeague: 'Champions League places', relegation: 'Relegation' } as const satisfies Record<Zone, string>
   // Zone sign colours; gold takes dark ink, blue and red take white (dark ink on their lighter dark-theme shades).
-  const ZONE_FILL = { title: 'bg-gold text-[#15202b]', championsLeague: 'bg-cl text-white dark:text-[#0f161d]', relegation: 'bg-rel text-white dark:text-[#0f161d]' } as const satisfies Record<Zone, string>
+  const ZONE_FILL = { title: 'bg-gold text-[#15202b]', championsLeague: 'bg-cl text-on-zone', relegation: 'bg-rel text-on-zone' } as const satisfies Record<Zone, string>
   const SHORT = { title: 'Title', championsLeague: 'CL', relegation: 'Rel' } as const satisfies Record<Zone, string>
   // Picking My team needs no re-run: the Forecast already has every team's Chances under each Outcome.
   // The tab starts on the Zone where My team's Chance is closest to 50%, until a tab is picked.
@@ -114,6 +114,26 @@
     championsLeague: { clinched: 'Qualified', eliminated: 'Eliminated' },
     relegation: { clinched: 'Relegated', eliminated: 'Safe' },
   }
+  // index.html sets the theme before first paint. A pick here is remembered in this browser; until then the system's setting is followed.
+  let dark = $state(document.documentElement.dataset.theme === 'dark')
+  const system = matchMedia('(prefers-color-scheme: dark)')
+  system.onchange = (e) => {
+    try {
+      if (localStorage.getItem('theme')) return
+    } catch {}
+    dark = e.matches
+  }
+  $effect(() => {
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0f161d' : '#f3f5f4')
+  })
+  const toggleTheme = () => {
+    dark = !dark
+    try {
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    } catch {}
+  }
+
   // Opened by a button, not a #how link: the hash holds the Scenario.
   let how = $state<HTMLDetailsElement>()
   const updatedAt = Date.parse(season.updatedAt)
@@ -171,9 +191,23 @@
       <h1 class="font-sign text-[1.75rem] leading-none font-bold tracking-[0.04em] whitespace-nowrap uppercase">If We Win</h1>
       <p class="mt-1 text-xs font-medium">{season.leagueName} {season.season}–{String(season.season + 1).slice(2)}</p>
     </div>
-    <div class="text-right text-xs leading-snug font-medium">
-      <p>Updated {ago}</p>
-      <button class="min-h-6 underline underline-offset-2" onclick={() => (how!.open = true, how!.scrollIntoView({ behavior: 'smooth' }))}>How this works</button>
+    <div class="flex items-end gap-2">
+      <div class="text-right text-xs leading-snug font-medium">
+        <p>Updated {ago}</p>
+        <button class="min-h-6 underline underline-offset-2" onclick={() => (how!.open = true, how!.scrollIntoView({ behavior: 'smooth' }))}>How this works</button>
+      </div>
+      <button class="grid size-10 shrink-0 place-items-center rounded-md hover:bg-white/10" aria-label="Dark mode" aria-pressed={dark} onclick={toggleTheme}>
+        <svg viewBox="0 0 20 20" class="size-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          {#if dark}
+            <!-- Sun: tap for light. -->
+            <circle cx="10" cy="10" r="3.5" />
+            <path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4" />
+          {:else}
+            <!-- Moon: tap for dark. -->
+            <path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z" />
+          {/if}
+        </svg>
+      </button>
     </div>
   </header>
 

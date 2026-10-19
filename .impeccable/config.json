@@ -63,6 +63,24 @@
         ],
         "createdAt": "2026-10-19T23:40:31.880Z",
         "reason": "agent decided: decision-round sketch written before DESIGN.md existed, never shipped"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "files": [
+          "src/App.svelte"
+        ],
+        "createdAt": "2026-10-19T23:49:26.860Z",
+        "reason": "agent decided: Shift plate phone size, documented in DESIGN.md component entry (line 219)"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "11px",
+        "files": [
+          "src/App.svelte"
+        ],
+        "createdAt": "2026-10-19T23:49:26.878Z",
+        "reason": "agent decided: Shift plate and Zone badge size, documented in DESIGN.md (lines 177, 219)"
       }
     ]
   }

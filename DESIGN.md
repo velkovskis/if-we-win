@@ -127,7 +127,7 @@ The system refuses the score-app default of a grey table with green and red text
 - Condensed block-letter capitals (Barlow Condensed) for signs; system sans with tabular numerals for data.
 - Numerals always full ink.
 - Moved rows sit on a pale lit band; My team is a selected plate row.
-- Light and dark themes from the same tokens; in the dark the selected plate inverts to white enamel.
+- Light and dark themes from the same tokens; in the dark the selected plate inverts to white enamel. The theme follows the system until the header toggle picks one, which this browser then remembers.
 
 ## Colors
 

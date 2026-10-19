@@ -16,7 +16,7 @@
 
 /* Stand Signage: enamel ground, slate plates with a white keyline, Zone colours as sign colours. */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --ground: #f3f5f4;
   --surface: #ffffff;
   --ink: #15202b;
@@ -33,21 +33,24 @@
   --rel: #b3362c;
   --up: #1f7a4d;
   --down: #b3362c;
+  /* Ink on a blue or red Zone fill. */
+  --on-zone: #ffffff;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ground: #0f161d;
-    --surface: #17212b;
-    --ink: #f1f4f3;
-    --ink-2: #b9c5ca;
-    --rule: #2a3742;
-    --plate: #24384c;
-    --sel: #eef2f1;
-    --on-sel: #15202b;
-    --lit: #1c3352;
-    --cl: #5b8fe0;
-    --rel: #e0574b;
-  }
+/* Set before first paint by index.html: the header toggle's choice, else the system's. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0f161d;
+  --surface: #17212b;
+  --ink: #f1f4f3;
+  --ink-2: #b9c5ca;
+  --rule: #2a3742;
+  --plate: #24384c;
+  --sel: #eef2f1;
+  --on-sel: #15202b;
+  --lit: #1c3352;
+  --cl: #5b8fe0;
+  --rel: #e0574b;
+  --on-zone: #0f161d;
 }
 
 @theme inline {
@@ -67,6 +70,7 @@
   --color-rel: var(--rel);
   --color-up: var(--up);
   --color-down: var(--down);
+  --color-on-zone: var(--on-zone);
 }
 
 @layer base {
