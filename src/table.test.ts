@@ -24,6 +24,21 @@ describe('table', () => {
     expect(rows[2]).toMatchObject({ played: 2, won: 1, drawn: 0, lost: 1, goalsFor: 2, goalsAgainst: 3, goalDifference: -1, points: 3 })
   })
 
+  it('settles a tie on points, goal difference and goals scored by head-to-head points', () => {
+    const rows = table([1, 2, 3, 4].map(team), [
+      result(2, 1, 1, 0), // 2 beat 1
+      result(1, 4, 1, 0), // 1: 3 pts, 0, 1 scored
+      result(3, 2, 1, 0), // 2: 3 pts, 0, 1 scored
+    ], [])
+    expect(rows.map((r) => r.team.id)).toEqual([3, 2, 1, 4])
+  })
+
+  it('then by head-to-head away goals', () => {
+    // Level on points, goal difference, goals scored and head-to-head points; 2 scored 2 away, 1 scored 1.
+    const rows = table([1, 2].map(team), [result(1, 2, 2, 2), result(2, 1, 1, 1)], [])
+    expect(rows.map((r) => r.team.id)).toEqual([2, 1])
+  })
+
   it('gives each team 1 point for a draw', () => {
     const rows = table([1, 2].map(team), [result(1, 2, 1, 1)], [])
     expect(rows.map((r) => [r.drawn, r.points])).toEqual([[1, 1], [1, 1]])

@@ -1,7 +1,7 @@
 // Forecast: simulates the rest of the season many times to estimate each team's Chance of each Zone.
 // Pure and deterministic for a given seed. Each random draw is keyed by (seed, simulation, Fixture or team id),
 // never by draw order, so a Baseline and a Scenario share identical draws wherever their Locks agree.
-import { table } from './table.ts'
+import { rank, table } from './table.ts'
 import type { Season } from './update.ts'
 
 export type Outcome = 'home' | 'draw' | 'away'
@@ -25,43 +25,42 @@ export function forecast(input: {
   const start = table(season.teams, season.results, season.deductions)
   const n = start.length
   const index = new Map(start.map((row, i) => [row.team.id, i]))
-  const fixtures = season.fixtures.map((f) => ({ id: f.id, home: index.get(f.homeTeamId)!, away: index.get(f.awayTeamId)!, lock: locks[f.id] }))
-
-  const points = new Int32Array(n)
-  const goalDifference = new Int32Array(n)
-  const goalsFor = new Int32Array(n)
-  const rating = new Float64Array(n)
-  const tieBreak = new Float64Array(n)
-  const order = start.map((_, i) => i)
+  // One mutable standing per team, reset each simulation; meetings point at them so rank() can settle head-to-head.
+  const teams = start.map((_, i) => ({ i, points: 0, goalDifference: 0, goalsFor: 0, rating: 0, tieBreak: 0 }))
+  const meetings = season.results.map((r) => ({ home: teams[index.get(r.homeTeamId)!], away: teams[index.get(r.awayTeamId)!], homeGoals: r.scoreline.home, awayGoals: r.scoreline.away }))
+  const fixtures = season.fixtures.map((f) => ({ id: f.id, home: teams[index.get(f.homeTeamId)!], away: teams[index.get(f.awayTeamId)!], homeGoals: 0, awayGoals: 0, lock: locks[f.id] }))
+  meetings.push(...fixtures)
   const counts = start.map(() => ({ title: 0, championsLeague: 0, relegation: 0 }))
 
   for (let sim = 0; sim < simulations; sim++) {
-    for (let i = 0; i < n; i++) {
-      const row = start[i]
+    for (const t of teams) {
+      const row = start[t.i]
       const random = stream(seed, sim, TEAM, row.team.id)
-      points[i] = row.points
-      goalDifference[i] = row.goalDifference
-      goalsFor[i] = row.goalsFor
-      rating[i] = ratings[row.team.id] + strengthNoise * normal(random)
-      tieBreak[i] = random()
+      t.points = row.points
+      t.goalDifference = row.goalDifference
+      t.goalsFor = row.goalsFor
+      t.rating = ratings[row.team.id] + strengthNoise * normal(random)
+      t.tieBreak = random()
     }
     for (const f of fixtures) {
-      const gap = rating[f.home] - rating[f.away] + homeAdvantage
+      const gap = f.home.rating - f.away.rating + homeAdvantage
       const [home, away] = scoreline(stream(seed, sim, FIXTURE, f.id), GOALS * Math.exp(gap / 2), GOALS * Math.exp(-gap / 2), f.lock)
-      goalsFor[f.home] += home
-      goalsFor[f.away] += away
-      goalDifference[f.home] += home - away
-      goalDifference[f.away] += away - home
+      f.homeGoals = home
+      f.awayGoals = away
+      f.home.goalsFor += home
+      f.away.goalsFor += away
+      f.home.goalDifference += home - away
+      f.away.goalDifference += away - home
       const outcome = outcomeOf(home, away)
-      if (outcome === 'home') points[f.home] += 3
-      else if (outcome === 'away') points[f.away] += 3
-      else (points[f.home]++, points[f.away]++)
+      if (outcome === 'home') f.home.points += 3
+      else if (outcome === 'away') f.away.points += 3
+      else (f.home.points++, f.away.points++)
     }
-    // ponytail: no head-to-head yet, like table(); #6 adds the official tie-breaks.
-    order.sort((a, b) => points[b] - points[a] || goalDifference[b] - goalDifference[a] || goalsFor[b] - goalsFor[a] || tieBreak[a] - tieBreak[b])
-    counts[order[0]].title++
-    for (let p = 0; p < championsLeaguePlaces; p++) counts[order[p]].championsLeague++
-    for (let p = n - relegationPlaces; p < n; p++) counts[order[p]].relegation++
+    // The coin flip stands in for a play-off.
+    const order = rank(teams, meetings, (a, b) => a.tieBreak - b.tieBreak)
+    counts[order[0].i].title++
+    for (let p = 0; p < championsLeaguePlaces; p++) counts[order[p].i].championsLeague++
+    for (let p = n - relegationPlaces; p < n; p++) counts[order[p].i].relegation++
   }
 
   return Object.fromEntries(
