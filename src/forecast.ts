@@ -1,4 +1,5 @@
-// Forecast: simulates the rest of the season many times to estimate each team's Chance of each Zone.
+// Forecast: simulates the rest of the season many times to estimate each team's Chance of each Zone,
+// and checks which Zones each team has Clinched or been Eliminated from.
 // Pure and deterministic for a given seed. Each random draw is keyed by (seed, simulation, Fixture or team id),
 // never by draw order, so a Baseline and a Scenario share identical draws wherever their Locks agree.
 import { rank, table } from './table.ts'
@@ -6,6 +7,9 @@ import type { Season } from './update.ts'
 
 export type Outcome = 'home' | 'draw' | 'away'
 export type Chances = { title: number; championsLeague: number; relegation: number }
+export type Zone = keyof Chances
+export type Status = 'clinched' | 'eliminated' | 'open'
+export type Forecast = { chances: Record<number, Chances>; status: Record<number, Record<Zone, Status>> }
 
 // Average goals per side in an even match; Ratings and home advantage are in log expected goals.
 const GOALS = 1.35
@@ -17,7 +21,7 @@ export function forecast(input: {
   locks: Record<number, Outcome> // Fixture id → Outcome
   seed: number
   settings: { championsLeaguePlaces: number; relegationPlaces?: number; simulations?: number; strengthNoise?: number }
-}): Record<number, Chances> {
+}): Forecast {
   const { season, ratings, homeAdvantage, locks, seed } = input
   // ponytail: placeholder strength noise; the backtest (#13) sets the real one.
   const { championsLeaguePlaces, relegationPlaces = 3, simulations = 20_000, strengthNoise = 0.1 } = input.settings
@@ -62,12 +66,36 @@ export function forecast(input: {
     for (let p = n - relegationPlaces; p < n; p++) counts[order[p].i].relegation++
   }
 
-  return Object.fromEntries(
-    start.map((row, i) => [
-      row.team.id,
-      { title: counts[i].title / simulations, championsLeague: counts[i].championsLeague / simulations, relegation: counts[i].relegation / simulations },
-    ]),
-  )
+  // ponytail: Clinched and Eliminated from points bounds alone: sound, but it misses cases that hinge on who plays whom; a max-flow check finds them all.
+  // Locked Outcomes count as played, every unlocked Fixture can be won or lost, and a tie on points can go either way.
+  const minPoints = start.map((row) => row.points)
+  const maxPoints = [...minPoints]
+  for (const f of fixtures) {
+    const [home, away] = f.lock === 'home' ? [3, 0] : f.lock === 'away' ? [0, 3] : f.lock === 'draw' ? [1, 1] : [0, 0]
+    minPoints[f.home.i] += home
+    minPoints[f.away.i] += away
+    maxPoints[f.home.i] += f.lock ? home : 3
+    maxPoints[f.away.i] += f.lock ? away : 3
+  }
+  const zones: Record<Zone, [number, number]> = { title: [1, 1], championsLeague: [1, championsLeaguePlaces], relegation: [n - relegationPlaces + 1, n] }
+
+  return {
+    chances: Object.fromEntries(
+      start.map((row, i) => [
+        row.team.id,
+        { title: counts[i].title / simulations, championsLeague: counts[i].championsLeague / simulations, relegation: counts[i].relegation / simulations },
+      ]),
+    ),
+    status: Object.fromEntries(
+      start.map((row, i) => {
+        // Final positions this team can still reach: below every team that must outscore it, at best; below every team that can match it, at worst.
+        const best = 1 + minPoints.filter((m, j) => j !== i && m > maxPoints[i]).length
+        const worst = 1 + maxPoints.filter((m, j) => j !== i && m >= minPoints[i]).length
+        const statusIn = ([first, last]: [number, number]): Status => (first <= best && worst <= last ? 'clinched' : worst < first || best > last ? 'eliminated' : 'open')
+        return [row.team.id, { title: statusIn(zones.title), championsLeague: statusIn(zones.championsLeague), relegation: statusIn(zones.relegation) }]
+      }),
+    ),
+  }
 }
 
 // The match model, shared with the Ratings fit: each side's expected goals from the gap

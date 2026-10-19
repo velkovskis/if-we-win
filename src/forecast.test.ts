@@ -12,7 +12,8 @@ const IDS = [1, 2, 3, 4]
 const FIXTURES = [fixture(1, 2), fixture(1, 3), fixture(1, 4), fixture(2, 3), fixture(2, 4), fixture(3, 4)]
 const HOME_WINS: Record<number, Outcome> = Object.fromEntries(FIXTURES.map((f) => [f.id, 'home']))
 
-const run = (opts: { results?: Result[]; fixtures?: Fixture[]; locks?: Record<number, Outcome>; deductions?: Deduction[]; seed?: number; simulations?: number } = {}) =>
+type Opts = { results?: Result[]; fixtures?: Fixture[]; locks?: Record<number, Outcome>; deductions?: Deduction[]; seed?: number; simulations?: number }
+const forecastOf = (opts: Opts = {}) =>
   forecast({
     season: { teams: IDS.map(team), results: opts.results ?? [], fixtures: opts.fixtures ?? FIXTURES, deductions: opts.deductions ?? [] },
     ratings: equal(IDS),
@@ -21,6 +22,8 @@ const run = (opts: { results?: Result[]; fixtures?: Fixture[]; locks?: Record<nu
     seed: opts.seed ?? 1,
     settings: { simulations: opts.simulations ?? 2_000, championsLeaguePlaces: 2, relegationPlaces: 1 },
   })
+const run = (opts?: Opts) => forecastOf(opts).chances
+const status = (opts?: Opts) => forecastOf(opts).status
 
 describe('forecast', () => {
   it('gives Chances of exactly 0 or 1 when every Fixture is Locked', () => {
@@ -103,5 +106,78 @@ describe('forecast', () => {
       expect(Math.abs(chances[id].championsLeague - 0.5)).toBeLessThan(0.02)
       expect(Math.abs(chances[id].relegation - 0.25)).toBeLessThan(0.02)
     }
+  })
+
+  describe('Clinched and Eliminated', () => {
+    it('settles every Zone when every Fixture is Locked', () => {
+      expect(status({ locks: HOME_WINS })).toEqual({
+        1: { title: 'clinched', championsLeague: 'clinched', relegation: 'eliminated' },
+        2: { title: 'eliminated', championsLeague: 'clinched', relegation: 'eliminated' },
+        3: { title: 'eliminated', championsLeague: 'eliminated', relegation: 'eliminated' },
+        4: { title: 'eliminated', championsLeague: 'eliminated', relegation: 'clinched' },
+      })
+    })
+
+    // One Fixture left and nobody has a point yet.
+    const only = fixture(3, 4)
+
+    it('leaves every Zone open while the last Fixture can still go either way', () => {
+      for (const zones of Object.values(status({ fixtures: [only] }))) expect(zones).toEqual({ title: 'open', championsLeague: 'open', relegation: 'open' })
+    })
+
+    it('settles the Title when a Lock decides it', () => {
+      const zones = status({ fixtures: [only], locks: { [only.id]: 'home' } })
+      expect(zones[3].title).toBe('clinched')
+      for (const id of [1, 2, 4]) expect(zones[id].title).toBe('eliminated')
+      // 4 is level with 1 and 2 on 0 points, so the tie-break still decides Relegation.
+      for (const id of [1, 2, 4]) expect(zones[id].relegation).toBe('open')
+    })
+
+    it('leaves a tie on points open', () => {
+      const zones = status({ fixtures: [only], locks: { [only.id]: 'draw' } })
+      expect(zones[3]).toEqual({ title: 'open', championsLeague: 'clinched', relegation: 'eliminated' })
+      expect(zones[1]).toEqual({ title: 'eliminated', championsLeague: 'eliminated', relegation: 'open' })
+    })
+
+    it('takes Deductions off', () => {
+      // 4 can reach 3 - 4 = -1 at most, below 1 and 2 on 0.
+      expect(status({ fixtures: [only], deductions: [{ teamId: 4, points: 4 }] })[4].relegation).toBe('clinched')
+      expect(status({ fixtures: [only], deductions: [{ teamId: 4, points: 3 }] })[4].relegation).toBe('open')
+    })
+
+    it('never contradicts a simulation', () => {
+      // Random half-played seasons of 6 teams with random Locks and Deductions.
+      let s = 1
+      const random = () => ((s = (Math.imul(s, 48271) >>> 0) % 2147483647) / 2147483647)
+      const pick = (k: number) => Math.floor(random() * k)
+      const ids = [1, 2, 3, 4, 5, 6]
+      const badges = { clinched: 0, eliminated: 0 }
+      for (let league = 0; league < 200; league++) {
+        const all = ids.flatMap((h) => ids.filter((a) => a !== h).map((a) => fixture(h, a)))
+        const played = random()
+        const results = all.filter(() => random() < played).map((f) => ({ ...f, scoreline: { home: pick(4), away: pick(4) } }))
+        const fixtures = all.filter((f) => !results.some((r) => r.id === f.id))
+        const locks = Object.fromEntries(fixtures.filter(() => random() < 0.5).map((f) => [f.id, (['home', 'draw', 'away'] as const)[pick(3)]]))
+        const deductions = random() < 0.3 ? [{ teamId: 1 + pick(6), points: 1 + pick(10) }] : []
+        const { chances, status: zones } = forecast({
+          season: { teams: ids.map(team), results, fixtures, deductions },
+          ratings: equal(ids),
+          homeAdvantage: 0.25,
+          locks,
+          seed: league,
+          settings: { simulations: 200, championsLeaguePlaces: 2, relegationPlaces: 2 },
+        })
+        for (const id of ids)
+          for (const zone of ['title', 'championsLeague', 'relegation'] as const) {
+            const badge = zones[id][zone]
+            if (badge === 'clinched') expect(chances[id][zone]).toBe(1)
+            if (badge === 'eliminated') expect(chances[id][zone]).toBe(0)
+            if (badge !== 'open') badges[badge]++
+          }
+      }
+      // The check isn't vacuous: plenty of badges were tested.
+      expect(badges.clinched).toBeGreaterThan(100)
+      expect(badges.eliminated).toBeGreaterThan(100)
+    })
   })
 })

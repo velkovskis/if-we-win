@@ -1,14 +1,14 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
-  import type { Chances, forecast } from './forecast.ts'
+  import type { Forecast, forecast, Zone } from './forecast.ts'
   import { table } from './table.ts'
   import type { Season } from './update.ts'
 
   const season: Season = seasonData
   const rows = table(season.teams, season.results, season.deductions)
-  let chances = $state<Record<number, Chances>>()
+  let output = $state<Forecast>()
   const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
-  worker.onmessage = (e: MessageEvent<Record<number, Chances>>) => (chances = e.data)
+  worker.onmessage = (e: MessageEvent<Forecast>) => (output = e.data)
   const input: Parameters<typeof forecast>[0] = {
     season,
     ratings: season.ratings.teams,
@@ -18,11 +18,18 @@
     settings: { championsLeaguePlaces: season.championsLeaguePlaces },
   }
   worker.postMessage(input)
-  // Whole percentages; never 0% or 100%, because a simulation can't prove certainty.
-  const percent = (chance?: number) => {
-    if (chance === undefined) return '…'
-    const p = Math.round(chance * 100)
+  // Whole percentages; 0% and 100% only when a badge proves them, because a simulation can't.
+  const percent = (id: number, zone: Zone) => {
+    if (!output) return '…'
+    const status = output.status[id][zone]
+    if (status !== 'open') return status === 'clinched' ? '100%' : '0%'
+    const p = Math.round(output.chances[id][zone] * 100)
     return p === 0 ? '<1%' : p === 100 ? '>99%' : `${p}%`
+  }
+  const BADGES: Record<Zone, { clinched: string; eliminated: string }> = {
+    title: { clinched: 'Title won', eliminated: 'Eliminated' },
+    championsLeague: { clinched: 'Qualified', eliminated: 'Eliminated' },
+    relegation: { clinched: 'Relegated', eliminated: 'Safe' },
   }
   const updatedAt = Date.parse(season.updatedAt)
   const HOUR = 3_600_000
@@ -84,9 +91,15 @@
           <td class="hidden px-1 text-right sm:table-cell">{row.lost}</td>
           <td class="px-1 text-right">{row.goalDifference > 0 ? '+' : ''}{row.goalDifference}</td>
           <td class="px-1 text-right font-semibold">{row.points}</td>
-          <td class="px-1 text-right">{percent(chances?.[row.team.id].title)}</td>
-          <td class="px-1 text-right">{percent(chances?.[row.team.id].championsLeague)}</td>
-          <td class="pl-1 text-right">{percent(chances?.[row.team.id].relegation)}</td>
+          {#each ['title', 'championsLeague', 'relegation'] as const as zone (zone)}
+            {@const status = output?.status[row.team.id][zone]}
+            <td class="px-1 text-right last:pr-0">
+              {percent(row.team.id, zone)}
+              {#if status && status !== 'open'}
+                <span class="block text-[10px] font-semibold uppercase tracking-wide text-gray-500">{BADGES[zone][status]}</span>
+              {/if}
+            </td>
+          {/each}
         </tr>
       {/each}
     </tbody>
