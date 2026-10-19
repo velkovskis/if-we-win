@@ -108,6 +108,30 @@ describe('forecast', () => {
     }
   })
 
+  it('leaves a runaway leader alone when a Lock is between two bottom-half teams', () => {
+    // A 20-team double round robin halfway through: team 1 beat teams 2–13 and drew the rest; every other match was a draw,
+    // so teams 2–13 (18 points) are the bottom half, below teams 14–20 (19 points).
+    const ids = Array.from({ length: 20 }, (_, i) => i + 1)
+    const all = ids.flatMap((h) => ids.filter((a) => a !== h).map((a) => fixture(h, a)))
+    const firstHalf = all.filter((f) => f.homeTeamId < f.awayTeamId)
+    const results = firstHalf.map((f) => ({ ...f, scoreline: f.homeTeamId === 1 && f.awayTeamId <= 13 ? { home: 2, away: 0 } : { home: 1, away: 1 } }))
+    const fixtures = all.filter((f) => f.homeTeamId > f.awayTeamId)
+    const title = (locks: Record<number, Outcome>) =>
+      forecast({
+        season: { teams: ids.map(team), results, fixtures, deductions: [] },
+        ratings: equal(ids),
+        homeAdvantage: 0.25,
+        locks,
+        seed: 1,
+        settings: { championsLeaguePlaces: 4 },
+      }).chances[1].title
+    const baseline = title({})
+    // About 85%: not settled, so a Lock could move it.
+    expect(baseline).toBeGreaterThan(0.7)
+    expect(baseline).toBeLessThan(0.95)
+    expect(Math.abs(title({ [fixture(13, 12).id]: 'home' }) - baseline)).toBeLessThan(0.01)
+  })
+
   describe('Clinched and Eliminated', () => {
     it('settles every Zone when every Fixture is Locked', () => {
       expect(status({ locks: HOME_WINS })).toEqual({

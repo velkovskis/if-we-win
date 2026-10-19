@@ -1,30 +1,66 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
-  import type { Forecast, forecast, Zone } from './forecast.ts'
+  import type { Forecast, forecast, Outcome, Zone } from './forecast.ts'
   import { table } from './table.ts'
-  import type { Season } from './update.ts'
+  import type { Fixture, Season } from './update.ts'
 
   const season: Season = seasonData
   const rows = table(season.teams, season.results, season.deductions)
-  let output = $state<Forecast>()
-  const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
-  worker.onmessage = (e: MessageEvent<Forecast>) => (output = e.data)
-  const input: Parameters<typeof forecast>[0] = {
-    season,
-    ratings: season.ratings.teams,
-    homeAdvantage: season.ratings.homeAdvantage,
-    locks: {},
-    seed: 1,
-    settings: { championsLeaguePlaces: season.championsLeaguePlaces },
+  const names = new Map(season.teams.map((t) => [t.id, t.name]))
+  // Not Map.groupBy: it blanks the page on Safari before 17.4.
+  const matchweeks = new Map<number, Fixture[]>()
+  for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek)) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
+
+  let locks = $state<Record<number, Outcome>>({})
+  const toggle = (id: number, outcome: Outcome) => {
+    if (locks[id] === outcome) delete locks[id]
+    else locks[id] = outcome
   }
-  worker.postMessage(input)
+
+  // ponytail: the first answer is the Baseline because the first run has no Locks; a Scenario loaded from a link needs its own Baseline run.
+  let baseline = $state<Forecast>()
+  let scenario = $state<Forecast>()
+  // One run at a time; clicks made meanwhile collapse into one run with the latest Locks.
+  let running = false
+  let next: Parameters<typeof forecast>[0] | undefined
+  const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
+  const run = (input: Parameters<typeof forecast>[0]) => {
+    if (running) return void (next = input)
+    running = true
+    worker.postMessage(input)
+  }
+  worker.onmessage = (e: MessageEvent<Forecast>) => {
+    baseline ??= e.data
+    scenario = e.data
+    running = false
+    if (next) run(next)
+    next = undefined
+  }
+  // Same seed every run, so teams a Lock doesn't affect show no Shift.
+  $effect(() => {
+    const input: Parameters<typeof forecast>[0] = {
+      season,
+      ratings: season.ratings.teams,
+      homeAdvantage: season.ratings.homeAdvantage,
+      locks: $state.snapshot(locks),
+      seed: 1,
+      settings: { championsLeaguePlaces: season.championsLeaguePlaces },
+    }
+    run(input)
+  })
   // Whole percentages; 0% and 100% only when a badge proves them, because a simulation can't.
   const percent = (id: number, zone: Zone) => {
-    if (!output) return '…'
-    const status = output.status[id][zone]
+    if (!scenario) return '…'
+    const status = scenario.status[id][zone]
     if (status !== 'open') return status === 'clinched' ? '100%' : '0%'
-    const p = Math.round(output.chances[id][zone] * 100)
+    const p = Math.round(scenario.chances[id][zone] * 100)
     return p === 0 ? '<1%' : p === 100 ? '>99%' : `${p}%`
+  }
+  // Scenario minus Baseline in whole points; 0 when under 1 point, which hides the arrow.
+  const shift = (id: number, zone: Zone) => {
+    if (!scenario || !baseline) return 0
+    const change = scenario.chances[id][zone] - baseline.chances[id][zone]
+    return Math.abs(change) < 0.01 ? 0 : Math.round(change * 100)
   }
   const BADGES: Record<Zone, { clinched: string; eliminated: string }> = {
     title: { clinched: 'Title won', eliminated: 'Eliminated' },
@@ -92,9 +128,16 @@
           <td class="px-1 text-right">{row.goalDifference > 0 ? '+' : ''}{row.goalDifference}</td>
           <td class="px-1 text-right font-semibold">{row.points}</td>
           {#each ['title', 'championsLeague', 'relegation'] as const as zone (zone)}
-            {@const status = output?.status[row.team.id][zone]}
+            {@const status = scenario?.status[row.team.id][zone]}
+            {@const points = shift(row.team.id, zone)}
             <td class="px-1 text-right last:pr-0">
               {percent(row.team.id, zone)}
+              {#if points}
+                <!-- Green when the Shift is good news for the team: up for Title and CL, down for Relegation. -->
+                <span class={['block text-xs', points > 0 === (zone !== 'relegation') ? 'text-green-700' : 'text-red-700']}>
+                  {points > 0 ? '▲' : '▼'}{Math.abs(points)}
+                </span>
+              {/if}
               {#if status && status !== 'open'}
                 <span class="block text-[10px] font-semibold uppercase tracking-wide text-gray-500">{BADGES[zone][status]}</span>
               {/if}
@@ -104,6 +147,29 @@
       {/each}
     </tbody>
   </table>
+
+  <section class="mt-8">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-lg font-bold">Fixtures</h2>
+      <button class="text-sm underline disabled:invisible" disabled={!Object.keys(locks).length} onclick={() => (locks = {})}>Clear all Locks</button>
+    </div>
+    {#each matchweeks as [matchweek, fixtures] (matchweek)}
+      <h3 class="mt-4 text-sm font-semibold text-gray-600">Matchweek {matchweek}</h3>
+      <ul>
+        {#each fixtures as f (f.id)}
+          <li class="grid grid-cols-[1fr_auto_1fr] gap-1 border-b border-gray-100 py-1 text-sm">
+            {#each [['home', names.get(f.homeTeamId)], ['draw', 'Draw'], ['away', names.get(f.awayTeamId)]] as const as [outcome, label] (outcome)}
+              <button
+                class={['rounded border px-2 py-1', outcome === 'home' ? 'text-left' : outcome === 'away' ? 'text-right' : '', locks[f.id] === outcome ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200']}
+                aria-pressed={locks[f.id] === outcome}
+                onclick={() => toggle(f.id, outcome)}>{label}</button
+              >
+            {/each}
+          </li>
+        {/each}
+      </ul>
+    {/each}
+  </section>
 
   <footer class="mt-6 text-xs text-gray-500">
     <a class="underline" href="https://www.football-data.org/">Football data provided by the Football-Data.org API</a>
