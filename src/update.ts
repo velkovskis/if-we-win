@@ -1,5 +1,6 @@
 // Update: turns raw football-data.org responses into the published Season.
 // Pure: no network, no clock; the caller passes everything in.
+import { table } from './table.ts'
 
 type ProviderTeam = { id: number; shortName: string; crest: string }
 
@@ -16,10 +17,13 @@ export type MatchesResponse = {
 }
 
 export type StandingsResponse = {
-  standings: { type: string; table: { team: ProviderTeam }[] }[]
+  standings: { type: string; table: { team: ProviderTeam; points: number }[] }[]
 }
 
 export type SeasonConfig = { league: string; season: number; championsLeaguePlaces: number }
+
+// Points taken off a team by the league; hand-edited in config/deductions.json.
+export type Deduction = { teamId: number; points: number }
 
 export type Team = { id: number; name: string; crest: string }
 export type Scoreline = { home: number; away: number }
@@ -27,6 +31,7 @@ export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayT
 export type Result = Fixture & { scoreline: Scoreline }
 
 export type Season = SeasonConfig & {
+  deductions: Deduction[]
   leagueName: string
   updatedAt: string
   teams: Team[]
@@ -41,6 +46,7 @@ export function update(input: {
   matches: MatchesResponse
   standings: StandingsResponse
   config: SeasonConfig
+  deductions: Deduction[]
   now: Date
 }): Season {
   const results: Result[] = []
@@ -60,5 +66,16 @@ export function update(input: {
   if (!total) throw new Error('Standings response has no TOTAL table')
   const teams = total.table.map(({ team }) => ({ id: team.id, name: team.shortName, crest: team.crest }))
 
-  return { ...input.config, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures }
+  const { deductions } = input
+  for (const d of deductions) if (!teams.some((t) => t.id === d.teamId)) throw new Error(`Deduction for unknown team ${d.teamId}`)
+
+  // Standings guard: a mismatch usually means a Deduction is missing from config/deductions.json.
+  const official = new Map(total.table.map((r) => [r.team.id, r.points]))
+  const mismatches = table(teams, results, deductions).flatMap((r) => {
+    const points = official.get(r.team.id)
+    return r.points === points ? [] : [`${r.team.name} (id ${r.team.id}): computed ${r.points}, official ${points}`]
+  })
+  if (mismatches.length) throw new Error(`Points disagree with the official standings:\n${mismatches.join('\n')}`)
+
+  return { ...input.config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures }
 }

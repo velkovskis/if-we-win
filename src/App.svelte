@@ -4,7 +4,7 @@
   import type { Season } from './update.ts'
 
   const season: Season = seasonData
-  const rows = table(season.teams, season.results)
+  const rows = table(season.teams, season.results, season.deductions)
   const updatedAt = Date.parse(season.updatedAt)
   const HOUR = 3_600_000
 

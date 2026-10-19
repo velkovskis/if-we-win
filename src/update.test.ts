@@ -1,17 +1,23 @@
 import { describe, expect, it } from 'vitest'
 import matches from '../test/recorded/matches.json'
 import standings from '../test/recorded/standings.json'
-import { update, type MatchesResponse } from './update.ts'
+import { update, type Deduction, type MatchesResponse, type StandingsResponse } from './update.ts'
 
 const config = { league: 'PL', season: 2026, championsLeaguePlaces: 4 }
 const now = new Date('2026-10-19T20:00:00Z')
 
-const run = (m: MatchesResponse = matches) => update({ matches: m, standings, config, now })
+const run = (m: MatchesResponse = matches, s: StandingsResponse = standings, deductions: Deduction[] = []) =>
+  update({ matches: m, standings: s, config, deductions, now })
 
 // A copy of the recorded matches response with one match edited.
 const editMatch = (id: number, edit: object): MatchesResponse => ({
   ...matches,
   matches: matches.matches.map((m) => (m.id === id ? { ...m, ...edit } : m)),
+})
+
+// A copy of the recorded standings with some teams' official points edited, keyed by team id.
+const editPoints = (points: Record<number, number>): StandingsResponse => ({
+  standings: standings.standings.map((s) => ({ ...s, table: s.table.map((r) => ({ ...r, points: points[r.team.id] ?? r.points })) })),
 })
 
 const IN_PLAY_ID = 560606
@@ -76,5 +82,22 @@ describe('update', () => {
     for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
     expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 38 }, (_, i) => i + 1))
     expect([...counts.values()].every((n) => n === 10)).toBe(true)
+  })
+
+  it('fails when computed points disagree with the official standings, naming the team and both totals', () => {
+    expect(() => run(matches, editPoints({ 65: 18 }))).toThrow(/Man City \(id 65\): computed 21, official 18/)
+  })
+
+  it('passes once the matching Deduction is added, and publishes it', () => {
+    const deductions = [{ teamId: 65, points: 3 }]
+    expect(run(matches, editPoints({ 65: 18 }), deductions).deductions).toEqual(deductions)
+  })
+
+  it('names every team that disagrees', () => {
+    expect(() => run(matches, editPoints({ 65: 18, 57: 17 }))).toThrow(/Man City.*\n.*Arsenal \(id 57\): computed 18, official 17/)
+  })
+
+  it('rejects a Deduction for a team not in the league', () => {
+    expect(() => run(matches, standings, [{ teamId: 1, points: 3 }])).toThrow(/Deduction for unknown team 1/)
   })
 })

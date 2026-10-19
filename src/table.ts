@@ -1,4 +1,4 @@
-import type { Result, Team } from './update.ts'
+import type { Deduction, Result, Team } from './update.ts'
 
 export type Row = {
   team: Team
@@ -12,8 +12,8 @@ export type Row = {
   points: number
 }
 
-// ponytail: no head-to-head or Deductions yet; tickets #4 and #6 add them.
-export function table(teams: Team[], results: Result[]): Row[] {
+// ponytail: no head-to-head yet; ticket #6 adds it.
+export function table(teams: Team[], results: Result[], deductions: Deduction[]): Row[] {
   const rows = new Map(
     teams.map((team) => [team.id, { team, played: 0, won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }]),
   )
@@ -36,6 +36,7 @@ export function table(teams: Team[], results: Result[]): Row[] {
     add(rows.get(r.homeTeamId)!, r.scoreline.home, r.scoreline.away)
     add(rows.get(r.awayTeamId)!, r.scoreline.away, r.scoreline.home)
   }
+  for (const d of deductions) rows.get(d.teamId)!.points -= d.points
   return [...rows.values()].sort(
     (a, b) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || a.team.name.localeCompare(b.team.name),
   )
