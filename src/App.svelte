@@ -1,6 +1,7 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
   import type { Forecast, forecast, Outcome, Zone } from './forecast.ts'
+  import { decode, encode } from './scenario.ts'
   import { table } from './table.ts'
   import type { Fixture, Season } from './update.ts'
 
@@ -15,13 +16,21 @@
   const played = (week: number) => season.results.filter((r) => r.matchweek === week).length
   let week = $state(weeks.find((w) => matchweeks.get(w)!.length >= played(w)) ?? weeks[0])
 
-  let locks = $state<Record<number, Outcome>>({})
+  // The link is the only place a Scenario is kept.
+  const linked = decode(season, location.hash.slice(1))
+  const fromLink = Object.keys(linked).length > 0
+  let locks = $state(linked)
+  window.onhashchange = () => (locks = decode(season, location.hash.slice(1)))
+  $effect(() => {
+    const link = encode(season, locks)
+    history.replaceState(null, '', link ? `#${link}` : location.pathname + location.search)
+  })
   const toggle = (id: number, outcome: Outcome) => {
     if (locks[id] === outcome) delete locks[id]
     else locks[id] = outcome
   }
 
-  // ponytail: the first answer is the Baseline because the first run has no Locks; a Scenario loaded from a link needs its own Baseline run.
+  // The worker's first answer is always the Baseline; a Scenario from a link queues its own run behind it.
   let baseline = $state<Forecast>()
   let scenario = $state<Forecast>()
   // One run at a time; clicks made meanwhile collapse into one run with the latest Locks.
@@ -34,24 +43,24 @@
     worker.postMessage(input)
   }
   worker.onmessage = (e: MessageEvent<Forecast>) => {
+    if (baseline || !fromLink) scenario = e.data
     baseline ??= e.data
-    scenario = e.data
     running = false
     if (next) run(next)
     next = undefined
   }
-  // Same seed every run, so teams a Lock doesn't affect show no Shift.
-  $effect(() => {
-    const input: Parameters<typeof forecast>[0] = {
-      season,
-      ratings: season.ratings.teams,
-      homeAdvantage: season.ratings.homeAdvantage,
-      locks: $state.snapshot(locks),
-      seed: 1,
-      settings: { championsLeaguePlaces: season.championsLeaguePlaces },
-    }
-    run(input)
+  // Same seed every run and in every browser, so teams a Lock doesn't affect show no Shift and a shared link shows the same Chances.
+  // ponytail: Math.exp/log/cos may differ in the last bit between browser engines, so a rare draw can differ; port them in-house if Chances ever disagree across browsers.
+  const input = (locks: Record<number, Outcome>): Parameters<typeof forecast>[0] => ({
+    season,
+    ratings: season.ratings.teams,
+    homeAdvantage: season.ratings.homeAdvantage,
+    locks,
+    seed: 1,
+    settings: { championsLeaguePlaces: season.championsLeaguePlaces },
   })
+  if (fromLink) run(input({}))
+  $effect(() => run(input($state.snapshot(locks))))
   // Whole percentages; 0% and 100% only when a badge proves them, because a simulation can't.
   const percent = (id: number, zone: Zone) => {
     if (!scenario) return '…'
