@@ -96,6 +96,10 @@ _Avoid_: odds, probability, likelihood
 A bookmaker's prices for the Outcomes of one match.
 _Avoid_: odds (on its own), lines, prices
 
+**Conditional Chance**:
+A team's Chance of a Zone counting only the simulations where one Fixture had a given Outcome. Swing is worked out from these.
+_Avoid_: what-if odds
+
 **Rating**:
 A single number for a team's strength, worked backwards from Bookmaker odds.
 _Avoid_: Elo, power ranking, strength

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { forecast, type Outcome } from './forecast.ts'
+import { forecast, keyFixtures, type Outcome } from './forecast.ts'
 import type { Deduction, Fixture, Result } from './update.ts'
 
 const team = (id: number) => ({ id, name: `T${id}`, crest: '' })
@@ -130,6 +130,39 @@ describe('forecast', () => {
     expect(baseline).toBeGreaterThan(0.7)
     expect(baseline).toBeLessThan(0.95)
     expect(Math.abs(title({ [fixture(13, 12).id]: 'home' }) - baseline)).toBeLessThan(0.01)
+  })
+
+  describe('Conditional Chances', () => {
+    const OUTCOMES = ['home', 'draw', 'away'] as const
+
+    it('agree with running the Forecast with that Outcome Locked', () => {
+      const { conditional } = forecastOf({ simulations: 20_000 })
+      for (const f of [FIXTURES[0], FIXTURES[5]])
+        for (const outcome of OUTCOMES) {
+          const locked = run({ locks: { [f.id]: outcome }, simulations: 20_000 })
+          // ±0.03 is about 4 standard errors for an Outcome sampled in a quarter of 20,000 simulations.
+          for (const id of IDS)
+            for (const zone of ['title', 'championsLeague', 'relegation'] as const) expect(Math.abs(conditional[f.id][outcome]![id][zone] - locked[id][zone])).toBeLessThan(0.03)
+        }
+    })
+
+    it('leave out Outcomes a Lock rules out', () => {
+      const { conditional } = forecastOf({ locks: { [FIXTURES[0].id]: 'draw' } })
+      expect(Object.keys(conditional[FIXTURES[0].id])).toEqual(['draw'])
+    })
+  })
+
+  describe('Key fixtures', () => {
+    it('ranks Fixtures by Swing, including ones My team does not play in, and leaves out Locked ones', () => {
+      const { conditional } = forecastOf({ locks: { [FIXTURES[0].id]: 'home' }, simulations: 20_000 })
+      const key = keyFixtures(conditional, 1, 'title')
+      expect(key.map((k) => k.id)).not.toContain(FIXTURES[0].id)
+      expect(key.some((k) => FIXTURES.some((f) => f.id === k.id && f.homeTeamId !== 1 && f.awayTeamId !== 1))).toBe(true)
+      expect(key.map((k) => k.swing)).toEqual(key.map((k) => k.swing).toSorted((a, b) => b - a))
+      const title = Object.values(conditional[key[0].id]).map((chances) => chances![1].title)
+      expect(Object.values(key[0].chances)).toEqual(title)
+      expect(key[0].swing).toBe(Math.max(...title) - Math.min(...title))
+    })
   })
 
   describe('Clinched and Eliminated', () => {

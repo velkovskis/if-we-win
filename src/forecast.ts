@@ -9,7 +9,12 @@ export type Outcome = 'home' | 'draw' | 'away'
 export type Chances = { title: number; championsLeague: number; relegation: number }
 export type Zone = keyof Chances
 export type Status = 'clinched' | 'eliminated' | 'open'
-export type Forecast = { chances: Record<number, Chances>; status: Record<number, Record<Zone, Status>> }
+export type Forecast = {
+  chances: Record<number, Chances>
+  status: Record<number, Record<Zone, Status>>
+  // Fixture id → Outcome → team id → Chance among the simulations where that Outcome was sampled; an Outcome never sampled is left out.
+  conditional: Record<number, Partial<Record<Outcome, Record<number, Chances>>>>
+}
 
 // Average goals per side in an even match; Ratings and home advantage are in log expected goals.
 const GOALS = 1.35
@@ -32,9 +37,12 @@ export function forecast(input: {
   // One mutable standing per team, reset each simulation; meetings point at them so rank() can settle head-to-head.
   const teams = start.map((_, i) => ({ i, points: 0, goalDifference: 0, goalsFor: 0, rating: 0, tieBreak: 0 }))
   const meetings = season.results.map((r) => ({ home: teams[index.get(r.homeTeamId)!], away: teams[index.get(r.awayTeamId)!], homeGoals: r.scoreline.home, awayGoals: r.scoreline.away }))
-  const fixtures = season.fixtures.map((f) => ({ id: f.id, home: teams[index.get(f.homeTeamId)!], away: teams[index.get(f.awayTeamId)!], homeGoals: 0, awayGoals: 0, lock: locks[f.id] }))
+  const fixtures = season.fixtures.map((f) => ({ id: f.id, home: teams[index.get(f.homeTeamId)!], away: teams[index.get(f.awayTeamId)!], homeGoals: 0, awayGoals: 0, lock: locks[f.id], outcome: 0 }))
   meetings.push(...fixtures)
-  const counts = start.map(() => ({ title: 0, championsLeague: 0, relegation: 0 }))
+  // Zone finishes by team (team index × 3 + Zone index), overall and per Fixture and sampled Outcome, with how often each Outcome was sampled.
+  const counts = new Uint32Array(n * 3)
+  const conditionalCounts = new Uint32Array(fixtures.length * 3 * n * 3)
+  const samples = new Uint32Array(fixtures.length * 3)
 
   for (let sim = 0; sim < simulations; sim++) {
     for (const t of teams) {
@@ -55,15 +63,21 @@ export function forecast(input: {
       f.home.goalDifference += home - away
       f.away.goalDifference += away - home
       const outcome = outcomeOf(home, away)
+      f.outcome = OUTCOMES.indexOf(outcome)
       if (outcome === 'home') f.home.points += 3
       else if (outcome === 'away') f.away.points += 3
       else (f.home.points++, f.away.points++)
     }
     // The coin flip stands in for a play-off.
     const order = rank(teams, meetings, (a, b) => a.tieBreak - b.tieBreak)
-    counts[order[0].i].title++
-    for (let p = 0; p < championsLeaguePlaces; p++) counts[order[p].i].championsLeague++
-    for (let p = n - relegationPlaces; p < n; p++) counts[order[p].i].relegation++
+    const finishes = [order[0].i * 3, ...order.slice(0, championsLeaguePlaces).map((t) => t.i * 3 + 1), ...order.slice(n - relegationPlaces).map((t) => t.i * 3 + 2)]
+    for (const at of finishes) counts[at]++
+    // ponytail: every Fixture × every Zone finish per simulation, about a fifth more run time; tally only Fixtures a page shows if runs get slow.
+    for (let fi = 0; fi < fixtures.length; fi++) {
+      const sampled = fi * 3 + fixtures[fi].outcome
+      samples[sampled]++
+      for (const at of finishes) conditionalCounts[sampled * n * 3 + at]++
+    }
   }
 
   // ponytail: Clinched and Eliminated from points bounds alone: sound, but it misses cases that hinge on who plays whom; a max-flow check finds them all.
@@ -79,11 +93,20 @@ export function forecast(input: {
   }
   const zones: Record<Zone, [number, number]> = { title: [1, 1], championsLeague: [1, championsLeaguePlaces], relegation: [n - relegationPlaces + 1, n] }
 
+  const chancesOf = (finishes: Uint32Array, runs: number) =>
+    Object.fromEntries(start.map((row, i) => [row.team.id, { title: finishes[i * 3] / runs, championsLeague: finishes[i * 3 + 1] / runs, relegation: finishes[i * 3 + 2] / runs }]))
+
   return {
-    chances: Object.fromEntries(
-      start.map((row, i) => [
-        row.team.id,
-        { title: counts[i].title / simulations, championsLeague: counts[i].championsLeague / simulations, relegation: counts[i].relegation / simulations },
+    chances: chancesOf(counts, simulations),
+    conditional: Object.fromEntries(
+      fixtures.map((f, fi) => [
+        f.id,
+        Object.fromEntries(
+          OUTCOMES.flatMap((outcome, o) => {
+            const at = fi * 3 + o
+            return samples[at] ? [[outcome, chancesOf(conditionalCounts.subarray(at * n * 3, (at + 1) * n * 3), samples[at])]] : []
+          }),
+        ),
       ]),
     ),
     status: Object.fromEntries(
@@ -96,6 +119,21 @@ export function forecast(input: {
       }),
     ),
   }
+}
+
+// Fixtures by Swing for one team and Zone, biggest first. Swing is the gap between its Chance under the best and worst
+// sampled Outcome. Swings under 1 point are left out, as with Shift arrows, and so is a Locked Fixture, which has none.
+// ponytail: each Outcome's Chance has sampling noise of up to ~1.5 points on a rare Outcome, so a Swing near the cutoff may be noise;
+// a minimum sample count per Outcome would tighten it.
+export function keyFixtures(conditional: Forecast['conditional'], teamId: number, zone: Zone) {
+  return Object.entries(conditional)
+    .map(([id, outcomes]) => {
+      const chances: Partial<Record<Outcome, number>> = Object.fromEntries(Object.entries(outcomes).map(([outcome, c]) => [outcome, c[teamId][zone]]))
+      const values = Object.values(chances)
+      return { id: Number(id), swing: Math.max(...values) - Math.min(...values), chances }
+    })
+    .filter((k) => k.swing >= 0.01)
+    .toSorted((a, b) => b.swing - a.swing)
 }
 
 // The match model, shared with the Ratings fit: each side's expected goals from the gap
@@ -120,6 +158,7 @@ export function outcomeProbabilities(gap: number): Record<Outcome, number> {
   return { home, draw, away: 1 - home - draw }
 }
 
+const OUTCOMES = ['home', 'draw', 'away'] as const satisfies Outcome[]
 const outcomeOf = (home: number, away: number): Outcome => (home > away ? 'home' : home === away ? 'draw' : 'away')
 
 // ponytail: rejection sampling for a Locked Fixture; slow only if a Lock is an extreme long shot.
