@@ -1,6 +1,6 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
-  import { keyFixtures, type Forecast, type forecast, type Outcome, type Zone } from './forecast.ts'
+  import { keyFixtures, SEED, type Forecast, type forecast, type Outcome, type Zone } from './forecast.ts'
   import { decode, encode } from './scenario.ts'
   import { table } from './table.ts'
   import type { Fixture, Season } from './update.ts'
@@ -66,7 +66,7 @@
     ratings: season.ratings.teams,
     homeAdvantage: season.ratings.homeAdvantage,
     locks,
-    seed: 1,
+    seed: SEED,
     settings: { championsLeaguePlaces: season.championsLeaguePlaces },
   })
   if (fromLink) run(input({}))

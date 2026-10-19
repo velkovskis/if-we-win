@@ -1,5 +1,6 @@
-// Update: turns raw football-data.org responses, and The Odds API's when fetched, into the published Season.
-// Pure: no network, no clock; the caller passes everything in.
+// Update: turns raw football-data.org responses, and The Odds API's when fetched, into the published Season,
+// plus a Snapshot when one is due. Pure: no network, no clock; the caller passes everything in.
+import { DEFAULT_SETTINGS, forecast, SEED, type Chances } from './forecast.ts'
 import { rate, type OddsResponse, type Ratings } from './ratings.ts'
 import { table } from './table.ts'
 
@@ -21,7 +22,8 @@ export type StandingsResponse = {
   standings: { type: string; table: { team: ProviderTeam; points: number }[] }[]
 }
 
-export type SeasonConfig = { league: string; season: number; championsLeaguePlaces: number }
+// firstSnapshot: the date (YYYY-MM-DD) from which weekly Snapshots start, e.g. once Ratings have had a few weeks to settle.
+export type SeasonConfig = { league: string; season: number; championsLeaguePlaces: number; firstSnapshot: string }
 
 // Points taken off a team by the league; hand-edited in config/deductions.json.
 export type Deduction = { teamId: number; points: number }
@@ -31,7 +33,7 @@ export type Scoreline = { home: number; away: number }
 export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number }
 export type Result = Fixture & { scoreline: Scoreline }
 
-export type Season = SeasonConfig & {
+export type Season = Omit<SeasonConfig, 'firstSnapshot'> & {
   deductions: Deduction[]
   leagueName: string
   updatedAt: string
@@ -39,6 +41,16 @@ export type Season = SeasonConfig & {
   results: Result[]
   fixtures: Fixture[]
   ratings: Ratings
+}
+
+// Enough to score the Baseline and Benchmark Chances against the final table, and to re-run either Forecast.
+export type Snapshot = {
+  date: string
+  ratings: Ratings
+  seed: number
+  settings: typeof DEFAULT_SETTINGS & { championsLeaguePlaces: number }
+  baseline: Record<number, Chances>
+  benchmark: Record<number, Chances>
 }
 
 // Everything else, including in-progress and postponed matches, is a Fixture.
@@ -52,7 +64,8 @@ export function update(input: {
   now: Date
   odds?: OddsResponse // absent when not fetched this run, or when the fetch failed
   ratings?: Ratings // the last good Ratings, absent on the very first run
-}): Season {
+  lastSnapshot?: string // the last Snapshot's date, absent before the first
+}): { season: Season; snapshot?: Snapshot } {
   const results: Result[] = []
   const fixtures: Fixture[] = []
   for (const m of input.matches.matches) {
@@ -83,5 +96,24 @@ export function update(input: {
 
   const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now })
 
-  return { ...input.config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
+  const { firstSnapshot, ...config } = input.config
+  const season = { ...config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
+  return { season, snapshot: snapshotDue(input.now, firstSnapshot, input.lastSnapshot) ? snapshot(season, input.now) : undefined }
+}
+
+// Due on the first run at or after Tuesday 06:00 UTC, at most once a week, from the first Snapshot date on.
+function snapshotDue(now: Date, first: string, last?: string) {
+  const weekStart = new Date(now)
+  weekStart.setUTCHours(6, 0, 0, 0)
+  weekStart.setUTCDate(weekStart.getUTCDate() - ((weekStart.getUTCDay() + 5) % 7)) // back to Tuesday (day 2)
+  if (weekStart > now) weekStart.setUTCDate(weekStart.getUTCDate() - 7)
+  return weekStart.getTime() >= Date.parse(first) && !(last && Date.parse(last) >= weekStart.getTime())
+}
+
+function snapshot(season: Season, now: Date): Snapshot {
+  const { ratings } = season
+  const settings = { ...DEFAULT_SETTINGS, championsLeaguePlaces: season.championsLeaguePlaces }
+  const run = (teamRatings: Record<number, number>) => forecast({ season, ratings: teamRatings, homeAdvantage: ratings.homeAdvantage, locks: {}, seed: SEED, settings }).chances
+  const equal = Object.fromEntries(season.teams.map((t) => [t.id, 0]))
+  return { date: now.toISOString(), ratings, seed: SEED, settings, baseline: run(ratings.teams), benchmark: run(equal) }
 }

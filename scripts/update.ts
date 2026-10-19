@@ -1,7 +1,7 @@
-// The scheduled job's shell: fetch, call Update, write the Season.
+// The scheduled job's shell: fetch, call Update, write the Season and any Snapshot due.
 // If Update throws (e.g. the standings guard), nothing is written and the workflow stops before commit and deploy.
 // Usage: FOOTBALL_DATA_API_KEY=... ODDS_API_KEY=... node scripts/update.ts
-import { readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import type { OddsResponse } from '../src/ratings.ts'
 import { update, type Deduction, type Season, type SeasonConfig } from '../src/update.ts'
 
@@ -14,6 +14,9 @@ const config: SeasonConfig = JSON.parse(await readFile('config/season.json', 'ut
 const deductions: Deduction[] = JSON.parse(await readFile('config/deductions.json', 'utf8'))
 const last: Partial<Season> = JSON.parse(await readFile('data/season.json', 'utf8').catch(() => '{}'))
 const now = new Date()
+// One file per Snapshot, named by its date, so the last file name is the last Snapshot.
+const snapshots = (await readdir('data/snapshots').catch(() => [])).toSorted()
+const lastSnapshot: string | undefined = snapshots.length ? JSON.parse(await readFile(`data/snapshots/${snapshots.at(-1)}`, 'utf8')).date : undefined
 
 async function get(resource: string) {
   const url = `https://api.football-data.org/v4/competitions/${config.league}/${resource}?season=${config.season}`
@@ -42,7 +45,7 @@ async function getOdds(): Promise<OddsResponse | undefined> {
   }
 }
 
-const season = update({
+const { season, snapshot } = update({
   matches: await get('matches'),
   standings: await get('standings'),
   config,
@@ -50,5 +53,12 @@ const season = update({
   now,
   odds: await getOdds(),
   ratings: last.ratings,
+  lastSnapshot,
 })
+if (snapshot) {
+  await mkdir('data/snapshots', { recursive: true })
+  // 'wx' fails rather than rewrite an earlier Snapshot.
+  await writeFile(`data/snapshots/${snapshot.date.slice(0, 10)}.json`, JSON.stringify(snapshot, null, 1) + '\n', { flag: 'wx' })
+  console.log(`Snapshot ${snapshot.date}`)
+}
 await writeFile('data/season.json', JSON.stringify(season, null, 1) + '\n')

@@ -50,7 +50,7 @@ describe('table', () => {
   })
 
   it('matches the official standings for the recorded season', () => {
-    const season = update({ matches, standings, config: { league: 'PL', season: 2026, championsLeaguePlaces: 4 }, deductions: [], now: new Date('2026-10-19T20:00:00Z') })
+    const season = update({ matches, standings, config: { league: 'PL', season: 2026, championsLeaguePlaces: 4, firstSnapshot: '2026-10-27' }, deductions: [], now: new Date('2026-10-19T20:00:00Z') }).season
     const official = standings.standings.find((s) => s.type === 'TOTAL')!.table
     const ours = table(season.teams, season.results, season.deductions)
     expect(ours.map((r) => [r.team.id, r.points, r.goalDifference])).toEqual(

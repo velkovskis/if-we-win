@@ -5,13 +5,13 @@ import { outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
 import { update, type Deduction, type MatchesResponse, type StandingsResponse } from './update.ts'
 
-const config = { league: 'PL', season: 2026, championsLeaguePlaces: 4 }
+const config = { league: 'PL', season: 2026, championsLeaguePlaces: 4, firstSnapshot: '2026-10-27' }
 const now = new Date('2026-10-19T20:00:00Z')
 
 const run = (m: MatchesResponse = matches, s: StandingsResponse = standings, deductions: Deduction[] = []) =>
-  update({ matches: m, standings: s, config, deductions, now })
+  update({ matches: m, standings: s, config, deductions, now }).season
 
-const ratingsFrom = (odds?: OddsResponse, ratings?: Ratings) => update({ matches, standings, config, deductions: [], now, odds, ratings }).ratings
+const ratingsFrom = (odds?: OddsResponse, ratings?: Ratings) => update({ matches, standings, config, deductions: [], now, odds, ratings }).season.ratings
 
 // A copy of the recorded matches response with one match edited.
 const editMatch = (id: number, edit: object): MatchesResponse => ({
@@ -194,5 +194,50 @@ describe('update Ratings', () => {
     const published = JSON.stringify(update({ matches, standings, config, deductions: [], now, odds }))
     expect(published).not.toMatch(/bookmaker|h2h|price|book1/i)
     expect(published).not.toContain(String(odds[0].bookmakers[0].markets[0].outcomes[0].price))
+  })
+})
+
+describe('update Snapshot', () => {
+  const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings) =>
+    update({ matches, standings, config, deductions: [], now: new Date(iso), lastSnapshot, ratings }).snapshot
+
+  it('is not due before the first Snapshot date, even on a Tuesday after 06:00 UTC', () => {
+    expect(snapshotAt('2026-10-20T06:00:00Z')).toBeUndefined()
+  })
+
+  it('is not due at Tuesday 05:59 UTC', () => {
+    expect(snapshotAt('2026-10-27T05:59:59Z')).toBeUndefined()
+  })
+
+  it('is due on the first run at or after Tuesday 06:00 UTC', () => {
+    expect(snapshotAt('2026-10-27T06:00:00Z')?.date).toBe('2026-10-27T06:00:00.000Z')
+    expect(snapshotAt('2026-10-29T14:00:00Z')?.date).toBe('2026-10-29T14:00:00.000Z')
+  })
+
+  it('is not due again in the same week', () => {
+    expect(snapshotAt('2026-10-27T08:00:00Z', '2026-10-27T06:00:00.000Z')).toBeUndefined()
+    expect(snapshotAt('2026-11-03T05:59:59Z', '2026-10-27T06:00:00.000Z')).toBeUndefined()
+  })
+
+  it('is due again from the next Tuesday 06:00 UTC', () => {
+    expect(snapshotAt('2026-11-03T06:00:00Z', '2026-10-27T06:00:00.000Z')).toBeDefined()
+  })
+
+  it('records the Ratings, Forecast settings and seed, and every team’s Baseline and Benchmark Chances', () => {
+    const snapshot = snapshotAt('2026-10-27T06:00:00Z', undefined, LAST)!
+    expect(snapshot.ratings).toEqual(LAST)
+    expect(snapshot.seed).toEqual(expect.any(Number))
+    expect(snapshot.settings).toEqual({ championsLeaguePlaces: 4, relegationPlaces: 3, simulations: 20_000, strengthNoise: 0.1 })
+    for (const chances of [snapshot.baseline, snapshot.benchmark]) {
+      expect(Object.keys(chances)).toHaveLength(20)
+      const total = Object.values(chances).reduce((sum, c) => sum + c.title, 0)
+      expect(total).toBeCloseTo(1)
+    }
+    expect(snapshot.baseline).not.toEqual(snapshot.benchmark)
+  })
+
+  it('gives every team the same Rating for the Benchmark', () => {
+    const equal = { ...LAST, teams: Object.fromEntries(TEAMS.map((t) => [t.id, 0])) }
+    expect(snapshotAt('2026-10-27T06:00:00Z', undefined, LAST)!.benchmark).toEqual(snapshotAt('2026-10-27T06:00:00Z', undefined, equal)!.baseline)
   })
 })

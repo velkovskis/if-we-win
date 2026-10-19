@@ -105,7 +105,7 @@ A single number for a team's strength, worked backwards from Bookmaker odds.
 _Avoid_: Elo, power ranking, strength
 
 **Snapshot**:
-The Baseline Chances recorded at a fixed point in the season, so they can be scored later.
+The Baseline Chances, and the Benchmark's, recorded once a week, so they can be scored later.
 
 **Benchmark**:
 The forecast the model must beat: the same simulation with every team given the same Rating, so only the current points and the remaining Fixtures matter.
