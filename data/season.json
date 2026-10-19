@@ -1,0 +1,2669 @@
+{
+ "league": "PL",
+ "season": 2026,
+ "championsLeaguePlaces": 4,
+ "leagueName": "Premier League",
+ "updatedAt": "2026-10-19T20:13:00.000Z",
+ "teams": [
+  {
+   "id": 65,
+   "name": "Man City",
+   "crest": "https://crests.football-data.org/65.png"
+  },
+  {
+   "id": 57,
+   "name": "Arsenal",
+   "crest": "https://crests.football-data.org/57.png"
+  },
+  {
+   "id": 397,
+   "name": "Brighton Hove",
+   "crest": "https://crests.football-data.org/397.png"
+  },
+  {
+   "id": 61,
+   "name": "Chelsea",
+   "crest": "https://crests.football-data.org/61.png"
+  },
+  {
+   "id": 64,
+   "name": "Liverpool",
+   "crest": "https://crests.football-data.org/64.png"
+  },
+  {
+   "id": 402,
+   "name": "Brentford",
+   "crest": "https://crests.football-data.org/402.png"
+  },
+  {
+   "id": 341,
+   "name": "Leeds United",
+   "crest": "https://crests.football-data.org/341.png"
+  },
+  {
+   "id": 62,
+   "name": "Everton",
+   "crest": "https://crests.football-data.org/62.png"
+  },
+  {
+   "id": 322,
+   "name": "Hull City",
+   "crest": "https://crests.football-data.org/322.png"
+  },
+  {
+   "id": 349,
+   "name": "Ipswich Town",
+   "crest": "https://crests.football-data.org/349.png"
+  },
+  {
+   "id": 67,
+   "name": "Newcastle",
+   "crest": "https://crests.football-data.org/67.png"
+  },
+  {
+   "id": 58,
+   "name": "Aston Villa",
+   "crest": "https://crests.football-data.org/58.png"
+  },
+  {
+   "id": 66,
+   "name": "Man United",
+   "crest": "https://crests.football-data.org/66.png"
+  },
+  {
+   "id": 354,
+   "name": "Crystal Palace",
+   "crest": "https://crests.football-data.org/354.png"
+  },
+  {
+   "id": 1044,
+   "name": "Bournemouth",
+   "crest": "https://crests.football-data.org/bournemouth.png"
+  },
+  {
+   "id": 1076,
+   "name": "Coventry City",
+   "crest": "https://crests.football-data.org/1076.png"
+  },
+  {
+   "id": 63,
+   "name": "Fulham",
+   "crest": "https://crests.football-data.org/63.png"
+  },
+  {
+   "id": 351,
+   "name": "Nottingham",
+   "crest": "https://crests.football-data.org/351.png"
+  },
+  {
+   "id": 71,
+   "name": "Sunderland",
+   "crest": "https://crests.football-data.org/71.png"
+  },
+  {
+   "id": 73,
+   "name": "Tottenham",
+   "crest": "https://crests.football-data.org/73.png"
+  }
+ ],
+ "results": [
+  {
+   "id": 560542,
+   "matchweek": 1,
+   "homeTeamId": 57,
+   "awayTeamId": 1076,
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 560543,
+   "matchweek": 1,
+   "homeTeamId": 322,
+   "awayTeamId": 66,
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 560544,
+   "matchweek": 1,
+   "homeTeamId": 349,
+   "awayTeamId": 71,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560545,
+   "matchweek": 1,
+   "homeTeamId": 351,
+   "awayTeamId": 341,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560546,
+   "matchweek": 1,
+   "homeTeamId": 62,
+   "awayTeamId": 354,
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 560547,
+   "matchweek": 1,
+   "homeTeamId": 402,
+   "awayTeamId": 73,
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 560548,
+   "matchweek": 1,
+   "homeTeamId": 65,
+   "awayTeamId": 1044,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560549,
+   "matchweek": 1,
+   "homeTeamId": 397,
+   "awayTeamId": 58,
+   "scoreline": {
+    "home": 4,
+    "away": 0
+   }
+  },
+  {
+   "id": 560550,
+   "matchweek": 1,
+   "homeTeamId": 67,
+   "awayTeamId": 64,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560551,
+   "matchweek": 1,
+   "homeTeamId": 63,
+   "awayTeamId": 61,
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 560555,
+   "matchweek": 2,
+   "homeTeamId": 354,
+   "awayTeamId": 65,
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  },
+  {
+   "id": 560552,
+   "matchweek": 2,
+   "homeTeamId": 64,
+   "awayTeamId": 351,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560560,
+   "matchweek": 2,
+   "homeTeamId": 1044,
+   "awayTeamId": 62,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560561,
+   "matchweek": 2,
+   "homeTeamId": 1076,
+   "awayTeamId": 322,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560558,
+   "matchweek": 2,
+   "homeTeamId": 73,
+   "awayTeamId": 67,
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 560554,
+   "matchweek": 2,
+   "homeTeamId": 71,
+   "awayTeamId": 63,
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 560556,
+   "matchweek": 2,
+   "homeTeamId": 61,
+   "awayTeamId": 397,
+   "scoreline": {
+    "home": 4,
+    "away": 3
+   }
+  },
+  {
+   "id": 560559,
+   "matchweek": 2,
+   "homeTeamId": 341,
+   "awayTeamId": 402,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560553,
+   "matchweek": 2,
+   "homeTeamId": 66,
+   "awayTeamId": 349,
+   "scoreline": {
+    "home": 5,
+    "away": 2
+   }
+  },
+  {
+   "id": 560557,
+   "matchweek": 2,
+   "homeTeamId": 58,
+   "awayTeamId": 57,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560566,
+   "matchweek": 3,
+   "homeTeamId": 349,
+   "awayTeamId": 64,
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 560571,
+   "matchweek": 3,
+   "homeTeamId": 67,
+   "awayTeamId": 1044,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560562,
+   "matchweek": 3,
+   "homeTeamId": 351,
+   "awayTeamId": 73,
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 560563,
+   "matchweek": 3,
+   "homeTeamId": 65,
+   "awayTeamId": 1076,
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 560564,
+   "matchweek": 3,
+   "homeTeamId": 397,
+   "awayTeamId": 341,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560565,
+   "matchweek": 3,
+   "homeTeamId": 402,
+   "awayTeamId": 71,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560568,
+   "matchweek": 3,
+   "homeTeamId": 63,
+   "awayTeamId": 354,
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 560569,
+   "matchweek": 3,
+   "homeTeamId": 322,
+   "awayTeamId": 58,
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 560567,
+   "matchweek": 3,
+   "homeTeamId": 62,
+   "awayTeamId": 66,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560570,
+   "matchweek": 3,
+   "homeTeamId": 57,
+   "awayTeamId": 61,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560572,
+   "matchweek": 4,
+   "homeTeamId": 354,
+   "awayTeamId": 349,
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 560573,
+   "matchweek": 4,
+   "homeTeamId": 64,
+   "awayTeamId": 63,
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 560574,
+   "matchweek": 4,
+   "homeTeamId": 58,
+   "awayTeamId": 351,
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 560576,
+   "matchweek": 4,
+   "homeTeamId": 1044,
+   "awayTeamId": 402,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560581,
+   "matchweek": 4,
+   "homeTeamId": 61,
+   "awayTeamId": 322,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560575,
+   "matchweek": 4,
+   "homeTeamId": 73,
+   "awayTeamId": 62,
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 560577,
+   "matchweek": 4,
+   "homeTeamId": 71,
+   "awayTeamId": 57,
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 560578,
+   "matchweek": 4,
+   "homeTeamId": 1076,
+   "awayTeamId": 397,
+   "scoreline": {
+    "home": 0,
+    "away": 5
+   }
+  },
+  {
+   "id": 560580,
+   "matchweek": 4,
+   "homeTeamId": 66,
+   "awayTeamId": 65,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560579,
+   "matchweek": 4,
+   "homeTeamId": 341,
+   "awayTeamId": 67,
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  },
+  {
+   "id": 560591,
+   "matchweek": 5,
+   "homeTeamId": 402,
+   "awayTeamId": 61,
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 560587,
+   "matchweek": 5,
+   "homeTeamId": 73,
+   "awayTeamId": 58,
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 560584,
+   "matchweek": 5,
+   "homeTeamId": 62,
+   "awayTeamId": 349,
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 560586,
+   "matchweek": 5,
+   "homeTeamId": 397,
+   "awayTeamId": 57,
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 560588,
+   "matchweek": 5,
+   "homeTeamId": 67,
+   "awayTeamId": 322,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560589,
+   "matchweek": 5,
+   "homeTeamId": 351,
+   "awayTeamId": 1076,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560582,
+   "matchweek": 5,
+   "homeTeamId": 1044,
+   "awayTeamId": 64,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560585,
+   "matchweek": 5,
+   "homeTeamId": 341,
+   "awayTeamId": 354,
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 560590,
+   "matchweek": 5,
+   "homeTeamId": 65,
+   "awayTeamId": 71,
+   "scoreline": {
+    "home": 5,
+    "away": 3
+   }
+  },
+  {
+   "id": 560583,
+   "matchweek": 5,
+   "homeTeamId": 63,
+   "awayTeamId": 66,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560593,
+   "matchweek": 6,
+   "homeTeamId": 57,
+   "awayTeamId": 341,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560592,
+   "matchweek": 6,
+   "homeTeamId": 71,
+   "awayTeamId": 397,
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 560595,
+   "matchweek": 6,
+   "homeTeamId": 61,
+   "awayTeamId": 1044,
+   "scoreline": {
+    "home": 5,
+    "away": 1
+   }
+  },
+  {
+   "id": 560599,
+   "matchweek": 6,
+   "homeTeamId": 349,
+   "awayTeamId": 63,
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 560601,
+   "matchweek": 6,
+   "homeTeamId": 58,
+   "awayTeamId": 402,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560600,
+   "matchweek": 6,
+   "homeTeamId": 66,
+   "awayTeamId": 73,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560594,
+   "matchweek": 6,
+   "homeTeamId": 322,
+   "awayTeamId": 62,
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 560596,
+   "matchweek": 6,
+   "homeTeamId": 354,
+   "awayTeamId": 351,
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  },
+  {
+   "id": 560598,
+   "matchweek": 6,
+   "homeTeamId": 64,
+   "awayTeamId": 65,
+   "scoreline": {
+    "home": 0,
+    "away": 3
+   }
+  },
+  {
+   "id": 560597,
+   "matchweek": 6,
+   "homeTeamId": 1076,
+   "awayTeamId": 67,
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  },
+  {
+   "id": 560603,
+   "matchweek": 7,
+   "homeTeamId": 62,
+   "awayTeamId": 61,
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 560602,
+   "matchweek": 7,
+   "homeTeamId": 63,
+   "awayTeamId": 322,
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 560610,
+   "matchweek": 7,
+   "homeTeamId": 65,
+   "awayTeamId": 349,
+   "scoreline": {
+    "home": 3,
+    "away": 2
+   }
+  },
+  {
+   "id": 560611,
+   "matchweek": 7,
+   "homeTeamId": 402,
+   "awayTeamId": 64,
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 560607,
+   "matchweek": 7,
+   "homeTeamId": 67,
+   "awayTeamId": 58,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 560604,
+   "matchweek": 7,
+   "homeTeamId": 1044,
+   "awayTeamId": 71,
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 560605,
+   "matchweek": 7,
+   "homeTeamId": 341,
+   "awayTeamId": 66,
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 560609,
+   "matchweek": 7,
+   "homeTeamId": 397,
+   "awayTeamId": 354,
+   "scoreline": {
+    "home": 5,
+    "away": 0
+   }
+  },
+  {
+   "id": 560608,
+   "matchweek": 7,
+   "homeTeamId": 351,
+   "awayTeamId": 57,
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
+  {
+   "id": 560606,
+   "matchweek": 7,
+   "homeTeamId": 73,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560620,
+   "matchweek": 8,
+   "homeTeamId": 349,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560614,
+   "matchweek": 8,
+   "homeTeamId": 58,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560616,
+   "matchweek": 8,
+   "homeTeamId": 57,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560618,
+   "matchweek": 8,
+   "homeTeamId": 1076,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560617,
+   "matchweek": 8,
+   "homeTeamId": 61,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560612,
+   "matchweek": 8,
+   "homeTeamId": 64,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560613,
+   "matchweek": 8,
+   "homeTeamId": 354,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560615,
+   "matchweek": 8,
+   "homeTeamId": 66,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560619,
+   "matchweek": 8,
+   "homeTeamId": 322,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560621,
+   "matchweek": 8,
+   "homeTeamId": 71,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560626,
+   "matchweek": 9,
+   "homeTeamId": 61,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560623,
+   "matchweek": 9,
+   "homeTeamId": 65,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560624,
+   "matchweek": 9,
+   "homeTeamId": 1044,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560625,
+   "matchweek": 9,
+   "homeTeamId": 1076,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560629,
+   "matchweek": 9,
+   "homeTeamId": 322,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560630,
+   "matchweek": 9,
+   "homeTeamId": 402,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560627,
+   "matchweek": 9,
+   "homeTeamId": 73,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560628,
+   "matchweek": 9,
+   "homeTeamId": 58,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560631,
+   "matchweek": 9,
+   "homeTeamId": 64,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560622,
+   "matchweek": 9,
+   "homeTeamId": 67,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560634,
+   "matchweek": 10,
+   "homeTeamId": 62,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560632,
+   "matchweek": 10,
+   "homeTeamId": 341,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560640,
+   "matchweek": 10,
+   "homeTeamId": 57,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560633,
+   "matchweek": 10,
+   "homeTeamId": 63,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560641,
+   "matchweek": 10,
+   "homeTeamId": 351,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560635,
+   "matchweek": 10,
+   "homeTeamId": 354,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560636,
+   "matchweek": 10,
+   "homeTeamId": 71,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560637,
+   "matchweek": 10,
+   "homeTeamId": 349,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560638,
+   "matchweek": 10,
+   "homeTeamId": 397,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560639,
+   "matchweek": 10,
+   "homeTeamId": 66,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560643,
+   "matchweek": 11,
+   "homeTeamId": 65,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560642,
+   "matchweek": 11,
+   "homeTeamId": 61,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560644,
+   "matchweek": 11,
+   "homeTeamId": 58,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560647,
+   "matchweek": 11,
+   "homeTeamId": 1044,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560648,
+   "matchweek": 11,
+   "homeTeamId": 73,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560650,
+   "matchweek": 11,
+   "homeTeamId": 1076,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560651,
+   "matchweek": 11,
+   "homeTeamId": 67,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560646,
+   "matchweek": 11,
+   "homeTeamId": 322,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560645,
+   "matchweek": 11,
+   "homeTeamId": 64,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560649,
+   "matchweek": 11,
+   "homeTeamId": 402,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560658,
+   "matchweek": 12,
+   "homeTeamId": 351,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560652,
+   "matchweek": 12,
+   "homeTeamId": 341,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560655,
+   "matchweek": 12,
+   "homeTeamId": 66,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560653,
+   "matchweek": 12,
+   "homeTeamId": 349,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560656,
+   "matchweek": 12,
+   "homeTeamId": 62,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560657,
+   "matchweek": 12,
+   "homeTeamId": 63,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560659,
+   "matchweek": 12,
+   "homeTeamId": 397,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560660,
+   "matchweek": 12,
+   "homeTeamId": 71,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560661,
+   "matchweek": 12,
+   "homeTeamId": 354,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560654,
+   "matchweek": 12,
+   "homeTeamId": 57,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560662,
+   "matchweek": 13,
+   "homeTeamId": 73,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560663,
+   "matchweek": 13,
+   "homeTeamId": 64,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560664,
+   "matchweek": 13,
+   "homeTeamId": 322,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560665,
+   "matchweek": 13,
+   "homeTeamId": 61,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560666,
+   "matchweek": 13,
+   "homeTeamId": 58,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560667,
+   "matchweek": 13,
+   "homeTeamId": 402,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560668,
+   "matchweek": 13,
+   "homeTeamId": 1076,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560669,
+   "matchweek": 13,
+   "homeTeamId": 65,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560670,
+   "matchweek": 13,
+   "homeTeamId": 67,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560671,
+   "matchweek": 13,
+   "homeTeamId": 1044,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560672,
+   "matchweek": 14,
+   "homeTeamId": 73,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560673,
+   "matchweek": 14,
+   "homeTeamId": 66,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560674,
+   "matchweek": 14,
+   "homeTeamId": 341,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560675,
+   "matchweek": 14,
+   "homeTeamId": 67,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560676,
+   "matchweek": 14,
+   "homeTeamId": 61,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560677,
+   "matchweek": 14,
+   "homeTeamId": 402,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560678,
+   "matchweek": 14,
+   "homeTeamId": 1044,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560679,
+   "matchweek": 14,
+   "homeTeamId": 58,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560680,
+   "matchweek": 14,
+   "homeTeamId": 351,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560681,
+   "matchweek": 14,
+   "homeTeamId": 62,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560682,
+   "matchweek": 15,
+   "homeTeamId": 71,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560683,
+   "matchweek": 15,
+   "homeTeamId": 354,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560684,
+   "matchweek": 15,
+   "homeTeamId": 322,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560685,
+   "matchweek": 15,
+   "homeTeamId": 397,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560686,
+   "matchweek": 15,
+   "homeTeamId": 349,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560687,
+   "matchweek": 15,
+   "homeTeamId": 1076,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560688,
+   "matchweek": 15,
+   "homeTeamId": 57,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560689,
+   "matchweek": 15,
+   "homeTeamId": 65,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560690,
+   "matchweek": 15,
+   "homeTeamId": 64,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560691,
+   "matchweek": 15,
+   "homeTeamId": 63,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560692,
+   "matchweek": 16,
+   "homeTeamId": 341,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560693,
+   "matchweek": 16,
+   "homeTeamId": 397,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560694,
+   "matchweek": 16,
+   "homeTeamId": 351,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560695,
+   "matchweek": 16,
+   "homeTeamId": 402,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560696,
+   "matchweek": 16,
+   "homeTeamId": 65,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560697,
+   "matchweek": 16,
+   "homeTeamId": 71,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560698,
+   "matchweek": 16,
+   "homeTeamId": 1044,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560699,
+   "matchweek": 16,
+   "homeTeamId": 57,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560700,
+   "matchweek": 16,
+   "homeTeamId": 64,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560701,
+   "matchweek": 16,
+   "homeTeamId": 61,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560702,
+   "matchweek": 17,
+   "homeTeamId": 58,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560705,
+   "matchweek": 17,
+   "homeTeamId": 62,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560708,
+   "matchweek": 17,
+   "homeTeamId": 63,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560709,
+   "matchweek": 17,
+   "homeTeamId": 73,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560711,
+   "matchweek": 17,
+   "homeTeamId": 349,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560710,
+   "matchweek": 17,
+   "homeTeamId": 322,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560707,
+   "matchweek": 17,
+   "homeTeamId": 67,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560706,
+   "matchweek": 17,
+   "homeTeamId": 1076,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560703,
+   "matchweek": 17,
+   "homeTeamId": 66,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560704,
+   "matchweek": 17,
+   "homeTeamId": 354,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560716,
+   "matchweek": 18,
+   "homeTeamId": 322,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560719,
+   "matchweek": 18,
+   "homeTeamId": 73,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560720,
+   "matchweek": 18,
+   "homeTeamId": 62,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560712,
+   "matchweek": 18,
+   "homeTeamId": 63,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560713,
+   "matchweek": 18,
+   "homeTeamId": 1076,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560715,
+   "matchweek": 18,
+   "homeTeamId": 67,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560717,
+   "matchweek": 18,
+   "homeTeamId": 66,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560721,
+   "matchweek": 18,
+   "homeTeamId": 354,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560714,
+   "matchweek": 18,
+   "homeTeamId": 58,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560718,
+   "matchweek": 18,
+   "homeTeamId": 349,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560724,
+   "matchweek": 19,
+   "homeTeamId": 341,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560730,
+   "matchweek": 19,
+   "homeTeamId": 397,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560723,
+   "matchweek": 19,
+   "homeTeamId": 402,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560725,
+   "matchweek": 19,
+   "homeTeamId": 57,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560726,
+   "matchweek": 19,
+   "homeTeamId": 71,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560727,
+   "matchweek": 19,
+   "homeTeamId": 64,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560729,
+   "matchweek": 19,
+   "homeTeamId": 351,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560722,
+   "matchweek": 19,
+   "homeTeamId": 1044,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560728,
+   "matchweek": 19,
+   "homeTeamId": 61,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560731,
+   "matchweek": 19,
+   "homeTeamId": 65,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560732,
+   "matchweek": 20,
+   "homeTeamId": 57,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560735,
+   "matchweek": 20,
+   "homeTeamId": 397,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560736,
+   "matchweek": 20,
+   "homeTeamId": 351,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560738,
+   "matchweek": 20,
+   "homeTeamId": 62,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560739,
+   "matchweek": 20,
+   "homeTeamId": 71,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560737,
+   "matchweek": 20,
+   "homeTeamId": 63,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560740,
+   "matchweek": 20,
+   "homeTeamId": 354,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560741,
+   "matchweek": 20,
+   "homeTeamId": 349,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560733,
+   "matchweek": 20,
+   "homeTeamId": 341,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560734,
+   "matchweek": 20,
+   "homeTeamId": 66,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560742,
+   "matchweek": 21,
+   "homeTeamId": 1044,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560743,
+   "matchweek": 21,
+   "homeTeamId": 65,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560744,
+   "matchweek": 21,
+   "homeTeamId": 61,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560745,
+   "matchweek": 21,
+   "homeTeamId": 402,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560746,
+   "matchweek": 21,
+   "homeTeamId": 58,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560747,
+   "matchweek": 21,
+   "homeTeamId": 73,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560748,
+   "matchweek": 21,
+   "homeTeamId": 1076,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560749,
+   "matchweek": 21,
+   "homeTeamId": 64,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560750,
+   "matchweek": 21,
+   "homeTeamId": 322,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560751,
+   "matchweek": 21,
+   "homeTeamId": 67,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560752,
+   "matchweek": 22,
+   "homeTeamId": 349,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560753,
+   "matchweek": 22,
+   "homeTeamId": 62,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560754,
+   "matchweek": 22,
+   "homeTeamId": 71,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560755,
+   "matchweek": 22,
+   "homeTeamId": 351,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560756,
+   "matchweek": 22,
+   "homeTeamId": 57,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560757,
+   "matchweek": 22,
+   "homeTeamId": 341,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560758,
+   "matchweek": 22,
+   "homeTeamId": 63,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560759,
+   "matchweek": 22,
+   "homeTeamId": 66,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560760,
+   "matchweek": 22,
+   "homeTeamId": 397,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560761,
+   "matchweek": 22,
+   "homeTeamId": 354,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560762,
+   "matchweek": 23,
+   "homeTeamId": 73,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560763,
+   "matchweek": 23,
+   "homeTeamId": 402,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560764,
+   "matchweek": 23,
+   "homeTeamId": 67,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560765,
+   "matchweek": 23,
+   "homeTeamId": 322,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560766,
+   "matchweek": 23,
+   "homeTeamId": 1076,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560767,
+   "matchweek": 23,
+   "homeTeamId": 1044,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560768,
+   "matchweek": 23,
+   "homeTeamId": 61,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560769,
+   "matchweek": 23,
+   "homeTeamId": 64,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560770,
+   "matchweek": 23,
+   "homeTeamId": 65,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560771,
+   "matchweek": 23,
+   "homeTeamId": 58,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560772,
+   "matchweek": 24,
+   "homeTeamId": 57,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560773,
+   "matchweek": 24,
+   "homeTeamId": 397,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560774,
+   "matchweek": 24,
+   "homeTeamId": 71,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560775,
+   "matchweek": 24,
+   "homeTeamId": 354,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560776,
+   "matchweek": 24,
+   "homeTeamId": 349,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560777,
+   "matchweek": 24,
+   "homeTeamId": 62,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560778,
+   "matchweek": 24,
+   "homeTeamId": 63,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560779,
+   "matchweek": 24,
+   "homeTeamId": 341,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560780,
+   "matchweek": 24,
+   "homeTeamId": 66,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560781,
+   "matchweek": 24,
+   "homeTeamId": 351,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560782,
+   "matchweek": 25,
+   "homeTeamId": 62,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560783,
+   "matchweek": 25,
+   "homeTeamId": 1076,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560784,
+   "matchweek": 25,
+   "homeTeamId": 322,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560785,
+   "matchweek": 25,
+   "homeTeamId": 58,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560786,
+   "matchweek": 25,
+   "homeTeamId": 354,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560787,
+   "matchweek": 25,
+   "homeTeamId": 67,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560788,
+   "matchweek": 25,
+   "homeTeamId": 63,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560789,
+   "matchweek": 25,
+   "homeTeamId": 73,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560790,
+   "matchweek": 25,
+   "homeTeamId": 66,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560791,
+   "matchweek": 25,
+   "homeTeamId": 349,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560792,
+   "matchweek": 26,
+   "homeTeamId": 65,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560793,
+   "matchweek": 26,
+   "homeTeamId": 1044,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560794,
+   "matchweek": 26,
+   "homeTeamId": 402,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560795,
+   "matchweek": 26,
+   "homeTeamId": 61,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560796,
+   "matchweek": 26,
+   "homeTeamId": 64,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560797,
+   "matchweek": 26,
+   "homeTeamId": 57,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560798,
+   "matchweek": 26,
+   "homeTeamId": 351,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560799,
+   "matchweek": 26,
+   "homeTeamId": 397,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560800,
+   "matchweek": 26,
+   "homeTeamId": 71,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560801,
+   "matchweek": 26,
+   "homeTeamId": 341,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560802,
+   "matchweek": 27,
+   "homeTeamId": 354,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560803,
+   "matchweek": 27,
+   "homeTeamId": 66,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560804,
+   "matchweek": 27,
+   "homeTeamId": 349,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560805,
+   "matchweek": 27,
+   "homeTeamId": 1076,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560806,
+   "matchweek": 27,
+   "homeTeamId": 62,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560807,
+   "matchweek": 27,
+   "homeTeamId": 63,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560808,
+   "matchweek": 27,
+   "homeTeamId": 58,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560809,
+   "matchweek": 27,
+   "homeTeamId": 73,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560810,
+   "matchweek": 27,
+   "homeTeamId": 67,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560811,
+   "matchweek": 27,
+   "homeTeamId": 322,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560812,
+   "matchweek": 28,
+   "homeTeamId": 351,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560813,
+   "matchweek": 28,
+   "homeTeamId": 1044,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560814,
+   "matchweek": 28,
+   "homeTeamId": 65,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560815,
+   "matchweek": 28,
+   "homeTeamId": 57,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560816,
+   "matchweek": 28,
+   "homeTeamId": 341,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560817,
+   "matchweek": 28,
+   "homeTeamId": 71,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560818,
+   "matchweek": 28,
+   "homeTeamId": 64,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560819,
+   "matchweek": 28,
+   "homeTeamId": 397,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560820,
+   "matchweek": 28,
+   "homeTeamId": 402,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560821,
+   "matchweek": 28,
+   "homeTeamId": 61,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560822,
+   "matchweek": 29,
+   "homeTeamId": 341,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560823,
+   "matchweek": 29,
+   "homeTeamId": 73,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560824,
+   "matchweek": 29,
+   "homeTeamId": 354,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560825,
+   "matchweek": 29,
+   "homeTeamId": 64,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560826,
+   "matchweek": 29,
+   "homeTeamId": 1076,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560827,
+   "matchweek": 29,
+   "homeTeamId": 1044,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560828,
+   "matchweek": 29,
+   "homeTeamId": 61,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560829,
+   "matchweek": 29,
+   "homeTeamId": 58,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560830,
+   "matchweek": 29,
+   "homeTeamId": 66,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560831,
+   "matchweek": 29,
+   "homeTeamId": 71,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560832,
+   "matchweek": 30,
+   "homeTeamId": 402,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560833,
+   "matchweek": 30,
+   "homeTeamId": 397,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560834,
+   "matchweek": 30,
+   "homeTeamId": 65,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560835,
+   "matchweek": 30,
+   "homeTeamId": 349,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560836,
+   "matchweek": 30,
+   "homeTeamId": 57,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560837,
+   "matchweek": 30,
+   "homeTeamId": 63,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560838,
+   "matchweek": 30,
+   "homeTeamId": 322,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560839,
+   "matchweek": 30,
+   "homeTeamId": 351,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560840,
+   "matchweek": 30,
+   "homeTeamId": 62,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560841,
+   "matchweek": 30,
+   "homeTeamId": 67,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560842,
+   "matchweek": 31,
+   "homeTeamId": 71,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560843,
+   "matchweek": 31,
+   "homeTeamId": 341,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560844,
+   "matchweek": 31,
+   "homeTeamId": 66,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560845,
+   "matchweek": 31,
+   "homeTeamId": 61,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560846,
+   "matchweek": 31,
+   "homeTeamId": 64,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560847,
+   "matchweek": 31,
+   "homeTeamId": 1076,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560848,
+   "matchweek": 31,
+   "homeTeamId": 1044,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560849,
+   "matchweek": 31,
+   "homeTeamId": 354,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560850,
+   "matchweek": 31,
+   "homeTeamId": 73,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560851,
+   "matchweek": 31,
+   "homeTeamId": 58,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560852,
+   "matchweek": 32,
+   "homeTeamId": 397,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560853,
+   "matchweek": 32,
+   "homeTeamId": 63,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560854,
+   "matchweek": 32,
+   "homeTeamId": 402,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560855,
+   "matchweek": 32,
+   "homeTeamId": 351,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560856,
+   "matchweek": 32,
+   "homeTeamId": 322,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560857,
+   "matchweek": 32,
+   "homeTeamId": 57,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560858,
+   "matchweek": 32,
+   "homeTeamId": 349,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560859,
+   "matchweek": 32,
+   "homeTeamId": 65,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560860,
+   "matchweek": 32,
+   "homeTeamId": 67,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560861,
+   "matchweek": 32,
+   "homeTeamId": 62,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560862,
+   "matchweek": 33,
+   "homeTeamId": 61,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560863,
+   "matchweek": 33,
+   "homeTeamId": 1044,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560864,
+   "matchweek": 33,
+   "homeTeamId": 73,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560865,
+   "matchweek": 33,
+   "homeTeamId": 66,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560866,
+   "matchweek": 33,
+   "homeTeamId": 62,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560867,
+   "matchweek": 33,
+   "homeTeamId": 351,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560868,
+   "matchweek": 33,
+   "homeTeamId": 67,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560869,
+   "matchweek": 33,
+   "homeTeamId": 58,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560870,
+   "matchweek": 33,
+   "homeTeamId": 402,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560871,
+   "matchweek": 33,
+   "homeTeamId": 341,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560872,
+   "matchweek": 34,
+   "homeTeamId": 71,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560873,
+   "matchweek": 34,
+   "homeTeamId": 397,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560874,
+   "matchweek": 34,
+   "homeTeamId": 1076,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560875,
+   "matchweek": 34,
+   "homeTeamId": 322,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560876,
+   "matchweek": 34,
+   "homeTeamId": 65,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560877,
+   "matchweek": 34,
+   "homeTeamId": 63,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560878,
+   "matchweek": 34,
+   "homeTeamId": 64,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560879,
+   "matchweek": 34,
+   "homeTeamId": 57,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560880,
+   "matchweek": 34,
+   "homeTeamId": 354,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560881,
+   "matchweek": 34,
+   "homeTeamId": 349,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560882,
+   "matchweek": 35,
+   "homeTeamId": 65,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560883,
+   "matchweek": 35,
+   "homeTeamId": 341,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560884,
+   "matchweek": 35,
+   "homeTeamId": 63,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560885,
+   "matchweek": 35,
+   "homeTeamId": 351,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560886,
+   "matchweek": 35,
+   "homeTeamId": 402,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560887,
+   "matchweek": 35,
+   "homeTeamId": 67,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560888,
+   "matchweek": 35,
+   "homeTeamId": 397,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560889,
+   "matchweek": 35,
+   "homeTeamId": 73,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560890,
+   "matchweek": 35,
+   "homeTeamId": 62,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560891,
+   "matchweek": 35,
+   "homeTeamId": 1044,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560896,
+   "matchweek": 36,
+   "homeTeamId": 322,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560897,
+   "matchweek": 36,
+   "homeTeamId": 66,
+   "awayTeamId": 341
+  },
+  {
+   "id": 560898,
+   "matchweek": 36,
+   "homeTeamId": 354,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560899,
+   "matchweek": 36,
+   "homeTeamId": 58,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560900,
+   "matchweek": 36,
+   "homeTeamId": 61,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560901,
+   "matchweek": 36,
+   "homeTeamId": 1076,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560892,
+   "matchweek": 36,
+   "homeTeamId": 71,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560893,
+   "matchweek": 36,
+   "homeTeamId": 64,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560894,
+   "matchweek": 36,
+   "homeTeamId": 349,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560895,
+   "matchweek": 36,
+   "homeTeamId": 57,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560902,
+   "matchweek": 37,
+   "homeTeamId": 402,
+   "awayTeamId": 322
+  },
+  {
+   "id": 560903,
+   "matchweek": 37,
+   "homeTeamId": 67,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560904,
+   "matchweek": 37,
+   "homeTeamId": 73,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560905,
+   "matchweek": 37,
+   "homeTeamId": 341,
+   "awayTeamId": 71
+  },
+  {
+   "id": 560906,
+   "matchweek": 37,
+   "homeTeamId": 397,
+   "awayTeamId": 64
+  },
+  {
+   "id": 560907,
+   "matchweek": 37,
+   "homeTeamId": 351,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560908,
+   "matchweek": 37,
+   "homeTeamId": 1044,
+   "awayTeamId": 61
+  },
+  {
+   "id": 560909,
+   "matchweek": 37,
+   "homeTeamId": 63,
+   "awayTeamId": 1076
+  },
+  {
+   "id": 560910,
+   "matchweek": 37,
+   "homeTeamId": 62,
+   "awayTeamId": 57
+  },
+  {
+   "id": 560911,
+   "matchweek": 37,
+   "homeTeamId": 65,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560912,
+   "matchweek": 38,
+   "homeTeamId": 349,
+   "awayTeamId": 62
+  },
+  {
+   "id": 560913,
+   "matchweek": 38,
+   "homeTeamId": 57,
+   "awayTeamId": 397
+  },
+  {
+   "id": 560914,
+   "matchweek": 38,
+   "homeTeamId": 64,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560915,
+   "matchweek": 38,
+   "homeTeamId": 1076,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560916,
+   "matchweek": 38,
+   "homeTeamId": 58,
+   "awayTeamId": 73
+  },
+  {
+   "id": 560917,
+   "matchweek": 38,
+   "homeTeamId": 322,
+   "awayTeamId": 67
+  },
+  {
+   "id": 560918,
+   "matchweek": 38,
+   "homeTeamId": 66,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560919,
+   "matchweek": 38,
+   "homeTeamId": 71,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560920,
+   "matchweek": 38,
+   "homeTeamId": 61,
+   "awayTeamId": 402
+  },
+  {
+   "id": 560921,
+   "matchweek": 38,
+   "homeTeamId": 354,
+   "awayTeamId": 341
+  }
+ ]
+}

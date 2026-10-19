@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "esnext",
+    "types": ["svelte", "vite/client", "node"],
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true
+  },
+  "include": ["src", "scripts", "vite.config.ts"]
+}
