@@ -10,6 +10,10 @@
   // Not Map.groupBy: it blanks the page on Safari before 17.4.
   const matchweeks = new Map<number, Fixture[]>()
   for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek)) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
+  const weeks = [...matchweeks.keys()]
+  // Start at the next Matchweek: the first with at least half its matches still to play, so one postponed Fixture doesn't count.
+  const played = (week: number) => season.results.filter((r) => r.matchweek === week).length
+  let week = $state(weeks.find((w) => matchweeks.get(w)!.length >= played(w)) ?? weeks[0])
 
   let locks = $state<Record<number, Outcome>>({})
   const toggle = (id: number, outcome: Outcome) => {
@@ -85,7 +89,7 @@
   })
 </script>
 
-<main class="mx-auto max-w-2xl p-4">
+<main class="mx-auto max-w-2xl p-4 lg:max-w-5xl">
   <h1 class="text-2xl font-bold">If We Win</h1>
   <p class="text-sm text-gray-600">{season.leagueName} {season.season}–{String(season.season + 1).slice(2)} · Updated {ago}</p>
 
@@ -95,69 +99,17 @@
     </p>
   {/if}
 
-  <table class="mt-4 w-full text-sm tabular-nums">
-    <thead class="border-b text-left text-gray-600">
-      <tr>
-        <th class="py-1 pr-2">#</th>
-        <th class="py-1">Team</th>
-        <th class="px-1 text-right">P</th>
-        <th class="hidden px-1 text-right sm:table-cell">W</th>
-        <th class="hidden px-1 text-right sm:table-cell">D</th>
-        <th class="hidden px-1 text-right sm:table-cell">L</th>
-        <th class="px-1 text-right">GD</th>
-        <th class="px-1 text-right">Pts</th>
-        <th class="px-1 text-right">Title</th>
-        <th class="px-1 text-right"><abbr title="Champions League places">CL</abbr></th>
-        <th class="pl-1 text-right"><abbr title="Relegation">Rel</abbr></th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each rows as row, i (row.team.id)}
-        <tr class="border-b border-gray-100">
-          <td class="py-1 pr-2">{i + 1}</td>
-          <td class="py-1">
-            <span class="flex items-center gap-2">
-              <img src={row.team.crest} alt="" class="size-5" />
-              {row.team.name}
-            </span>
-          </td>
-          <td class="px-1 text-right">{row.played}</td>
-          <td class="hidden px-1 text-right sm:table-cell">{row.won}</td>
-          <td class="hidden px-1 text-right sm:table-cell">{row.drawn}</td>
-          <td class="hidden px-1 text-right sm:table-cell">{row.lost}</td>
-          <td class="px-1 text-right">{row.goalDifference > 0 ? '+' : ''}{row.goalDifference}</td>
-          <td class="px-1 text-right font-semibold">{row.points}</td>
-          {#each ['title', 'championsLeague', 'relegation'] as const as zone (zone)}
-            {@const status = scenario?.status[row.team.id][zone]}
-            {@const points = shift(row.team.id, zone)}
-            <td class="px-1 text-right last:pr-0">
-              {percent(row.team.id, zone)}
-              {#if points}
-                <!-- Green when the Shift is good news for the team: up for Title and CL, down for Relegation. -->
-                <span class={['block text-xs', points > 0 === (zone !== 'relegation') ? 'text-green-700' : 'text-red-700']}>
-                  {points > 0 ? '▲' : '▼'}{Math.abs(points)}
-                </span>
-              {/if}
-              {#if status && status !== 'open'}
-                <span class="block text-[10px] font-semibold uppercase tracking-wide text-gray-500">{BADGES[zone][status]}</span>
-              {/if}
-            </td>
-          {/each}
-        </tr>
-      {/each}
-    </tbody>
-  </table>
-
-  <section class="mt-8">
-    <div class="flex items-baseline justify-between">
-      <h2 class="text-lg font-bold">Fixtures</h2>
-      <button class="text-sm underline disabled:invisible" disabled={!Object.keys(locks).length} onclick={() => (locks = {})}>Clear all Locks</button>
-    </div>
-    {#each matchweeks as [matchweek, fixtures] (matchweek)}
-      <h3 class="mt-4 text-sm font-semibold text-gray-600">Matchweek {matchweek}</h3>
-      <ul>
-        {#each fixtures as f (f.id)}
-          <li class="grid grid-cols-[1fr_auto_1fr] gap-1 border-b border-gray-100 py-1 text-sm">
+  <!-- Phone: Fixtures above the table. Wide screens: beside it, staying in view, so a Lock and its Shifts are seen together. -->
+  <div class="mt-4 grid gap-6 lg:grid-cols-[1fr_22rem] lg:items-start">
+    <section class="lg:sticky lg:top-4 lg:col-start-2 lg:row-start-1">
+      <div class="flex items-center justify-between">
+        <button class="rounded px-2 text-lg disabled:invisible" aria-label="Previous Matchweek" disabled={week === weeks[0]} onclick={() => (week = weeks[weeks.indexOf(week) - 1])}>‹</button>
+        <h2 class="font-bold">Matchweek {week}</h2>
+        <button class="rounded px-2 text-lg disabled:invisible" aria-label="Next Matchweek" disabled={week === weeks.at(-1)} onclick={() => (week = weeks[weeks.indexOf(week) + 1])}>›</button>
+      </div>
+      <ul class="mt-2">
+        {#each matchweeks.get(week) ?? [] as f (f.id)}
+          <li class="grid grid-cols-[1fr_auto_1fr] gap-1 py-0.5 text-sm">
             {#each [['home', names.get(f.homeTeamId)], ['draw', 'Draw'], ['away', names.get(f.awayTeamId)]] as const as [outcome, label] (outcome)}
               <button
                 class={['rounded border px-2 py-1', outcome === 'home' ? 'text-left' : outcome === 'away' ? 'text-right' : '', locks[f.id] === outcome ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200']}
@@ -168,8 +120,69 @@
           </li>
         {/each}
       </ul>
-    {/each}
-  </section>
+      {#if Object.keys(locks).length}
+        {@const count = Object.keys(locks).length}
+        <p class="mt-2 flex justify-between text-sm text-gray-600">
+          {count} {count === 1 ? 'Lock' : 'Locks'}
+          <button class="underline" onclick={() => (locks = {})}>Clear all Locks</button>
+        </p>
+      {/if}
+    </section>
+
+    <table class="w-full text-sm tabular-nums lg:col-start-1 lg:row-start-1">
+      <thead class="border-b text-left text-gray-600">
+        <tr>
+          <th class="py-1 pr-2">#</th>
+          <th class="py-1">Team</th>
+          <th class="px-1 text-right">P</th>
+          <th class="hidden px-1 text-right sm:table-cell">W</th>
+          <th class="hidden px-1 text-right sm:table-cell">D</th>
+          <th class="hidden px-1 text-right sm:table-cell">L</th>
+          <th class="px-1 text-right">GD</th>
+          <th class="px-1 text-right">Pts</th>
+          <th class="px-1 text-right">Title</th>
+          <th class="px-1 text-right"><abbr title="Champions League places">CL</abbr></th>
+          <th class="pl-1 text-right"><abbr title="Relegation">Rel</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each rows as row, i (row.team.id)}
+          <tr class="border-b border-gray-100">
+            <td class="py-1 pr-2">{i + 1}</td>
+            <td class="py-1">
+              <span class="flex items-center gap-2">
+                <img src={row.team.crest} alt="" class="size-5" />
+                {row.team.name}
+              </span>
+            </td>
+            <td class="px-1 text-right">{row.played}</td>
+            <td class="hidden px-1 text-right sm:table-cell">{row.won}</td>
+            <td class="hidden px-1 text-right sm:table-cell">{row.drawn}</td>
+            <td class="hidden px-1 text-right sm:table-cell">{row.lost}</td>
+            <td class="px-1 text-right">{row.goalDifference > 0 ? '+' : ''}{row.goalDifference}</td>
+            <td class="px-1 text-right font-semibold">{row.points}</td>
+            {#each ['title', 'championsLeague', 'relegation'] as const as zone (zone)}
+              {@const status = scenario?.status[row.team.id][zone]}
+              {@const points = shift(row.team.id, zone)}
+              <td class="px-1 text-right last:pr-0">
+                {percent(row.team.id, zone)}
+                {#if points}
+                  <!-- Green when the Shift is good news for the team: up for Title and CL, down for Relegation. -->
+                  <span class={['block text-xs', points > 0 === (zone !== 'relegation') ? 'text-green-700' : 'text-red-700']}>
+                    {points > 0 ? '▲' : '▼'}{Math.abs(points)}
+                  </span>
+                {/if}
+                {#if status && status !== 'open'}
+                  <span class="block text-[10px] font-semibold uppercase tracking-wide text-gray-500">{BADGES[zone][status]}</span>
+                {/if}
+              </td>
+            {/each}
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+
 
   <footer class="mt-6 text-xs text-gray-500">
     <a class="underline" href="https://www.football-data.org/">Football data provided by the Football-Data.org API</a>
