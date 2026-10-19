@@ -1,0 +1,69 @@
+{
+  "hook": {
+    "enabled": true,
+    "limits": {
+      "maxFindings": 5,
+      "maxChars": 8000
+    }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-19T23:10:50.223Z",
+        "reason": "agent decided: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-terminal.html"
+        ],
+        "createdAt": "2026-10-19T23:10:50.240Z",
+        "reason": "agent decided: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-10-19T23:10:50.258Z",
+        "reason": "agent decided: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-19T23:40:31.847Z",
+        "reason": "agent decided: decision-round sketch written before DESIGN.md existed, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-19T23:40:31.864Z",
+        "reason": "agent decided: decision-round sketch written before DESIGN.md existed, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-terminal.html"
+        ],
+        "createdAt": "2026-10-19T23:40:31.880Z",
+        "reason": "agent decided: decision-round sketch written before DESIGN.md existed, never shipped"
+      }
+    ]
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T23:39:51.592Z",
+  "title": "Design System: If We Win",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Enamel Ground",
+        "canonical": "#f3f5f4",
+        "dark": "#0f161d",
+        "tonalRamp": [
+          "oklch(15% 0.002 165.1)",
+          "oklch(25% 0.002 165.1)",
+          "oklch(35% 0.002 165.1)",
+          "oklch(45% 0.002 165.1)",
+          "oklch(55% 0.002 165.1)",
+          "oklch(70% 0.002 165.1)",
+          "oklch(85% 0.002 165.1)",
+          "oklch(95% 0.002 165.1)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Enamel Surface",
+        "canonical": "#ffffff",
+        "dark": "#17212b",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#15202b",
+        "dark": "#f1f4f3",
+        "tonalRamp": [
+          "oklch(15% 0.026 249.0)",
+          "oklch(25% 0.026 249.0)",
+          "oklch(35% 0.026 249.0)",
+          "oklch(45% 0.026 249.0)",
+          "oklch(55% 0.026 249.0)",
+          "oklch(70% 0.026 249.0)",
+          "oklch(85% 0.026 249.0)",
+          "oklch(95% 0.026 249.0)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Second Ink",
+        "canonical": "#3c4a56",
+        "dark": "#b9c5ca",
+        "tonalRamp": [
+          "oklch(15% 0.027 244.4)",
+          "oklch(25% 0.027 244.4)",
+          "oklch(35% 0.027 244.4)",
+          "oklch(45% 0.027 244.4)",
+          "oklch(55% 0.027 244.4)",
+          "oklch(70% 0.027 244.4)",
+          "oklch(85% 0.027 244.4)",
+          "oklch(95% 0.027 244.4)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#d3dad8",
+        "dark": "#2a3742",
+        "tonalRamp": [
+          "oklch(15% 0.008 177.3)",
+          "oklch(25% 0.008 177.3)",
+          "oklch(35% 0.008 177.3)",
+          "oklch(45% 0.008 177.3)",
+          "oklch(55% 0.008 177.3)",
+          "oklch(70% 0.008 177.3)",
+          "oklch(85% 0.008 177.3)",
+          "oklch(95% 0.008 177.3)"
+        ]
+      },
+      "plate": {
+        "role": "primary",
+        "displayName": "Slate Enamel",
+        "canonical": "#1e2a36",
+        "dark": "#24384c",
+        "tonalRamp": [
+          "oklch(15% 0.028 248.9)",
+          "oklch(25% 0.028 248.9)",
+          "oklch(35% 0.028 248.9)",
+          "oklch(45% 0.028 248.9)",
+          "oklch(55% 0.028 248.9)",
+          "oklch(70% 0.028 248.9)",
+          "oklch(85% 0.028 248.9)",
+          "oklch(95% 0.028 248.9)"
+        ]
+      },
+      "on-plate": {
+        "role": "primary",
+        "displayName": "Enamel White",
+        "canonical": "#ffffff",
+        "dark": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "sel": {
+        "role": "neutral",
+        "displayName": "Selected Plate",
+        "canonical": "#1e2a36",
+        "dark": "#eef2f1",
+        "tonalRamp": [
+          "oklch(15% 0.028 248.9)",
+          "oklch(25% 0.028 248.9)",
+          "oklch(35% 0.028 248.9)",
+          "oklch(45% 0.028 248.9)",
+          "oklch(55% 0.028 248.9)",
+          "oklch(70% 0.028 248.9)",
+          "oklch(85% 0.028 248.9)",
+          "oklch(95% 0.028 248.9)"
+        ]
+      },
+      "on-sel": {
+        "role": "neutral",
+        "displayName": "Selected Plate Lettering",
+        "canonical": "#ffffff",
+        "dark": "#15202b",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "lit": {
+        "role": "neutral",
+        "displayName": "Lit Band",
+        "canonical": "#dde7f3",
+        "dark": "#1c3352",
+        "tonalRamp": [
+          "oklch(15% 0.020 252.9)",
+          "oklch(25% 0.020 252.9)",
+          "oklch(35% 0.020 252.9)",
+          "oklch(45% 0.020 252.9)",
+          "oklch(55% 0.020 252.9)",
+          "oklch(70% 0.020 252.9)",
+          "oklch(85% 0.020 252.9)",
+          "oklch(95% 0.020 252.9)"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Stand Gold",
+        "canonical": "#e2b33c",
+        "dark": "#e2b33c",
+        "tonalRamp": [
+          "oklch(15% 0.141 86.3)",
+          "oklch(25% 0.141 86.3)",
+          "oklch(35% 0.141 86.3)",
+          "oklch(45% 0.141 86.3)",
+          "oklch(55% 0.141 86.3)",
+          "oklch(70% 0.141 86.3)",
+          "oklch(85% 0.141 86.3)",
+          "oklch(95% 0.141 86.3)"
+        ]
+      },
+      "cl": {
+        "role": "secondary",
+        "displayName": "Enamel Blue",
+        "canonical": "#2f5fa8",
+        "dark": "#5b8fe0",
+        "tonalRamp": [
+          "oklch(15% 0.128 258.7)",
+          "oklch(25% 0.128 258.7)",
+          "oklch(35% 0.128 258.7)",
+          "oklch(45% 0.128 258.7)",
+          "oklch(55% 0.128 258.7)",
+          "oklch(70% 0.128 258.7)",
+          "oklch(85% 0.128 258.7)",
+          "oklch(95% 0.128 258.7)"
+        ]
+      },
+      "rel": {
+        "role": "secondary",
+        "displayName": "Signal Red",
+        "canonical": "#b3362c",
+        "dark": "#e0574b",
+        "tonalRamp": [
+          "oklch(15% 0.150 28.6)",
+          "oklch(25% 0.150 28.6)",
+          "oklch(35% 0.150 28.6)",
+          "oklch(45% 0.150 28.6)",
+          "oklch(55% 0.150 28.6)",
+          "oklch(70% 0.150 28.6)",
+          "oklch(85% 0.150 28.6)",
+          "oklch(95% 0.150 28.6)"
+        ]
+      },
+      "up": {
+        "role": "tertiary",
+        "displayName": "Good-News Green",
+        "canonical": "#1f7a4d",
+        "dark": "#1f7a4d",
+        "tonalRamp": [
+          "oklch(15% 0.110 156.8)",
+          "oklch(25% 0.110 156.8)",
+          "oklch(35% 0.110 156.8)",
+          "oklch(45% 0.110 156.8)",
+          "oklch(55% 0.110 156.8)",
+          "oklch(70% 0.110 156.8)",
+          "oklch(85% 0.110 156.8)",
+          "oklch(95% 0.110 156.8)"
+        ]
+      },
+      "down": {
+        "role": "tertiary",
+        "displayName": "Bad-News Red",
+        "canonical": "#b3362c",
+        "dark": "#b3362c",
+        "tonalRamp": [
+          "oklch(15% 0.150 28.6)",
+          "oklch(25% 0.150 28.6)",
+          "oklch(35% 0.150 28.6)",
+          "oklch(45% 0.150 28.6)",
+          "oklch(55% 0.150 28.6)",
+          "oklch(70% 0.150 28.6)",
+          "oklch(85% 0.150 28.6)",
+          "oklch(95% 0.150 28.6)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The app name on the header plate only."
+      },
+      "headline": {
+        "displayName": "Plate Heading",
+        "purpose": "Headings on plates: My team, Matchweek N, How this works."
+      },
+      "title": {
+        "displayName": "Subheading",
+        "purpose": "Off-plate subheadings and the Scenario band title."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Explanatory prose, max-w-prose."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "The table; 13px on phones, 14px from 640px; tabular numerals."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Column headings on small plates; badges at 11px."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-keyline",
+        "value": "inset 0 0 0 2px var(--plate), inset 0 0 0 3.5px var(--on-plate)",
+        "purpose": "The enamel sign keyline on large plates; selected plates use sel / on-sel."
+      },
+      {
+        "name": "sticky-lift",
+        "value": "0 2px 8px rgb(0 0 0 / 0.18)",
+        "purpose": "The sticky Scenario band only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "drop-in",
+        "value": "drop 260ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shift plates drop in (from translateY(-5px), opacity 0.3) when a Lock moves a Chance. None under reduced motion."
+      },
+      {
+        "name": "row-light",
+        "value": "background-color 300ms",
+        "purpose": "Moved rows fade onto the lit band."
+      },
+      {
+        "name": "control",
+        "value": "color, background-color, border-color 150ms",
+        "purpose": "Lock button hover and press."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Plate",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "The enamel sign: header and section headings.",
+      "html": "<div class=\"ds-plate\"><h2 class=\"ds-plate-h\">Matchweek 8</h2></div>",
+      "css": ".ds-plate{background:var(--plate,#1e2a36);color:var(--on-plate,#fff);border-radius:8px;box-shadow:inset 0 0 0 2px var(--plate,#1e2a36),inset 0 0 0 3.5px var(--on-plate,#fff);padding:12px 16px;}.ds-plate-h{font-family:'Barlow Condensed',ui-sans-serif,system-ui,sans-serif;font-weight:700;text-transform:uppercase;font-size:1.125rem;letter-spacing:0.025em;margin:0;}"
+    },
+    {
+      "name": "Lock Button",
+      "kind": "button",
+      "refersTo": "lock-button",
+      "description": "One Outcome of a Fixture; becomes a selected plate when Locked.",
+      "html": "<div class=\"ds-locks\"><button class=\"ds-lock\">Arsenal</button><button class=\"ds-lock ds-lock-on\" aria-pressed=\"true\" style=\"text-align:center\">Draw</button><button class=\"ds-lock\" style=\"text-align:right\">Chelsea</button></div>",
+      "css": ".ds-locks{display:grid;grid-template-columns:1fr 4.5rem 1fr;gap:6px;}.ds-lock{min-height:44px;border-radius:6px;border:1px solid var(--rule,#d3dad8);background:var(--surface,#fff);color:var(--ink,#15202b);padding:6px 10px;font:600 14px/1.25 ui-sans-serif,system-ui,sans-serif;text-align:left;transition:color .15s,background-color .15s,border-color .15s;cursor:pointer;}.ds-lock:hover{border-color:var(--ink-2,#3c4a56);}.ds-lock:focus-visible{outline:2px solid var(--cl,#2f5fa8);outline-offset:2px;}.ds-lock-on,.ds-lock-on:hover{background:var(--sel,#1e2a36);color:var(--on-sel,#fff);border-color:var(--sel,#1e2a36);box-shadow:inset 0 0 0 2px var(--sel,#1e2a36),inset 0 0 0 3.5px var(--on-sel,#fff);}"
+    },
+    {
+      "name": "Zone Tabs",
+      "kind": "nav",
+      "refersTo": "zone-tab-selected-cl",
+      "description": "Key fixtures Zone picker; selected tab fills with its Zone colour.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\"><span class=\"ds-bar\" style=\"background:#e2b33c\"></span>Title</button><button class=\"ds-tab ds-tab-on\" role=\"tab\" aria-selected=\"true\"><span class=\"ds-bar\" style=\"background:currentColor\"></span>Champions League places</button><button class=\"ds-tab\" role=\"tab\"><span class=\"ds-bar\" style=\"background:#b3362c\"></span>Relegation</button></div>",
+      "css": ".ds-tabs{display:flex;gap:4px;}.ds-tab{display:flex;align-items:center;gap:6px;min-height:36px;padding:0 8px;border-radius:6px;border:1px solid var(--rule,#d3dad8);background:var(--surface,#fff);color:var(--ink,#15202b);font:600 12px ui-sans-serif,system-ui,sans-serif;white-space:nowrap;cursor:pointer;}.ds-tab:focus-visible{outline:2px solid var(--cl,#2f5fa8);outline-offset:2px;}.ds-tab-on{background:var(--cl,#2f5fa8);color:#fff;border-color:transparent;}.ds-bar{width:6px;height:12px;border-radius:2px;}"
+    },
+    {
+      "name": "Shift Plate",
+      "kind": "chip",
+      "refersTo": "shift-plate-up",
+      "description": "Arrow plate after a Chance; green for good news, red for bad.",
+      "html": "<span class=\"ds-num\">62%<span class=\"ds-shift ds-up\"><svg viewBox=\"0 0 8 8\" width=\"8\" height=\"8\"><path d=\"M4 1 8 7H0z\" fill=\"currentColor\"/></svg>10</span> 25%<span class=\"ds-shift ds-down\"><svg viewBox=\"0 0 8 8\" width=\"8\" height=\"8\"><path d=\"M4 7 0 1h8z\" fill=\"currentColor\"/></svg>8</span></span>",
+      "css": ".ds-num{font:400 14px ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--ink,#15202b);}.ds-shift{display:inline-flex;align-items:center;gap:2px;margin-left:4px;padding:2px 4px;border-radius:3px;font-size:11px;line-height:1;font-weight:700;color:#fff;vertical-align:1px;animation:ds-drop 260ms cubic-bezier(0.16,1,0.3,1);}.ds-up{background:var(--up,#1f7a4d);}.ds-down{background:var(--down,#b3362c);}@keyframes ds-drop{from{transform:translateY(-5px);opacity:.3}}@media (prefers-reduced-motion:reduce){.ds-shift{animation:none}}"
+    },
+    {
+      "name": "Column Heading",
+      "kind": "chip",
+      "refersTo": "column-heading",
+      "description": "Small plate over a Chance column; badges share the shape at 11px.",
+      "html": "<abbr class=\"ds-colh\" title=\"Champions League places\">CL</abbr> <span class=\"ds-colh\" style=\"font-size:11px\">Qualified</span>",
+      "css": ".ds-colh{font-family:'Barlow Condensed',ui-sans-serif,system-ui,sans-serif;font-weight:700;text-transform:uppercase;display:inline-block;font-size:12px;letter-spacing:0.025em;background:var(--plate,#1e2a36);color:var(--on-plate,#fff);border-radius:3px;padding:2px 6px;text-decoration:none;}"
+    },
+    {
+      "name": "Scenario Band",
+      "kind": "custom",
+      "refersTo": "scenario-band",
+      "description": "Sticky gold band while Locks are on.",
+      "html": "<div class=\"ds-band\"><div><p class=\"ds-band-t\">Scenario · 2 Locks</p><p class=\"ds-band-s\">Brighton Hove · CL 62%</p></div><button class=\"ds-band-b\">Clear all Locks</button></div>",
+      "css": ".ds-band{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--gold,#e2b33c);color:#15202b;border-radius:6px;padding:8px 12px;box-shadow:0 2px 8px rgb(0 0 0/.18);}.ds-band p{margin:0;}.ds-band-t{font-family:'Barlow Condensed',ui-sans-serif,system-ui,sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;line-height:1.25;letter-spacing:0.025em;}.ds-band-s{font:600 12px ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums;}.ds-band-b{min-height:40px;border:0;border-radius:6px;background:#15202b;color:#fff;padding:0 12px;font:600 14px ui-sans-serif,system-ui,sans-serif;cursor:pointer;}.ds-band-b:focus-visible{outline:2px solid var(--cl,#2f5fa8);outline-offset:2px;}"
+    },
+    {
+      "name": "Table Rows",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Zone bar, full-ink tabular data; moved row on the lit band, My team as a selected plate row.",
+      "html": "<table class=\"ds-t\"><tr><td><span class=\"ds-z\" style=\"background:#2f5fa8\"></span></td><td>2</td><td class=\"ds-team\">Arsenal</td><td>+6</td><td><b>18</b></td></tr><tr class=\"ds-lit\"><td><span class=\"ds-z\" style=\"background:#2f5fa8\"></span></td><td>3</td><td class=\"ds-team\">Chelsea</td><td>+4</td><td><b>13</b></td></tr><tr class=\"ds-mine\"><td><span class=\"ds-z\"></span></td><td>5</td><td class=\"ds-team\">Brighton Hove</td><td>+18</td><td><b>16</b></td></tr></table>",
+      "css": ".ds-t{width:100%;border-collapse:collapse;font:400 13px ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--ink,#15202b);}.ds-t tr{border-top:1px solid var(--rule,#d3dad8);transition:background-color .3s;}.ds-t td{padding:4px;text-align:right;}.ds-t td.ds-team{text-align:left;font-weight:600;}.ds-z{display:block;width:6px;height:24px;border-radius:2px;}.ds-lit{background:var(--lit,#dde7f3);}.ds-mine{background:var(--sel,#1e2a36);color:var(--on-sel,#fff);font-weight:600;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Stand Signage",
+    "overview": "The table is signed like a British football ground. Signs are enamel plates: slate, rounded, with a thin white keyline set just inside the edge. Everything that names or marks something (the header, section headings, column headings, badges, Shifts, My team) is a plate; everything that is data (positions, points, Chances) sits on a cool white enamel ground in full ink. Zones are coloured the way a ground colours its stands: gold for the Title, enamel blue for Champions League places, signal red for Relegation.\n\nDensity is high on purpose. On a 390px phone the whole 20-row table (# · Team · GD · Pts · Title · CL · Rel) fits beneath the header, with Zone tabs on its left edge. Wide screens add P/W/D/L columns and put My team and the Matchweek in a sticky side panel, so a Lock and the Shifts it causes are seen together. The one authored motion is the signature: a Lock lights the rows that moved and drops their Shift plates in.\n\nThe system refuses the score-app default of a grey table with green and red text: colour lives on plates and Zone tabs, never on the numerals themselves.",
+    "keyCharacteristics": [
+      "Slate enamel plates with an inset white keyline for every sign; data stays off plates.",
+      "Zone colours as sign colours: gold, enamel blue, signal red.",
+      "Condensed block-letter capitals (Barlow Condensed) for signs; system sans with tabular numerals for data.",
+      "Numerals always full ink.",
+      "Moved rows sit on a pale lit band; My team is a selected plate row.",
+      "Light and dark themes from the same tokens; in the dark the selected plate inverts to white enamel."
+    ],
+    "rules": [
+      {
+        "name": "The Full Ink Rule",
+        "body": "Numerals are always ink (or on-sel in the My team row). Good and bad news is carried by a Shift plate beside the number, never by colouring the number.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign Colour Rule",
+        "body": "Gold, blue and red mean Title, Champions League places and Relegation, everywhere: Zone tabs, the table's left-edge Zone marks, the legend, the Key fixtures tabs. Gold also marks a Scenario. No other meaning may borrow them.",
+        "section": "colors"
+      },
+      {
+        "name": "The Good News Rule",
+        "body": "A Shift plate is green when the change is good for the team and red when it is bad; Relegation inverts the arrow's meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign Letter Rule",
+        "body": "Barlow Condensed appears only in uppercase on signs and headings. It is never used for numerals in data or for running text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number that can sit in a column uses tabular figures.",
+        "section": "typography"
+      },
+      {
+        "name": "The Keyline Rule",
+        "body": "Large plates (header, section headings, the How-this-works summary) carry the inset keyline. Small tags (column headings, badges, Shift plates) are plain fills; the keyline would not read at that size.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do sign with plates: slate, 8px, inset white keyline (2px plate, 3.5px on-plate).",
+      "Do keep every numeral in full ink with tabular figures.",
+      "Do use gold, blue and red only for Title, Champions League places and Relegation (and gold for a Scenario).",
+      "Do colour a Shift by good or bad news for the team, not by arrow direction.",
+      "Do put dark ink (#15202b) on gold in both themes.",
+      "Do let a Lock light the moved rows and drop in their Shift plates; keep it the one authored motion and honour reduced motion."
+    ],
+    "donts": [
+      "Don't colour numerals green or red; that is the score-app default this system refuses.",
+      "Don't put data on plates, apart from selected things (the My team row, a chosen Lock).",
+      "Don't set running text or data numerals in Barlow Condensed.",
+      "Don't add shadows beyond the plate keyline and the sticky Scenario band.",
+      "Don't give Zone colours any second meaning."
+    ]
+  }
+}

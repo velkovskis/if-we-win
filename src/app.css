@@ -1,1 +1,120 @@
 @import "tailwindcss";
+
+/* Barlow Condensed (OFL), latin subset, self-hosted: the sign-letter voice on plates and headings. */
+@font-face {
+  font-family: "Barlow Condensed";
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/barlow-condensed-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/barlow-condensed-700.woff2") format("woff2");
+}
+
+/* Stand Signage: enamel ground, slate plates with a white keyline, Zone colours as sign colours. */
+:root {
+  color-scheme: light dark;
+  --ground: #f3f5f4;
+  --surface: #ffffff;
+  --ink: #15202b;
+  --ink-2: #3c4a56;
+  --rule: #d3dad8;
+  --plate: #1e2a36;
+  --on-plate: #ffffff;
+  /* Selected things (a Lock, My team): the slate plate here, the white enamel plate in the dark. */
+  --sel: #1e2a36;
+  --on-sel: #ffffff;
+  --lit: #dde7f3;
+  --gold: #e2b33c;
+  --cl: #2f5fa8;
+  --rel: #b3362c;
+  --up: #1f7a4d;
+  --down: #b3362c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #0f161d;
+    --surface: #17212b;
+    --ink: #f1f4f3;
+    --ink-2: #b9c5ca;
+    --rule: #2a3742;
+    --plate: #24384c;
+    --sel: #eef2f1;
+    --on-sel: #15202b;
+    --lit: #1c3352;
+    --cl: #5b8fe0;
+    --rel: #e0574b;
+  }
+}
+
+@theme inline {
+  --font-sign: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-rule: var(--rule);
+  --color-plate: var(--plate);
+  --color-on-plate: var(--on-plate);
+  --color-sel: var(--sel);
+  --color-on-sel: var(--on-sel);
+  --color-lit: var(--lit);
+  --color-gold: var(--gold);
+  --color-cl: var(--cl);
+  --color-rel: var(--rel);
+  --color-up: var(--up);
+  --color-down: var(--down);
+}
+
+@layer base {
+  html {
+    background: var(--ground);
+    color: var(--ink);
+    accent-color: var(--cl);
+    scrollbar-color: var(--rule) transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: var(--gold);
+    color: #15202b;
+  }
+  :focus-visible {
+    outline: 2px solid var(--cl);
+    outline-offset: 2px;
+  }
+  a {
+    text-underline-offset: 3px;
+  }
+}
+
+@utility plate {
+  background: var(--plate);
+  color: var(--on-plate);
+  border-radius: 8px;
+  /* The enamel sign's white keyline, inset from the edge. */
+  box-shadow: inset 0 0 0 2px var(--plate), inset 0 0 0 3.5px var(--on-plate);
+}
+
+/* The one authored moment: a Shift plate drops in when a Lock moves a Chance. */
+@keyframes drop {
+  from {
+    transform: translateY(-5px);
+    opacity: 0.3;
+  }
+}
+@utility drop-in {
+  animation: drop 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* The selected plate: slate with a white keyline here, white enamel with a slate keyline in the dark. */
+@utility plate-sel {
+  background: var(--sel);
+  color: var(--on-sel);
+  box-shadow: inset 0 0 0 2px var(--sel), inset 0 0 0 3.5px var(--on-sel);
+}
