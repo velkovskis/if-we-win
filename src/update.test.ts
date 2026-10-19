@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import matches from '../test/recorded/matches.json'
 import standings from '../test/recorded/standings.json'
+import { outcomeProbabilities } from './forecast.ts'
+import type { OddsResponse, Ratings } from './ratings.ts'
 import { update, type Deduction, type MatchesResponse, type StandingsResponse } from './update.ts'
 
 const config = { league: 'PL', season: 2026, championsLeaguePlaces: 4 }
@@ -8,6 +10,8 @@ const now = new Date('2026-10-19T20:00:00Z')
 
 const run = (m: MatchesResponse = matches, s: StandingsResponse = standings, deductions: Deduction[] = []) =>
   update({ matches: m, standings: s, config, deductions, now })
+
+const ratingsFrom = (odds?: OddsResponse, ratings?: Ratings) => update({ matches, standings, config, deductions: [], now, odds, ratings }).ratings
 
 // A copy of the recorded matches response with one match edited.
 const editMatch = (id: number, edit: object): MatchesResponse => ({
@@ -99,5 +103,96 @@ describe('update', () => {
 
   it('rejects a Deduction for a team not in the league', () => {
     expect(() => run(matches, standings, [{ teamId: 1, points: 3 }])).toThrow(/Deduction for unknown team 1/)
+  })
+})
+
+// The 20 recorded teams, named as The Odds API names them (no FC, "and" for "&").
+const TEAMS = standings.standings[0].table.map(({ team }) => ({ id: team.id, oddsName: team.name.replace(/^AFC | A?FC$/, '').replace('&', 'and') }))
+// Known Ratings with mean 0, from strongest to weakest, and a known home advantage.
+const KNOWN: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])), homeAdvantage: 0.3 }
+const LAST: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, i % 2 ? 0.1 : -0.1])), homeAdvantage: 0.2, oddsFetchedAt: '2026-10-18T06:00:00.000Z' }
+const KICK_OFF = '2026-10-24T14:00:00Z'
+
+// Bookmaker odds from two bookmakers for every pair at home and away from the Known Ratings, each with its own margin.
+const oddsFrom = (ratings: Ratings, teams = TEAMS, commenceTime = KICK_OFF): OddsResponse =>
+  teams.flatMap((home) =>
+    teams
+      .filter((away) => away !== home)
+      .map((away) => {
+        const p = outcomeProbabilities(ratings.teams[home.id] - ratings.teams[away.id] + ratings.homeAdvantage)
+        const bookmaker = (margin: number) => ({
+          key: `book${margin}`,
+          markets: [
+            {
+              key: 'h2h',
+              outcomes: [
+                { name: home.oddsName, price: 1 / (p.home * margin) },
+                { name: away.oddsName, price: 1 / (p.away * margin) },
+                { name: 'Draw', price: 1 / (p.draw * margin) },
+              ],
+            },
+          ],
+        })
+        return { commence_time: commenceTime, home_team: home.oddsName, away_team: away.oddsName, bookmakers: [bookmaker(1.04), bookmaker(1.07)] }
+      }),
+  )
+
+describe('update Ratings', () => {
+  it('fits Bookmaker odds generated from known Ratings back to those Ratings', () => {
+    const ratings = ratingsFrom(oddsFrom(KNOWN))
+    for (const t of TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(KNOWN.teams[t.id], 2)
+    expect(ratings.homeAdvantage).toBeCloseTo(KNOWN.homeAdvantage, 2)
+    expect(ratings.oddsFetchedAt).toBe(now.toISOString())
+  })
+
+  it('fits a single Matchweek of Bookmaker odds, where each team plays once', () => {
+    // Team i plays team 19 − i, with the even-numbered team at home.
+    const index = (name: string) => TEAMS.findIndex((t) => t.oddsName === name)
+    const matchweek = oddsFrom(KNOWN).filter((e) => index(e.home_team) + index(e.away_team) === 19 && index(e.home_team) % 2 === 0)
+    expect(matchweek).toHaveLength(10)
+    const ratings = ratingsFrom(matchweek, LAST)
+    for (const e of matchweek) {
+      const [home, away] = [e.home_team, e.away_team].map((n) => TEAMS[index(n)].id)
+      // One Matchweek can't separate home advantage from the Ratings, so only the whole gap is checked.
+      const gap = (r: Ratings) => r.teams[home] - r.teams[away] + r.homeAdvantage
+      expect(gap(ratings)).toBeCloseTo(gap(KNOWN), 2)
+    }
+  })
+
+  it('keeps the last good Ratings when there are no Bookmaker odds', () => {
+    expect(ratingsFrom(undefined, LAST)).toEqual(LAST)
+  })
+
+  it('keeps the last good Ratings, but records the fetch, when there are none', () => {
+    expect(ratingsFrom([], LAST)).toEqual({ ...LAST, oddsFetchedAt: now.toISOString() })
+  })
+
+  it('falls back to equal Ratings on the very first run', () => {
+    const ratings = ratingsFrom()
+    expect(Object.keys(ratings.teams)).toHaveLength(20)
+    expect(Object.values(ratings.teams).every((r) => r === 0)).toBe(true)
+  })
+
+  it('keeps the last Rating of a team absent from the Bookmaker odds', () => {
+    const [absent, ...rest] = TEAMS
+    const ratings = ratingsFrom(oddsFrom(KNOWN, rest), LAST)
+    expect(ratings.teams[absent.id]).toBe(LAST.teams[absent.id])
+    expect(ratings.teams[rest[0].id]).not.toBe(LAST.teams[rest[0].id])
+  })
+
+  it('ignores matches that have already kicked off', () => {
+    expect(ratingsFrom(oddsFrom(KNOWN, TEAMS, '2026-10-19T19:30:00Z'), LAST).teams).toEqual(LAST.teams)
+  })
+
+  it('fails on a Bookmaker odds team it cannot match, naming it', () => {
+    const odds = oddsFrom(KNOWN, TEAMS.slice(0, 2)).map((e) => ({ ...e, home_team: 'Real Madrid' }))
+    expect(() => ratingsFrom(odds)).toThrow(/Real Madrid/)
+  })
+
+  it('publishes no raw Bookmaker odds', () => {
+    const odds = oddsFrom(KNOWN)
+    const published = JSON.stringify(update({ matches, standings, config, deductions: [], now, odds }))
+    expect(published).not.toMatch(/bookmaker|h2h|price|book1/i)
+    expect(published).not.toContain(String(odds[0].bookmakers[0].markets[0].outcomes[0].price))
   })
 })

@@ -43,8 +43,7 @@ export function forecast(input: {
       t.tieBreak = random()
     }
     for (const f of fixtures) {
-      const gap = f.home.rating - f.away.rating + homeAdvantage
-      const [home, away] = scoreline(stream(seed, sim, FIXTURE, f.id), GOALS * Math.exp(gap / 2), GOALS * Math.exp(-gap / 2), f.lock)
+      const [home, away] = scoreline(stream(seed, sim, FIXTURE, f.id), expectedGoals(f.home.rating - f.away.rating + homeAdvantage), f.lock)
       f.homeGoals = home
       f.awayGoals = away
       f.home.goalsFor += home
@@ -71,10 +70,32 @@ export function forecast(input: {
   )
 }
 
+// The match model, shared with the Ratings fit: each side's expected goals from the gap
+// (home Rating minus away Rating plus home advantage), then independent Poisson goals.
+export const expectedGoals = (gap: number) => [GOALS * Math.exp(gap / 2), GOALS * Math.exp(-gap / 2)] as const
+
+// Each Outcome's exact probability under the match model.
+export function outcomeProbabilities(gap: number): Record<Outcome, number> {
+  const [h, a] = expectedGoals(gap)
+  let home = 0
+  let draw = 0
+  let pHome = Math.exp(-h) // P(home scores k)
+  let pAway = Math.exp(-a) // P(away scores k)
+  let awayBelow = 0 // P(away scores fewer than k)
+  for (let k = 0; k < 40; k++) {
+    home += pHome * awayBelow
+    draw += pHome * pAway
+    awayBelow += pAway
+    pHome *= h / (k + 1)
+    pAway *= a / (k + 1)
+  }
+  return { home, draw, away: 1 - home - draw }
+}
+
 const outcomeOf = (home: number, away: number): Outcome => (home > away ? 'home' : home === away ? 'draw' : 'away')
 
 // ponytail: rejection sampling for a Locked Fixture; slow only if a Lock is an extreme long shot.
-function scoreline(random: () => number, homeGoals: number, awayGoals: number, lock?: Outcome) {
+function scoreline(random: () => number, [homeGoals, awayGoals]: readonly [number, number], lock?: Outcome) {
   for (;;) {
     const home = poisson(random, homeGoals)
     const away = poisson(random, awayGoals)

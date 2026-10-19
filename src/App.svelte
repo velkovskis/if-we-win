@@ -6,14 +6,13 @@
 
   const season: Season = seasonData
   const rows = table(season.teams, season.results, season.deductions)
-  // ponytail: every team gets the same Rating (the Benchmark) until Ratings from Bookmaker odds (#7), and a placeholder home advantage until the backtest (#13).
   let chances = $state<Record<number, Chances>>()
   const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
   worker.onmessage = (e: MessageEvent<Record<number, Chances>>) => (chances = e.data)
   const input: Parameters<typeof forecast>[0] = {
     season,
-    ratings: Object.fromEntries(season.teams.map((t) => [t.id, 0])),
-    homeAdvantage: 0.25,
+    ratings: season.ratings.teams,
+    homeAdvantage: season.ratings.homeAdvantage,
     locks: {},
     seed: 1,
     settings: { championsLeaguePlaces: season.championsLeaguePlaces },

@@ -30,6 +30,7 @@ jobs:
       - run: npm run update
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       # Commit only when something other than the updatedAt timestamp changed.
       - run: |
           git add data

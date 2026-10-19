@@ -1,8 +1,9 @@
-// Update: turns raw football-data.org responses into the published Season.
+// Update: turns raw football-data.org responses, and The Odds API's when fetched, into the published Season.
 // Pure: no network, no clock; the caller passes everything in.
+import { rate, type OddsResponse, type Ratings } from './ratings.ts'
 import { table } from './table.ts'
 
-type ProviderTeam = { id: number; shortName: string; crest: string }
+type ProviderTeam = { id: number; name: string; shortName: string; crest: string }
 
 export type MatchesResponse = {
   competition: { name: string }
@@ -37,6 +38,7 @@ export type Season = SeasonConfig & {
   teams: Team[]
   results: Result[]
   fixtures: Fixture[]
+  ratings: Ratings
 }
 
 // Everything else, including in-progress and postponed matches, is a Fixture.
@@ -48,6 +50,8 @@ export function update(input: {
   config: SeasonConfig
   deductions: Deduction[]
   now: Date
+  odds?: OddsResponse // absent when not fetched this run, or when the fetch failed
+  ratings?: Ratings // the last good Ratings, absent on the very first run
 }): Season {
   const results: Result[] = []
   const fixtures: Fixture[] = []
@@ -77,5 +81,7 @@ export function update(input: {
   })
   if (mismatches.length) throw new Error(`Points disagree with the official standings:\n${mismatches.join('\n')}`)
 
-  return { ...input.config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures }
+  const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now })
+
+  return { ...input.config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
 }
