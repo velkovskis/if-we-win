@@ -1,10 +1,30 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
+  import type { Chances, forecast } from './forecast.ts'
   import { table } from './table.ts'
   import type { Season } from './update.ts'
 
   const season: Season = seasonData
   const rows = table(season.teams, season.results, season.deductions)
+  // ponytail: every team gets the same Rating (the Benchmark) until Ratings from Bookmaker odds (#7), and a placeholder home advantage until the backtest (#13).
+  let chances = $state<Record<number, Chances>>()
+  const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
+  worker.onmessage = (e: MessageEvent<Record<number, Chances>>) => (chances = e.data)
+  const input: Parameters<typeof forecast>[0] = {
+    season,
+    ratings: Object.fromEntries(season.teams.map((t) => [t.id, 0])),
+    homeAdvantage: 0.25,
+    locks: {},
+    seed: 1,
+    settings: { championsLeaguePlaces: season.championsLeaguePlaces },
+  }
+  worker.postMessage(input)
+  // Whole percentages; never 0% or 100%, because a simulation can't prove certainty.
+  const percent = (chance?: number) => {
+    if (chance === undefined) return '…'
+    const p = Math.round(chance * 100)
+    return p === 0 ? '<1%' : p === 100 ? '>99%' : `${p}%`
+  }
   const updatedAt = Date.parse(season.updatedAt)
   const HOUR = 3_600_000
 
@@ -43,7 +63,10 @@
         <th class="hidden px-1 text-right sm:table-cell">D</th>
         <th class="hidden px-1 text-right sm:table-cell">L</th>
         <th class="px-1 text-right">GD</th>
-        <th class="pl-1 text-right">Pts</th>
+        <th class="px-1 text-right">Pts</th>
+        <th class="px-1 text-right">Title</th>
+        <th class="px-1 text-right"><abbr title="Champions League places">CL</abbr></th>
+        <th class="pl-1 text-right"><abbr title="Relegation">Rel</abbr></th>
       </tr>
     </thead>
     <tbody>
@@ -61,7 +84,10 @@
           <td class="hidden px-1 text-right sm:table-cell">{row.drawn}</td>
           <td class="hidden px-1 text-right sm:table-cell">{row.lost}</td>
           <td class="px-1 text-right">{row.goalDifference > 0 ? '+' : ''}{row.goalDifference}</td>
-          <td class="pl-1 text-right font-semibold">{row.points}</td>
+          <td class="px-1 text-right font-semibold">{row.points}</td>
+          <td class="px-1 text-right">{percent(chances?.[row.team.id].title)}</td>
+          <td class="px-1 text-right">{percent(chances?.[row.team.id].championsLeague)}</td>
+          <td class="pl-1 text-right">{percent(chances?.[row.team.id].relegation)}</td>
         </tr>
       {/each}
     </tbody>
