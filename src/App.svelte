@@ -1,6 +1,6 @@
 <script lang="ts">
   import seasonData from '../data/season.json'
-  import { DEFAULT_SETTINGS, keyFixtures, SEED, type Forecast, type forecast, type Outcome, type Zone } from './forecast.ts'
+  import { DEFAULT_SETTINGS, finish, keyFixtures, SEED, type Forecast, type Input, type Outcome, type Tally, type Zone } from './forecast.ts'
   import { decode, encode } from './scenario.ts'
   import { table } from './table.ts'
   import type { Fixture, Season } from './update.ts'
@@ -45,23 +45,40 @@
   let scenario = $state<Forecast>()
   // One run at a time; clicks made meanwhile collapse into one run with the latest Locks.
   let running = false
-  let next: Parameters<typeof forecast>[0] | undefined
-  const worker = new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' })
-  const run = (input: Parameters<typeof forecast>[0]) => {
+  let next: Input | undefined
+  // One worker per core. The simulations go out in small chunks, each worker taking the next as it finishes one,
+  // so a slow efficiency core holds up only its last chunk. The chunks add up to exactly one run,
+  // so the Chances are the same on every device; a phone that reports fewer cores just gets fewer workers.
+  const CHUNK = 500
+  const chunks = Math.ceil(DEFAULT_SETTINGS.simulations / CHUNK)
+  const workers = Array.from({ length: Math.min(navigator.hardwareConcurrency || 4, 8, chunks) }, () => new Worker(new URL('./forecast.worker.ts', import.meta.url), { type: 'module' }))
+  const run = (input: Input) => {
     if (running) return void (next = input)
     running = true
-    worker.postMessage(input)
-  }
-  worker.onmessage = (e: MessageEvent<Forecast>) => {
-    if (baseline || !fromLink) scenario = e.data
-    baseline ??= e.data
-    running = false
-    if (next) run(next)
-    next = undefined
+    const tallies: Tally[] = []
+    let sent = 0
+    const send = (worker: Worker) => {
+      const from = sent++ * CHUNK
+      worker.postMessage({ input, from, to: Math.min(from + CHUNK, DEFAULT_SETTINGS.simulations) })
+    }
+    for (const worker of workers) {
+      worker.onmessage = (e: MessageEvent<Tally>) => {
+        tallies.push(e.data)
+        if (sent < chunks) return send(worker)
+        if (tallies.length < chunks) return
+        const result = finish(input, tallies)
+        if (baseline || !fromLink) scenario = result
+        baseline ??= result
+        running = false
+        if (next) run(next)
+        next = undefined
+      }
+      send(worker)
+    }
   }
   // Same seed every run and in every browser, so teams a Lock doesn't affect show no Shift and a shared link shows the same Chances.
   // ponytail: Math.exp/log/cos may differ in the last bit between browser engines, so a rare draw can differ; port them in-house if Chances ever disagree across browsers.
-  const input = (locks: Record<number, Outcome>): Parameters<typeof forecast>[0] => ({
+  const input = (locks: Record<number, Outcome>): Input => ({
     season,
     ratings: season.ratings.teams,
     homeAdvantage: season.ratings.homeAdvantage,

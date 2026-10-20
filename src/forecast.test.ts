@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { forecast, keyFixtures, type Outcome } from './forecast.ts'
+import { finish, forecast, keyFixtures, tally, type Outcome } from './forecast.ts'
 import type { Deduction, Fixture, Result } from './update.ts'
 
 const team = (id: number) => ({ id, name: `T${id}`, crest: '' })
@@ -130,6 +130,18 @@ describe('forecast', () => {
     expect(baseline).toBeGreaterThan(0.7)
     expect(baseline).toBeLessThan(0.95)
     expect(Math.abs(title({ [fixture(13, 12).id]: 'home' }) - baseline)).toBeLessThan(0.01)
+  })
+
+  it('gives exactly the same Forecast when the simulations are split into shares', () => {
+    const input = {
+      season: { teams: IDS.map(team), results: [], fixtures: FIXTURES, deductions: [] },
+      ratings: equal(IDS),
+      homeAdvantage: 0.25,
+      locks: { [FIXTURES[0].id]: 'draw' as const },
+      seed: 1,
+      settings: { simulations: 2_000, championsLeaguePlaces: 2, relegationPlaces: 1 },
+    }
+    expect(finish(input, [tally(input, 0, 667), tally(input, 667, 1_333), tally(input, 1_333, 2_000)])).toEqual(forecast(input))
   })
 
   describe('Conditional Chances', () => {

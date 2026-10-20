@@ -24,31 +24,46 @@ export const DEFAULT_SETTINGS = { relegationPlaces: 3, simulations: 20_000, stre
 // The site and Snapshots both use it, so a Snapshot's Baseline matches what the site showed.
 export const SEED = 1
 
-export function forecast(input: {
+export type Input = {
   season: Pick<Season, 'teams' | 'results' | 'fixtures' | 'deductions'>
   ratings: Record<number, number> // team id → Rating
   homeAdvantage: number
   locks: Record<number, Outcome> // Fixture id → Outcome
   seed: number
   settings: { championsLeaguePlaces: number } & Partial<typeof DEFAULT_SETTINGS>
-}): Forecast {
-  const { season, ratings, homeAdvantage, locks, seed } = input
-  const { championsLeaguePlaces, relegationPlaces, simulations, strengthNoise } = { ...DEFAULT_SETTINGS, ...input.settings }
+}
+// Zone finishes by team (team index × 3 + Zone index), overall and per Fixture and sampled Outcome, with how often each Outcome was sampled.
+export type Tally = { counts: Uint32Array; conditionalCounts: Uint32Array; samples: Uint32Array }
 
+export const forecast = (input: Input): Forecast => finish(input, [tally(input)])
+
+// The table before any simulation, with one mutable standing per team that each simulation resets.
+function setup(input: Input) {
+  const { season, locks } = input
+  const settings = { ...DEFAULT_SETTINGS, ...input.settings }
   const start = table(season.teams, season.results, season.deductions)
-  const n = start.length
   const index = new Map(start.map((row, i) => [row.team.id, i]))
-  // One mutable standing per team, reset each simulation; meetings point at them so rank() can settle head-to-head.
+  // Meetings point at the standings so rank() can settle head-to-head.
   const teams = start.map((_, i) => ({ i, points: 0, goalDifference: 0, goalsFor: 0, rating: 0, tieBreak: 0 }))
   const meetings = season.results.map((r) => ({ home: teams[index.get(r.homeTeamId)!], away: teams[index.get(r.awayTeamId)!], homeGoals: r.scoreline.home, awayGoals: r.scoreline.away }))
   const fixtures = season.fixtures.map((f) => ({ id: f.id, home: teams[index.get(f.homeTeamId)!], away: teams[index.get(f.awayTeamId)!], homeGoals: 0, awayGoals: 0, lock: locks[f.id], outcome: 0 }))
   meetings.push(...fixtures)
-  // Zone finishes by team (team index × 3 + Zone index), overall and per Fixture and sampled Outcome, with how often each Outcome was sampled.
+  return { settings, start, teams, meetings, fixtures }
+}
+
+// Simulations `from` up to `to`. Draws are keyed by simulation, so tallies of ranges that split the
+// simulations add up to exactly the tally of one run over all of them, which lets workers share a Forecast.
+export function tally(input: Input, from = 0, to?: number): Tally {
+  const { ratings, homeAdvantage, seed } = input
+  const { settings, start, teams, meetings, fixtures } = setup(input)
+  const { championsLeaguePlaces, relegationPlaces, strengthNoise } = settings
+  to ??= settings.simulations
+  const n = start.length
   const counts = new Uint32Array(n * 3)
   const conditionalCounts = new Uint32Array(fixtures.length * 3 * n * 3)
   const samples = new Uint32Array(fixtures.length * 3)
 
-  for (let sim = 0; sim < simulations; sim++) {
+  for (let sim = from; sim < to; sim++) {
     for (const t of teams) {
       const row = start[t.i]
       const random = stream(seed, sim, TEAM, row.team.id)
@@ -83,6 +98,20 @@ export function forecast(input: {
       for (const at of finishes) conditionalCounts[sampled * n * 3 + at]++
     }
   }
+  return { counts, conditionalCounts, samples }
+}
+
+// Adds up the tallies of all the simulations and turns them into the Forecast.
+export function finish(input: Input, tallies: Tally[]): Forecast {
+  const { settings, start, fixtures } = setup(input)
+  const { championsLeaguePlaces, relegationPlaces, simulations } = settings
+  const n = start.length
+  const sum = (key: keyof Tally) => {
+    const total = new Uint32Array(tallies[0][key].length)
+    for (const t of tallies) for (let i = 0; i < total.length; i++) total[i] += t[key][i]
+    return total
+  }
+  const [counts, conditionalCounts, samples] = [sum('counts'), sum('conditionalCounts'), sum('samples')]
 
   // ponytail: Clinched and Eliminated from points bounds alone: sound, but it misses cases that hinge on who plays whom; a max-flow check finds them all.
   // Locked Outcomes count as played, every unlocked Fixture can be won or lost, and a tie on points can go either way.
