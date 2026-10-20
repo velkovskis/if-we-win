@@ -1,8 +1,12 @@
 name: Update and deploy
 
 on:
+  # A push only rebuilds and deploys: the data it needs is already committed by the scheduled runs.
+  push:
+    branches: [main]
   schedule:
-    - cron: '0 */2 * * *'
+    # Off the hour: GitHub delays or drops more scheduled runs at :00.
+    - cron: '17 */2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -27,12 +31,14 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run update
+      - if: github.event_name != 'push'
+        run: npm run update
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       # Commit only when something other than the updatedAt timestamp changed.
-      - run: |
+      - if: github.event_name != 'push'
+        run: |
           git add data
           if ! git diff --cached --quiet -I'"updatedAt"'; then
             git config user.name github-actions[bot]
