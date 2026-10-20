@@ -10,7 +10,7 @@ related_targets: ["index.html"]
 Mode: Operate. Whole app, phone first, table first. Fans on matchday ask "where do we stand, and what has to happen?"
 
 Confirmed decisions:
-- Phone order: header plate, Scenario band (whenever any Lock is on), stale banner, table, My team + Key fixtures, Matchweek, "How this works", attribution. Desktop: table left, sticky panel right.
+- Phone order: header plate, Scenario band (whenever any Lock is on), stale banner, table, My team + Key fixtures, Matchweek, attribution + "How this works" link. "How this works" itself is a modal sheet over the page, opened from the header or footer. Desktop: table left, sticky panel right.
 - Scenario band: Lock count, My team's lead Chance with its Shift, "Clear all Locks". Shows on arrival from a link.
 - Stale banner copy: "These numbers are over a day old. Our update hasn't run, so treat them with a pinch of salt."
 - Light and dark themes: the system's setting until the header toggle picks one (remembered in this browser). Numerals ≥7:1, all text ≥4.5:1. Lock targets ≥44px.

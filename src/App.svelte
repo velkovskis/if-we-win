@@ -135,7 +135,7 @@
   }
 
   // Opened by a button, not a #how link: the hash holds the Scenario.
-  let how = $state<HTMLDetailsElement>()
+  let how = $state<HTMLDialogElement>()
   const updatedAt = Date.parse(season.updatedAt)
   const HOUR = 3_600_000
 
@@ -194,7 +194,8 @@
     <div class="flex items-end gap-2">
       <div class="text-right text-xs leading-snug font-medium">
         <p>Updated {ago}</p>
-        <button class="min-h-6 underline underline-offset-2" onclick={() => (how!.open = true, how!.scrollIntoView({ behavior: 'smooth' }))}>How this works</button>
+        <!-- The ::before stretches the tap target to 48px tall without growing the header. -->
+        <button class="relative min-h-6 underline underline-offset-2 before:absolute before:-inset-x-1 before:-inset-y-3" onclick={() => how!.showModal()}>How this works</button>
       </div>
       <button class="grid size-10 shrink-0 place-items-center rounded-md hover:bg-white/10" aria-label="Dark mode" aria-pressed={dark} onclick={toggleTheme}>
         <svg viewBox="0 0 20 20" class="size-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -236,22 +237,24 @@
   {/if}
 
   <!-- Phone: table, then My team, then the Matchweek. Wide screens: the panel beside the table, staying in view, so a Lock and its Shifts are seen together. -->
-  <div class="mt-3 grid gap-6 lg:grid-cols-[1fr_22rem] lg:items-start lg:gap-8">
-    <div>
-      <table class="w-full text-[13px] tabular-nums sm:text-sm">
-        <thead class="font-sign text-xs font-bold tracking-wide uppercase">
-          <tr>
-            <th class="w-2.5 pb-1.5"><span class="sr-only">Zone</span></th>
-            <th class="w-6 pb-1.5 text-center">#</th>
-            <th class="pb-1.5 text-left">Team</th>
-            <th class="hidden w-px px-1.5 pb-1.5 text-right sm:table-cell">P</th>
-            <th class="hidden w-px px-1.5 pb-1.5 text-right sm:table-cell">W</th>
-            <th class="hidden w-px px-1.5 pb-1.5 text-right sm:table-cell">D</th>
-            <th class="hidden w-px px-1.5 pb-1.5 text-right sm:table-cell">L</th>
-            <th class="w-px px-1 pb-1.5 text-right">GD</th>
-            <th class="w-px px-1 pb-1.5 text-right">Pts</th>
+  <div class="mt-3 grid gap-6 lg:grid-cols-[1fr_22rem] lg:gap-8">
+    <div class="relative">
+      <!-- Wide screens: the column headings sit on a plate matching the panel's, so both columns open on the same sign. -->
+      <div aria-hidden="true" class="plate absolute inset-x-0 top-0 hidden h-13 lg:block"></div>
+      <table class="relative w-full text-[13px] tabular-nums sm:text-sm">
+        <thead class="font-sign text-xs font-bold tracking-wide uppercase lg:text-sm lg:text-on-plate">
+          <tr class="[&>th]:pb-1.5 lg:h-15 lg:[&>th]:pb-2">
+            <th class="w-2.5"><span class="sr-only">Zone</span></th>
+            <th class="w-6 text-center">#</th>
+            <th class="text-left">Team</th>
+            <th class="hidden w-px px-1 text-right sm:table-cell lg:w-7">P</th>
+            <th class="hidden w-px px-1 text-right sm:table-cell lg:w-7">W</th>
+            <th class="hidden w-px px-1 text-right sm:table-cell lg:w-7">D</th>
+            <th class="hidden w-px px-1 text-right sm:table-cell lg:w-7">L</th>
+            <th class="w-px px-1 text-right lg:w-8">GD</th>
+            <th class="w-px px-1 text-right lg:w-8">Pts</th>
             {#each Object.entries(SHORT) as [z, label] (z)}
-              <th class="w-px pb-1.5 pl-2 text-right sm:w-24">
+              <th class="w-px pl-2 text-right sm:w-24 lg:w-20 lg:last:pr-3">
                 <abbr title={ZONES[z as Zone]} class="rounded-[3px] bg-plate px-1.5 py-0.5 text-on-plate no-underline">{label}</abbr>
               </th>
             {/each}
@@ -281,7 +284,7 @@
               {#each ['title', 'championsLeague', 'relegation'] as const as zone (zone)}
                 {@const status = scenario?.status[row.team.id][zone]}
                 {@const points = shift(row.team.id, zone)}
-                <td class="py-1 pl-2 text-right whitespace-nowrap">
+                <td class="py-1 pl-2 text-right whitespace-nowrap lg:last:pr-3">
                   {percent(row.team.id, zone)}{#if points}{@render shiftPlate(points, zone)}{/if}
                   {#if status && status !== 'open'}
                     <span class="mt-0.5 ml-auto block w-fit rounded-[3px] bg-plate px-1 font-sign text-[11px] leading-tight font-bold tracking-wide text-on-plate uppercase">{BADGES[zone][status]}</span>
@@ -299,8 +302,8 @@
       </ul>
     </div>
 
-    <!-- Scrolls on its own when taller than the screen, so a sticky panel never hides its bottom. -->
-    <div class="space-y-6 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
+    <!-- Wide screens: exactly as tall as the table and scrolls on its own, fading at the foot while there's more below. h-0 keeps it out of the row's sizing, so the table sets the height and both columns end together. -->
+    <div class="space-y-6 lg:-mx-1 lg:h-0 lg:min-h-full lg:scroll-fade lg:overflow-y-auto lg:px-1 lg:pb-1">
       <section>
         <div class="plate flex items-center justify-between gap-2 py-1.5 pr-1.5 pl-4">
           <h2 id="my-team" class="font-sign text-lg font-bold tracking-wide uppercase">My team</h2>
@@ -368,21 +371,37 @@
     </div>
   </div>
 
-  <details bind:this={how} class="group mt-8 max-w-prose">
-    <summary class="plate flex min-h-13 cursor-pointer list-none items-center justify-between px-4 font-sign text-lg font-bold tracking-wide uppercase [&::-webkit-details-marker]:hidden">
-      How this works
-      <svg viewBox="0 0 16 10" class="w-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><path d="m2 2 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" /></svg>
-    </summary>
-    <div class="mt-1.5 space-y-3 rounded-lg border border-rule bg-surface p-4 text-sm leading-relaxed">
-      <p>We play out the rest of the season 20,000 times and count how often each team finishes in each Zone. That count is the Chance.</p>
-      <p>Each team's Rating is worked backwards from Bookmaker odds, so it's the market's view of how good they are. We never show the odds themselves.</p>
-      <p>Nobody knows exactly how good a team is, so every run nudges each Rating a little at random. That's on purpose, and it's why nothing shows 0% or 100% unless the maths has already settled it.</p>
-      <p>Lock a Fixture and its Outcome is fixed in every run. The Scoreline is still left to chance.</p>
-      <p>Every week we keep a Snapshot of the Chances. At the end of the season we'll score them against a Benchmark that rates every team the same, and publish how we did, good or bad.</p>
-    </div>
-  </details>
-
-  <footer class="mt-6 pb-4 text-xs text-ink-2">
-    <a class="underline" href="https://www.football-data.org/">Football data provided by the Football-Data.org API</a>
+  <footer class="mt-4 flex flex-wrap gap-x-5 pb-2 text-xs text-ink-2">
+    <a class="inline-flex min-h-11 items-center underline" href="https://www.football-data.org/">Football data provided by the Football-Data.org API</a>
+    <button class="min-h-11 underline underline-offset-3" onclick={() => how!.showModal()}>How this works</button>
   </footer>
+
+  <!-- Opens over the table, so a fan mid-Scenario reads it and closes back to where they were. Phone: a sheet from the foot of the screen; wide screens: centred. A tap on the backdrop closes it (the dialog itself has no padding, so only the backdrop hits it). -->
+  <dialog
+    bind:this={how}
+    aria-labelledby="how"
+    class="inset-x-0 top-auto bottom-0 m-0 max-h-[85dvh] w-full max-w-none overflow-y-auto overscroll-contain rounded-t-lg border border-b-0 border-rule bg-surface text-ink backdrop:bg-black/50 lg:top-0 lg:m-auto lg:max-w-xl lg:rounded-lg lg:border-b"
+    onclick={(e) => e.target === how && how.close()}
+  >
+    <div class="sticky top-0 bg-surface p-1.5">
+      <div class="plate flex items-center justify-between py-1.5 pr-1 pl-4">
+        <h2 id="how" class="font-sign text-lg font-bold tracking-wide uppercase">How this works</h2>
+        <button class="grid size-11 place-items-center rounded-md hover:bg-white/10" aria-label="Close" onclick={() => how!.close()}>
+          <svg viewBox="0 0 16 16" class="size-4" aria-hidden="true"><path d="m3 3 10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </div>
+    <dl class="px-4 pt-3 pb-6 text-sm leading-relaxed [&>dd]:mt-1 [&>dt]:font-sign [&>dt]:text-base [&>dt]:font-bold [&>dt]:tracking-wide [&>dt]:uppercase [&>dt:not(:first-child)]:mt-5">
+      <dt>Where the percentages come from</dt>
+      <dd>We play out the rest of the season 20,000 times and count how often each team finishes top, in the Champions League places or in the bottom three. If a team finishes top in 6,000 of those seasons, that's a 30% chance of the title.</dd>
+      <dt>How we decide how good a team is</dt>
+      <dd>Every team gets a strength rating, worked out from the bookmakers' odds on their matches. So it's roughly what the bookies reckon they're worth. We never show the bookmakers' odds themselves.</dd>
+      <dt>Why you'll rarely see 0% or 100%</dt>
+      <dd>Nobody knows exactly how good a team is, us included. So in each of those 20,000 seasons, every team's rating gets a small random nudge up or down. We do that on purpose: it means you'll only see 0% or 100% once the maths has actually settled it.</dd>
+      <dt>What happens when you pick a result</dt>
+      <dd>Tap the home team, Draw or the away team on any match still to play, and we'll treat that result as having happened in all 20,000 seasons. We call that a Lock. The exact score is still left to chance. The arrows in the table then show how much each team's chances have moved.</dd>
+      <dt>Are we any good?</dt>
+      <dd>Every week we save a copy of everyone's chances. At the end of the season we'll check them against what actually happened, and against a simple guess that treats every team as equally good. Then we'll publish how we did, good or bad.</dd>
+    </dl>
+  </dialog>
 </main>

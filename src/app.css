@@ -122,3 +122,23 @@
   color: var(--on-sel);
   box-shadow: inset 0 0 0 2px var(--sel), inset 0 0 0 3.5px var(--on-sel);
 }
+
+/* A scroll box fades out at its foot while there's more below; the fade lifts as the end comes into view.
+   The fade is the cue, not a scrollbar, which would eat into the box's right edge where scrollbars always show. */
+@property --fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@keyframes unfade {
+  from,
+  85% {
+    --fade: 3rem;
+  }
+}
+@utility scroll-fade {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+  animation: unfade linear both;
+  animation-timeline: scroll(self);
+  scrollbar-width: none;
+}

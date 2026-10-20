@@ -147,7 +147,7 @@ A cool, nearly neutral enamel palette carrying three saturated Zone colours and 
 
 ### Neutral
 - **Enamel Ground** (ground): page background. Dark: #0f161d. Also the `theme-color` meta.
-- **Enamel Surface** (surface): Lock buttons, select, unselected tabs, the How-this-works panel. Dark: #17212b.
+- **Enamel Surface** (surface): Lock buttons, select, unselected tabs, the How this works sheet. Dark: #17212b.
 - **Ink** (ink): all text and every numeral. Dark: #f1f4f3.
 - **Second Ink** (ink-2): legends, helper lines, footer. Dark: #b9c5ca. Never on numerals.
 - **Rule** (rule): row dividers, control borders, scrollbar. Dark: #2a3742.
@@ -183,7 +183,7 @@ A cool, nearly neutral enamel palette carrying three saturated Zone colours and 
 
 ## Layout
 
-One column on phones inside a 42rem max width with 12px gutters; from 1024px a two-column grid (fluid table, 22rem panel, 32px gap) inside 64rem, 24px gutters. The panel is sticky at 16px and scrolls on its own when taller than the screen. The Scenario band is sticky at the top while Locks are on. Vertical rhythm: 8–12px between a plate and its content, 24px between sections, 6px between Lock rows. Breakpoints in use: 640px (adds P/W/D/L, larger crests and Shift plates) and 1024px (side panel).
+One column on phones inside a 42rem max width with 12px gutters; from 1024px a two-column grid (fluid table, 22rem panel, 32px gap) inside 64rem, 24px gutters. There the table's column headings sit on a plate the height of the panel's My team plate, so both columns open on the same sign, and the panel is exactly as tall as the table and scrolls on its own, so both columns start and end together. Its foot fades out while there's more to scroll. How this works is a sheet over the page (see Components). The Scenario band is sticky at the top while Locks are on. Vertical rhythm: 8–12px between a plate and its content, 24px between sections, 6px between Lock rows. Breakpoints in use: 640px (adds P/W/D/L, larger crests and Shift plates) and 1024px (side panel).
 
 Lock buttons sit in a three-column grid (1fr · 4.5rem · 1fr), mirrored about Draw: home left-aligned, Draw centred, away right-aligned.
 
@@ -198,7 +198,7 @@ Flat. Depth comes from the plate's inset keyline and from tonal contrast between
 - **Sticky lift** (`box-shadow: 0 2px 8px rgb(0 0 0 / 0.18)`): the Scenario band only.
 
 ### Named Rules
-**The Keyline Rule.** Large plates (header, section headings, the How-this-works summary) carry the inset keyline. Small tags (column headings, badges, Shift plates) are plain fills; the keyline would not read at that size.
+**The Keyline Rule.** Large plates (header, section headings, the How this works sheet's heading) carry the inset keyline. Small tags (column headings, badges, Shift plates) are plain fills; the keyline would not read at that size.
 
 ## Shapes
 
@@ -207,7 +207,7 @@ Three radii. Plates 8px. Controls (Lock buttons, tabs, select, Scenario band) 6p
 ## Components
 
 ### Plate
-The sign. Slate fill, white lettering, 8px corners, inset white keyline. Used for the header (name, league and season, Updated X ago, How this works), section headings, and the How-this-works summary.
+The sign. Slate fill, white lettering, 8px corners, inset white keyline. Used for the header (name, league and season, Updated X ago, How this works), section headings, and the How this works sheet's heading.
 
 ### Lock buttons
 Tactile and plain until chosen. Surface fill, 1px rule border, 6px corners, min-height 44px, 14px semibold. Hover: border to ink-2, 150ms colour transition. Pressed (`aria-pressed`): becomes a selected plate (sel fill, on-sel text, keyline). Under Key fixtures each button adds My team's Chance for that Outcome on a second bold tabular line.
@@ -223,6 +223,9 @@ Rule dividers, Zone bar on the left edge. Moved rows take the lit band; My team 
 
 ### Scenario band
 Gold, sticky, dark ink. Title line in sign letters ("Scenario · N Locks"), My team's Chance and Shift below, and a dark-ink "Clear all Locks" button.
+
+### How this works sheet
+A native modal `<dialog>`, opened from the header link or the footer link, so it opens over the table and closes back to the same spot. Phones: a sheet from the foot of the screen, at most 85% of the screen tall, 8px top corners, scrolls inside. From 1024px: centred, max 36rem. Surface fill, rule border, 50% black backdrop; Esc, the 44px close button or a tap on the backdrop closes it. A sticky slate plate heading, then five questions as Title-style terms (Barlow, uppercase, 20px above each) with plain body answers below. The copy avoids capitalised model terms except "Lock", which it introduces.
 
 ### Select (My team)
 Surface fill, rule border, 6px corners, 40px tall, set inside the My team heading plate.
