@@ -4,7 +4,7 @@
  "championsLeaguePlaces": 4,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-10-19T21:18:58.443Z",
+ "updatedAt": "2026-10-20T18:28:26.847Z",
  "teams": [
   {
    "id": 65,
@@ -1111,10 +1111,10 @@
    "awayTeamId": 65
   },
   {
-   "id": 560662,
+   "id": 560668,
    "matchweek": 13,
-   "homeTeamId": 73,
-   "awayTeamId": 63
+   "homeTeamId": 1076,
+   "awayTeamId": 349
   },
   {
    "id": 560663,
@@ -1135,6 +1135,12 @@
    "awayTeamId": 354
   },
   {
+   "id": 560669,
+   "matchweek": 13,
+   "homeTeamId": 65,
+   "awayTeamId": 341
+  },
+  {
    "id": 560666,
    "matchweek": 13,
    "homeTeamId": 58,
@@ -1145,18 +1151,6 @@
    "matchweek": 13,
    "homeTeamId": 402,
    "awayTeamId": 57
-  },
-  {
-   "id": 560668,
-   "matchweek": 13,
-   "homeTeamId": 1076,
-   "awayTeamId": 349
-  },
-  {
-   "id": 560669,
-   "matchweek": 13,
-   "homeTeamId": 65,
-   "awayTeamId": 341
   },
   {
    "id": 560670,
@@ -1171,10 +1165,16 @@
    "awayTeamId": 397
   },
   {
-   "id": 560672,
-   "matchweek": 14,
+   "id": 560662,
+   "matchweek": 13,
    "homeTeamId": 73,
-   "awayTeamId": 57
+   "awayTeamId": 63
+  },
+  {
+   "id": 560676,
+   "matchweek": 14,
+   "homeTeamId": 61,
+   "awayTeamId": 64
   },
   {
    "id": 560673,
@@ -1187,24 +1187,6 @@
    "matchweek": 14,
    "homeTeamId": 341,
    "awayTeamId": 349
-  },
-  {
-   "id": 560675,
-   "matchweek": 14,
-   "homeTeamId": 67,
-   "awayTeamId": 71
-  },
-  {
-   "id": 560676,
-   "matchweek": 14,
-   "homeTeamId": 61,
-   "awayTeamId": 64
-  },
-  {
-   "id": 560677,
-   "matchweek": 14,
-   "homeTeamId": 402,
-   "awayTeamId": 65
   },
   {
    "id": 560678,
@@ -1225,58 +1207,34 @@
    "awayTeamId": 397
   },
   {
+   "id": 560677,
+   "matchweek": 14,
+   "homeTeamId": 402,
+   "awayTeamId": 65
+  },
+  {
+   "id": 560675,
+   "matchweek": 14,
+   "homeTeamId": 67,
+   "awayTeamId": 71
+  },
+  {
    "id": 560681,
    "matchweek": 14,
    "homeTeamId": 62,
    "awayTeamId": 63
   },
   {
-   "id": 560682,
-   "matchweek": 15,
-   "homeTeamId": 71,
-   "awayTeamId": 351
-  },
-  {
-   "id": 560683,
-   "matchweek": 15,
-   "homeTeamId": 354,
-   "awayTeamId": 66
-  },
-  {
-   "id": 560684,
-   "matchweek": 15,
-   "homeTeamId": 322,
-   "awayTeamId": 73
-  },
-  {
-   "id": 560685,
-   "matchweek": 15,
-   "homeTeamId": 397,
-   "awayTeamId": 62
+   "id": 560672,
+   "matchweek": 14,
+   "homeTeamId": 73,
+   "awayTeamId": 57
   },
   {
    "id": 560686,
    "matchweek": 15,
    "homeTeamId": 349,
    "awayTeamId": 67
-  },
-  {
-   "id": 560687,
-   "matchweek": 15,
-   "homeTeamId": 1076,
-   "awayTeamId": 58
-  },
-  {
-   "id": 560688,
-   "matchweek": 15,
-   "homeTeamId": 57,
-   "awayTeamId": 1044
-  },
-  {
-   "id": 560689,
-   "matchweek": 15,
-   "homeTeamId": 65,
-   "awayTeamId": 61
   },
   {
    "id": 560690,
@@ -1291,22 +1249,46 @@
    "awayTeamId": 402
   },
   {
-   "id": 560692,
-   "matchweek": 16,
-   "homeTeamId": 341,
-   "awayTeamId": 63
+   "id": 560689,
+   "matchweek": 15,
+   "homeTeamId": 65,
+   "awayTeamId": 61
   },
   {
-   "id": 560693,
-   "matchweek": 16,
+   "id": 560682,
+   "matchweek": 15,
+   "homeTeamId": 71,
+   "awayTeamId": 351
+  },
+  {
+   "id": 560685,
+   "matchweek": 15,
    "homeTeamId": 397,
-   "awayTeamId": 349
+   "awayTeamId": 62
   },
   {
-   "id": 560694,
-   "matchweek": 16,
-   "homeTeamId": 351,
-   "awayTeamId": 62
+   "id": 560688,
+   "matchweek": 15,
+   "homeTeamId": 57,
+   "awayTeamId": 1044
+  },
+  {
+   "id": 560687,
+   "matchweek": 15,
+   "homeTeamId": 1076,
+   "awayTeamId": 58
+  },
+  {
+   "id": 560683,
+   "matchweek": 15,
+   "homeTeamId": 354,
+   "awayTeamId": 66
+  },
+  {
+   "id": 560684,
+   "matchweek": 15,
+   "homeTeamId": 322,
+   "awayTeamId": 73
   },
   {
    "id": 560695,
@@ -1315,16 +1297,22 @@
    "awayTeamId": 67
   },
   {
+   "id": 560692,
+   "matchweek": 16,
+   "homeTeamId": 341,
+   "awayTeamId": 63
+  },
+  {
+   "id": 560694,
+   "matchweek": 16,
+   "homeTeamId": 351,
+   "awayTeamId": 62
+  },
+  {
    "id": 560696,
    "matchweek": 16,
    "homeTeamId": 65,
    "awayTeamId": 322
-  },
-  {
-   "id": 560697,
-   "matchweek": 16,
-   "homeTeamId": 71,
-   "awayTeamId": 354
   },
   {
    "id": 560698,
@@ -1333,16 +1321,28 @@
    "awayTeamId": 1076
   },
   {
-   "id": 560699,
-   "matchweek": 16,
-   "homeTeamId": 57,
-   "awayTeamId": 66
-  },
-  {
    "id": 560700,
    "matchweek": 16,
    "homeTeamId": 64,
    "awayTeamId": 73
+  },
+  {
+   "id": 560693,
+   "matchweek": 16,
+   "homeTeamId": 397,
+   "awayTeamId": 349
+  },
+  {
+   "id": 560697,
+   "matchweek": 16,
+   "homeTeamId": 71,
+   "awayTeamId": 354
+  },
+  {
+   "id": 560699,
+   "matchweek": 16,
+   "homeTeamId": 57,
+   "awayTeamId": 66
   },
   {
    "id": 560701,
