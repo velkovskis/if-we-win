@@ -197,7 +197,8 @@ describe('update Ratings', () => {
   })
 })
 
-describe('update Snapshot', () => {
+// Each due Snapshot runs two full Forecasts, so a test that takes two can pass 5 seconds on a busy machine.
+describe('update Snapshot', { timeout: 30_000 }, () => {
   const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings) =>
     update({ matches, standings, config, deductions: [], now: new Date(iso), lastSnapshot, ratings }).snapshot
 
