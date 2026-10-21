@@ -1,6 +1,6 @@
-// Ratings: works backwards from Bookmaker odds to one Rating per team plus home advantage,
-// using the Forecast's own match model. Pure: the caller passes in the Bookmaker odds and the last good Ratings.
-import { outcomeProbabilities, type Outcome } from './forecast.ts'
+// Ratings: works backwards from Bookmaker odds to one Rating per team, using the Forecast's own match model
+// and home advantage. Pure: the caller passes in the Bookmaker odds and the last good Ratings.
+import { DEFAULT_SETTINGS, outcomeProbabilities, type Outcome } from './forecast.ts'
 
 // The Odds API's response for the head-to-head market (only the fields we read).
 export type OddsResponse = {
@@ -12,31 +12,25 @@ export type OddsResponse = {
 
 export type Ratings = {
   teams: Record<number, number> // team id → Rating
-  homeAdvantage: number
   oddsFetchedAt?: string // when Bookmaker odds were last fetched, even if there were none
 }
-
-// ponytail: placeholder home advantage for the very first run; the backtest (#13) may set a better one.
-const FIRST_HOME_ADVANTAGE = 0.25
 
 // Pulls each Rating gently towards its last good value, so a team (or group of teams) the Bookmaker odds
 // don't connect to the rest keeps its last Rating, and a single Matchweek of them still gives a unique fit.
 // ponytail: if the window is a single Matchweek, only each pair's gap is pinned, so from equal Ratings the spread
 // builds up over several Matchweeks; carry the market's probabilities between runs (off the public repo) if too slow.
 const ANCHOR = 0.001
-// Home advantage is pulled far harder: a single Matchweek of Bookmaker odds can't tell it apart from the Rating gaps.
-const HOME_ANCHOR = 1
 
 export function rate(input: {
   odds?: OddsResponse
   last?: Ratings
   teams: { id: number; name: string }[] // football-data.org's full names, e.g. "Brighton & Hove Albion FC"
   now: Date
+  homeAdvantage?: number // the Forecast's; only the backtest passes another
 }): Ratings {
-  const { odds, now } = input
+  const { odds, now, homeAdvantage = DEFAULT_SETTINGS.homeAdvantage } = input
   const last = {
     teams: Object.fromEntries(input.teams.map((t) => [t.id, input.last?.teams[t.id] ?? 0])),
-    homeAdvantage: input.last?.homeAdvantage ?? FIRST_HOME_ADVANTAGE,
     oddsFetchedAt: input.last?.oddsFetchedAt,
   }
   if (!odds) return last
@@ -55,7 +49,7 @@ export function rate(input: {
       return p ? [{ home, away, p }] : []
     })
 
-  return { ...fit(matches, last), oddsFetchedAt: now.toISOString() }
+  return { teams: fit(matches, last.teams, homeAdvantage), oddsFetchedAt: now.toISOString() }
 }
 
 // Average Outcome probabilities across bookmakers, each with its margin removed by normalising.
@@ -76,9 +70,8 @@ function probabilities(event: OddsResponse[number]) {
 
 // Minimises the cross-entropy between the market's and the match model's Outcome probabilities,
 // plus the anchor, by gradient descent.
-function fit(matches: { home: number; away: number; p: Record<Outcome, number> }[], last: Ratings) {
-  const teams = { ...last.teams }
-  let homeAdvantage = last.homeAdvantage
+function fit(matches: { home: number; away: number; p: Record<Outcome, number> }[], last: Ratings['teams'], homeAdvantage: number) {
+  const teams = { ...last }
   const played = new Map<number, number>()
   for (const m of matches) for (const t of [m.home, m.away]) played.set(t, (played.get(t) ?? 0) + 1)
   const loss = (gap: number, p: Record<Outcome, number>) => {
@@ -87,28 +80,24 @@ function fit(matches: { home: number; away: number; p: Record<Outcome, number> }
   }
 
   for (let iteration = 0; iteration < 10_000; iteration++) {
-    const gradient = new Map(Object.keys(teams).map((t) => [Number(t), 2 * ANCHOR * (teams[Number(t)] - last.teams[Number(t)])]))
-    let homeGradient = 2 * HOME_ANCHOR * (homeAdvantage - last.homeAdvantage)
+    const gradient = new Map(Object.keys(teams).map((t) => [Number(t), 2 * ANCHOR * (teams[Number(t)] - last[Number(t)])]))
     for (const m of matches) {
       const gap = teams[m.home] - teams[m.away] + homeAdvantage
       const slope = (loss(gap + 1e-5, m.p) - loss(gap - 1e-5, m.p)) / 2e-5
       gradient.set(m.home, gradient.get(m.home)! + slope)
       gradient.set(m.away, gradient.get(m.away)! - slope)
-      homeGradient += slope
     }
-    // Each match's loss curves by at most 1.6 per unit of gap (for gaps within ±3) and moves 3 parameters,
-    // so dividing by 3 per match keeps the descent from overshooting.
+    // Each match's loss curves by at most 1.6 per unit of gap (for gaps within ±3) and moves 2 Ratings,
+    // so dividing by 2 per match keeps the descent from overshooting.
     let largest = 0
     for (const [t, g] of gradient) {
-      const step = g / (3 * ((played.get(t) ?? 0) + 1))
+      const step = g / (2 * ((played.get(t) ?? 0) + 1))
       teams[t] -= step
       largest = Math.max(largest, Math.abs(step))
     }
-    const step = homeGradient / (3 * (matches.length + 1))
-    homeAdvantage -= step
-    if (Math.max(largest, Math.abs(step)) < 1e-9) break
+    if (largest < 1e-9) break
   }
-  return { teams, homeAdvantage }
+  return teams
 }
 
 // "Brighton & Hove Albion FC" and "Brighton and Hove Albion" both become "brighton and hove albion".

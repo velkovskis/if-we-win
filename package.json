@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "check": "svelte-check",
     "test": "vitest run",
-    "update": "node scripts/update.ts"
+    "update": "node scripts/update.ts",
+    "backtest": "node scripts/backtest.ts"
   },
   "engines": {
     "node": ">=24"

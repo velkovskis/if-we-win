@@ -19,15 +19,14 @@ export type Forecast = {
 // Average goals per side in an even match; Ratings and home advantage are in log expected goals.
 const GOALS = 1.35
 
-// ponytail: placeholder strength noise; the backtest (#13) sets the real one.
-export const DEFAULT_SETTINGS = { relegationPlaces: 3, simulations: 20_000, strengthNoise: 0.1 }
+// Strength noise and home advantage (in log expected goals) are chosen by the backtest: npm run backtest.
+export const DEFAULT_SETTINGS = { relegationPlaces: 3, simulations: 20_000, strengthNoise: 0.2, homeAdvantage: 0.2 }
 // The site and Snapshots both use it, so a Snapshot's Baseline matches what the site showed.
 export const SEED = 1
 
 export type Input = {
   season: Pick<Season, 'teams' | 'results' | 'fixtures' | 'deductions'>
   ratings: Record<number, number> // team id → Rating
-  homeAdvantage: number
   locks: Record<number, Outcome> // Fixture id → Outcome
   seed: number
   settings: { championsLeaguePlaces: number } & Partial<typeof DEFAULT_SETTINGS>
@@ -54,9 +53,9 @@ function setup(input: Input) {
 // Simulations `from` up to `to`. Draws are keyed by simulation, so tallies of ranges that split the
 // simulations add up to exactly the tally of one run over all of them, which lets workers share a Forecast.
 export function tally(input: Input, from = 0, to?: number): Tally {
-  const { ratings, homeAdvantage, seed } = input
+  const { ratings, seed } = input
   const { settings, start, teams, meetings, fixtures } = setup(input)
-  const { championsLeaguePlaces, relegationPlaces, strengthNoise } = settings
+  const { championsLeaguePlaces, relegationPlaces, strengthNoise, homeAdvantage } = settings
   to ??= settings.simulations
   const n = start.length
   const counts = new Uint32Array(n * 3)

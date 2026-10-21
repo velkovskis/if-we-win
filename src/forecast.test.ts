@@ -17,10 +17,9 @@ const forecastOf = (opts: Opts = {}) =>
   forecast({
     season: { teams: IDS.map(team), results: opts.results ?? [], fixtures: opts.fixtures ?? FIXTURES, deductions: opts.deductions ?? [] },
     ratings: equal(IDS),
-    homeAdvantage: 0.25,
     locks: opts.locks ?? {},
     seed: opts.seed ?? 1,
-    settings: { simulations: opts.simulations ?? 2_000, championsLeaguePlaces: 2, relegationPlaces: 1 },
+    settings: { simulations: opts.simulations ?? 2_000, championsLeaguePlaces: 2, relegationPlaces: 1, homeAdvantage: 0.25 },
   })
 const run = (opts?: Opts) => forecastOf(opts).chances
 const status = (opts?: Opts) => forecastOf(opts).status
@@ -120,10 +119,9 @@ describe('forecast', () => {
       forecast({
         season: { teams: ids.map(team), results, fixtures, deductions: [] },
         ratings: equal(ids),
-        homeAdvantage: 0.25,
         locks,
         seed: 1,
-        settings: { championsLeaguePlaces: 4 },
+        settings: { championsLeaguePlaces: 4, homeAdvantage: 0.25 },
       }).chances[1].title
     const baseline = title({})
     // About 85%: not settled, so a Lock could move it.
@@ -136,10 +134,9 @@ describe('forecast', () => {
     const input = {
       season: { teams: IDS.map(team), results: [], fixtures: FIXTURES, deductions: [] },
       ratings: equal(IDS),
-      homeAdvantage: 0.25,
       locks: { [FIXTURES[0].id]: 'draw' as const },
       seed: 1,
-      settings: { simulations: 2_000, championsLeaguePlaces: 2, relegationPlaces: 1 },
+      settings: { simulations: 2_000, championsLeaguePlaces: 2, relegationPlaces: 1, homeAdvantage: 0.25 },
     }
     expect(finish(input, [tally(input, 0, 667), tally(input, 667, 1_333), tally(input, 1_333, 2_000)])).toEqual(forecast(input))
   })
@@ -231,10 +228,9 @@ describe('forecast', () => {
         const { chances, status: zones } = forecast({
           season: { teams: ids.map(team), results, fixtures, deductions },
           ratings: equal(ids),
-          homeAdvantage: 0.25,
           locks,
           seed: league,
-          settings: { simulations: 200, championsLeaguePlaces: 2, relegationPlaces: 2 },
+          settings: { simulations: 200, championsLeaguePlaces: 2, relegationPlaces: 2, homeAdvantage: 0.25 },
         })
         for (const id of ids)
           for (const zone of ['title', 'championsLeague', 'relegation'] as const) {

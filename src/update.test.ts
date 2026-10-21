@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import matches from '../test/recorded/matches.json'
 import standings from '../test/recorded/standings.json'
-import { outcomeProbabilities } from './forecast.ts'
+import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
 import { update, type Deduction, type MatchesResponse, type StandingsResponse } from './update.ts'
 
@@ -108,18 +108,18 @@ describe('update', () => {
 
 // The 20 recorded teams, named as The Odds API names them (no FC, "and" for "&").
 const TEAMS = standings.standings[0].table.map(({ team }) => ({ id: team.id, oddsName: team.name.replace(/^AFC | A?FC$/, '').replace('&', 'and') }))
-// Known Ratings with mean 0, from strongest to weakest, and a known home advantage.
-const KNOWN: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])), homeAdvantage: 0.3 }
-const LAST: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, i % 2 ? 0.1 : -0.1])), homeAdvantage: 0.2, oddsFetchedAt: '2026-10-18T06:00:00.000Z' }
+// Known Ratings with mean 0, from strongest to weakest.
+const KNOWN: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])) }
+const LAST: Ratings = { teams: Object.fromEntries(TEAMS.map((t, i) => [t.id, i % 2 ? 0.1 : -0.1])), oddsFetchedAt: '2026-10-18T06:00:00.000Z' }
 const KICK_OFF = '2026-10-24T14:00:00Z'
 
-// Bookmaker odds from two bookmakers for every pair at home and away from the Known Ratings, each with its own margin.
-const oddsFrom = (ratings: Ratings, teams = TEAMS, commenceTime = KICK_OFF): OddsResponse =>
+// Bookmaker odds from two bookmakers for every pair at home and away from the Known Ratings and a home advantage, each with its own margin.
+const oddsFrom = (ratings: Ratings, teams = TEAMS, commenceTime = KICK_OFF, homeAdvantage = DEFAULT_SETTINGS.homeAdvantage): OddsResponse =>
   teams.flatMap((home) =>
     teams
       .filter((away) => away !== home)
       .map((away) => {
-        const p = outcomeProbabilities(ratings.teams[home.id] - ratings.teams[away.id] + ratings.homeAdvantage)
+        const p = outcomeProbabilities(ratings.teams[home.id] - ratings.teams[away.id] + homeAdvantage)
         const bookmaker = (margin: number) => ({
           key: `book${margin}`,
           markets: [
@@ -141,8 +141,14 @@ describe('update Ratings', () => {
   it('fits Bookmaker odds generated from known Ratings back to those Ratings', () => {
     const ratings = ratingsFrom(oddsFrom(KNOWN))
     for (const t of TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(KNOWN.teams[t.id], 2)
-    expect(ratings.homeAdvantage).toBeCloseTo(KNOWN.homeAdvantage, 2)
     expect(ratings.oddsFetchedAt).toBe(now.toISOString())
+  })
+
+  it('fits with the home advantage from the Forecast settings, not one of its own', () => {
+    // Odds priced with a bigger home advantage can only be matched by fitting one, which would recover the Known Ratings.
+    const ratings = ratingsFrom(oddsFrom(KNOWN, TEAMS, KICK_OFF, DEFAULT_SETTINGS.homeAdvantage + 0.3))
+    expect(ratings).not.toHaveProperty('homeAdvantage')
+    expect(Math.max(...TEAMS.map((t) => Math.abs(ratings.teams[t.id] - KNOWN.teams[t.id])))).toBeGreaterThan(0.01)
   })
 
   it('fits a single Matchweek of Bookmaker odds, where each team plays once', () => {
@@ -153,8 +159,8 @@ describe('update Ratings', () => {
     const ratings = ratingsFrom(matchweek, LAST)
     for (const e of matchweek) {
       const [home, away] = [e.home_team, e.away_team].map((n) => TEAMS[index(n)].id)
-      // One Matchweek can't separate home advantage from the Ratings, so only the whole gap is checked.
-      const gap = (r: Ratings) => r.teams[home] - r.teams[away] + r.homeAdvantage
+      // One Matchweek pins only each pair's gap, not the Ratings themselves.
+      const gap = (r: Ratings) => r.teams[home] - r.teams[away]
       expect(gap(ratings)).toBeCloseTo(gap(KNOWN), 2)
     }
   })
@@ -228,7 +234,7 @@ describe('update Snapshot', { timeout: 30_000 }, () => {
     const snapshot = snapshotAt('2026-10-27T06:00:00Z', undefined, LAST)!
     expect(snapshot.ratings).toEqual(LAST)
     expect(snapshot.seed).toEqual(expect.any(Number))
-    expect(snapshot.settings).toEqual({ championsLeaguePlaces: 4, relegationPlaces: 3, simulations: 20_000, strengthNoise: 0.1 })
+    expect(snapshot.settings).toEqual({ ...DEFAULT_SETTINGS, championsLeaguePlaces: 4 })
     for (const chances of [snapshot.baseline, snapshot.benchmark]) {
       expect(Object.keys(chances)).toHaveLength(20)
       const total = Object.values(chances).reduce((sum, c) => sum + c.title, 0)

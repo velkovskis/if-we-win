@@ -81,7 +81,6 @@
   const input = (locks: Record<number, Outcome>): Input => ({
     season,
     ratings: season.ratings.teams,
-    homeAdvantage: season.ratings.homeAdvantage,
     locks,
     seed: SEED,
     settings: { championsLeaguePlaces: season.championsLeaguePlaces },

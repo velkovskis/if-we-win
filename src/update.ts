@@ -113,7 +113,7 @@ function snapshotDue(now: Date, first: string, last?: string) {
 function snapshot(season: Season, now: Date): Snapshot {
   const { ratings } = season
   const settings = { ...DEFAULT_SETTINGS, championsLeaguePlaces: season.championsLeaguePlaces }
-  const run = (teamRatings: Record<number, number>) => forecast({ season, ratings: teamRatings, homeAdvantage: ratings.homeAdvantage, locks: {}, seed: SEED, settings }).chances
+  const run = (teamRatings: Record<number, number>) => forecast({ season, ratings: teamRatings, locks: {}, seed: SEED, settings }).chances
   const equal = Object.fromEntries(season.teams.map((t) => [t.id, 0]))
   return { date: now.toISOString(), ratings, seed: SEED, settings, baseline: run(ratings.teams), benchmark: run(equal) }
 }
