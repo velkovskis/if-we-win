@@ -4,7 +4,7 @@
  "championsLeaguePlaces": 4,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-10-20T23:11:11.845Z",
+ "updatedAt": "2026-10-21T14:52:47.231Z",
  "teams": [
   {
    "id": 65,
@@ -2694,7 +2694,6 @@
    "1044": -0.014480010045095075,
    "1076": -0.6670564447496679
   },
-  "homeAdvantage": 0.24834970466090667,
   "oddsFetchedAt": "2026-10-20T23:11:11.845Z"
  }
 }
