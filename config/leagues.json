@@ -9,5 +9,27 @@
   "oddsAliases": {},
   "firstSnapshot": "2026-10-27",
   "deductions": []
+ },
+ {
+  "league": "PD",
+  "season": 2026,
+  "championsLeaguePlaces": 4,
+  "relegationPlaces": 3,
+  "tieBreaks": "headToHeadFirst",
+  "oddsSportKey": "soccer_spain_la_liga",
+  "oddsAliases": {
+   "Alavés": "Deportivo Alavés",
+   "Athletic Bilbao": "Athletic Club",
+   "Atlético Madrid": "Club Atlético de Madrid",
+   "Celta Vigo": "RC Celta de Vigo",
+   "Deportivo La Coruña": "RC Deportivo La Coruña",
+   "Espanyol": "RCD Espanyol de Barcelona",
+   "Levante": "Levante UD",
+   "Rayo Vallecano": "Rayo Vallecano de Madrid",
+   "Real Betis": "Real Betis Balompié",
+   "Real Sociedad": "Real Sociedad de Fútbol"
+  },
+  "firstSnapshot": "2026-11-03",
+  "deductions": []
  }
 ]

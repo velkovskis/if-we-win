@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import matches from '../test/recorded/matches.json'
-import standings from '../test/recorded/standings.json'
+import matches from '../test/recorded/PL/matches.json'
+import standings from '../test/recorded/PL/standings.json'
+import pdMatches from '../test/recorded/PD/matches.json'
+import pdStandings from '../test/recorded/PD/standings.json'
+import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
 import { update, type Deduction, type LeagueConfig, type MatchesResponse, type StandingsResponse } from './update.ts'
@@ -247,6 +250,11 @@ describe('update Ratings', () => {
     expect(() => ratingsFrom(odds)).toThrow(/Real Madrid/)
   })
 
+  it('ignores accents when matching Bookmaker odds names', () => {
+    const odds: OddsResponse = JSON.parse(JSON.stringify(oddsFrom(KNOWN)).replaceAll('"Arsenal"', '"Arsénal"'))
+    expect(ratingsFrom(odds).teams[57]).toBeCloseTo(KNOWN.teams[57], 2)
+  })
+
   it('matches a Bookmaker odds name through the League’s aliases', () => {
     const odds: OddsResponse = JSON.parse(JSON.stringify(oddsFrom(KNOWN)).replaceAll('"Arsenal"', '"The Gunners"'))
     expect(() => ratingsFrom(odds)).toThrow(/The Gunners/)
@@ -258,6 +266,44 @@ describe('update Ratings', () => {
     const published = JSON.stringify(update({ matches, standings, config, now, odds }))
     expect(published).not.toMatch(/bookmaker|h2h|price|book1/i)
     expect(published).not.toContain(String(odds[0].bookmakers[0].markets[0].outcomes[0].price))
+  })
+})
+
+// LaLiga's entry as committed, but with no Deductions, which only the recorded standings can justify.
+const LALIGA = { ...(leagues as LeagueConfig[]).find((l) => l.league === 'PD')!, deductions: [] }
+const runLaLiga = (odds?: OddsResponse) => update({ matches: pdMatches, standings: pdStandings, config: LALIGA, now, odds }).season
+// The recorded teams, named as The Odds API named them on 2026-10-22.
+const LALIGA_TEAMS = Object.entries({
+  81: 'Barcelona', 78: 'Atlético Madrid', 86: 'Real Madrid', 90: 'Real Betis', 92: 'Real Sociedad', 559: 'Sevilla', 263: 'Alavés',
+  558: 'Celta Vigo', 560: 'Deportivo La Coruña', 79: 'CA Osasuna', 88: 'Levante', 94: 'Villarreal', 77: 'Athletic Bilbao', 87: 'Rayo Vallecano',
+  82: 'Getafe', 80: 'Espanyol', 5335: 'Real Racing Club de Santander', 285: 'Elche CF', 95: 'Valencia', 84: 'Málaga',
+}).map(([id, oddsName]) => ({ id: Number(id), oddsName }))
+
+describe('update LaLiga', () => {
+  it('publishes LaLiga’s config, passing the standings guard', () => {
+    expect(runLaLiga()).toMatchObject({ league: 'PD', leagueName: 'Primera Division', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'headToHeadFirst' })
+  })
+
+  it('publishes all 20 teams, and its Results and Fixtures', () => {
+    const season = runLaLiga()
+    expect(season.teams).toHaveLength(20)
+    expect(season.teams).toContainEqual({ id: 78, name: 'Atleti', crest: 'https://crests.football-data.org/78.png' })
+    expect(season.results).toHaveLength(89)
+    expect(season.fixtures).toHaveLength(291)
+  })
+
+  it('numbers Matchweeks 1–38 with 10 matches each', () => {
+    const season = runLaLiga()
+    const counts = new Map<number, number>()
+    for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
+    expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 38 }, (_, i) => i + 1))
+    expect([...counts.values()].every((n) => n === 10)).toBe(true)
+  })
+
+  it('matches every Bookmaker odds name to a team through accents and the League’s aliases', () => {
+    const known = { teams: Object.fromEntries(LALIGA_TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])) }
+    const ratings = runLaLiga(oddsFrom(known, LALIGA_TEAMS)).ratings
+    for (const t of LALIGA_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
   })
 })
 

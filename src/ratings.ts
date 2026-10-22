@@ -101,11 +101,14 @@ function fit(matches: { home: number; away: number; p: Record<Outcome, number> }
   return teams
 }
 
-// "Brighton & Hove Albion FC" and "Brighton and Hove Albion" both become "brighton and hove albion".
+// "Brighton & Hove Albion FC" and "Brighton and Hove Albion" both become "brighton and hove albion";
+// "Atlético" and "Atletico" both become "atletico"; "Valencia CF" (Spain's FC) becomes "valencia".
 const normalise = (name: string) =>
   name
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
     .toLowerCase()
     .replace(/&/g, 'and')
     .split(/\s+/)
-    .filter((w) => w && w !== 'fc' && w !== 'afc')
+    .filter((w) => w && w !== 'fc' && w !== 'afc' && w !== 'cf')
     .join(' ')
