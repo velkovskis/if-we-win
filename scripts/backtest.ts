@@ -16,6 +16,7 @@ const HOME_ADVANTAGES = [0.1, 0.15, 0.2, 0.25, 0.3]
 const SIMULATIONS = 2_000
 // Every season is scored on four Champions League places, though 2024-25 had five; the model and the Benchmark share the Zone.
 const CHAMPIONS_LEAGUE_PLACES = 4
+const RELEGATION_PLACES = 3
 // Each season's Deductions in total, by football-data.co.uk team name. Applied from the first weekly point, a small head start for both.
 const DEDUCTIONS: Record<string, Record<string, number>> = { '2324': { Everton: 8, "Nott'm Forest": 4 } }
 const WEEK = 7 * 86_400_000
@@ -36,11 +37,11 @@ function score({ season, matches, strengthNoise, homeAdvantage }: Job) {
   const equal = Object.fromEntries(teams.map((t) => [t.id, 0]))
   const chances = (before: number, ratings: Record<number, number>, simulations = SIMULATIONS) =>
     forecast({
-      season: { teams, results: all.filter((_, i) => matches[i].kickoff < before), fixtures: all.filter((_, i) => matches[i].kickoff >= before), deductions },
+      season: { teams, results: all.filter((_, i) => matches[i].kickoff < before), fixtures: all.filter((_, i) => matches[i].kickoff >= before), deductions, tieBreaks: 'premierLeague' },
       ratings,
       locks: {},
       seed: SEED,
-      settings: { championsLeaguePlaces: CHAMPIONS_LEAGUE_PLACES, simulations, strengthNoise, homeAdvantage },
+      settings: { championsLeaguePlaces: CHAMPIONS_LEAGUE_PLACES, relegationPlaces: RELEGATION_PLACES, simulations, strengthNoise, homeAdvantage },
     }).chances
   const final = chances(Infinity, equal, 1)
   const brier = (c: Record<number, Chances>) =>

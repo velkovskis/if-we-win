@@ -26,9 +26,10 @@ export function rate(input: {
   last?: Ratings
   teams: { id: number; name: string }[] // football-data.org's full names, e.g. "Brighton & Hove Albion FC"
   now: Date
-  homeAdvantage?: number // the Forecast's; only the backtest passes another
+  homeAdvantage?: number // the League's, else the Forecast's
+  aliases?: Record<string, string> // Bookmaker odds name → football-data.org name, for names normalising can't match
 }): Ratings {
-  const { odds, now, homeAdvantage = DEFAULT_SETTINGS.homeAdvantage } = input
+  const { odds, now, homeAdvantage = DEFAULT_SETTINGS.homeAdvantage, aliases = {} } = input
   const last = {
     teams: Object.fromEntries(input.teams.map((t) => [t.id, input.last?.teams[t.id] ?? 0])),
     oddsFetchedAt: input.last?.oddsFetchedAt,
@@ -37,7 +38,7 @@ export function rate(input: {
 
   const ids = new Map(input.teams.map((t) => [normalise(t.name), t.id]))
   const id = (name: string) => {
-    const found = ids.get(normalise(name))
+    const found = ids.get(normalise(aliases[name] ?? name))
     if (found === undefined) throw new Error(`Bookmaker odds name "${name}" matches no team`)
     return found
   }

@@ -20,16 +20,17 @@ export type Forecast = {
 const GOALS = 1.35
 
 // Strength noise and home advantage (in log expected goals) are chosen by the backtest: npm run backtest.
-export const DEFAULT_SETTINGS = { relegationPlaces: 3, simulations: 20_000, strengthNoise: 0.2, homeAdvantage: 0.2 }
+// A League may set its own; Zone sizes always come from the League.
+export const DEFAULT_SETTINGS = { simulations: 20_000, strengthNoise: 0.2, homeAdvantage: 0.2 }
 // The site and Snapshots both use it, so a Snapshot's Baseline matches what the site showed.
 export const SEED = 1
 
 export type Input = {
-  season: Pick<Season, 'teams' | 'results' | 'fixtures' | 'deductions'>
+  season: Pick<Season, 'teams' | 'results' | 'fixtures' | 'deductions' | 'tieBreaks'>
   ratings: Record<number, number> // team id → Rating
   locks: Record<number, Outcome> // Fixture id → Outcome
   seed: number
-  settings: { championsLeaguePlaces: number } & Partial<typeof DEFAULT_SETTINGS>
+  settings: { championsLeaguePlaces: number; relegationPlaces: number } & Partial<typeof DEFAULT_SETTINGS>
 }
 // Zone finishes by team (team index × 3 + Zone index), overall and per Fixture and sampled Outcome, with how often each Outcome was sampled.
 export type Tally = { counts: Uint32Array; conditionalCounts: Uint32Array; samples: Uint32Array }
@@ -40,7 +41,7 @@ export const forecast = (input: Input): Forecast => finish(input, [tally(input)]
 function setup(input: Input) {
   const { season, locks } = input
   const settings = { ...DEFAULT_SETTINGS, ...input.settings }
-  const start = table(season.teams, season.results, season.deductions)
+  const start = table(season.teams, season.results, season.deductions, season.tieBreaks)
   const index = new Map(start.map((row, i) => [row.team.id, i]))
   // Meetings point at the standings so rank() can settle head-to-head.
   const teams = start.map((_, i) => ({ i, points: 0, goalDifference: 0, goalsFor: 0, rating: 0, tieBreak: 0 }))
@@ -53,7 +54,7 @@ function setup(input: Input) {
 // Simulations `from` up to `to`. Draws are keyed by simulation, so tallies of ranges that split the
 // simulations add up to exactly the tally of one run over all of them, which lets workers share a Forecast.
 export function tally(input: Input, from = 0, to?: number): Tally {
-  const { ratings, seed } = input
+  const { ratings, seed, season } = input
   const { settings, start, teams, meetings, fixtures } = setup(input)
   const { championsLeaguePlaces, relegationPlaces, strengthNoise, homeAdvantage } = settings
   to ??= settings.simulations
@@ -87,7 +88,7 @@ export function tally(input: Input, from = 0, to?: number): Tally {
       else (f.home.points++, f.away.points++)
     }
     // The coin flip stands in for a play-off.
-    const order = rank(teams, meetings, (a, b) => a.tieBreak - b.tieBreak)
+    const order = rank(teams, meetings, season.tieBreaks, (a, b) => a.tieBreak - b.tieBreak)
     const finishes = [order[0].i * 3, ...order.slice(0, championsLeaguePlaces).map((t) => t.i * 3 + 1), ...order.slice(n - relegationPlaces).map((t) => t.i * 3 + 2)]
     for (const at of finishes) counts[at]++
     // ponytail: every Fixture × every Zone finish per simulation, about a fifth more run time; tally only Fixtures a page shows if runs get slow.

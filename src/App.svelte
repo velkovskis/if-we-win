@@ -1,5 +1,5 @@
 <script lang="ts">
-  import seasonData from '../data/season.json'
+  import seasonData from '../data/PL/season.json'
   import { DEFAULT_SETTINGS, finish, keyFixtures, SEED, type Forecast, type Input, type Outcome, type Tally, type Zone } from './forecast.ts'
   import { decode, encode } from './scenario.ts'
   import { table } from './table.ts'
@@ -7,7 +7,7 @@
 
   // Cast: the JSON import types each status as a plain string.
   const season = seasonData as Season
-  const rows = table(season.teams, season.results, season.deductions)
+  const rows = table(season.teams, season.results, season.deductions, season.tieBreaks)
   const names = new Map(season.teams.map((t) => [t.id, t.name]))
   const fixtures = new Map(season.fixtures.map((f) => [f.id, f]))
   // The viewer's own locale and time zone, e.g. "Sat 25 Oct, 15:00" in the UK and "Sat, Oct 25, 3:00 PM" in the US.
@@ -90,7 +90,7 @@
     ratings: season.ratings.teams,
     locks,
     seed: SEED,
-    settings: { championsLeaguePlaces: season.championsLeaguePlaces },
+    settings: { championsLeaguePlaces: season.championsLeaguePlaces, relegationPlaces: season.relegationPlaces, homeAdvantage: season.homeAdvantage, strengthNoise: season.strengthNoise },
   })
   if (fromLink) run(input({}))
   $effect(() => run(input($state.snapshot(locks))))
@@ -292,7 +292,7 @@
             {@const moved = (['title', 'championsLeague', 'relegation'] as const).some((z) => shift(row.team.id, z))}
             <tr class={['border-t border-rule transition-colors duration-300', mine ? 'bg-sel font-semibold text-on-sel' : moved && 'bg-lit']}>
               <td class="pr-1">
-                <span aria-hidden="true" class={['block h-6 w-1.5 rounded-sm', i === 0 ? 'bg-gold' : i < season.championsLeaguePlaces ? 'bg-cl' : i >= rows.length - DEFAULT_SETTINGS.relegationPlaces && 'bg-rel']}></span>
+                <span aria-hidden="true" class={['block h-6 w-1.5 rounded-sm', i === 0 ? 'bg-gold' : i < season.championsLeaguePlaces ? 'bg-cl' : i >= rows.length - season.relegationPlaces && 'bg-rel']}></span>
               </td>
               <td class="py-1 text-center">{i + 1}</td>
               <td class="max-w-0 py-1">

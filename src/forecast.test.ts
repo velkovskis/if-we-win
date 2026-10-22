@@ -15,7 +15,7 @@ const HOME_WINS: Record<number, Outcome> = Object.fromEntries(FIXTURES.map((f) =
 type Opts = { results?: Result[]; fixtures?: Fixture[]; locks?: Record<number, Outcome>; deductions?: Deduction[]; seed?: number; simulations?: number }
 const forecastOf = (opts: Opts = {}) =>
   forecast({
-    season: { teams: IDS.map(team), results: opts.results ?? [], fixtures: opts.fixtures ?? FIXTURES, deductions: opts.deductions ?? [] },
+    season: { teams: IDS.map(team), results: opts.results ?? [], fixtures: opts.fixtures ?? FIXTURES, deductions: opts.deductions ?? [], tieBreaks: 'premierLeague' },
     ratings: equal(IDS),
     locks: opts.locks ?? {},
     seed: opts.seed ?? 1,
@@ -117,11 +117,11 @@ describe('forecast', () => {
     const fixtures = all.filter((f) => f.homeTeamId > f.awayTeamId)
     const title = (locks: Record<number, Outcome>) =>
       forecast({
-        season: { teams: ids.map(team), results, fixtures, deductions: [] },
+        season: { teams: ids.map(team), results, fixtures, deductions: [], tieBreaks: 'premierLeague' },
         ratings: equal(ids),
         locks,
         seed: 1,
-        settings: { championsLeaguePlaces: 4, homeAdvantage: 0.25 },
+        settings: { championsLeaguePlaces: 4, relegationPlaces: 3, homeAdvantage: 0.25 },
       }).chances[1].title
     const baseline = title({})
     // About 85%: not settled, so a Lock could move it.
@@ -132,7 +132,7 @@ describe('forecast', () => {
 
   it('gives exactly the same Forecast when the simulations are split into shares', () => {
     const input = {
-      season: { teams: IDS.map(team), results: [], fixtures: FIXTURES, deductions: [] },
+      season: { teams: IDS.map(team), results: [], fixtures: FIXTURES, deductions: [], tieBreaks: 'premierLeague' as const },
       ratings: equal(IDS),
       locks: { [FIXTURES[0].id]: 'draw' as const },
       seed: 1,
@@ -226,7 +226,7 @@ describe('forecast', () => {
         const locks = Object.fromEntries(fixtures.filter(() => random() < 0.5).map((f) => [f.id, (['home', 'draw', 'away'] as const)[pick(3)]]))
         const deductions = random() < 0.3 ? [{ teamId: 1 + pick(6), points: 1 + pick(10) }] : []
         const { chances, status: zones } = forecast({
-          season: { teams: ids.map(team), results, fixtures, deductions },
+          season: { teams: ids.map(team), results, fixtures, deductions, tieBreaks: 'premierLeague' },
           ratings: equal(ids),
           locks,
           seed: league,

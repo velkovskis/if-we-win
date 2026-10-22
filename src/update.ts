@@ -2,7 +2,7 @@
 // plus a Snapshot when one is due. Pure: no network, no clock; the caller passes everything in.
 import { DEFAULT_SETTINGS, forecast, SEED, type Chances } from './forecast.ts'
 import { rate, type OddsResponse, type Ratings } from './ratings.ts'
-import { table } from './table.ts'
+import { table, type TieBreaks } from './table.ts'
 
 type ProviderTeam = { id: number; name: string; shortName: string; crest: string }
 
@@ -23,10 +23,23 @@ export type StandingsResponse = {
   standings: { type: string; table: { team: ProviderTeam; points: number }[] }[]
 }
 
-// firstSnapshot: the date (YYYY-MM-DD) from which weekly Snapshots start, e.g. once Ratings have had a few weeks to settle.
-export type SeasonConfig = { league: string; season: number; championsLeaguePlaces: number; firstSnapshot: string }
+// One League's entry in config/leagues.json, hand-edited.
+export type LeagueConfig = {
+  league: string // football-data.org's competition code, which also names the League in links and data, e.g. "PL"
+  season: number
+  championsLeaguePlaces: number
+  relegationPlaces: number
+  tieBreaks: TieBreaks
+  oddsSportKey: string // The Odds API's, e.g. "soccer_epl"
+  oddsAliases: Record<string, string> // Bookmaker odds name → football-data.org name, for names that don't match on their own
+  firstSnapshot: string // the date (YYYY-MM-DD) from which weekly Snapshots start, e.g. once Ratings have had a few weeks to settle
+  deductions: Deduction[]
+  // Model settings, only when the backtest shows this League needs its own; the Forecast's defaults otherwise.
+  homeAdvantage?: number
+  strengthNoise?: number
+}
 
-// Points taken off a team by the league; hand-edited in config/deductions.json.
+// Points taken off a team by the league.
 export type Deduction = { teamId: number; points: number }
 
 export type Team = { id: number; name: string; crest: string }
@@ -36,8 +49,9 @@ export type Scoreline = { home: number; away: number }
 export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number; kickoff: string; status?: 'tbc' | 'postponed' }
 export type Result = Fixture & { scoreline: Scoreline }
 
-export type Season = Omit<SeasonConfig, 'firstSnapshot'> & {
-  deductions: Deduction[]
+export type Season = Pick<LeagueConfig, 'league' | 'season' | 'championsLeaguePlaces' | 'relegationPlaces' | 'tieBreaks' | 'deductions'> & {
+  homeAdvantage: number
+  strengthNoise: number
   leagueName: string
   updatedAt: string
   teams: Team[]
@@ -51,7 +65,7 @@ export type Snapshot = {
   date: string
   ratings: Ratings
   seed: number
-  settings: typeof DEFAULT_SETTINGS & { championsLeaguePlaces: number }
+  settings: typeof DEFAULT_SETTINGS & { championsLeaguePlaces: number; relegationPlaces: number }
   baseline: Record<number, Chances>
   benchmark: Record<number, Chances>
 }
@@ -64,8 +78,7 @@ const STATUS: Record<string, Fixture['status']> = { SCHEDULED: 'tbc', POSTPONED:
 export function update(input: {
   matches: MatchesResponse
   standings: StandingsResponse
-  config: SeasonConfig
-  deductions: Deduction[]
+  config: LeagueConfig
   now: Date
   odds?: OddsResponse // absent when not fetched this run, or when the fetch failed
   ratings?: Ratings // the last good Ratings, absent on the very first run
@@ -89,21 +102,21 @@ export function update(input: {
   if (!total) throw new Error('Standings response has no TOTAL table')
   const teams = total.table.map(({ team }) => ({ id: team.id, name: team.shortName, crest: team.crest }))
 
-  const { deductions } = input
+  const { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, deductions, firstSnapshot } = input.config
+  const { homeAdvantage = DEFAULT_SETTINGS.homeAdvantage, strengthNoise = DEFAULT_SETTINGS.strengthNoise } = input.config
   for (const d of deductions) if (!teams.some((t) => t.id === d.teamId)) throw new Error(`Deduction for unknown team ${d.teamId}`)
 
-  // Standings guard: a mismatch usually means a Deduction is missing from config/deductions.json.
+  // Standings guard: a mismatch usually means a Deduction is missing from the League's config.
   const official = new Map(total.table.map((r) => [r.team.id, r.points]))
-  const mismatches = table(teams, results, deductions).flatMap((r) => {
+  const mismatches = table(teams, results, deductions, tieBreaks).flatMap((r) => {
     const points = official.get(r.team.id)
     return r.points === points ? [] : [`${r.team.name} (id ${r.team.id}): computed ${r.points}, official ${points}`]
   })
   if (mismatches.length) throw new Error(`Points disagree with the official standings:\n${mismatches.join('\n')}`)
 
-  const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now })
+  const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now, homeAdvantage, aliases: input.config.oddsAliases })
 
-  const { firstSnapshot, ...config } = input.config
-  const season = { ...config, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
+  const season = { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, homeAdvantage, strengthNoise, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
   return { season, snapshot: snapshotDue(input.now, firstSnapshot, input.lastSnapshot) ? snapshot(season, input.now) : undefined }
 }
 
@@ -117,8 +130,8 @@ function snapshotDue(now: Date, first: string, last?: string) {
 }
 
 function snapshot(season: Season, now: Date): Snapshot {
-  const { ratings } = season
-  const settings = { ...DEFAULT_SETTINGS, championsLeaguePlaces: season.championsLeaguePlaces }
+  const { ratings, championsLeaguePlaces, relegationPlaces, homeAdvantage, strengthNoise } = season
+  const settings = { ...DEFAULT_SETTINGS, championsLeaguePlaces, relegationPlaces, homeAdvantage, strengthNoise }
   const run = (teamRatings: Record<number, number>) => forecast({ season, ratings: teamRatings, locks: {}, seed: SEED, settings }).chances
   const equal = Object.fromEntries(season.teams.map((t) => [t.id, 0]))
   return { date: now.toISOString(), ratings, seed: SEED, settings, baseline: run(ratings.teams), benchmark: run(equal) }

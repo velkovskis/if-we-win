@@ -31,7 +31,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - if: github.event_name != 'push'
+      # A League that fails keeps its last good data while the rest still commit and deploy; the last step then turns the job red.
+      - id: update
+        if: github.event_name != 'push'
+        continue-on-error: true
         run: npm run update
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
@@ -52,3 +55,7 @@ jobs:
           path: dist
       - id: deploy
         uses: actions/deploy-pages@v5
+      - if: steps.update.outcome == 'failure'
+        run: |
+          echo "::error::Update failed for at least one League, named above"
+          exit 1

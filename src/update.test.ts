@@ -3,15 +3,26 @@ import matches from '../test/recorded/matches.json'
 import standings from '../test/recorded/standings.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
-import { update, type Deduction, type MatchesResponse, type StandingsResponse } from './update.ts'
+import { update, type Deduction, type LeagueConfig, type MatchesResponse, type StandingsResponse } from './update.ts'
 
-const config = { league: 'PL', season: 2026, championsLeaguePlaces: 4, firstSnapshot: '2026-10-27' }
+const config: LeagueConfig = {
+  league: 'PL',
+  season: 2026,
+  championsLeaguePlaces: 4,
+  relegationPlaces: 3,
+  tieBreaks: 'premierLeague',
+  oddsSportKey: 'soccer_epl',
+  oddsAliases: {},
+  firstSnapshot: '2026-10-27',
+  deductions: [],
+}
 const now = new Date('2026-10-19T20:00:00Z')
 
 const run = (m: MatchesResponse = matches, s: StandingsResponse = standings, deductions: Deduction[] = []) =>
-  update({ matches: m, standings: s, config, deductions, now }).season
+  update({ matches: m, standings: s, config: { ...config, deductions }, now }).season
 
-const ratingsFrom = (odds?: OddsResponse, ratings?: Ratings) => update({ matches, standings, config, deductions: [], now, odds, ratings }).season.ratings
+const ratingsFrom = (odds?: OddsResponse, ratings?: Ratings, league: Partial<LeagueConfig> = {}) =>
+  update({ matches, standings, config: { ...config, ...league }, now, odds, ratings }).season.ratings
 
 // A copy of the recorded matches response with one match edited.
 const editMatch = (id: number, edit: object): MatchesResponse => ({
@@ -35,7 +46,23 @@ describe('update', () => {
     expect(season.leagueName).toBe('Premier League')
     expect(season.season).toBe(2026)
     expect(season.championsLeaguePlaces).toBe(4)
+    expect(season.relegationPlaces).toBe(3)
+    expect(season.tieBreaks).toBe('premierLeague')
     expect(season.updatedAt).toBe('2026-10-19T20:00:00.000Z')
+  })
+
+  it('publishes the Forecast’s model settings, unless the League sets its own', () => {
+    expect(run()).toMatchObject({ homeAdvantage: DEFAULT_SETTINGS.homeAdvantage, strengthNoise: DEFAULT_SETTINGS.strengthNoise })
+    const season = update({ matches, standings, config: { ...config, homeAdvantage: 0.3, strengthNoise: 0.1 }, now }).season
+    expect(season).toMatchObject({ homeAdvantage: 0.3, strengthNoise: 0.1 })
+  })
+
+  it('keeps the League’s update-only config out of the Season', () => {
+    for (const key of ['firstSnapshot', 'oddsSportKey', 'oddsAliases']) expect(run()).not.toHaveProperty(key)
+  })
+
+  it('fails on an unknown tie-break order, naming it', () => {
+    expect(() => update({ matches, standings, config: { ...config, tieBreaks: 'nope' as never }, now })).toThrow(/nope/)
   })
 
   it('publishes all 20 teams', () => {
@@ -170,6 +197,12 @@ describe('update Ratings', () => {
     expect(Math.max(...TEAMS.map((t) => Math.abs(ratings.teams[t.id] - KNOWN.teams[t.id])))).toBeGreaterThan(0.01)
   })
 
+  it('fits with the League’s own home advantage when it sets one', () => {
+    const homeAdvantage = DEFAULT_SETTINGS.homeAdvantage + 0.3
+    const ratings = ratingsFrom(oddsFrom(KNOWN, TEAMS, KICK_OFF, homeAdvantage), undefined, { homeAdvantage })
+    for (const t of TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(KNOWN.teams[t.id], 2)
+  })
+
   it('fits a single Matchweek of Bookmaker odds, where each team plays once', () => {
     // Team i plays team 19 − i, with the even-numbered team at home.
     const index = (name: string) => TEAMS.findIndex((t) => t.oddsName === name)
@@ -214,9 +247,15 @@ describe('update Ratings', () => {
     expect(() => ratingsFrom(odds)).toThrow(/Real Madrid/)
   })
 
+  it('matches a Bookmaker odds name through the League’s aliases', () => {
+    const odds: OddsResponse = JSON.parse(JSON.stringify(oddsFrom(KNOWN)).replaceAll('"Arsenal"', '"The Gunners"'))
+    expect(() => ratingsFrom(odds)).toThrow(/The Gunners/)
+    expect(ratingsFrom(odds, undefined, { oddsAliases: { 'The Gunners': 'Arsenal' } }).teams[57]).toBeCloseTo(KNOWN.teams[57], 2)
+  })
+
   it('publishes no raw Bookmaker odds', () => {
     const odds = oddsFrom(KNOWN)
-    const published = JSON.stringify(update({ matches, standings, config, deductions: [], now, odds }))
+    const published = JSON.stringify(update({ matches, standings, config, now, odds }))
     expect(published).not.toMatch(/bookmaker|h2h|price|book1/i)
     expect(published).not.toContain(String(odds[0].bookmakers[0].markets[0].outcomes[0].price))
   })
@@ -224,8 +263,8 @@ describe('update Ratings', () => {
 
 // Each due Snapshot runs two full Forecasts, so a test that takes two can pass 5 seconds on a busy machine.
 describe('update Snapshot', { timeout: 30_000 }, () => {
-  const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings) =>
-    update({ matches, standings, config, deductions: [], now: new Date(iso), lastSnapshot, ratings }).snapshot
+  const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings, league: Partial<LeagueConfig> = {}) =>
+    update({ matches, standings, config: { ...config, ...league }, now: new Date(iso), lastSnapshot, ratings }).snapshot
 
   it('is not due before the first Snapshot date, even on a Tuesday after 06:00 UTC', () => {
     expect(snapshotAt('2026-10-20T06:00:00Z')).toBeUndefined()
@@ -253,13 +292,17 @@ describe('update Snapshot', { timeout: 30_000 }, () => {
     const snapshot = snapshotAt('2026-10-27T06:00:00Z', undefined, LAST)!
     expect(snapshot.ratings).toEqual(LAST)
     expect(snapshot.seed).toEqual(expect.any(Number))
-    expect(snapshot.settings).toEqual({ ...DEFAULT_SETTINGS, championsLeaguePlaces: 4 })
+    expect(snapshot.settings).toEqual({ ...DEFAULT_SETTINGS, championsLeaguePlaces: 4, relegationPlaces: 3 })
     for (const chances of [snapshot.baseline, snapshot.benchmark]) {
       expect(Object.keys(chances)).toHaveLength(20)
       const total = Object.values(chances).reduce((sum, c) => sum + c.title, 0)
       expect(total).toBeCloseTo(1)
     }
     expect(snapshot.baseline).not.toEqual(snapshot.benchmark)
+  })
+
+  it('records the League’s own model settings when it sets them', () => {
+    expect(snapshotAt('2026-10-27T06:00:00Z', undefined, LAST, { strengthNoise: 0.1, homeAdvantage: 0.3 })!.settings).toMatchObject({ strengthNoise: 0.1, homeAdvantage: 0.3 })
   })
 
   it('gives every team the same Rating for the Benchmark', () => {

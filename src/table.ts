@@ -12,7 +12,7 @@ export type Row = {
   points: number
 }
 
-export function table(teams: Team[], results: Result[], deductions: Deduction[]): Row[] {
+export function table(teams: Team[], results: Result[], deductions: Deduction[], tieBreaks: TieBreaks): Row[] {
   const rows = new Map(
     teams.map((team) => [team.id, { team, played: 0, won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }]),
   )
@@ -38,16 +38,20 @@ export function table(teams: Team[], results: Result[], deductions: Deduction[])
   for (const d of deductions) rows.get(d.teamId)!.points -= d.points
   const meetings = results.map((r) => ({ home: rows.get(r.homeTeamId)!, away: rows.get(r.awayTeamId)!, homeGoals: r.scoreline.home, awayGoals: r.scoreline.away }))
   // Officially a tie left after head-to-head shares a position; the name just keeps the order stable.
-  return rank([...rows.values()], meetings, (a, b) => a.team.name.localeCompare(b.team.name))
+  return rank([...rows.values()], meetings, tieBreaks, (a, b) => a.team.name.localeCompare(b.team.name))
 }
+
+// Each League's official order for teams level on points, by name; a League's config names its own.
+export type TieBreaks = 'premierLeague'
 
 type Standing = { points: number; goalDifference: number; goalsFor: number }
 type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
 
 // The Premier League order: points (after Deductions), goal difference, goals scored, then head-to-head points
-// and head-to-head away goals in the meetings between all the teams still level; `tieBreak` settles what is left.
+// and head-to-head away goals in the meetings between all the teams still level; `fallback` settles what is left.
 // The Handbook uses head-to-head only when a Zone is at stake, but a tie with no Zone at stake changes no Zone either way.
-export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreak: (a: T, b: T) => number): T[] {
+export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreaks: TieBreaks, fallback: (a: T, b: T) => number): T[] {
+  if (tieBreaks !== 'premierLeague') throw new Error(`Unknown tie-break order "${tieBreaks}"`)
   const order = teams.toSorted((a, b) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor)
   for (let start = 0, end = 1; start < order.length; start = end++) {
     const first = order[start]
@@ -62,7 +66,7 @@ export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tie
       if (m.homeGoals >= m.awayGoals) points.set(m.home, points.get(m.home)! + (m.homeGoals > m.awayGoals ? 3 : 1))
       if (m.awayGoals >= m.homeGoals) points.set(m.away, points.get(m.away)! + (m.awayGoals > m.homeGoals ? 3 : 1))
     }
-    level.sort((a, b) => points.get(b)! - points.get(a)! || awayGoals.get(b)! - awayGoals.get(a)! || tieBreak(a, b))
+    level.sort((a, b) => points.get(b)! - points.get(a)! || awayGoals.get(b)! - awayGoals.get(a)! || fallback(a, b))
     order.splice(start, level.length, ...level)
   }
   return order
