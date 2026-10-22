@@ -185,7 +185,7 @@ A cool, nearly neutral enamel palette carrying three saturated Zone colours and 
 
 One column on phones inside a 42rem max width with 12px gutters; from 1024px a two-column grid (fluid table, 22rem panel, 32px gap) inside 64rem, 24px gutters. There the table's column headings sit on a plate the height of the panel's My team plate, so both columns open on the same sign, and the panel is exactly as tall as the table and scrolls on its own, so both columns start and end together. Its foot fades out while there's more to scroll. How this works is a sheet over the page (see Components). The Scenario band is sticky at the top while Locks are on. Vertical rhythm: 8–12px between a plate and its content, 24px between sections, 6px between Lock rows. Breakpoints in use: 640px (adds P/W/D/L, larger crests and Shift plates) and 1024px (side panel).
 
-Lock buttons sit in a three-column grid (1fr · 4.5rem · 1fr), mirrored about Draw: home left-aligned, Draw centred, away right-aligned. Above each row, the Fixture's Kick-off in 12px ink, in the viewer's own locale and time zone.
+Lock buttons sit in a three-column grid (1fr · 4.5rem · 1fr), mirrored about Draw: home left-aligned, Draw centred, away right-aligned. Above each row, the Fixture's Kick-off in 12px ink, in the viewer's own locale and time zone: the date with "TBC" when the time is unconfirmed, "Postponed" (sorted last in its Matchweek) when the date no longer holds.
 
 **Known trade-off.** On a phone during a Scenario, Chance cells carrying Shift plates widen and long team names truncate with an ellipsis. Accepted by the user as shipped; do not treat it as a rule or as something future surfaces must reproduce.
 

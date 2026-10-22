@@ -31,8 +31,9 @@ export type Deduction = { teamId: number; points: number }
 
 export type Team = { id: number; name: string; crest: string }
 export type Scoreline = { home: number; away: number }
-// kickoff: an ISO timestamp, as the provider gives it.
-export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number; kickoff: string }
+// kickoff: an ISO timestamp, as the provider gives it. status: absent for a confirmed Kick-off, 'tbc' when only the date is set,
+// 'postponed' when the date is no longer right.
+export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number; kickoff: string; status?: 'tbc' | 'postponed' }
 export type Result = Fixture & { scoreline: Scoreline }
 
 export type Season = Omit<SeasonConfig, 'firstSnapshot'> & {
@@ -57,6 +58,8 @@ export type Snapshot = {
 
 // Everything else, including in-progress and postponed matches, is a Fixture.
 const FINISHED = new Set(['FINISHED', 'AWARDED'])
+// In-progress matches (IN_PLAY, PAUSED) get no status: the data is hours old, so a "Live" label would go stale.
+const STATUS: Record<string, Fixture['status']> = { SCHEDULED: 'tbc', POSTPONED: 'postponed', SUSPENDED: 'postponed', CANCELLED: 'postponed' }
 
 export function update(input: {
   matches: MatchesResponse
@@ -73,7 +76,8 @@ export function update(input: {
   for (const m of input.matches.matches) {
     const fixture = { id: m.id, matchweek: m.matchday, homeTeamId: m.homeTeam.id, awayTeamId: m.awayTeam.id, kickoff: m.utcDate }
     if (!FINISHED.has(m.status)) {
-      fixtures.push(fixture)
+      const status = STATUS[m.status]
+      fixtures.push(status ? { ...fixture, status } : fixture)
       continue
     }
     const { home, away } = m.score.fullTime

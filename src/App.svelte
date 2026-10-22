@@ -5,15 +5,20 @@
   import { table } from './table.ts'
   import type { Fixture, Season } from './update.ts'
 
-  const season: Season = seasonData
+  // Cast: the JSON import types each status as a plain string.
+  const season = seasonData as Season
   const rows = table(season.teams, season.results, season.deductions)
   const names = new Map(season.teams.map((t) => [t.id, t.name]))
   const fixtures = new Map(season.fixtures.map((f) => [f.id, f]))
   // The viewer's own locale and time zone, e.g. "Sat 25 Oct, 15:00" in the UK and "Sat, Oct 25, 3:00 PM" in the US.
   const kickoffFormat = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' })
+  const dateFormat = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short' })
+  const kickoffLabel = (f: Fixture) =>
+    f.status === 'postponed' ? 'Postponed' : f.status === 'tbc' ? `${dateFormat.format(new Date(f.kickoff))} · TBC` : kickoffFormat.format(new Date(f.kickoff))
+  const postponedLast = (f: Fixture) => Number(f.status === 'postponed')
   // Not Map.groupBy: it blanks the page on Safari before 17.4.
   const matchweeks = new Map<number, Fixture[]>()
-  for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek || a.kickoff.localeCompare(b.kickoff))) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
+  for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek || postponedLast(a) - postponedLast(b) || a.kickoff.localeCompare(b.kickoff))) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
   const weeks = [...matchweeks.keys()]
   // Start at the next Matchweek: the first with at least half its matches still to play, so one postponed Fixture doesn't count.
   const played = (week: number) => season.results.filter((r) => r.matchweek === week).length
@@ -187,7 +192,7 @@
 <!-- A Fixture's Kick-off and Lock buttons, mirrored about Draw; under a Key fixture each also shows My team's Chance if that Outcome happens. -->
 {#snippet lockButtons(f: Fixture, chanceIf?: (outcome: Outcome) => string)}
   <li>
-    <p class="mb-0.5 text-xs tabular-nums">{kickoffFormat.format(new Date(f.kickoff))}</p>
+    <p class="mb-0.5 text-xs tabular-nums">{kickoffLabel(f)}</p>
     <div class="grid grid-cols-[1fr_4.5rem_1fr] gap-1.5">
       {#each [['home', names.get(f.homeTeamId)], ['draw', 'Draw'], ['away', names.get(f.awayTeamId)]] as const as [outcome, label] (outcome)}
         <button

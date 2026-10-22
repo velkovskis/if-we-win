@@ -67,7 +67,22 @@ describe('update', () => {
   it('treats a postponed match as a Fixture that keeps its Matchweek', () => {
     const before = run().fixtures.find((f) => f.id === TIMED_ID)!
     const season = run(editMatch(TIMED_ID, { status: 'POSTPONED' }))
-    expect(season.fixtures).toContainEqual(before)
+    expect(season.fixtures).toContainEqual({ ...before, status: 'postponed' })
+  })
+
+  it('marks a Fixture whose time is unconfirmed as TBC', () => {
+    expect(run(editMatch(TIMED_ID, { status: 'SCHEDULED' })).fixtures.find((f) => f.id === TIMED_ID)?.status).toBe('tbc')
+  })
+
+  it.each(['POSTPONED', 'SUSPENDED', 'CANCELLED'])('marks a %s Fixture as postponed', (status) => {
+    expect(run(editMatch(TIMED_ID, { status })).fixtures.find((f) => f.id === TIMED_ID)?.status).toBe('postponed')
+  })
+
+  it('gives a confirmed or in-progress Fixture no status', () => {
+    const fixtures = run().fixtures
+    expect(fixtures.find((f) => f.id === TIMED_ID)).not.toHaveProperty('status')
+    expect(fixtures.find((f) => f.id === IN_PLAY_ID)).not.toHaveProperty('status')
+    expect(run(editMatch(IN_PLAY_ID, { status: 'PAUSED' })).fixtures.find((f) => f.id === IN_PLAY_ID)).not.toHaveProperty('status')
   })
 
   it('keeps a rearranged Fixture’s id and Matchweek', () => {
