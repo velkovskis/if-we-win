@@ -10,6 +10,7 @@ const result = (homeTeamId: number, awayTeamId: number, home: number, away: numb
   matchweek: 1,
   homeTeamId,
   awayTeamId,
+  kickoff: '',
   scoreline: { home, away },
 })
 

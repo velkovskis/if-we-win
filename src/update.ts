@@ -12,6 +12,7 @@ export type MatchesResponse = {
     id: number
     status: string
     matchday: number
+    utcDate: string
     homeTeam: { id: number }
     awayTeam: { id: number }
     score: { fullTime: { home: number | null; away: number | null } }
@@ -30,7 +31,8 @@ export type Deduction = { teamId: number; points: number }
 
 export type Team = { id: number; name: string; crest: string }
 export type Scoreline = { home: number; away: number }
-export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number }
+// kickoff: an ISO timestamp, as the provider gives it.
+export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number; kickoff: string }
 export type Result = Fixture & { scoreline: Scoreline }
 
 export type Season = Omit<SeasonConfig, 'firstSnapshot'> & {
@@ -69,7 +71,7 @@ export function update(input: {
   const results: Result[] = []
   const fixtures: Fixture[] = []
   for (const m of input.matches.matches) {
-    const fixture = { id: m.id, matchweek: m.matchday, homeTeamId: m.homeTeam.id, awayTeamId: m.awayTeam.id }
+    const fixture = { id: m.id, matchweek: m.matchday, homeTeamId: m.homeTeam.id, awayTeamId: m.awayTeam.id, kickoff: m.utcDate }
     if (!FINISHED.has(m.status)) {
       fixtures.push(fixture)
       continue

@@ -9,9 +9,11 @@
   const rows = table(season.teams, season.results, season.deductions)
   const names = new Map(season.teams.map((t) => [t.id, t.name]))
   const fixtures = new Map(season.fixtures.map((f) => [f.id, f]))
+  // The viewer's own locale and time zone, e.g. "Sat 25 Oct, 15:00" in the UK and "Sat, Oct 25, 3:00 PM" in the US.
+  const kickoffFormat = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' })
   // Not Map.groupBy: it blanks the page on Safari before 17.4.
   const matchweeks = new Map<number, Fixture[]>()
-  for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek)) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
+  for (const f of season.fixtures.toSorted((a, b) => a.matchweek - b.matchweek || a.kickoff.localeCompare(b.kickoff))) matchweeks.set(f.matchweek, [...(matchweeks.get(f.matchweek) ?? []), f])
   const weeks = [...matchweeks.keys()]
   // Start at the next Matchweek: the first with at least half its matches still to play, so one postponed Fixture doesn't count.
   const played = (week: number) => season.results.filter((r) => r.matchweek === week).length
@@ -182,22 +184,25 @@
   </span>
 {/snippet}
 
-<!-- A Fixture's Lock buttons, mirrored about Draw; under a Key fixture each also shows My team's Chance if that Outcome happens. -->
+<!-- A Fixture's Kick-off and Lock buttons, mirrored about Draw; under a Key fixture each also shows My team's Chance if that Outcome happens. -->
 {#snippet lockButtons(f: Fixture, chanceIf?: (outcome: Outcome) => string)}
-  <li class="grid grid-cols-[1fr_4.5rem_1fr] gap-1.5">
-    {#each [['home', names.get(f.homeTeamId)], ['draw', 'Draw'], ['away', names.get(f.awayTeamId)]] as const as [outcome, label] (outcome)}
-      <button
-        class={[
-          'min-h-11 rounded-md border px-2.5 py-1.5 text-sm leading-tight font-semibold transition-colors duration-150',
-          outcome === 'home' ? 'text-left' : outcome === 'away' ? 'text-right' : 'text-center',
-          locks[f.id] === outcome ? 'plate-sel border-sel' : 'border-rule bg-surface text-ink hover:border-ink-2',
-        ]}
-        aria-pressed={locks[f.id] === outcome}
-        onclick={() => toggle(f.id, outcome)}
-        >{label}
-        {#if chanceIf}<span class="block text-xs font-bold tabular-nums">{chanceIf(outcome)}</span>{/if}</button
-      >
-    {/each}
+  <li>
+    <p class="mb-0.5 text-xs tabular-nums">{kickoffFormat.format(new Date(f.kickoff))}</p>
+    <div class="grid grid-cols-[1fr_4.5rem_1fr] gap-1.5">
+      {#each [['home', names.get(f.homeTeamId)], ['draw', 'Draw'], ['away', names.get(f.awayTeamId)]] as const as [outcome, label] (outcome)}
+        <button
+          class={[
+            'min-h-11 rounded-md border px-2.5 py-1.5 text-sm leading-tight font-semibold transition-colors duration-150',
+            outcome === 'home' ? 'text-left' : outcome === 'away' ? 'text-right' : 'text-center',
+            locks[f.id] === outcome ? 'plate-sel border-sel' : 'border-rule bg-surface text-ink hover:border-ink-2',
+          ]}
+          aria-pressed={locks[f.id] === outcome}
+          onclick={() => toggle(f.id, outcome)}
+          >{label}
+          {#if chanceIf}<span class="block text-xs font-bold tabular-nums">{chanceIf(outcome)}</span>{/if}</button
+        >
+      {/each}
+    </div>
   </li>
 {/snippet}
 

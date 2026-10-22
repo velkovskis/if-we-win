@@ -51,7 +51,11 @@ describe('update', () => {
   })
 
   it('gives a Result its final Scoreline', () => {
-    expect(run().results).toContainEqual({ id: FINISHED_ID, matchweek: 1, homeTeamId: 57, awayTeamId: 1076, scoreline: { home: 3, away: 0 } })
+    expect(run().results).toContainEqual({ id: FINISHED_ID, matchweek: 1, homeTeamId: 57, awayTeamId: 1076, kickoff: '2026-08-21T19:00:00Z', scoreline: { home: 3, away: 0 } })
+  })
+
+  it('gives a Fixture its kick-off', () => {
+    expect(run().fixtures).toContainEqual({ id: 560620, matchweek: 8, homeTeamId: 349, awayTeamId: 351, kickoff: '2026-10-23T19:00:00Z' })
   })
 
   it('treats an in-progress match as a Fixture', () => {

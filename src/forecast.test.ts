@@ -3,7 +3,7 @@ import { finish, forecast, keyFixtures, tally, type Outcome } from './forecast.t
 import type { Deduction, Fixture, Result } from './update.ts'
 
 const team = (id: number) => ({ id, name: `T${id}`, crest: '' })
-const fixture = (homeTeamId: number, awayTeamId: number): Fixture => ({ id: homeTeamId * 100 + awayTeamId, matchweek: 1, homeTeamId, awayTeamId })
+const fixture = (homeTeamId: number, awayTeamId: number): Fixture => ({ id: homeTeamId * 100 + awayTeamId, matchweek: 1, homeTeamId, awayTeamId, kickoff: '' })
 const result = (homeTeamId: number, awayTeamId: number, home: number, away: number): Result => ({ ...fixture(homeTeamId, awayTeamId), scoreline: { home, away } })
 const equal = (ids: number[]) => Object.fromEntries(ids.map((id) => [id, 0]))
 

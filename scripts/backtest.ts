@@ -32,7 +32,7 @@ function score({ season, matches, strengthNoise, homeAdvantage }: Job) {
     return { teamId: names.indexOf(name), points }
   })
   // Every match as a Result; at each weekly point, the ones yet to kick off become Fixtures.
-  const all = matches.map((m, id) => ({ id, matchweek: 0, homeTeamId: names.indexOf(m.home), awayTeamId: names.indexOf(m.away), scoreline: m.scoreline }))
+  const all = matches.map((m, id) => ({ id, matchweek: 0, homeTeamId: names.indexOf(m.home), awayTeamId: names.indexOf(m.away), kickoff: new Date(m.kickoff).toISOString(), scoreline: m.scoreline }))
   const equal = Object.fromEntries(teams.map((t) => [t.id, 0]))
   const chances = (before: number, ratings: Record<number, number>, simulations = SIMULATIONS) =>
     forecast({

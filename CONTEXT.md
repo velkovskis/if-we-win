@@ -26,6 +26,10 @@ _Avoid_: score, result
 One numbered round of a season's Fixtures (1–38 in the Premier League). A rearranged Fixture keeps its Matchweek number.
 _Avoid_: gameweek, matchday, round
 
+**Kick-off**:
+The scheduled start of a Fixture, which may be TBC; a postponed Fixture has none.
+_Avoid_: start time, date
+
 ### Table
 
 **Deduction**:
