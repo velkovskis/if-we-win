@@ -8,11 +8,11 @@ web
 
 ## Users
 
-Premier League fans, starting with the maintainer and their friends. They check it on matchdays on a phone, on the sofa or in the pub, often while a match is on. They want to know whether their team can still win the Title, reach the Champions League places or avoid Relegation, and what has to happen for that. They pass Scenarios around as links. They don't sign up, and they get no cookie banner.
+Fans of the big European Leagues (Premier League, LaLiga, Serie A, Bundesliga, Ligue 1 and Eredivisie), starting with the maintainer and their friends. They check it on matchdays on a phone, on the sofa or in the pub, often while a match is on. They want to know whether their team can still win the Title, reach the Champions League places or avoid Relegation, and what has to happen for that. They pass Scenarios around as links. They don't sign up, and they get no cookie banner.
 
 ## Product Purpose
 
-If We Win is a "what if" explorer for league football. It shows the current table and each team's Chance of each Zone. Fans Lock the Outcomes of remaining Fixtures and watch the Chances Shift against the Baseline. My team and its Key fixtures answer "which results should I hope for?"
+If We Win is a "what if" explorer for league football. For each League it shows the current table and each team's Chance of each Zone. Fans Lock the Outcomes of remaining Fixtures and watch the Chances Shift against the Baseline. My team and its Key fixtures answer "which results should I hope for?"
 
 Success is personal utility, measured in `docs/success.md` (review in late May 2027):
 - at least 50 visitors a week during the run-in;
@@ -32,20 +32,21 @@ Three things carry equal weight, and no forecast site or plain table offers all 
 
 - Phone first, used in passing on matchday, often between or during matches.
 - Scenarios are shared as URLs between friends, so a shared link must show the sender exactly the same view.
-- Data refreshes every 2 hours through GitHub Actions. An "Updated X ago" line and a banner for data older than 24 hours tell fans how fresh it is.
-- Terminology is fixed in `CONTEXT.md` (Fixture, Lock, Shift, Chance, Zone, Matchweek and so on). UI copy uses those terms and avoids the words that file rules out.
+- Data refreshes every 2 hours through GitHub Actions. Each League updates on its own, so one League failing never holds up the others. An "Updated X ago" line and a banner for data older than 24 hours tell fans how fresh their League's data is.
+- Terminology is fixed in `CONTEXT.md` (League, Fixture, Lock, Shift, Chance, Zone, Matchweek and so on). UI copy uses those terms and avoids the words that file rules out.
 
 ## Capabilities and Constraints
 
 - Static Svelte 5, Vite and Tailwind 4 site on GitHub Pages. No server and no database. The simulation (20,000 runs) runs in a Web Worker in the browser.
-- Premier League only for v1. The league is a parameter in the data.
-- Zones are Title, Champions League places (number set per season in `config/season.json`) and Relegation. Badges are Clinched/Eliminated, worded Relegated/Safe for Relegation.
+- v1 (live): Premier League only. v2 (#23): the Premier League, LaLiga, Serie A, Bundesliga, Ligue 1 and Eredivisie on one site, switched with a row of League tabs and rolled out one League per PR (ADR 0003). The Champions League is a separate later feature.
+- Every League has the same Zones: Title, Champions League places (including qualifying-round places) and Relegation (automatic places only). Their sizes are set per League and season in config. A Relegation play-off place gets a stripe, not a Zone. Badges are Clinched/Eliminated, worded Relegated/Safe for Relegation.
+- Each League ranks tied teams by its own official rules.
+- My team is remembered on the device for each League and also kept in the URL. Scenario links carry their League, so links from v1 keep working.
 - Chances show as whole percentages, with "<1%" and ">99%" unless settled. Shifts under 1 point are hidden.
-- My team is remembered on the device and also kept in the URL.
 - Raw Bookmaker odds are never shown or published (The Odds API terms).
 - The football-data.org attribution must stay visible.
 - Cloudflare Web Analytics only (cookieless).
-- Still to build (#14 Launch polish): the "How this works" note, analytics, and a phone-first design pass. Launch target is Sunday 25 October 2026.
+- English only, in every League.
 
 ## Brand Commitments
 
@@ -55,8 +56,8 @@ Three things carry equal weight, and no forecast site or plain table offers all 
 
 ## Evidence on Hand
 
-- Live data: table, Fixtures, Results and crests from football-data.org; Ratings in `data/season.json`.
-- There are no testimonials, visitor numbers or Scorecard results yet. The first Snapshot is 27 October 2026. Don't make any of these up.
+- Live data: table, Fixtures, Results and crests from football-data.org (free tier); Ratings in each League's published Season.
+- There are no testimonials, visitor numbers or Scorecard results yet. The first Premier League Snapshot is 27 October 2026. Don't make any of these up.
 
 ## Product Principles
 

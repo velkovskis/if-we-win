@@ -4,6 +4,12 @@ A "what if" explorer for league football. Fans see the current table and each te
 
 ## Language
 
+### Leagues
+
+**League**:
+One domestic competition with a single table, e.g. the Premier League or LaLiga. Each has its own Zones, table rules and Snapshots.
+_Avoid_: competition, division
+
 ### Matches
 
 **Fixture**:
@@ -23,7 +29,7 @@ The exact goals of a match, e.g. 2-1.
 _Avoid_: score, result
 
 **Matchweek**:
-One numbered round of a season's Fixtures (1–38 in the Premier League). A rearranged Fixture keeps its Matchweek number.
+One numbered round of a League's Fixtures in a season (1–38 in the Premier League, 1–34 in the Bundesliga). A rearranged Fixture keeps its Matchweek number.
 _Avoid_: gameweek, matchday, round
 
 **Kick-off**:
@@ -37,7 +43,7 @@ Points taken away from a team by the league.
 _Avoid_: penalty, sanction
 
 **Zone**:
-A band of final league positions that fans care about: Title, Champions League places or Relegation.
+A band of final positions in a League that fans care about: Title, Champions League places or Relegation. Each League sets which positions each Zone covers.
 _Avoid_: top 4, bracket
 
 **Title**:
@@ -45,12 +51,16 @@ Finishing first.
 _Avoid_: winning the league, champions
 
 **Champions League places**:
-The final positions that qualify for next season's Champions League. The number is set per season because it changes.
+The final positions that reach next season's Champions League, including its qualifying rounds. The number is set per League and season because it changes.
 _Avoid_: top 4, top 5, European places
 
 **Relegation**:
-Finishing in the bottom three.
+Finishing in one of a League's automatic relegation places.
 _Avoid_: drop zone, going down
+
+**Relegation play-off place**:
+The position whose team plays a play-off to stay in the League, e.g. 16th in the Bundesliga. It is not a Zone and not part of Relegation.
+_Avoid_: play-off zone
 
 **Clinched**:
 Certain to finish in a Zone whatever the remaining Outcomes. Being Clinched for Relegation means relegated.
@@ -79,7 +89,7 @@ How much a team's Chance of a Zone in the Scenario differs from its Chance in th
 _Avoid_: movement, delta, change
 
 **My team**:
-The one team a user follows. It is highlighted, and Key fixtures are calculated for it.
+The one team a user follows in a League. It is highlighted, and Key fixtures are calculated for it.
 _Avoid_: favourite, selected team
 
 **Key fixture**:
