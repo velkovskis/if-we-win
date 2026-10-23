@@ -104,5 +104,39 @@
   },
   "firstSnapshot": "2026-11-03",
   "deductions": []
+ },
+ {
+  "league": "L1",
+  "competition": "FL1",
+  "name": "Ligue 1",
+  "season": 2026,
+  "championsLeaguePlaces": 4,
+  "relegationPlaces": 2,
+  "relegationPlayOffPlace": 16,
+  "tieBreaks": "ligue1",
+  "oddsSportKey": "soccer_france_ligue_one",
+  "oddsAliases": {
+   "Angers": "Angers SCO",
+   "Auxerre": "AJ Auxerre",
+   "Brest": "Stade Brestois 29",
+   "Le Havre": "Le Havre AC",
+   "Lille": "Lille OSC",
+   "Lyon": "Olympique Lyonnais",
+   "Marseille": "Olympique de Marseille",
+   "Nice": "OGC Nice",
+   "Paris Saint Germain": "Paris Saint-Germain FC",
+   "RC Lens": "Racing Club de Lens",
+   "Rennes": "Stade Rennais FC 1901",
+   "Strasbourg": "RC Strasbourg Alsace",
+   "Troyes": "ES Troyes AC"
+  },
+  "teamNames": {
+   "523": "Lyon",
+   "529": "Rennes",
+   "532": "Angers",
+   "546": "Lens"
+  },
+  "firstSnapshot": "2026-11-03",
+  "deductions": []
  }
 ]

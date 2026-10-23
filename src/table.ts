@@ -42,7 +42,7 @@ export function table(teams: Team[], results: Result[], deductions: Deduction[],
 }
 
 // Each League's official order for teams level on points, by name; a League's config names its own.
-export type TieBreaks = 'premierLeague' | 'headToHeadFirst' | 'serieA' | 'bundesliga'
+export type TieBreaks = 'premierLeague' | 'headToHeadFirst' | 'serieA' | 'bundesliga' | 'ligue1'
 
 type Standing = { points: number; goalDifference: number; goalsFor: number }
 type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
@@ -65,6 +65,11 @@ type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
 // between all the teams still level, head-to-head goal difference (the aggregate score) and head-to-head away goals,
 // then away goals in all matches. During the season the last three count only once those teams have all played each
 // other home and away; until then they share a position.
+// ligue1 (LFP Statuts et Règlements 2026/2027, art. 518 ter): points, goal difference, then in the meetings between all
+// the teams still level, head-to-head points and head-to-head goal difference, not started again for any teams those
+// leave level; then goals scored, wins and away wins in all matches. Head-to-head counts only once those teams have all
+// played each other home and away; until then goals scored, wins and away wins come first. The LFP's next criteria,
+// discipline points and then lots, aren't in the data, so `fallback` stands in for them.
 // Whatever the order, `fallback` settles what is left.
 export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreaks: TieBreaks, fallback: (a: T, b: T) => number): T[] {
   const overall = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor
@@ -94,6 +99,16 @@ export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tie
       return level.toSorted((a, b) => of(b).goalDifference - of(a).goalDifference || of(b).awayGoals - of(a).awayGoals || of(b).allAwayGoals - of(a).allAwayGoals || fallback(a, b))
     })
   }
+  if (tieBreaks === 'ligue1') {
+    const pointsAndGoalDifference = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference
+    return settle(teams.toSorted(pointsAndGoalDifference), pointsAndGoalDifference, (level) => {
+      const { stats, played } = headToHead(level, meetings)
+      const of = (t: T) => stats.get(t)!
+      const headToHeadOrder = (a: T, b: T) =>
+        played === level.length * (level.length - 1) ? of(b).points - of(a).points || of(b).goalDifference - of(a).goalDifference : 0
+      return level.toSorted((a, b) => headToHeadOrder(a, b) || b.goalsFor - a.goalsFor || of(b).allWins - of(a).allWins || of(b).allAwayWins - of(a).allAwayWins || fallback(a, b))
+    })
+  }
   throw new Error(`Unknown tie-break order "${tieBreaks}"`)
 }
 
@@ -109,14 +124,16 @@ function settle<T>(order: T[], compare: (a: T, b: T) => number, settleLevel: (le
 
 // ponytail: scans every meeting for each tie, about 1.7× the Forecast's run time under headToHeadFirst (ties on points alone
 // are common); index the meetings by team if Forecasts get slow.
-// Each team's points, goal difference and away goals in the meetings between the teams in `level` only, its away goals
-// in all meetings, and how many meetings there were between the teams in `level`.
+// Each team's points, goal difference and away goals in the meetings between the teams in `level` only, its away goals,
+// wins and away wins in all meetings, and how many meetings there were between the teams in `level`.
 function headToHead<T>(level: T[], meetings: Meeting<T>[]) {
-  const stats = new Map(level.map((t) => [t, { points: 0, goalDifference: 0, awayGoals: 0, allAwayGoals: 0 }]))
+  const stats = new Map(level.map((t) => [t, { points: 0, goalDifference: 0, awayGoals: 0, allAwayGoals: 0, allWins: 0, allAwayWins: 0 }]))
   let played = 0
   for (const m of meetings) {
     const [home, away] = [stats.get(m.home), stats.get(m.away)]
+    if (home && m.homeGoals > m.awayGoals) home.allWins++
     if (away) away.allAwayGoals += m.awayGoals
+    if (away && m.awayGoals > m.homeGoals) (away.allWins++, away.allAwayWins++)
     if (!home || !away) continue
     played++
     home.goalDifference += m.homeGoals - m.awayGoals

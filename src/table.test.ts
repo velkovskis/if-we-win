@@ -7,6 +7,8 @@ import saMatches from '../test/recorded/SA/matches.json'
 import saStandings from '../test/recorded/SA/standings.json'
 import blMatches from '../test/recorded/BL/matches.json'
 import blStandings from '../test/recorded/BL/standings.json'
+import l1Matches from '../test/recorded/L1/matches.json'
+import l1Standings from '../test/recorded/L1/standings.json'
 import { table, type TieBreaks } from './table.ts'
 import { update, type MatchesResponse, type Result } from './update.ts'
 
@@ -157,6 +159,46 @@ describe('table', () => {
     expect(rows.map((r) => r.team.id)).toEqual([4, 1, 2, 3])
   })
 
+  it('ranks by goal difference before head-to-head, in the Ligue 1 order', () => {
+    const results = [result(2, 1, 1, 0), result(1, 2, 0, 0), result(1, 3, 5, 0)] // 2 beat 1; 1: 4 pts, +4; 2: 4 pts, +1
+    expect(table([1, 2, 3].map(team), results, [], 'headToHeadFirst').map((r) => r.team.id)).toEqual([2, 1, 3])
+    expect(table([1, 2, 3].map(team), results, [], 'ligue1').map((r) => r.team.id)).toEqual([1, 2, 3])
+  })
+
+  it('settles a tie on points and goal difference by head-to-head points before goals scored, in the Ligue 1 order', () => {
+    const results = [
+      result(1, 2, 1, 0), // 1 beat 2 and drew the return
+      result(2, 1, 0, 0), // 1: 4 pts, +1, 1 scored
+      result(2, 3, 4, 2), // 2: 4 pts, +1, 4 scored
+    ]
+    expect(table([1, 2, 3].map(team), results, [], 'bundesliga').map((r) => r.team.id)).toEqual([2, 1, 3])
+    expect(table([1, 2, 3].map(team), results, [], 'ligue1').map((r) => r.team.id)).toEqual([1, 2, 3])
+  })
+
+  it('skips head-to-head until the teams level on points and goal difference have played each other home and away, in the Ligue 1 order', () => {
+    const rows = table([1, 2, 3].map(team), [
+      result(2, 1, 1, 0), // 2 beat 1, with the return still to play; 2: 3 pts, +1, 1 scored
+      result(1, 3, 3, 1), // 1: 3 pts, +1, 3 scored
+    ], [], 'ligue1')
+    expect(rows.map((r) => r.team.id)).toEqual([1, 2, 3])
+  })
+
+  it('then by wins, in the Ligue 1 order', () => {
+    const rows = table([1, 2, 3, 4, 5, 6, 7, 8].map(team), [
+      result(1, 6, 1, 1), result(1, 7, 1, 1), result(1, 8, 0, 0), // 1: 3 pts, 0, 2 scored, no wins
+      result(2, 3, 2, 0), result(4, 2, 1, 0), result(5, 2, 1, 0), // 2: 3 pts, 0, 2 scored, 1 win
+    ], [], 'ligue1')
+    expect(rows.map((r) => r.team.id).filter((id) => id <= 2)).toEqual([2, 1])
+  })
+
+  it('then by away wins, in the Ligue 1 order', () => {
+    const rows = table([1, 2, 3, 4, 5, 6].map(team), [
+      result(1, 3, 1, 0), result(4, 1, 1, 0), // 1: 3 pts, 0, 1 scored, its win at home
+      result(5, 2, 0, 1), result(2, 6, 0, 1), // 2: 3 pts, 0, 1 scored, its win away
+    ], [], 'ligue1')
+    expect(rows.map((r) => r.team.id).filter((id) => id <= 2)).toEqual([2, 1])
+  })
+
   it('gives each team 1 point for a draw', () => {
     const rows = table([1, 2].map(team), [result(1, 2, 1, 1)], [], 'premierLeague')
     expect(rows.map((r) => [r.drawn, r.points])).toEqual([[1, 1], [1, 1]])
@@ -173,6 +215,7 @@ describe('table', () => {
     ['LL', 'headToHeadFirst', llMatches, llStandings],
     ['SA', 'serieA', saMatches, saStandings],
     ['BL', 'bundesliga', blMatches, blStandings],
+    ['L1', 'ligue1', l1Matches, l1Standings],
   ])('matches the official standings for the recorded %s season', (league, tieBreaks, matches, standings) => {
     const config = { league, name: league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
     const season = update({ matches, standings, config, now: new Date('2026-10-22T20:00:00Z') }).season

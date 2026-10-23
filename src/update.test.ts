@@ -7,6 +7,8 @@ import saMatches from '../test/recorded/SA/matches.json'
 import saStandings from '../test/recorded/SA/standings.json'
 import blMatches from '../test/recorded/BL/matches.json'
 import blStandings from '../test/recorded/BL/standings.json'
+import l1Matches from '../test/recorded/L1/matches.json'
+import l1Standings from '../test/recorded/L1/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
@@ -410,6 +412,51 @@ describe('update Bundesliga', () => {
     const known = { teams: Object.fromEntries(BUNDESLIGA_TEAMS.map((t, i) => [t.id, 0.51 - i * 0.06])) }
     const ratings = runBundesliga(oddsFrom(known, BUNDESLIGA_TEAMS)).ratings
     for (const t of BUNDESLIGA_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
+  })
+})
+
+// Ligue 1's entry as committed, but with no Deductions, which only the recorded standings can justify.
+const LIGUE_1 = { ...LEAGUES.find((l) => l.league === 'L1')!, deductions: [] }
+const runLigue1 = (odds?: OddsResponse) => update({ matches: l1Matches, standings: l1Standings, config: LIGUE_1, now, odds }).season
+// The recorded teams, named as The Odds API named them on 2026-10-23.
+const LIGUE_1_TEAMS = Object.entries({
+  523: 'Lyon', 524: 'Paris Saint Germain', 1045: 'Paris FC', 521: 'Lille', 548: 'AS Monaco', 529: 'Rennes', 525: 'Lorient', 522: 'Nice',
+  546: 'RC Lens', 516: 'Marseille', 512: 'Brest', 511: 'Toulouse', 519: 'Auxerre', 576: 'Strasbourg', 532: 'Angers', 535: 'Le Mans FC',
+  531: 'Troyes', 533: 'Le Havre',
+}).map(([id, oddsName]) => ({ id: Number(id), oddsName }))
+
+describe('update Ligue 1', () => {
+  it('publishes Ligue 1’s config, with its Relegation play-off place, passing the standings guard', () => {
+    expect(runLigue1()).toMatchObject({
+      league: 'L1', leagueName: 'Ligue 1', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 2, relegationPlayOffPlace: 16, tieBreaks: 'ligue1',
+    })
+  })
+
+  it('publishes all 18 teams, and its Results and Fixtures', () => {
+    const season = runLigue1()
+    expect(season.teams).toHaveLength(18)
+    expect(season.teams).toContainEqual({ id: 524, name: 'PSG', crest: 'https://crests.football-data.org/524.png' })
+    expect(season.results).toHaveLength(64)
+    expect(season.fixtures).toHaveLength(242)
+  })
+
+  it('names teams as fans do where the League’s config says so', () => {
+    const names = new Map(runLigue1().teams.map((t) => [t.id, t.name]))
+    expect([523, 529, 532, 546].map((id) => names.get(id))).toEqual(['Lyon', 'Rennes', 'Angers', 'Lens'])
+  })
+
+  it('numbers Matchweeks 1–34 with 9 matches each', () => {
+    const season = runLigue1()
+    const counts = new Map<number, number>()
+    for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
+    expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 34 }, (_, i) => i + 1))
+    expect([...counts.values()].every((n) => n === 9)).toBe(true)
+  })
+
+  it('matches every Bookmaker odds name to a team through the League’s aliases', () => {
+    const known = { teams: Object.fromEntries(LIGUE_1_TEAMS.map((t, i) => [t.id, 0.51 - i * 0.06])) }
+    const ratings = runLigue1(oddsFrom(known, LIGUE_1_TEAMS)).ratings
+    for (const t of LIGUE_1_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
   })
 })
 
