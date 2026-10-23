@@ -10,6 +10,7 @@ import { update, type Deduction, type LeagueConfig, type MatchesResponse, type S
 
 const config: LeagueConfig = {
   league: 'PL',
+  name: 'Premier League',
   season: 2026,
   championsLeaguePlaces: 4,
   relegationPlaces: 3,
@@ -281,7 +282,7 @@ const LALIGA_TEAMS = Object.entries({
 
 describe('update LaLiga', () => {
   it('publishes LaLiga’s config, passing the standings guard', () => {
-    expect(runLaLiga()).toMatchObject({ league: 'PD', leagueName: 'Primera Division', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'headToHeadFirst' })
+    expect(runLaLiga()).toMatchObject({ league: 'PD', leagueName: 'LaLiga', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'headToHeadFirst' })
   })
 
   it('publishes all 20 teams, and its Results and Fixtures', () => {

@@ -1,6 +1,7 @@
 [
  {
   "league": "PL",
+  "name": "Premier League",
   "season": 2026,
   "championsLeaguePlaces": 4,
   "relegationPlaces": 3,
@@ -12,6 +13,7 @@
  },
  {
   "league": "PD",
+  "name": "LaLiga",
   "season": 2026,
   "championsLeaguePlaces": 4,
   "relegationPlaces": 3,

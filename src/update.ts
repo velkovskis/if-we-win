@@ -7,7 +7,6 @@ import { table, type TieBreaks } from './table.ts'
 type ProviderTeam = { id: number; name: string; shortName: string; crest: string }
 
 export type MatchesResponse = {
-  competition: { name: string }
   matches: {
     id: number
     status: string
@@ -26,6 +25,7 @@ export type StandingsResponse = {
 // One League's entry in config/leagues.json, hand-edited.
 export type LeagueConfig = {
   league: string // football-data.org's competition code, which also names the League in links and data, e.g. "PL"
+  name: string // as fans call it, for the League tabs and header, e.g. "LaLiga" where football-data.org says "Primera Division"
   season: number
   championsLeaguePlaces: number
   relegationPlaces: number
@@ -52,7 +52,7 @@ export type Result = Fixture & { scoreline: Scoreline }
 export type Season = Pick<LeagueConfig, 'league' | 'season' | 'championsLeaguePlaces' | 'relegationPlaces' | 'tieBreaks' | 'deductions'> & {
   homeAdvantage: number
   strengthNoise: number
-  leagueName: string
+  leagueName: LeagueConfig['name']
   updatedAt: string
   teams: Team[]
   results: Result[]
@@ -116,7 +116,7 @@ export function update(input: {
 
   const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now, homeAdvantage, aliases: input.config.oddsAliases })
 
-  const season = { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, homeAdvantage, strengthNoise, deductions, leagueName: input.matches.competition.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
+  const season = { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, homeAdvantage, strengthNoise, deductions, leagueName: input.config.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
   return { season, snapshot: snapshotDue(input.now, firstSnapshot, input.lastSnapshot) ? snapshot(season, input.now) : undefined }
 }
 

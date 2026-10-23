@@ -109,7 +109,7 @@ describe('table', () => {
     ['PL', 'premierLeague', plMatches, plStandings],
     ['PD', 'headToHeadFirst', pdMatches, pdStandings],
   ])('matches the official standings for the recorded %s season', (league, tieBreaks, matches, standings) => {
-    const config = { league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
+    const config = { league, name: league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
     const season = update({ matches, standings, config, now: new Date('2026-10-22T20:00:00Z') }).season
     const official = standings.standings.find((s) => s.type === 'TOTAL')!.table
     const ours = table(season.teams, season.results, season.deductions, season.tieBreaks)

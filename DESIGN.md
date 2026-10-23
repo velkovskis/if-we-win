@@ -1,6 +1,6 @@
 ---
 name: If We Win
-description: Premier League Chances, signed like a British ground.
+description: League football Chances, signed like a British ground.
 colors:
   ground: "#f3f5f4"
   surface: "#ffffff"
@@ -152,7 +152,7 @@ A cool, nearly neutral enamel palette carrying three saturated Zone colours and 
 - **Second Ink** (ink-2): legends, helper lines, footer. Dark: #b9c5ca. Never on numerals.
 - **Rule** (rule): row dividers, control borders, scrollbar. Dark: #2a3742.
 - **Lit Band** (lit): background of rows a Lock moved. Dark: #1c3352.
-- **Selected Plate** (sel / on-sel): My team row and selected Lock buttons. Slate with white in light; inverts to #eef2f1 with #15202b in dark.
+- **Selected Plate** (sel / on-sel): My team row, selected Lock buttons and the current League tab. Slate with white in light; inverts to #eef2f1 with #15202b in dark.
 
 ### Named Rules
 **The Full Ink Rule.** Numerals are always ink (or on-sel in the My team row). Good and bad news is carried by a Shift plate beside the number, never by colouring the number.
@@ -211,6 +211,9 @@ The sign. Slate fill, white lettering, 8px corners, inset white keyline. Used fo
 
 ### Lock buttons
 Tactile and plain until chosen. Surface fill, 1px rule border, 6px corners, min-height 44px, 14px semibold. Hover: border to ink-2, 150ms colour transition. Pressed (`aria-pressed`): becomes a selected plate (sel fill, on-sel text, keyline). Under Key fixtures each button adds My team's Chance for that Outcome on a second bold tabular line.
+
+### League tabs
+A row under the header, one per League in config order. Each is a small sign: Barlow uppercase 16px, 6px corners, min-height 44px, 6px apart. Unselected: surface fill, rule border, hover border to ink-2. The current League is a selected plate (`aria-current`). On a narrow phone the row scrolls sideways in its own edge-to-edge strip; the page never does.
 
 ### Zone tabs
 Key fixtures tabs. Unselected: surface fill, rule border, a Zone-colour bar. Selected: filled with the Zone colour, border transparent, the bar turns current colour. Min-height 36px, 12px semibold.

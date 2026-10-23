@@ -16,13 +16,7 @@ export function encode(season: Link, locks: Record<number, Outcome>, myTeam?: nu
 
 // Never throws: anything it can't use is dropped, so a bad link opens as the Baseline.
 export function decode(season: Link, link: string): { locks: Record<number, Outcome>; myTeam?: number } {
-  // Some apps percent-encode the ':' and ',' when a link is shared.
-  try {
-    link = decodeURIComponent(link)
-  } catch {
-    return { locks: {} }
-  }
-  const [seasonId, encoded = '', team] = link.split(':')
+  const [seasonId, encoded = '', team] = parts(link)
   if (seasonId !== `${season.league}${season.season}`) return { locks: {} }
   const fixtures = new Set(season.fixtures.map((f) => f.id))
   const locks: Record<number, Outcome> = {}
@@ -32,4 +26,19 @@ export function decode(season: Link, link: string): { locks: Record<number, Outc
   }
   const myTeam = season.teams.find((t) => String(t.id) === team)?.id
   return myTeam ? { locks, myTeam } : { locks }
+}
+
+// The League a link names, when it's one of these; undefined for any other League, a malformed link or none.
+export function leagueOf(link: string, leagues: string[]): string | undefined {
+  const code = /^(\w+)\d{4}$/.exec(parts(link)[0])?.[1]
+  return leagues.find((l) => l === code)
+}
+
+// Season id, Locks and My team; none when the link won't decode. Some apps percent-encode the ':' and ',' when a link is shared.
+function parts(link: string): string[] {
+  try {
+    return decodeURIComponent(link).split(':')
+  } catch {
+    return []
+  }
 }
