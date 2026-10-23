@@ -10,7 +10,7 @@ v2 covers the Premier League, LaLiga, Serie A, Bundesliga, Ligue 1 and Eredivisi
 ## Consequences
 
 - Champions League qualifying-round places count as Champions League places (e.g. Ligue 1's 4th, Eredivisie's 2nd), because that's what fans mean by "getting into the Champions League".
-- The Relegation play-off place (16th in the Bundesliga, Ligue 1 and Eredivisie) is not a Zone and gets no Chance column, only a stripe in the table. Counting it as Relegation would overstate the risk, and a fourth column doesn't fit on a phone. It can become a Zone with a small code change if fans ask for it.
+- The Relegation play-off place (16th in the Bundesliga, Ligue 1 and Eredivisie) is not a Zone and gets no Chance column, badges or Key fixtures, only a stripe in the table and its own legend entry. Counting it as Relegation would overstate the risk, and a fourth column doesn't fit on a phone. It can become a Zone with a small code change if fans ask for it.
 - Europa League and Conference League places are not Zones in v2.
 - The Champions League itself is a separate feature. Nothing in v2 is built for its league phase or knockouts.
 - Leagues are added one per PR, starting with LaLiga, and each League's tie-break order and Zones are checked against its official regulations.
