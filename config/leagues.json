@@ -138,5 +138,36 @@
   },
   "firstSnapshot": "2026-11-03",
   "deductions": []
+ },
+ {
+  "league": "ED",
+  "competition": "DED",
+  "name": "Eredivisie",
+  "season": 2026,
+  "championsLeaguePlaces": 2,
+  "relegationPlaces": 2,
+  "relegationPlayOffPlace": 16,
+  "tieBreaks": "eredivisie",
+  "oddsSportKey": "soccer_netherlands_eredivisie",
+  "oddsAliases": {
+   "AZ Alkmaar": "AZ",
+   "Excelsior": "SBV Excelsior",
+   "FC Twente Enschede": "FC Twente '65",
+   "FC Zwolle": "PEC Zwolle",
+   "Feyenoord": "Feyenoord Rotterdam",
+   "Heerenveen": "SC Heerenveen",
+   "NEC Nijmegen": "NEC",
+   "PSV Eindhoven": "PSV",
+   "SC Cambuur": "SC Cambuur-Leeuwarden",
+   "SC Telstar": "Telstar 1963",
+   "Willem II": "Willem II Tilburg"
+  },
+  "teamNames": {
+   "680": "ADO Den Haag",
+   "684": "PEC Zwolle",
+   "1920": "Fortuna Sittard"
+  },
+  "firstSnapshot": "2026-11-03",
+  "deductions": []
  }
 ]

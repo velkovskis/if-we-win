@@ -9,6 +9,8 @@ import blMatches from '../test/recorded/BL/matches.json'
 import blStandings from '../test/recorded/BL/standings.json'
 import l1Matches from '../test/recorded/L1/matches.json'
 import l1Standings from '../test/recorded/L1/standings.json'
+import edMatches from '../test/recorded/ED/matches.json'
+import edStandings from '../test/recorded/ED/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
@@ -461,6 +463,51 @@ describe('update Ligue 1', () => {
 })
 
 // Each due Snapshot runs two full Forecasts, so a test that takes two can pass 5 seconds on a busy machine.
+// The Eredivisie's entry as committed, but with no Deductions, which only the recorded standings can justify.
+const EREDIVISIE = { ...LEAGUES.find((l) => l.league === 'ED')!, deductions: [] }
+const runEredivisie = (odds?: OddsResponse) => update({ matches: edMatches, standings: edStandings, config: EREDIVISIE, now, odds }).season
+// The recorded teams, named as The Odds API named them on 2026-10-23.
+const EREDIVISIE_TEAMS = Object.entries({
+  675: 'Feyenoord', 682: 'AZ Alkmaar', 674: 'PSV Eindhoven', 678: 'Ajax', 666: 'FC Twente Enschede', 1920: 'Fortuna Sittard',
+  677: 'Groningen', 718: 'Go Ahead Eagles', 673: 'Heerenveen', 670: 'Excelsior', 676: 'FC Utrecht', 1915: 'NEC Nijmegen',
+  6806: 'Sparta Rotterdam', 1909: 'SC Cambuur', 684: 'FC Zwolle', 1912: 'SC Telstar', 680: 'ADO Den Haag', 672: 'Willem II',
+}).map(([id, oddsName]) => ({ id: Number(id), oddsName }))
+
+describe('update Eredivisie', () => {
+  it('publishes the Eredivisie’s config, with its Relegation play-off place, passing the standings guard', () => {
+    expect(runEredivisie()).toMatchObject({
+      league: 'ED', leagueName: 'Eredivisie', season: 2026, championsLeaguePlaces: 2, relegationPlaces: 2, relegationPlayOffPlace: 16, tieBreaks: 'eredivisie',
+    })
+  })
+
+  it('publishes all 18 teams, and its Results and Fixtures', () => {
+    const season = runEredivisie()
+    expect(season.teams).toHaveLength(18)
+    expect(season.teams).toContainEqual({ id: 675, name: 'Feyenoord', crest: 'https://crests.football-data.org/675.png' })
+    expect(season.results).toHaveLength(82)
+    expect(season.fixtures).toHaveLength(224)
+  })
+
+  it('names teams as fans do where the League’s config says so', () => {
+    const names = new Map(runEredivisie().teams.map((t) => [t.id, t.name]))
+    expect([1920, 684, 680].map((id) => names.get(id))).toEqual(['Fortuna Sittard', 'PEC Zwolle', 'ADO Den Haag'])
+  })
+
+  it('numbers Matchweeks 1–34 with 9 matches each', () => {
+    const season = runEredivisie()
+    const counts = new Map<number, number>()
+    for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
+    expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 34 }, (_, i) => i + 1))
+    expect([...counts.values()].every((n) => n === 9)).toBe(true)
+  })
+
+  it('matches every Bookmaker odds name to a team through the League’s aliases', () => {
+    const known = { teams: Object.fromEntries(EREDIVISIE_TEAMS.map((t, i) => [t.id, 0.51 - i * 0.06])) }
+    const ratings = runEredivisie(oddsFrom(known, EREDIVISIE_TEAMS)).ratings
+    for (const t of EREDIVISIE_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
+  })
+})
+
 describe('update Snapshot', { timeout: 30_000 }, () => {
   const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings, league: Partial<LeagueConfig> = {}) =>
     update({ matches, standings, config: { ...config, ...league }, now: new Date(iso), lastSnapshot, ratings }).snapshot

@@ -9,6 +9,8 @@ import blMatches from '../test/recorded/BL/matches.json'
 import blStandings from '../test/recorded/BL/standings.json'
 import l1Matches from '../test/recorded/L1/matches.json'
 import l1Standings from '../test/recorded/L1/standings.json'
+import edMatches from '../test/recorded/ED/matches.json'
+import edStandings from '../test/recorded/ED/standings.json'
 import { table, type TieBreaks } from './table.ts'
 import { update, type MatchesResponse, type Result } from './update.ts'
 
@@ -199,6 +201,39 @@ describe('table', () => {
     expect(rows.map((r) => r.team.id).filter((id) => id <= 2)).toEqual([2, 1])
   })
 
+  it('ranks a team level on points that has played fewer matches higher, before goal difference, in the Eredivisie order', () => {
+    const results = [
+      result(1, 3, 1, 0), // 1: 3 pts, +1, 1 played
+      result(2, 4, 5, 0), // 2: 3 pts, +4, 2 played
+      result(3, 2, 1, 0), // 3: 3 pts, 0, 2 played
+    ]
+    for (const tieBreaks of ['premierLeague', 'headToHeadFirst', 'serieA', 'bundesliga', 'ligue1'] as const) {
+      expect(table([1, 2, 3, 4].map(team), results, [], tieBreaks).map((r) => r.team.id)).toEqual([2, 1, 3, 4])
+    }
+    expect(table([1, 2, 3, 4].map(team), results, [], 'eredivisie').map((r) => r.team.id)).toEqual([1, 2, 3, 4])
+  })
+
+  it('then by head-to-head, even before the level teams have played each other home and away, in the Eredivisie order', () => {
+    const results = [
+      result(2, 1, 1, 0), // 2 beat 1, with the return still to play
+      result(1, 3, 1, 0), // 1: 3 pts, 0, 1 scored, 2 played
+      result(4, 2, 1, 0), // 2: 3 pts, 0, 1 scored, 2 played
+    ]
+    expect(table([1, 2, 3, 4].map(team), results, [], 'bundesliga').map((r) => r.team.id)).toEqual([4, 1, 2, 3])
+    expect(table([1, 2, 3, 4].map(team), results, [], 'eredivisie').map((r) => r.team.id)).toEqual([4, 2, 1, 3])
+  })
+
+  it('settles head-to-head points by head-to-head goal difference before head-to-head away goals, in the Eredivisie order', () => {
+    const results = [
+      result(1, 2, 4, 1), // each beat the other, 1 by more; 2 scored 1 away, 1 none
+      result(2, 1, 1, 0),
+      result(1, 3, 3, 2), // 1: 6 pts, +3, 7 scored
+      result(2, 4, 5, 0), // 2: 6 pts, +3, 7 scored
+    ]
+    expect(table([1, 2, 3, 4].map(team), results, [], 'premierLeague').map((r) => r.team.id)).toEqual([2, 1, 3, 4])
+    expect(table([1, 2, 3, 4].map(team), results, [], 'eredivisie').map((r) => r.team.id)).toEqual([1, 2, 3, 4])
+  })
+
   it('gives each team 1 point for a draw', () => {
     const rows = table([1, 2].map(team), [result(1, 2, 1, 1)], [], 'premierLeague')
     expect(rows.map((r) => [r.drawn, r.points])).toEqual([[1, 1], [1, 1]])
@@ -224,5 +259,15 @@ describe('table', () => {
     expect(ours.map((r) => [r.team.id, r.points, r.goalDifference])).toEqual(
       official.map((r) => [r.team.id, r.points, r.goalDifference]),
     )
+  })
+
+  // football-data.org ignores the KNVB's fewest-matches-played rule: on 2026-10-23 eredivisie.nl had Den Haag (9 played)
+  // 16th and Telstar (10 played) 17th, level on 6 points and -9, where football-data.org has them the other way round.
+  it('matches the official standings for the recorded ED season', () => {
+    const config = { league: 'ED', name: 'ED', season: 2026, championsLeaguePlaces: 2, relegationPlaces: 2, tieBreaks: 'eredivisie' as const, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-11-03', deductions: [] }
+    const season = update({ matches: edMatches, standings: edStandings, config, now: new Date('2026-10-23T20:00:00Z') }).season
+    const footballData = edStandings.standings.find((s) => s.type === 'TOTAL')!.table.map((r) => r.team.id)
+    const official = footballData.map((id) => ({ 1912: 680, 680: 1912 })[id] ?? id)
+    expect(table(season.teams, season.results, season.deductions, season.tieBreaks).map((r) => r.team.id)).toEqual(official)
   })
 })
