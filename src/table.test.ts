@@ -5,6 +5,8 @@ import llMatches from '../test/recorded/LL/matches.json'
 import llStandings from '../test/recorded/LL/standings.json'
 import saMatches from '../test/recorded/SA/matches.json'
 import saStandings from '../test/recorded/SA/standings.json'
+import blMatches from '../test/recorded/BL/matches.json'
+import blStandings from '../test/recorded/BL/standings.json'
 import { table, type TieBreaks } from './table.ts'
 import { update, type MatchesResponse, type Result } from './update.ts'
 
@@ -114,6 +116,47 @@ describe('table', () => {
     expect(table([1, 2, 3, 4].map(team), results, [], 'premierLeague').map((r) => r.team.id)).toEqual([2, 1, 3, 4])
   })
 
+  it('settles a tie on points, goal difference and goals scored by head-to-head goal difference before head-to-head away goals, in the Bundesliga order', () => {
+    const results = [
+      result(1, 2, 4, 1), // each beat the other, 1 by more; 2 scored 1 away, 1 none
+      result(2, 1, 1, 0),
+      result(1, 3, 3, 2), // 1: 6 pts, +3, 7 scored
+      result(2, 4, 5, 0), // 2: 6 pts, +3, 7 scored
+    ]
+    expect(table([1, 2, 3, 4].map(team), results, [], 'premierLeague').map((r) => r.team.id)).toEqual([2, 1, 3, 4])
+    expect(table([1, 2, 3, 4].map(team), results, [], 'bundesliga').map((r) => r.team.id)).toEqual([1, 2, 3, 4])
+  })
+
+  it('ranks by goal difference before head-to-head, in the Bundesliga order', () => {
+    const results = [result(2, 1, 1, 0), result(1, 2, 0, 0), result(1, 3, 5, 0)] // 2 beat 1; 1: 4 pts, +4; 2: 4 pts, +1
+    expect(table([1, 2, 3].map(team), results, [], 'headToHeadFirst').map((r) => r.team.id)).toEqual([2, 1, 3])
+    expect(table([1, 2, 3].map(team), results, [], 'bundesliga').map((r) => r.team.id)).toEqual([1, 2, 3])
+  })
+
+  it('then by head-to-head away goals, in the Bundesliga order', () => {
+    const rows = table([1, 2].map(team), [result(1, 2, 2, 2), result(2, 1, 1, 1)], [], 'bundesliga')
+    expect(rows.map((r) => r.team.id)).toEqual([2, 1])
+  })
+
+  it('then by away goals in all matches, in the Bundesliga order', () => {
+    const rows = table([1, 2, 3, 4].map(team), [
+      result(1, 2, 1, 1), // level in every head-to-head criterion
+      result(2, 1, 1, 1),
+      result(3, 2, 1, 2), // 2: 4 pts, +1, 3 scored, 3 away
+      result(1, 4, 2, 1), // 1: 4 pts, +1, 3 scored, 1 away
+    ], [], 'bundesliga')
+    expect(rows.map((r) => r.team.id).slice(0, 2)).toEqual([2, 1])
+  })
+
+  it('skips head-to-head until the teams level on points, goal difference and goals scored have played each other home and away, in the Bundesliga order', () => {
+    const rows = table([1, 2, 3, 4].map(team), [
+      result(2, 1, 1, 0), // 2 beat 1, with the return still to play
+      result(1, 3, 1, 0), // 1: 3 pts, 0, 1 scored
+      result(4, 2, 1, 0), // 2: 3 pts, 0, 1 scored
+    ], [], 'bundesliga')
+    expect(rows.map((r) => r.team.id)).toEqual([4, 1, 2, 3])
+  })
+
   it('gives each team 1 point for a draw', () => {
     const rows = table([1, 2].map(team), [result(1, 2, 1, 1)], [], 'premierLeague')
     expect(rows.map((r) => [r.drawn, r.points])).toEqual([[1, 1], [1, 1]])
@@ -129,6 +172,7 @@ describe('table', () => {
     ['PL', 'premierLeague', plMatches, plStandings],
     ['LL', 'headToHeadFirst', llMatches, llStandings],
     ['SA', 'serieA', saMatches, saStandings],
+    ['BL', 'bundesliga', blMatches, blStandings],
   ])('matches the official standings for the recorded %s season', (league, tieBreaks, matches, standings) => {
     const config = { league, name: league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
     const season = update({ matches, standings, config, now: new Date('2026-10-22T20:00:00Z') }).season

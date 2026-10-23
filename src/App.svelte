@@ -148,7 +148,7 @@
     </div>
     <dl class="px-4 pt-3 pb-6 text-sm leading-relaxed [&>dd]:mt-1 [&>dt]:font-sign [&>dt]:text-base [&>dt]:font-bold [&>dt]:tracking-wide [&>dt]:uppercase [&>dt:not(:first-child)]:mt-5">
       <dt>Where the percentages come from</dt>
-      <dd>We play out the rest of the season 20,000 times and count how often each team finishes top, in the Champions League places or in the bottom three. If a team finishes top in 6,000 of those seasons, that's a 30% chance of the title.</dd>
+      <dd>We play out the rest of the season 20,000 times and count how often each team finishes top, in the Champions League places or in the relegation places. If a team finishes top in 6,000 of those seasons, that's a 30% chance of the title.</dd>
       <dt>How we decide how good a team is</dt>
       <dd>Every team gets a strength rating, worked out from the bookmakers' odds on their matches. So it's roughly what the bookies reckon they're worth. We never show the bookmakers' odds themselves.</dd>
       <dt>Why you'll rarely see 0% or 100%</dt>

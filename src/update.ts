@@ -30,6 +30,7 @@ export type LeagueConfig = {
   season: number
   championsLeaguePlaces: number
   relegationPlaces: number
+  relegationPlayOffPlace?: number // the final position whose team plays a play-off to stay up, e.g. 16 in the Bundesliga; not a Zone
   tieBreaks: TieBreaks
   oddsSportKey: string // The Odds API's, e.g. "soccer_epl"
   oddsAliases: Record<string, string> // Bookmaker odds name → football-data.org name, for names that don't match on their own
@@ -51,7 +52,7 @@ export type Scoreline = { home: number; away: number }
 export type Fixture = { id: number; matchweek: number; homeTeamId: number; awayTeamId: number; kickoff: string; status?: 'tbc' | 'postponed' }
 export type Result = Fixture & { scoreline: Scoreline }
 
-export type Season = Pick<LeagueConfig, 'league' | 'season' | 'championsLeaguePlaces' | 'relegationPlaces' | 'tieBreaks' | 'deductions'> & {
+export type Season = Pick<LeagueConfig, 'league' | 'season' | 'championsLeaguePlaces' | 'relegationPlaces' | 'relegationPlayOffPlace' | 'tieBreaks' | 'deductions'> & {
   homeAdvantage: number
   strengthNoise: number
   leagueName: LeagueConfig['name']
@@ -104,7 +105,7 @@ export function update(input: {
   if (!total) throw new Error('Standings response has no TOTAL table')
   const teams = total.table.map(({ team }) => ({ id: team.id, name: input.config.teamNames?.[team.id] ?? team.shortName, crest: team.crest }))
 
-  const { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, deductions, firstSnapshot } = input.config
+  const { league, season: year, championsLeaguePlaces, relegationPlaces, relegationPlayOffPlace, tieBreaks, deductions, firstSnapshot } = input.config
   const { homeAdvantage = DEFAULT_SETTINGS.homeAdvantage, strengthNoise = DEFAULT_SETTINGS.strengthNoise } = input.config
   for (const d of deductions) if (!teams.some((t) => t.id === d.teamId)) throw new Error(`Deduction for unknown team ${d.teamId}`)
 
@@ -118,7 +119,7 @@ export function update(input: {
 
   const ratings = rate({ odds: input.odds, last: input.ratings, teams: total.table.map((r) => r.team), now: input.now, homeAdvantage, aliases: input.config.oddsAliases })
 
-  const season = { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, homeAdvantage, strengthNoise, deductions, leagueName: input.config.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
+  const season = { league, season: year, championsLeaguePlaces, relegationPlaces, ...(relegationPlayOffPlace && { relegationPlayOffPlace }), tieBreaks, homeAdvantage, strengthNoise, deductions, leagueName: input.config.name, updatedAt: input.now.toISOString(), teams, results, fixtures, ratings }
   return { season, snapshot: snapshotDue(input.now, firstSnapshot, input.lastSnapshot) ? snapshot(season, input.now) : undefined }
 }
 

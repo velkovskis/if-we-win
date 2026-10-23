@@ -157,7 +157,7 @@ A cool, nearly neutral enamel palette carrying three saturated Zone colours and 
 ### Named Rules
 **The Full Ink Rule.** Numerals are always ink (or on-sel in the My team row). Good and bad news is carried by a Shift plate beside the number, never by colouring the number.
 
-**The Sign Colour Rule.** Gold, blue and red mean Title, Champions League places and Relegation, everywhere: Zone tabs, the table's left-edge Zone marks, the legend, the Key fixtures tabs. Gold also marks a Scenario. No other meaning may borrow them.
+**The Sign Colour Rule.** Gold, blue and red mean Title, Champions League places and Relegation, everywhere: Zone tabs, the table's left-edge Zone marks, the legend, the Key fixtures tabs. Gold also marks a Scenario. No other meaning may borrow them. The one neighbour allowed is the Relegation play-off place, in Leagues that have one: a hollow red bar, next to Relegation but not part of it, in the table and the legend only.
 
 **The Good News Rule.** A Shift plate is green when the change is good for the team and red when it is bad; Relegation inverts the arrow's meaning.
 
@@ -202,7 +202,7 @@ Flat. Depth comes from the plate's inset keyline and from tonal contrast between
 
 ## Shapes
 
-Three radii. Plates 8px. Controls (Lock buttons, tabs, select, Scenario band) 6px. Tags (column headings, badges, Shift plates) 3px. Zone marks are 6px-wide rounded bars (2px radius), 24px tall in the table, 12px in legends and tabs. Borders are 1px rule; hover darkens a control's border to ink-2. Icons are inline SVG: solid triangles in Shift plates, 2.5px-stroke chevrons for Matchweek and disclosure.
+Three radii. Plates 8px. Controls (Lock buttons, tabs, select, Scenario band) 6px. Tags (column headings, badges, Shift plates) 3px. Zone marks are 6px-wide rounded bars (2px radius), 24px tall in the table, 12px in legends and tabs. The Relegation play-off place's mark is the same bar, hollow, with a 1.5px rel border. Borders are 1px rule; hover darkens a control's border to ink-2. Icons are inline SVG: solid triangles in Shift plates, 2.5px-stroke chevrons for Matchweek and disclosure.
 
 ## Components
 

@@ -42,7 +42,7 @@ export function table(teams: Team[], results: Result[], deductions: Deduction[],
 }
 
 // Each League's official order for teams level on points, by name; a League's config names its own.
-export type TieBreaks = 'premierLeague' | 'headToHeadFirst' | 'serieA'
+export type TieBreaks = 'premierLeague' | 'headToHeadFirst' | 'serieA' | 'bundesliga'
 
 type Standing = { points: number; goalDifference: number; goalsFor: number }
 type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
@@ -61,10 +61,14 @@ type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
 // ponytail: two teams level on points for 1st, or for 17th and 18th, officially play a deciding match (or two); serieA
 // ranks them as it ranks the home side of that match, so the Forecast always gives it to that team. Rare and only at
 // the season's end; simulate the deciding match if a Title or Relegation Chance ever hinges on one.
+// bundesliga (DFL Spielordnung, Stand 11.06.2026, § 2 Nr. 3c): points, goal difference, goals scored, then in the meetings
+// between all the teams still level, head-to-head goal difference (the aggregate score) and head-to-head away goals,
+// then away goals in all matches. During the season the last three count only once those teams have all played each
+// other home and away; until then they share a position.
 // Whatever the order, `fallback` settles what is left.
 export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreaks: TieBreaks, fallback: (a: T, b: T) => number): T[] {
+  const overall = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor
   if (tieBreaks === 'premierLeague') {
-    const overall = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor
     return settle(teams.toSorted(overall), overall, (level) => {
       const { stats } = headToHead(level, meetings)
       return level.toSorted((a, b) => stats.get(b)!.points - stats.get(a)!.points || stats.get(b)!.awayGoals - stats.get(a)!.awayGoals || fallback(a, b))
@@ -82,6 +86,14 @@ export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tie
     const points = (a: T, b: T) => b.points - a.points
     return settle(teams.toSorted(points), points, byHeadToHead)
   }
+  if (tieBreaks === 'bundesliga') {
+    return settle(teams.toSorted(overall), overall, (level) => {
+      const { stats, played } = headToHead(level, meetings)
+      if (played < level.length * (level.length - 1)) return level.toSorted(fallback)
+      const of = (t: T) => stats.get(t)!
+      return level.toSorted((a, b) => of(b).goalDifference - of(a).goalDifference || of(b).awayGoals - of(a).awayGoals || of(b).allAwayGoals - of(a).allAwayGoals || fallback(a, b))
+    })
+  }
   throw new Error(`Unknown tie-break order "${tieBreaks}"`)
 }
 
@@ -97,13 +109,14 @@ function settle<T>(order: T[], compare: (a: T, b: T) => number, settleLevel: (le
 
 // ponytail: scans every meeting for each tie, about 1.7× the Forecast's run time under headToHeadFirst (ties on points alone
 // are common); index the meetings by team if Forecasts get slow.
-// Each team's points, goal difference and away goals in the meetings between the teams in `level` only,
-// and how many of those meetings there were.
+// Each team's points, goal difference and away goals in the meetings between the teams in `level` only, its away goals
+// in all meetings, and how many meetings there were between the teams in `level`.
 function headToHead<T>(level: T[], meetings: Meeting<T>[]) {
-  const stats = new Map(level.map((t) => [t, { points: 0, goalDifference: 0, awayGoals: 0 }]))
+  const stats = new Map(level.map((t) => [t, { points: 0, goalDifference: 0, awayGoals: 0, allAwayGoals: 0 }]))
   let played = 0
   for (const m of meetings) {
     const [home, away] = [stats.get(m.home), stats.get(m.away)]
+    if (away) away.allAwayGoals += m.awayGoals
     if (!home || !away) continue
     played++
     home.goalDifference += m.homeGoals - m.awayGoals

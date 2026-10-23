@@ -107,6 +107,27 @@ describe('forecast', () => {
     }
   })
 
+  it('counts only the League’s Relegation places: with 18 teams and 2, Relegation Chances add up to 2 and 16th is not counted', () => {
+    // Every pair plays once, the lower id at home.
+    const ids = Array.from({ length: 18 }, (_, i) => i + 1)
+    const fixtures = ids.flatMap((h) => ids.filter((a) => a > h).map((a) => fixture(h, a)))
+    const forecastWith = (locks: Record<number, Outcome>) =>
+      forecast({
+        season: { teams: ids.map(team), results: [], fixtures, deductions: [], tieBreaks: 'bundesliga' },
+        ratings: equal(ids),
+        locks,
+        seed: 1,
+        settings: { simulations: 2_000, championsLeaguePlaces: 4, relegationPlaces: 2 },
+      })
+    const open = forecastWith({}).chances
+    expect(ids.reduce((sum, id) => sum + open[id].relegation, 0)).toBeCloseTo(2, 9)
+    // The home side wins every match, so team i finishes i-th.
+    const locked = forecastWith(Object.fromEntries(fixtures.map((f) => [f.id, 'home'])))
+    expect(ids.map((id) => locked.chances[id].relegation)).toEqual([...Array(16).fill(0), 1, 1])
+    expect(locked.status[16].relegation).toBe('eliminated')
+    expect(locked.status[17].relegation).toBe('clinched')
+  })
+
   it('leaves a runaway leader alone when a Lock is between two bottom-half teams', () => {
     // A 20-team double round robin halfway through: team 1 beat teams 2–13 and drew the rest; every other match was a draw,
     // so teams 2–13 (18 points) are the bottom half, below teams 14–20 (19 points).

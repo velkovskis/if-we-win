@@ -75,5 +75,34 @@
   },
   "firstSnapshot": "2026-11-03",
   "deductions": []
+ },
+ {
+  "league": "BL",
+  "competition": "BL1",
+  "name": "Bundesliga",
+  "season": 2026,
+  "championsLeaguePlaces": 4,
+  "relegationPlaces": 2,
+  "relegationPlayOffPlace": 16,
+  "tieBreaks": "bundesliga",
+  "oddsSportKey": "soccer_germany_bundesliga",
+  "oddsAliases": {
+   "Bayer Leverkusen": "Bayer 04 Leverkusen",
+   "Bayern Munich": "FC Bayern München",
+   "Elversberg": "SV 07 Elversberg",
+   "FSV Mainz 05": "1. FSV Mainz 05",
+   "SC Paderborn": "SC Paderborn 07",
+   "TSG Hoffenheim": "TSG 1899 Hoffenheim",
+   "Union Berlin": "1. FC Union Berlin",
+   "Werder Bremen": "SV Werder Bremen"
+  },
+  "teamNames": {
+   "1": "Köln",
+   "7": "Hamburg",
+   "18": "Gladbach",
+   "29": "Paderborn"
+  },
+  "firstSnapshot": "2026-11-03",
+  "deductions": []
  }
 ]

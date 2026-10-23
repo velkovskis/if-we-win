@@ -5,6 +5,8 @@ import llMatches from '../test/recorded/LL/matches.json'
 import llStandings from '../test/recorded/LL/standings.json'
 import saMatches from '../test/recorded/SA/matches.json'
 import saStandings from '../test/recorded/SA/standings.json'
+import blMatches from '../test/recorded/BL/matches.json'
+import blStandings from '../test/recorded/BL/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
@@ -359,6 +361,55 @@ describe('update Serie A', () => {
     const known = { teams: Object.fromEntries(SERIE_A_TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])) }
     const ratings = runSerieA(oddsFrom(known, SERIE_A_TEAMS)).ratings
     for (const t of SERIE_A_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
+  })
+})
+
+// The Bundesliga's entry as committed, but with no Deductions, which only the recorded standings can justify.
+const BUNDESLIGA = { ...LEAGUES.find((l) => l.league === 'BL')!, deductions: [] }
+const runBundesliga = (odds?: OddsResponse) => update({ matches: blMatches, standings: blStandings, config: BUNDESLIGA, now, odds }).season
+// The recorded teams, named as The Odds API named them on 2026-10-23.
+const BUNDESLIGA_TEAMS = Object.entries({
+  5: 'Bayern Munich', 4: 'Borussia Dortmund', 17: 'SC Freiburg', 3: 'Bayer Leverkusen', 15: 'FSV Mainz 05', 719: 'Elversberg',
+  721: 'RB Leipzig', 12: 'Werder Bremen', 7: 'Hamburger SV', 16: 'Augsburg', 19: 'Eintracht Frankfurt', 1: '1. FC Köln',
+  2: 'TSG Hoffenheim', 10: 'VfB Stuttgart', 6: 'FC Schalke 04', 29: 'SC Paderborn', 28: 'Union Berlin', 18: 'Borussia Monchengladbach',
+}).map(([id, oddsName]) => ({ id: Number(id), oddsName }))
+
+describe('update Bundesliga', () => {
+  it('publishes the Bundesliga’s config, with its Relegation play-off place, passing the standings guard', () => {
+    expect(runBundesliga()).toMatchObject({
+      league: 'BL', leagueName: 'Bundesliga', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 2, relegationPlayOffPlace: 16, tieBreaks: 'bundesliga',
+    })
+  })
+
+  it('publishes no Relegation play-off place for a League without one', () => {
+    expect(run()).not.toHaveProperty('relegationPlayOffPlace')
+  })
+
+  it('publishes all 18 teams, and its Results and Fixtures', () => {
+    const season = runBundesliga()
+    expect(season.teams).toHaveLength(18)
+    expect(season.teams).toContainEqual({ id: 4, name: 'Dortmund', crest: 'https://crests.football-data.org/4.png' })
+    expect(season.results).toHaveLength(55)
+    expect(season.fixtures).toHaveLength(251)
+  })
+
+  it('names teams as fans do where the League’s config says so', () => {
+    const names = new Map(runBundesliga().teams.map((t) => [t.id, t.name]))
+    expect([7, 18, 29, 1].map((id) => names.get(id))).toEqual(['Hamburg', 'Gladbach', 'Paderborn', 'Köln'])
+  })
+
+  it('numbers Matchweeks 1–34 with 9 matches each', () => {
+    const season = runBundesliga()
+    const counts = new Map<number, number>()
+    for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
+    expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 34 }, (_, i) => i + 1))
+    expect([...counts.values()].every((n) => n === 9)).toBe(true)
+  })
+
+  it('matches every Bookmaker odds name to a team through accents and the League’s aliases', () => {
+    const known = { teams: Object.fromEntries(BUNDESLIGA_TEAMS.map((t, i) => [t.id, 0.51 - i * 0.06])) }
+    const ratings = runBundesliga(oddsFrom(known, BUNDESLIGA_TEAMS)).ratings
+    for (const t of BUNDESLIGA_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
   })
 })
 

@@ -229,7 +229,14 @@
           {@const moved = (['title', 'championsLeague', 'relegation'] as const).some((z) => shift(row.team.id, z))}
           <tr class={['border-t border-rule transition-colors duration-300', mine ? 'bg-sel font-semibold text-on-sel' : moved && 'bg-lit']}>
             <td class="pr-1">
-              <span aria-hidden="true" class={['block h-6 w-1.5 rounded-sm', i === 0 ? 'bg-gold' : i < season.championsLeaguePlaces ? 'bg-cl' : i >= rows.length - season.relegationPlaces && 'bg-rel']}></span>
+              <!-- The Relegation play-off place is a hollow red bar: next to Relegation, not part of it. -->
+              <span
+                aria-hidden="true"
+                class={[
+                  'block h-6 w-1.5 rounded-sm',
+                  i === 0 ? 'bg-gold' : i < season.championsLeaguePlaces ? 'bg-cl' : i >= rows.length - season.relegationPlaces ? 'bg-rel' : i + 1 === season.relegationPlayOffPlace && 'border-[1.5px] border-rel',
+                ]}
+              ></span>
             </td>
             <td class="py-1 text-center">{i + 1}</td>
             <td class="max-w-0 py-1">
@@ -262,6 +269,9 @@
       <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm bg-gold"></span>Title</li>
       <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm bg-cl"></span>Champions League places</li>
       <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm bg-rel"></span>Relegation</li>
+      {#if season.relegationPlayOffPlace}
+        <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm border-[1.5px] border-rel"></span>Relegation play-off</li>
+      {/if}
     </ul>
   </div>
 
