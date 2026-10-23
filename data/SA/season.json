@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-23T20:42:52.710Z",
+ "updatedAt": "2026-10-23T20:54:41.767Z",
  "teams": [
   {
    "id": 108,
@@ -41,6 +41,11 @@
    "crest": "https://crests.football-data.org/470.png"
   },
   {
+   "id": 586,
+   "name": "Torino",
+   "crest": "https://crests.football-data.org/586.png"
+  },
+  {
    "id": 104,
    "name": "Cagliari",
    "crest": "https://crests.football-data.org/104.png"
@@ -54,11 +59,6 @@
    "id": 113,
    "name": "Napoli",
    "crest": "https://crests.football-data.org/113.png"
-  },
-  {
-   "id": 586,
-   "name": "Torino",
-   "crest": "https://crests.football-data.org/586.png"
   },
   {
    "id": 102,
@@ -881,16 +881,20 @@
     "home": 0,
     "away": 3
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558567,
    "matchweek": 8,
    "homeTeamId": 586,
    "awayTeamId": 5911,
-   "kickoff": "2026-10-23T18:45:00Z"
-  },
+   "kickoff": "2026-10-23T18:45:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558560,
    "matchweek": 8,
