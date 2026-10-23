@@ -7,17 +7,17 @@
  "homeAdvantage": 0.2,
  "strengthNoise": 0.2,
  "deductions": [],
- "leagueName": "Primera Division",
+ "leagueName": "LaLiga",
  "updatedAt": "2026-10-23T19:56:18.785Z",
  "teams": [
   {
    "id": 81,
-   "name": "Barça",
+   "name": "Barcelona",
    "crest": "https://crests.football-data.org/81.png"
   },
   {
    "id": 78,
-   "name": "Atleti",
+   "name": "Atlético Madrid",
    "crest": "https://crests.football-data.org/78.png"
   },
   {
@@ -37,7 +37,7 @@
   },
   {
    "id": 559,
-   "name": "Sevilla FC",
+   "name": "Sevilla",
    "crest": "https://crests.football-data.org/559.png"
   },
   {
@@ -92,7 +92,7 @@
   },
   {
    "id": 5335,
-   "name": "Santander",
+   "name": "Racing Santander",
    "crest": "https://crests.football-data.org/5335.png"
   },
   {
