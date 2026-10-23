@@ -62,7 +62,7 @@ describe('update', () => {
   })
 
   it('keeps the League’s update-only config out of the Season', () => {
-    for (const key of ['firstSnapshot', 'oddsSportKey', 'oddsAliases']) expect(run()).not.toHaveProperty(key)
+    for (const key of ['firstSnapshot', 'oddsSportKey', 'oddsAliases', 'teamNames']) expect(run()).not.toHaveProperty(key)
   })
 
   it('fails on an unknown tie-break order, naming it', () => {
@@ -288,9 +288,15 @@ describe('update LaLiga', () => {
   it('publishes all 20 teams, and its Results and Fixtures', () => {
     const season = runLaLiga()
     expect(season.teams).toHaveLength(20)
-    expect(season.teams).toContainEqual({ id: 78, name: 'Atleti', crest: 'https://crests.football-data.org/78.png' })
+    expect(season.teams).toContainEqual({ id: 87, name: 'Rayo Vallecano', crest: 'https://crests.football-data.org/87.png' })
     expect(season.results).toHaveLength(89)
     expect(season.fixtures).toHaveLength(291)
+  })
+
+  it('names teams as fans do where the League’s config says so, and as football-data.org does otherwise', () => {
+    const names = new Map(runLaLiga().teams.map((t) => [t.id, t.name]))
+    expect([81, 78, 86].map((id) => names.get(id))).toEqual(['Barcelona', 'Atlético Madrid', 'Real Madrid'])
+    expect(new Map(run().teams.map((t) => [t.id, t.name])).get(65)).toBe('Man City')
   })
 
   it('numbers Matchweeks 1–38 with 10 matches each', () => {

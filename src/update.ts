@@ -32,6 +32,7 @@ export type LeagueConfig = {
   tieBreaks: TieBreaks
   oddsSportKey: string // The Odds API's, e.g. "soccer_epl"
   oddsAliases: Record<string, string> // Bookmaker odds name → football-data.org name, for names that don't match on their own
+  teamNames?: Partial<Record<string, string>> // team id → the name shown, where football-data.org's short name isn't what fans call it, e.g. "Barça"
   firstSnapshot: string // the date (YYYY-MM-DD) from which weekly Snapshots start, e.g. once Ratings have had a few weeks to settle
   deductions: Deduction[]
   // Model settings, only when the backtest shows this League needs its own; the Forecast's defaults otherwise.
@@ -100,7 +101,7 @@ export function update(input: {
 
   const total = input.standings.standings.find((s) => s.type === 'TOTAL')
   if (!total) throw new Error('Standings response has no TOTAL table')
-  const teams = total.table.map(({ team }) => ({ id: team.id, name: team.shortName, crest: team.crest }))
+  const teams = total.table.map(({ team }) => ({ id: team.id, name: input.config.teamNames?.[team.id] ?? team.shortName, crest: team.crest }))
 
   const { league, season: year, championsLeaguePlaces, relegationPlaces, tieBreaks, deductions, firstSnapshot } = input.config
   const { homeAdvantage = DEFAULT_SETTINGS.homeAdvantage, strengthNoise = DEFAULT_SETTINGS.strengthNoise } = input.config

@@ -2,7 +2,7 @@
 
 ## Leagues
 
-Each League is one entry in `config/leagues.json`, in the order of the site's League tabs: its football-data.org competition code (which also names its folder in `data/` and starts its Scenario links), its name as fans call it (for the tab and header), season, Champions League and Relegation places, tie-break order (`premierLeague` or `headToHeadFirst`, described in `src/table.ts`), The Odds API sport key, Bookmaker odds name aliases, first Snapshot date and Deductions. `homeAdvantage` and `strengthNoise` are optional and default to the Forecast's own; set them only when the backtest shows a League needs its own.
+Each League is one entry in `config/leagues.json`, in the order of the site's League tabs: its football-data.org competition code (which also names its folder in `data/` and starts its Scenario links), its name as fans call it (for the tab and header), season, Champions League and Relegation places, tie-break order (`premierLeague` or `headToHeadFirst`, described in `src/table.ts`), The Odds API sport key, Bookmaker odds name aliases, first Snapshot date and Deductions. `teamNames` is optional: team id → the name shown, for a team whose football-data.org short name isn't what fans call it (e.g. "Barça"). `homeAdvantage` and `strengthNoise` are optional and default to the Forecast's own; set them only when the backtest shows a League needs its own.
 
 Update runs each League on its own. A League that fails writes nothing and keeps its last good data, the other Leagues still commit and deploy, and the job ends red; the update step's log names each League that failed and why.
 
