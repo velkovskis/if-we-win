@@ -3,6 +3,8 @@ import plMatches from '../test/recorded/PL/matches.json'
 import plStandings from '../test/recorded/PL/standings.json'
 import llMatches from '../test/recorded/LL/matches.json'
 import llStandings from '../test/recorded/LL/standings.json'
+import saMatches from '../test/recorded/SA/matches.json'
+import saStandings from '../test/recorded/SA/standings.json'
 import { table, type TieBreaks } from './table.ts'
 import { update, type MatchesResponse, type Result } from './update.ts'
 
@@ -94,6 +96,24 @@ describe('table', () => {
     expect(rows.map((r) => r.team.id)).toEqual([3, 2, 1, 4])
   })
 
+  it('settles a three-way tie on points by head-to-head among all three, without starting again, in the Serie A order', () => {
+    // As above, 1, 2 and 3 all on 7 points: among the three, 2 and 3 have 7 head-to-head points and 2 the better
+    // head-to-head goal difference, while between 2 and 3 alone 3 has more points. Overall, 1's 9-0 puts it second on goal difference.
+    const results = [
+      result(2, 1, 3, 0),
+      result(1, 2, 0, 3),
+      result(3, 1, 1, 0),
+      result(1, 3, 1, 0),
+      result(3, 2, 1, 0),
+      result(2, 3, 0, 0),
+      result(1, 4, 9, 0),
+      result(4, 1, 0, 0),
+    ]
+    expect(table([1, 2, 3, 4].map(team), results, [], 'serieA').map((r) => r.team.id)).toEqual([2, 3, 1, 4])
+    expect(table([1, 2, 3, 4].map(team), results, [], 'headToHeadFirst').map((r) => r.team.id)).toEqual([3, 2, 1, 4])
+    expect(table([1, 2, 3, 4].map(team), results, [], 'premierLeague').map((r) => r.team.id)).toEqual([2, 1, 3, 4])
+  })
+
   it('gives each team 1 point for a draw', () => {
     const rows = table([1, 2].map(team), [result(1, 2, 1, 1)], [], 'premierLeague')
     expect(rows.map((r) => [r.drawn, r.points])).toEqual([[1, 1], [1, 1]])
@@ -104,10 +124,11 @@ describe('table', () => {
     expect(rows.map((r) => [r.team.id, r.points])).toEqual([[2, 0], [1, -1]])
   })
 
-  // LaLiga's has teams level on points that haven't yet played each other home and away, ranked by goal difference.
+  // LaLiga's and Serie A's have teams level on points that haven't yet played each other home and away, ranked by goal difference.
   it.each<[string, TieBreaks, MatchesResponse, typeof plStandings]>([
     ['PL', 'premierLeague', plMatches, plStandings],
     ['LL', 'headToHeadFirst', llMatches, llStandings],
+    ['SA', 'serieA', saMatches, saStandings],
   ])('matches the official standings for the recorded %s season', (league, tieBreaks, matches, standings) => {
     const config = { league, name: league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
     const season = update({ matches, standings, config, now: new Date('2026-10-22T20:00:00Z') }).season

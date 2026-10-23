@@ -44,5 +44,36 @@
   },
   "firstSnapshot": "2026-11-03",
   "deductions": []
+ },
+ {
+  "league": "SA",
+  "name": "Serie A",
+  "season": 2026,
+  "championsLeaguePlaces": 4,
+  "relegationPlaces": 3,
+  "tieBreaks": "serieA",
+  "oddsSportKey": "soccer_italy_serie_a",
+  "oddsAliases": {
+   "Bologna": "Bologna FC 1909",
+   "Cagliari": "Cagliari Calcio",
+   "Como": "Como 1907",
+   "Fiorentina": "ACF Fiorentina",
+   "Frosinone": "Frosinone Calcio",
+   "Genoa": "Genoa CFC",
+   "Inter Milan": "FC Internazionale Milano",
+   "Lazio": "SS Lazio",
+   "Lecce": "US Lecce",
+   "Monza": "AC Monza",
+   "Napoli": "SSC Napoli",
+   "Parma": "Parma Calcio 1913",
+   "Sassuolo": "US Sassuolo Calcio",
+   "Udinese": "Udinese Calcio"
+  },
+  "teamNames": {
+   "454": "Venezia",
+   "7397": "Como"
+  },
+  "firstSnapshot": "2026-11-03",
+  "deductions": []
  }
 ]

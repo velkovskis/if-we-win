@@ -42,7 +42,7 @@ export function table(teams: Team[], results: Result[], deductions: Deduction[],
 }
 
 // Each League's official order for teams level on points, by name; a League's config names its own.
-export type TieBreaks = 'premierLeague' | 'headToHeadFirst'
+export type TieBreaks = 'premierLeague' | 'headToHeadFirst' | 'serieA'
 
 type Standing = { points: number; goalDifference: number; goalsFor: number }
 type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
@@ -54,7 +54,14 @@ type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
 // between the teams level on points, started again for any teams those leave level; then head-to-head goal difference,
 // goal difference and goals scored. As in the official table, head-to-head counts only once the level teams have all
 // played each other home and away, which is always so by the end of the season.
-// Either way `fallback` settles what is left.
+// serieA (FIGC C.U. 244/A, 2026-27): points, then head-to-head points and head-to-head goal difference in the meetings
+// between all the teams level on points, not started again for any teams those leave level; then goal difference and
+// goals scored. Head-to-head counts only once the level teams have all played each other home and away, as in
+// headToHeadFirst.
+// ponytail: two teams level on points for 1st, or for 17th and 18th, officially play a deciding match (or two); serieA
+// ranks them as it ranks the home side of that match, so the Forecast always gives it to that team. Rare and only at
+// the season's end; simulate the deciding match if a Title or Relegation Chance ever hinges on one.
+// Whatever the order, `fallback` settles what is left.
 export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreaks: TieBreaks, fallback: (a: T, b: T) => number): T[] {
   if (tieBreaks === 'premierLeague') {
     const overall = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor
@@ -63,14 +70,14 @@ export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tie
       return level.toSorted((a, b) => stats.get(b)!.points - stats.get(a)!.points || stats.get(b)!.awayGoals - stats.get(a)!.awayGoals || fallback(a, b))
     })
   }
-  if (tieBreaks === 'headToHeadFirst') {
+  if (tieBreaks === 'headToHeadFirst' || tieBreaks === 'serieA') {
     const byHeadToHead = (level: T[]): T[] => {
       const { stats, played } = headToHead(level, meetings)
       const complete = played === level.length * (level.length - 1)
       const points = (a: T, b: T) => stats.get(b)!.points - stats.get(a)!.points
-      if (complete && level.some((t) => points(t, level[0]))) return settle(level.toSorted(points), points, byHeadToHead)
-      const goalDifference = (a: T, b: T) => (complete ? stats.get(b)!.goalDifference - stats.get(a)!.goalDifference : 0)
-      return level.toSorted((a, b) => goalDifference(a, b) || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || fallback(a, b))
+      if (tieBreaks === 'headToHeadFirst' && complete && level.some((t) => points(t, level[0]))) return settle(level.toSorted(points), points, byHeadToHead)
+      const headToHeadOrder = (a: T, b: T) => (complete ? points(a, b) || stats.get(b)!.goalDifference - stats.get(a)!.goalDifference : 0)
+      return level.toSorted((a, b) => headToHeadOrder(a, b) || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || fallback(a, b))
     }
     const points = (a: T, b: T) => b.points - a.points
     return settle(teams.toSorted(points), points, byHeadToHead)

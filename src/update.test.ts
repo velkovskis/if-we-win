@@ -3,6 +3,8 @@ import matches from '../test/recorded/PL/matches.json'
 import standings from '../test/recorded/PL/standings.json'
 import llMatches from '../test/recorded/LL/matches.json'
 import llStandings from '../test/recorded/LL/standings.json'
+import saMatches from '../test/recorded/SA/matches.json'
+import saStandings from '../test/recorded/SA/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
@@ -270,8 +272,11 @@ describe('update Ratings', () => {
   })
 })
 
+// The JSON import types each League's aliases by their own names, which no longer overlap LeagueConfig's.
+const LEAGUES = leagues as unknown as LeagueConfig[]
+
 // LaLiga's entry as committed, but with no Deductions, which only the recorded standings can justify.
-const LALIGA = { ...(leagues as LeagueConfig[]).find((l) => l.league === 'LL')!, deductions: [] }
+const LALIGA = { ...LEAGUES.find((l) => l.league === 'LL')!, deductions: [] }
 const runLaLiga = (odds?: OddsResponse) => update({ matches: llMatches, standings: llStandings, config: LALIGA, now, odds }).season
 // The recorded teams, named as The Odds API named them on 2026-10-22.
 const LALIGA_TEAMS = Object.entries({
@@ -311,6 +316,49 @@ describe('update LaLiga', () => {
     const known = { teams: Object.fromEntries(LALIGA_TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])) }
     const ratings = runLaLiga(oddsFrom(known, LALIGA_TEAMS)).ratings
     for (const t of LALIGA_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
+  })
+})
+
+// Serie A's entry as committed, but with no Deductions, which only the recorded standings can justify.
+const SERIE_A = { ...LEAGUES.find((l) => l.league === 'SA')!, deductions: [] }
+const runSerieA = (odds?: OddsResponse) => update({ matches: saMatches, standings: saStandings, config: SERIE_A, now, odds }).season
+// The recorded teams, named as The Odds API named them on 2026-10-23.
+const SERIE_A_TEAMS = Object.entries({
+  108: 'Inter Milan', 110: 'Lazio', 100: 'AS Roma', 98: 'AC Milan', 7397: 'Como', 470: 'Frosinone', 104: 'Cagliari', 109: 'Juventus',
+  113: 'Napoli', 586: 'Torino', 102: 'Atalanta BC', 5890: 'Lecce', 471: 'Sassuolo', 5911: 'Monza', 103: 'Bologna', 115: 'Udinese',
+  107: 'Genoa', 99: 'Fiorentina', 112: 'Parma', 454: 'Venezia',
+}).map(([id, oddsName]) => ({ id: Number(id), oddsName }))
+
+describe('update Serie A', () => {
+  it('publishes Serie A’s config, passing the standings guard', () => {
+    expect(runSerieA()).toMatchObject({ league: 'SA', leagueName: 'Serie A', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'serieA' })
+  })
+
+  it('publishes all 20 teams, and its Results and Fixtures', () => {
+    const season = runSerieA()
+    expect(season.teams).toHaveLength(20)
+    expect(season.teams).toContainEqual({ id: 108, name: 'Inter', crest: 'https://crests.football-data.org/108.png' })
+    expect(season.results).toHaveLength(70)
+    expect(season.fixtures).toHaveLength(310)
+  })
+
+  it('names teams as fans do where the League’s config says so', () => {
+    const names = new Map(runSerieA().teams.map((t) => [t.id, t.name]))
+    expect([7397, 454].map((id) => names.get(id))).toEqual(['Como', 'Venezia'])
+  })
+
+  it('numbers Matchweeks 1–38 with 10 matches each', () => {
+    const season = runSerieA()
+    const counts = new Map<number, number>()
+    for (const m of [...season.results, ...season.fixtures]) counts.set(m.matchweek, (counts.get(m.matchweek) ?? 0) + 1)
+    expect([...counts.keys()].sort((a, b) => a - b)).toEqual(Array.from({ length: 38 }, (_, i) => i + 1))
+    expect([...counts.values()].every((n) => n === 10)).toBe(true)
+  })
+
+  it('matches every Bookmaker odds name to a team through the League’s aliases', () => {
+    const known = { teams: Object.fromEntries(SERIE_A_TEAMS.map((t, i) => [t.id, 0.57 - i * 0.06])) }
+    const ratings = runSerieA(oddsFrom(known, SERIE_A_TEAMS)).ratings
+    for (const t of SERIE_A_TEAMS) expect(ratings.teams[t.id]).toBeCloseTo(known.teams[t.id], 2)
   })
 })
 
