@@ -1,0 +1,2702 @@
+{
+ "league": "ED",
+ "season": 2026,
+ "championsLeaguePlaces": 2,
+ "relegationPlaces": 2,
+ "relegationPlayOffPlace": 16,
+ "tieBreaks": "eredivisie",
+ "homeAdvantage": 0.2,
+ "strengthNoise": 0.2,
+ "deductions": [],
+ "leagueName": "Eredivisie",
+ "updatedAt": "2026-10-23T21:20:36.650Z",
+ "teams": [
+  {
+   "id": 675,
+   "name": "Feyenoord",
+   "crest": "https://crests.football-data.org/675.png"
+  },
+  {
+   "id": 682,
+   "name": "AZ",
+   "crest": "https://crests.football-data.org/682.png"
+  },
+  {
+   "id": 674,
+   "name": "PSV",
+   "crest": "https://crests.football-data.org/674.png"
+  },
+  {
+   "id": 678,
+   "name": "Ajax",
+   "crest": "https://crests.football-data.org/678.png"
+  },
+  {
+   "id": 666,
+   "name": "Twente",
+   "crest": "https://crests.football-data.org/666.png"
+  },
+  {
+   "id": 1920,
+   "name": "Fortuna Sittard",
+   "crest": "https://crests.football-data.org/1920.png"
+  },
+  {
+   "id": 677,
+   "name": "Groningen",
+   "crest": "https://crests.football-data.org/677.png"
+  },
+  {
+   "id": 718,
+   "name": "Go Ahead",
+   "crest": "https://crests.football-data.org/718.png"
+  },
+  {
+   "id": 673,
+   "name": "Heerenveen",
+   "crest": "https://crests.football-data.org/673.png"
+  },
+  {
+   "id": 670,
+   "name": "Excelsior",
+   "crest": "https://crests.football-data.org/670.png"
+  },
+  {
+   "id": 676,
+   "name": "Utrecht",
+   "crest": "https://crests.football-data.org/676.png"
+  },
+  {
+   "id": 1915,
+   "name": "NEC",
+   "crest": "https://crests.football-data.org/1915.png"
+  },
+  {
+   "id": 6806,
+   "name": "Sparta",
+   "crest": "https://crests.football-data.org/6806.png"
+  },
+  {
+   "id": 1909,
+   "name": "Cambuur",
+   "crest": "https://crests.football-data.org/1909.png"
+  },
+  {
+   "id": 684,
+   "name": "PEC Zwolle",
+   "crest": "https://crests.football-data.org/684.png"
+  },
+  {
+   "id": 1912,
+   "name": "Telstar",
+   "crest": "https://crests.football-data.org/1912.png"
+  },
+  {
+   "id": 680,
+   "name": "ADO Den Haag",
+   "crest": "https://crests.football-data.org/680.png"
+  },
+  {
+   "id": 672,
+   "name": "Willem II",
+   "crest": "https://crests.football-data.org/672.png"
+  }
+ ],
+ "results": [
+  {
+   "id": 558214,
+   "matchweek": 1,
+   "homeTeamId": 1909,
+   "awayTeamId": 670,
+   "kickoff": "2026-08-07T18:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 4
+   }
+  },
+  {
+   "id": 558215,
+   "matchweek": 1,
+   "homeTeamId": 1915,
+   "awayTeamId": 1912,
+   "kickoff": "2026-08-08T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 558216,
+   "matchweek": 1,
+   "homeTeamId": 718,
+   "awayTeamId": 672,
+   "kickoff": "2026-08-08T16:45:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  },
+  {
+   "id": 558217,
+   "matchweek": 1,
+   "homeTeamId": 674,
+   "awayTeamId": 1920,
+   "kickoff": "2026-08-08T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558218,
+   "matchweek": 1,
+   "homeTeamId": 682,
+   "awayTeamId": 680,
+   "kickoff": "2026-08-08T19:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 558219,
+   "matchweek": 1,
+   "homeTeamId": 6806,
+   "awayTeamId": 675,
+   "kickoff": "2026-08-09T10:15:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 558220,
+   "matchweek": 1,
+   "homeTeamId": 677,
+   "awayTeamId": 676,
+   "kickoff": "2026-08-09T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 558221,
+   "matchweek": 1,
+   "homeTeamId": 684,
+   "awayTeamId": 678,
+   "kickoff": "2026-08-09T12:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 558222,
+   "matchweek": 1,
+   "homeTeamId": 673,
+   "awayTeamId": 666,
+   "kickoff": "2026-08-09T14:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 558223,
+   "matchweek": 2,
+   "homeTeamId": 1912,
+   "awayTeamId": 6806,
+   "kickoff": "2026-08-14T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 3
+   }
+  },
+  {
+   "id": 558224,
+   "matchweek": 2,
+   "homeTeamId": 672,
+   "awayTeamId": 1915,
+   "kickoff": "2026-08-15T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  },
+  {
+   "id": 558225,
+   "matchweek": 2,
+   "homeTeamId": 676,
+   "awayTeamId": 682,
+   "kickoff": "2026-08-15T16:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  },
+  {
+   "id": 558226,
+   "matchweek": 2,
+   "homeTeamId": 670,
+   "awayTeamId": 674,
+   "kickoff": "2026-08-15T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 558227,
+   "matchweek": 2,
+   "homeTeamId": 1920,
+   "awayTeamId": 1909,
+   "kickoff": "2026-08-15T19:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  },
+  {
+   "id": 558228,
+   "matchweek": 2,
+   "homeTeamId": 680,
+   "awayTeamId": 677,
+   "kickoff": "2026-08-16T10:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  },
+  {
+   "id": 558229,
+   "matchweek": 2,
+   "homeTeamId": 675,
+   "awayTeamId": 718,
+   "kickoff": "2026-08-16T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558230,
+   "matchweek": 2,
+   "homeTeamId": 666,
+   "awayTeamId": 684,
+   "kickoff": "2026-08-16T12:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  },
+  {
+   "id": 558231,
+   "matchweek": 2,
+   "homeTeamId": 678,
+   "awayTeamId": 673,
+   "kickoff": "2026-08-16T14:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558232,
+   "matchweek": 3,
+   "homeTeamId": 1920,
+   "awayTeamId": 682,
+   "kickoff": "2026-08-22T14:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 558234,
+   "matchweek": 3,
+   "homeTeamId": 6806,
+   "awayTeamId": 676,
+   "kickoff": "2026-08-22T16:45:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 3
+   }
+  },
+  {
+   "id": 558235,
+   "matchweek": 3,
+   "homeTeamId": 673,
+   "awayTeamId": 684,
+   "kickoff": "2026-08-22T19:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  },
+  {
+   "id": 558236,
+   "matchweek": 3,
+   "homeTeamId": 718,
+   "awayTeamId": 680,
+   "kickoff": "2026-08-23T10:15:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  },
+  {
+   "id": 558237,
+   "matchweek": 3,
+   "homeTeamId": 674,
+   "awayTeamId": 677,
+   "kickoff": "2026-08-23T12:30:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 1
+   }
+  },
+  {
+   "id": 558238,
+   "matchweek": 3,
+   "homeTeamId": 1909,
+   "awayTeamId": 675,
+   "kickoff": "2026-08-23T14:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 5
+   }
+  },
+  {
+   "id": 558241,
+   "matchweek": 4,
+   "homeTeamId": 677,
+   "awayTeamId": 1920,
+   "kickoff": "2026-08-28T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 558242,
+   "matchweek": 4,
+   "homeTeamId": 670,
+   "awayTeamId": 6806,
+   "kickoff": "2026-08-29T14:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 558243,
+   "matchweek": 4,
+   "homeTeamId": 682,
+   "awayTeamId": 718,
+   "kickoff": "2026-08-29T16:45:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 2
+   }
+  },
+  {
+   "id": 558244,
+   "matchweek": 4,
+   "homeTeamId": 684,
+   "awayTeamId": 1915,
+   "kickoff": "2026-08-29T19:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 3
+   }
+  },
+  {
+   "id": 558245,
+   "matchweek": 4,
+   "homeTeamId": 676,
+   "awayTeamId": 674,
+   "kickoff": "2026-08-30T10:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 6
+   }
+  },
+  {
+   "id": 558246,
+   "matchweek": 4,
+   "homeTeamId": 672,
+   "awayTeamId": 673,
+   "kickoff": "2026-08-30T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558247,
+   "matchweek": 4,
+   "homeTeamId": 675,
+   "awayTeamId": 680,
+   "kickoff": "2026-08-30T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558248,
+   "matchweek": 4,
+   "homeTeamId": 1912,
+   "awayTeamId": 678,
+   "kickoff": "2026-08-30T14:45:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 4
+   }
+  },
+  {
+   "id": 558249,
+   "matchweek": 4,
+   "homeTeamId": 1909,
+   "awayTeamId": 666,
+   "kickoff": "2026-08-30T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  },
+  {
+   "id": 558250,
+   "matchweek": 5,
+   "homeTeamId": 6806,
+   "awayTeamId": 684,
+   "kickoff": "2026-09-04T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558251,
+   "matchweek": 5,
+   "homeTeamId": 1915,
+   "awayTeamId": 675,
+   "kickoff": "2026-09-05T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 3
+   }
+  },
+  {
+   "id": 558253,
+   "matchweek": 5,
+   "homeTeamId": 678,
+   "awayTeamId": 674,
+   "kickoff": "2026-09-05T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 3
+   }
+  },
+  {
+   "id": 558254,
+   "matchweek": 5,
+   "homeTeamId": 672,
+   "awayTeamId": 670,
+   "kickoff": "2026-09-05T19:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 3
+   }
+  },
+  {
+   "id": 558255,
+   "matchweek": 5,
+   "homeTeamId": 677,
+   "awayTeamId": 666,
+   "kickoff": "2026-09-06T10:15:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558256,
+   "matchweek": 5,
+   "homeTeamId": 673,
+   "awayTeamId": 682,
+   "kickoff": "2026-09-06T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 558257,
+   "matchweek": 5,
+   "homeTeamId": 1912,
+   "awayTeamId": 1909,
+   "kickoff": "2026-09-06T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558258,
+   "matchweek": 5,
+   "homeTeamId": 680,
+   "awayTeamId": 1920,
+   "kickoff": "2026-09-06T14:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 3
+   }
+  },
+  {
+   "id": 558252,
+   "matchweek": 5,
+   "homeTeamId": 676,
+   "awayTeamId": 718,
+   "kickoff": "2026-09-08T12:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 3
+   }
+  },
+  {
+   "id": 558233,
+   "matchweek": 3,
+   "homeTeamId": 1915,
+   "awayTeamId": 670,
+   "kickoff": "2026-09-08T16:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558239,
+   "matchweek": 3,
+   "homeTeamId": 666,
+   "awayTeamId": 1912,
+   "kickoff": "2026-09-09T16:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 558899,
+   "matchweek": 6,
+   "homeTeamId": 682,
+   "awayTeamId": 672,
+   "kickoff": "2026-09-11T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558898,
+   "matchweek": 6,
+   "homeTeamId": 666,
+   "awayTeamId": 680,
+   "kickoff": "2026-09-12T14:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 558897,
+   "matchweek": 6,
+   "homeTeamId": 718,
+   "awayTeamId": 677,
+   "kickoff": "2026-09-12T16:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558896,
+   "matchweek": 6,
+   "homeTeamId": 1920,
+   "awayTeamId": 678,
+   "kickoff": "2026-09-12T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 5
+   }
+  },
+  {
+   "id": 558892,
+   "matchweek": 6,
+   "homeTeamId": 1909,
+   "awayTeamId": 1915,
+   "kickoff": "2026-09-12T19:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 558894,
+   "matchweek": 6,
+   "homeTeamId": 670,
+   "awayTeamId": 676,
+   "kickoff": "2026-09-13T10:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 558895,
+   "matchweek": 6,
+   "homeTeamId": 673,
+   "awayTeamId": 1912,
+   "kickoff": "2026-09-13T12:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  },
+  {
+   "id": 558891,
+   "matchweek": 6,
+   "homeTeamId": 684,
+   "awayTeamId": 675,
+   "kickoff": "2026-09-13T14:45:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 7
+   }
+  },
+  {
+   "id": 558893,
+   "matchweek": 6,
+   "homeTeamId": 674,
+   "awayTeamId": 6806,
+   "kickoff": "2026-09-13T18:00:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  },
+  {
+   "id": 558240,
+   "matchweek": 3,
+   "homeTeamId": 678,
+   "awayTeamId": 672,
+   "kickoff": "2026-09-15T18:00:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 1
+   }
+  },
+  {
+   "id": 558888,
+   "matchweek": 7,
+   "homeTeamId": 677,
+   "awayTeamId": 684,
+   "kickoff": "2026-09-18T18:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  },
+  {
+   "id": 558889,
+   "matchweek": 7,
+   "homeTeamId": 680,
+   "awayTeamId": 1909,
+   "kickoff": "2026-09-19T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558890,
+   "matchweek": 7,
+   "homeTeamId": 6806,
+   "awayTeamId": 673,
+   "kickoff": "2026-09-19T16:45:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 4
+   }
+  },
+  {
+   "id": 558887,
+   "matchweek": 7,
+   "homeTeamId": 678,
+   "awayTeamId": 670,
+   "kickoff": "2026-09-19T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558886,
+   "matchweek": 7,
+   "homeTeamId": 672,
+   "awayTeamId": 1920,
+   "kickoff": "2026-09-19T19:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 558885,
+   "matchweek": 7,
+   "homeTeamId": 675,
+   "awayTeamId": 676,
+   "kickoff": "2026-09-20T10:15:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 0
+   }
+  },
+  {
+   "id": 558882,
+   "matchweek": 7,
+   "homeTeamId": 666,
+   "awayTeamId": 674,
+   "kickoff": "2026-09-20T12:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 2
+   }
+  },
+  {
+   "id": 558884,
+   "matchweek": 7,
+   "homeTeamId": 682,
+   "awayTeamId": 1912,
+   "kickoff": "2026-09-20T12:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  {
+   "id": 558883,
+   "matchweek": 7,
+   "homeTeamId": 1915,
+   "awayTeamId": 718,
+   "kickoff": "2026-09-20T14:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558881,
+   "matchweek": 8,
+   "homeTeamId": 674,
+   "awayTeamId": 673,
+   "kickoff": "2026-10-09T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 558880,
+   "matchweek": 8,
+   "homeTeamId": 718,
+   "awayTeamId": 6806,
+   "kickoff": "2026-10-10T14:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 3
+   }
+  },
+  {
+   "id": 558879,
+   "matchweek": 8,
+   "homeTeamId": 675,
+   "awayTeamId": 682,
+   "kickoff": "2026-10-10T16:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  },
+  {
+   "id": 558877,
+   "matchweek": 8,
+   "homeTeamId": 1920,
+   "awayTeamId": 666,
+   "kickoff": "2026-10-10T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558878,
+   "matchweek": 8,
+   "homeTeamId": 678,
+   "awayTeamId": 1915,
+   "kickoff": "2026-10-10T19:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  },
+  {
+   "id": 558876,
+   "matchweek": 8,
+   "homeTeamId": 676,
+   "awayTeamId": 672,
+   "kickoff": "2026-10-11T10:15:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  },
+  {
+   "id": 558874,
+   "matchweek": 8,
+   "homeTeamId": 684,
+   "awayTeamId": 1909,
+   "kickoff": "2026-10-11T12:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  },
+  {
+   "id": 558875,
+   "matchweek": 8,
+   "homeTeamId": 1912,
+   "awayTeamId": 680,
+   "kickoff": "2026-10-11T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558873,
+   "matchweek": 8,
+   "homeTeamId": 670,
+   "awayTeamId": 677,
+   "kickoff": "2026-10-11T14:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 5
+   }
+  },
+  {
+   "id": 558872,
+   "matchweek": 9,
+   "homeTeamId": 673,
+   "awayTeamId": 670,
+   "kickoff": "2026-10-16T18:00:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 0
+   }
+  },
+  {
+   "id": 558871,
+   "matchweek": 9,
+   "homeTeamId": 680,
+   "awayTeamId": 674,
+   "kickoff": "2026-10-17T14:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 558869,
+   "matchweek": 9,
+   "homeTeamId": 1912,
+   "awayTeamId": 675,
+   "kickoff": "2026-10-17T18:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 4
+   }
+  },
+  {
+   "id": 558868,
+   "matchweek": 9,
+   "homeTeamId": 6806,
+   "awayTeamId": 672,
+   "kickoff": "2026-10-17T19:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 2
+   }
+  },
+  {
+   "id": 558867,
+   "matchweek": 9,
+   "homeTeamId": 684,
+   "awayTeamId": 718,
+   "kickoff": "2026-10-18T10:15:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  },
+  {
+   "id": 558865,
+   "matchweek": 9,
+   "homeTeamId": 1909,
+   "awayTeamId": 682,
+   "kickoff": "2026-10-18T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558864,
+   "matchweek": 9,
+   "homeTeamId": 677,
+   "awayTeamId": 678,
+   "kickoff": "2026-10-18T14:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 5
+   }
+  },
+  {
+   "id": 558866,
+   "matchweek": 9,
+   "homeTeamId": 666,
+   "awayTeamId": 676,
+   "kickoff": "2026-10-18T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 558870,
+   "matchweek": 9,
+   "homeTeamId": 1915,
+   "awayTeamId": 1920,
+   "kickoff": "2026-10-18T18:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  },
+  {
+   "id": 558863,
+   "matchweek": 10,
+   "homeTeamId": 718,
+   "awayTeamId": 1912,
+   "kickoff": "2026-10-23T18:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
+  {
+   "id": 558862,
+   "matchweek": 10,
+   "homeTeamId": 676,
+   "awayTeamId": 684,
+   "kickoff": "2026-10-24T14:30:00Z"
+  },
+  {
+   "id": 558861,
+   "matchweek": 10,
+   "homeTeamId": 672,
+   "awayTeamId": 1909,
+   "kickoff": "2026-10-24T16:45:00Z"
+  },
+  {
+   "id": 558860,
+   "matchweek": 10,
+   "homeTeamId": 680,
+   "awayTeamId": 673,
+   "kickoff": "2026-10-24T19:00:00Z"
+  },
+  {
+   "id": 558859,
+   "matchweek": 10,
+   "homeTeamId": 1920,
+   "awayTeamId": 670,
+   "kickoff": "2026-10-25T11:15:00Z"
+  },
+  {
+   "id": 558857,
+   "matchweek": 10,
+   "homeTeamId": 1915,
+   "awayTeamId": 677,
+   "kickoff": "2026-10-25T13:30:00Z"
+  },
+  {
+   "id": 558858,
+   "matchweek": 10,
+   "homeTeamId": 674,
+   "awayTeamId": 675,
+   "kickoff": "2026-10-25T13:30:00Z"
+  },
+  {
+   "id": 558856,
+   "matchweek": 10,
+   "homeTeamId": 6806,
+   "awayTeamId": 678,
+   "kickoff": "2026-10-25T15:45:00Z"
+  },
+  {
+   "id": 558855,
+   "matchweek": 10,
+   "homeTeamId": 682,
+   "awayTeamId": 666,
+   "kickoff": "2026-10-25T19:00:00Z"
+  },
+  {
+   "id": 558854,
+   "matchweek": 11,
+   "homeTeamId": 675,
+   "awayTeamId": 1920,
+   "kickoff": "2026-10-31T15:30:00Z"
+  },
+  {
+   "id": 558852,
+   "matchweek": 11,
+   "homeTeamId": 673,
+   "awayTeamId": 1915,
+   "kickoff": "2026-10-31T17:45:00Z"
+  },
+  {
+   "id": 558853,
+   "matchweek": 11,
+   "homeTeamId": 674,
+   "awayTeamId": 672,
+   "kickoff": "2026-10-31T17:45:00Z"
+  },
+  {
+   "id": 558850,
+   "matchweek": 11,
+   "homeTeamId": 1909,
+   "awayTeamId": 718,
+   "kickoff": "2026-10-31T20:00:00Z"
+  },
+  {
+   "id": 558851,
+   "matchweek": 11,
+   "homeTeamId": 678,
+   "awayTeamId": 682,
+   "kickoff": "2026-10-31T20:00:00Z"
+  },
+  {
+   "id": 558849,
+   "matchweek": 11,
+   "homeTeamId": 684,
+   "awayTeamId": 680,
+   "kickoff": "2026-11-01T11:15:00Z"
+  },
+  {
+   "id": 558848,
+   "matchweek": 11,
+   "homeTeamId": 1912,
+   "awayTeamId": 676,
+   "kickoff": "2026-11-01T13:30:00Z"
+  },
+  {
+   "id": 558847,
+   "matchweek": 11,
+   "homeTeamId": 670,
+   "awayTeamId": 666,
+   "kickoff": "2026-11-01T13:30:00Z"
+  },
+  {
+   "id": 558846,
+   "matchweek": 11,
+   "homeTeamId": 677,
+   "awayTeamId": 6806,
+   "kickoff": "2026-11-01T15:45:00Z"
+  },
+  {
+   "id": 558845,
+   "matchweek": 12,
+   "homeTeamId": 672,
+   "awayTeamId": 684,
+   "kickoff": "2026-11-06T19:00:00Z"
+  },
+  {
+   "id": 558844,
+   "matchweek": 12,
+   "homeTeamId": 1920,
+   "awayTeamId": 1912,
+   "kickoff": "2026-11-07T15:30:00Z"
+  },
+  {
+   "id": 558841,
+   "matchweek": 12,
+   "homeTeamId": 680,
+   "awayTeamId": 6806,
+   "kickoff": "2026-11-07T17:45:00Z"
+  },
+  {
+   "id": 558843,
+   "matchweek": 12,
+   "homeTeamId": 670,
+   "awayTeamId": 718,
+   "kickoff": "2026-11-07T20:00:00Z"
+  },
+  {
+   "id": 558840,
+   "matchweek": 12,
+   "homeTeamId": 673,
+   "awayTeamId": 675,
+   "kickoff": "2026-11-08T11:15:00Z"
+  },
+  {
+   "id": 558839,
+   "matchweek": 12,
+   "homeTeamId": 666,
+   "awayTeamId": 678,
+   "kickoff": "2026-11-08T13:30:00Z"
+  },
+  {
+   "id": 558837,
+   "matchweek": 12,
+   "homeTeamId": 682,
+   "awayTeamId": 677,
+   "kickoff": "2026-11-08T15:45:00Z"
+  },
+  {
+   "id": 558842,
+   "matchweek": 12,
+   "homeTeamId": 1909,
+   "awayTeamId": 674,
+   "kickoff": "2026-11-08T15:45:00Z"
+  },
+  {
+   "id": 558838,
+   "matchweek": 12,
+   "homeTeamId": 676,
+   "awayTeamId": 1915,
+   "kickoff": "2026-11-08T19:00:00Z"
+  },
+  {
+   "id": 558833,
+   "matchweek": 13,
+   "homeTeamId": 1915,
+   "awayTeamId": 674,
+   "kickoff": "2026-11-21T15:30:00Z"
+  },
+  {
+   "id": 558831,
+   "matchweek": 13,
+   "homeTeamId": 675,
+   "awayTeamId": 670,
+   "kickoff": "2026-11-21T17:45:00Z"
+  },
+  {
+   "id": 558835,
+   "matchweek": 13,
+   "homeTeamId": 676,
+   "awayTeamId": 1909,
+   "kickoff": "2026-11-21T17:45:00Z"
+  },
+  {
+   "id": 558832,
+   "matchweek": 13,
+   "homeTeamId": 1912,
+   "awayTeamId": 684,
+   "kickoff": "2026-11-21T20:00:00Z"
+  },
+  {
+   "id": 558834,
+   "matchweek": 13,
+   "homeTeamId": 677,
+   "awayTeamId": 673,
+   "kickoff": "2026-11-21T20:00:00Z"
+  },
+  {
+   "id": 558828,
+   "matchweek": 13,
+   "homeTeamId": 666,
+   "awayTeamId": 672,
+   "kickoff": "2026-11-22T11:15:00Z"
+  },
+  {
+   "id": 558830,
+   "matchweek": 13,
+   "homeTeamId": 6806,
+   "awayTeamId": 682,
+   "kickoff": "2026-11-22T13:30:00Z"
+  },
+  {
+   "id": 558836,
+   "matchweek": 13,
+   "homeTeamId": 678,
+   "awayTeamId": 680,
+   "kickoff": "2026-11-22T13:30:00Z"
+  },
+  {
+   "id": 558829,
+   "matchweek": 13,
+   "homeTeamId": 718,
+   "awayTeamId": 1920,
+   "kickoff": "2026-11-22T15:45:00Z"
+  },
+  {
+   "id": 558820,
+   "matchweek": 14,
+   "homeTeamId": 677,
+   "awayTeamId": 672,
+   "kickoff": "2026-11-27T19:00:00Z"
+  },
+  {
+   "id": 558825,
+   "matchweek": 14,
+   "homeTeamId": 670,
+   "awayTeamId": 1912,
+   "kickoff": "2026-11-28T15:30:00Z"
+  },
+  {
+   "id": 558826,
+   "matchweek": 14,
+   "homeTeamId": 674,
+   "awayTeamId": 718,
+   "kickoff": "2026-11-28T17:45:00Z"
+  },
+  {
+   "id": 558819,
+   "matchweek": 14,
+   "homeTeamId": 1909,
+   "awayTeamId": 6806,
+   "kickoff": "2026-11-28T20:00:00Z"
+  },
+  {
+   "id": 558827,
+   "matchweek": 14,
+   "homeTeamId": 680,
+   "awayTeamId": 676,
+   "kickoff": "2026-11-29T11:15:00Z"
+  },
+  {
+   "id": 558821,
+   "matchweek": 14,
+   "homeTeamId": 1920,
+   "awayTeamId": 673,
+   "kickoff": "2026-11-29T13:30:00Z"
+  },
+  {
+   "id": 558824,
+   "matchweek": 14,
+   "homeTeamId": 675,
+   "awayTeamId": 678,
+   "kickoff": "2026-11-29T13:30:00Z"
+  },
+  {
+   "id": 558823,
+   "matchweek": 14,
+   "homeTeamId": 684,
+   "awayTeamId": 682,
+   "kickoff": "2026-11-29T15:45:00Z"
+  },
+  {
+   "id": 558822,
+   "matchweek": 14,
+   "homeTeamId": 1915,
+   "awayTeamId": 666,
+   "kickoff": "2026-11-29T19:00:00Z"
+  },
+  {
+   "id": 558812,
+   "matchweek": 15,
+   "homeTeamId": 1912,
+   "awayTeamId": 677,
+   "kickoff": "2026-12-04T19:00:00Z"
+  },
+  {
+   "id": 558816,
+   "matchweek": 15,
+   "homeTeamId": 672,
+   "awayTeamId": 675,
+   "kickoff": "2026-12-05T15:30:00Z"
+  },
+  {
+   "id": 558817,
+   "matchweek": 15,
+   "homeTeamId": 6806,
+   "awayTeamId": 1915,
+   "kickoff": "2026-12-05T17:45:00Z"
+  },
+  {
+   "id": 558814,
+   "matchweek": 15,
+   "homeTeamId": 682,
+   "awayTeamId": 674,
+   "kickoff": "2026-12-05T19:00:00Z"
+  },
+  {
+   "id": 558813,
+   "matchweek": 15,
+   "homeTeamId": 1920,
+   "awayTeamId": 684,
+   "kickoff": "2026-12-05T20:00:00Z"
+  },
+  {
+   "id": 558815,
+   "matchweek": 15,
+   "homeTeamId": 673,
+   "awayTeamId": 1909,
+   "kickoff": "2026-12-06T11:15:00Z"
+  },
+  {
+   "id": 558811,
+   "matchweek": 15,
+   "homeTeamId": 678,
+   "awayTeamId": 676,
+   "kickoff": "2026-12-06T13:30:00Z"
+  },
+  {
+   "id": 558818,
+   "matchweek": 15,
+   "homeTeamId": 718,
+   "awayTeamId": 666,
+   "kickoff": "2026-12-06T13:30:00Z"
+  },
+  {
+   "id": 558810,
+   "matchweek": 15,
+   "homeTeamId": 680,
+   "awayTeamId": 670,
+   "kickoff": "2026-12-06T15:45:00Z"
+  },
+  {
+   "id": 558804,
+   "matchweek": 16,
+   "homeTeamId": 676,
+   "awayTeamId": 1920,
+   "kickoff": "2026-12-12T15:30:00Z"
+  },
+  {
+   "id": 558809,
+   "matchweek": 16,
+   "homeTeamId": 673,
+   "awayTeamId": 718,
+   "kickoff": "2026-12-12T17:45:00Z"
+  },
+  {
+   "id": 558802,
+   "matchweek": 16,
+   "homeTeamId": 684,
+   "awayTeamId": 670,
+   "kickoff": "2026-12-12T20:00:00Z"
+  },
+  {
+   "id": 558805,
+   "matchweek": 16,
+   "homeTeamId": 674,
+   "awayTeamId": 1912,
+   "kickoff": "2026-12-13T11:15:00Z"
+  },
+  {
+   "id": 558803,
+   "matchweek": 16,
+   "homeTeamId": 677,
+   "awayTeamId": 675,
+   "kickoff": "2026-12-13T13:30:00Z"
+  },
+  {
+   "id": 558806,
+   "matchweek": 16,
+   "homeTeamId": 672,
+   "awayTeamId": 680,
+   "kickoff": "2026-12-13T13:30:00Z"
+  },
+  {
+   "id": 558807,
+   "matchweek": 16,
+   "homeTeamId": 682,
+   "awayTeamId": 1915,
+   "kickoff": "2026-12-13T15:45:00Z"
+  },
+  {
+   "id": 558801,
+   "matchweek": 16,
+   "homeTeamId": 678,
+   "awayTeamId": 1909,
+   "kickoff": "2026-12-13T19:00:00Z"
+  },
+  {
+   "id": 558794,
+   "matchweek": 17,
+   "homeTeamId": 1912,
+   "awayTeamId": 672,
+   "kickoff": "2026-12-18T19:00:00Z"
+  },
+  {
+   "id": 558800,
+   "matchweek": 17,
+   "homeTeamId": 670,
+   "awayTeamId": 682,
+   "kickoff": "2026-12-19T15:30:00Z"
+  },
+  {
+   "id": 558793,
+   "matchweek": 17,
+   "homeTeamId": 1920,
+   "awayTeamId": 6806,
+   "kickoff": "2026-12-19T17:45:00Z"
+  },
+  {
+   "id": 558799,
+   "matchweek": 17,
+   "homeTeamId": 676,
+   "awayTeamId": 673,
+   "kickoff": "2026-12-19T20:00:00Z"
+  },
+  {
+   "id": 558798,
+   "matchweek": 17,
+   "homeTeamId": 1915,
+   "awayTeamId": 680,
+   "kickoff": "2026-12-20T11:15:00Z"
+  },
+  {
+   "id": 558792,
+   "matchweek": 17,
+   "homeTeamId": 1909,
+   "awayTeamId": 677,
+   "kickoff": "2026-12-20T13:30:00Z"
+  },
+  {
+   "id": 558797,
+   "matchweek": 17,
+   "homeTeamId": 675,
+   "awayTeamId": 666,
+   "kickoff": "2026-12-20T13:30:00Z"
+  },
+  {
+   "id": 558796,
+   "matchweek": 17,
+   "homeTeamId": 718,
+   "awayTeamId": 678,
+   "kickoff": "2026-12-20T15:45:00Z"
+  },
+  {
+   "id": 558795,
+   "matchweek": 17,
+   "homeTeamId": 674,
+   "awayTeamId": 684,
+   "kickoff": "2026-12-20T19:00:00Z"
+  },
+  {
+   "id": 558791,
+   "matchweek": 18,
+   "homeTeamId": 666,
+   "awayTeamId": 1920,
+   "kickoff": "2027-01-08T19:00:00Z"
+  },
+  {
+   "id": 558787,
+   "matchweek": 18,
+   "homeTeamId": 6806,
+   "awayTeamId": 670,
+   "kickoff": "2027-01-09T15:30:00Z"
+  },
+  {
+   "id": 558790,
+   "matchweek": 18,
+   "homeTeamId": 684,
+   "awayTeamId": 676,
+   "kickoff": "2027-01-09T17:45:00Z"
+  },
+  {
+   "id": 558789,
+   "matchweek": 18,
+   "homeTeamId": 672,
+   "awayTeamId": 678,
+   "kickoff": "2027-01-09T19:00:00Z"
+  },
+  {
+   "id": 558788,
+   "matchweek": 18,
+   "homeTeamId": 682,
+   "awayTeamId": 673,
+   "kickoff": "2027-01-09T20:00:00Z"
+  },
+  {
+   "id": 558785,
+   "matchweek": 18,
+   "homeTeamId": 1915,
+   "awayTeamId": 1909,
+   "kickoff": "2027-01-10T11:15:00Z"
+  },
+  {
+   "id": 558783,
+   "matchweek": 18,
+   "homeTeamId": 675,
+   "awayTeamId": 674,
+   "kickoff": "2027-01-10T13:30:00Z"
+  },
+  {
+   "id": 558784,
+   "matchweek": 18,
+   "homeTeamId": 680,
+   "awayTeamId": 1912,
+   "kickoff": "2027-01-10T13:30:00Z"
+  },
+  {
+   "id": 558786,
+   "matchweek": 18,
+   "homeTeamId": 677,
+   "awayTeamId": 718,
+   "kickoff": "2027-01-10T15:45:00Z"
+  },
+  {
+   "id": 558778,
+   "matchweek": 19,
+   "homeTeamId": 673,
+   "awayTeamId": 6806,
+   "kickoff": "2027-01-15T19:00:00Z"
+  },
+  {
+   "id": 558776,
+   "matchweek": 19,
+   "homeTeamId": 1912,
+   "awayTeamId": 1915,
+   "kickoff": "2027-01-16T15:30:00Z"
+  },
+  {
+   "id": 558777,
+   "matchweek": 19,
+   "homeTeamId": 670,
+   "awayTeamId": 675,
+   "kickoff": "2027-01-16T17:45:00Z"
+  },
+  {
+   "id": 558780,
+   "matchweek": 19,
+   "homeTeamId": 680,
+   "awayTeamId": 684,
+   "kickoff": "2027-01-16T19:00:00Z"
+  },
+  {
+   "id": 558779,
+   "matchweek": 19,
+   "homeTeamId": 1920,
+   "awayTeamId": 674,
+   "kickoff": "2027-01-16T20:00:00Z"
+  },
+  {
+   "id": 558782,
+   "matchweek": 19,
+   "homeTeamId": 676,
+   "awayTeamId": 666,
+   "kickoff": "2027-01-17T11:15:00Z"
+  },
+  {
+   "id": 558774,
+   "matchweek": 19,
+   "homeTeamId": 718,
+   "awayTeamId": 682,
+   "kickoff": "2027-01-17T13:30:00Z"
+  },
+  {
+   "id": 558781,
+   "matchweek": 19,
+   "homeTeamId": 678,
+   "awayTeamId": 677,
+   "kickoff": "2027-01-17T13:30:00Z"
+  },
+  {
+   "id": 558775,
+   "matchweek": 19,
+   "homeTeamId": 1909,
+   "awayTeamId": 672,
+   "kickoff": "2027-01-17T15:45:00Z"
+  },
+  {
+   "id": 558770,
+   "matchweek": 20,
+   "homeTeamId": 670,
+   "awayTeamId": 1920,
+   "kickoff": "2027-01-22T19:00:00Z"
+  },
+  {
+   "id": 558768,
+   "matchweek": 20,
+   "homeTeamId": 678,
+   "awayTeamId": 1912,
+   "kickoff": "2027-01-23T15:30:00Z"
+  },
+  {
+   "id": 558772,
+   "matchweek": 20,
+   "homeTeamId": 675,
+   "awayTeamId": 684,
+   "kickoff": "2027-01-23T17:45:00Z"
+  },
+  {
+   "id": 558766,
+   "matchweek": 20,
+   "homeTeamId": 666,
+   "awayTeamId": 673,
+   "kickoff": "2027-01-23T19:00:00Z"
+  },
+  {
+   "id": 558767,
+   "matchweek": 20,
+   "homeTeamId": 674,
+   "awayTeamId": 680,
+   "kickoff": "2027-01-23T20:00:00Z"
+  },
+  {
+   "id": 558773,
+   "matchweek": 20,
+   "homeTeamId": 718,
+   "awayTeamId": 1909,
+   "kickoff": "2027-01-24T11:15:00Z"
+  },
+  {
+   "id": 558765,
+   "matchweek": 20,
+   "homeTeamId": 1915,
+   "awayTeamId": 672,
+   "kickoff": "2027-01-24T13:30:00Z"
+  },
+  {
+   "id": 558771,
+   "matchweek": 20,
+   "homeTeamId": 6806,
+   "awayTeamId": 677,
+   "kickoff": "2027-01-24T13:30:00Z"
+  },
+  {
+   "id": 558769,
+   "matchweek": 20,
+   "homeTeamId": 682,
+   "awayTeamId": 676,
+   "kickoff": "2027-01-24T15:45:00Z"
+  },
+  {
+   "id": 558763,
+   "matchweek": 21,
+   "homeTeamId": 676,
+   "awayTeamId": 670,
+   "kickoff": "2027-01-29T19:00:00Z"
+  },
+  {
+   "id": 558762,
+   "matchweek": 21,
+   "homeTeamId": 6806,
+   "awayTeamId": 1912,
+   "kickoff": "2027-01-30T15:30:00Z"
+  },
+  {
+   "id": 558756,
+   "matchweek": 21,
+   "homeTeamId": 680,
+   "awayTeamId": 718,
+   "kickoff": "2027-01-30T17:45:00Z"
+  },
+  {
+   "id": 558761,
+   "matchweek": 21,
+   "homeTeamId": 672,
+   "awayTeamId": 674,
+   "kickoff": "2027-01-30T19:00:00Z"
+  },
+  {
+   "id": 558758,
+   "matchweek": 21,
+   "homeTeamId": 684,
+   "awayTeamId": 1920,
+   "kickoff": "2027-01-30T20:00:00Z"
+  },
+  {
+   "id": 558757,
+   "matchweek": 21,
+   "homeTeamId": 673,
+   "awayTeamId": 678,
+   "kickoff": "2027-01-31T11:15:00Z"
+  },
+  {
+   "id": 558759,
+   "matchweek": 21,
+   "homeTeamId": 666,
+   "awayTeamId": 1909,
+   "kickoff": "2027-01-31T13:30:00Z"
+  },
+  {
+   "id": 558760,
+   "matchweek": 21,
+   "homeTeamId": 682,
+   "awayTeamId": 675,
+   "kickoff": "2027-01-31T13:30:00Z"
+  },
+  {
+   "id": 558764,
+   "matchweek": 21,
+   "homeTeamId": 677,
+   "awayTeamId": 1915,
+   "kickoff": "2027-01-31T15:45:00Z"
+  },
+  {
+   "id": 558808,
+   "matchweek": 16,
+   "homeTeamId": 666,
+   "awayTeamId": 6806,
+   "kickoff": "2027-02-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558747,
+   "matchweek": 22,
+   "homeTeamId": 1912,
+   "awayTeamId": 673,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558748,
+   "matchweek": 22,
+   "homeTeamId": 1920,
+   "awayTeamId": 680,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558749,
+   "matchweek": 22,
+   "homeTeamId": 675,
+   "awayTeamId": 1915,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558750,
+   "matchweek": 22,
+   "homeTeamId": 1909,
+   "awayTeamId": 676,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558751,
+   "matchweek": 22,
+   "homeTeamId": 674,
+   "awayTeamId": 666,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558752,
+   "matchweek": 22,
+   "homeTeamId": 677,
+   "awayTeamId": 682,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558753,
+   "matchweek": 22,
+   "homeTeamId": 718,
+   "awayTeamId": 684,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558754,
+   "matchweek": 22,
+   "homeTeamId": 670,
+   "awayTeamId": 678,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558755,
+   "matchweek": 22,
+   "homeTeamId": 672,
+   "awayTeamId": 6806,
+   "kickoff": "2027-02-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558738,
+   "matchweek": 23,
+   "homeTeamId": 1915,
+   "awayTeamId": 6806,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558739,
+   "matchweek": 23,
+   "homeTeamId": 675,
+   "awayTeamId": 1912,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558740,
+   "matchweek": 23,
+   "homeTeamId": 676,
+   "awayTeamId": 680,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558741,
+   "matchweek": 23,
+   "homeTeamId": 682,
+   "awayTeamId": 1920,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558742,
+   "matchweek": 23,
+   "homeTeamId": 673,
+   "awayTeamId": 672,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558743,
+   "matchweek": 23,
+   "homeTeamId": 684,
+   "awayTeamId": 677,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558744,
+   "matchweek": 23,
+   "homeTeamId": 678,
+   "awayTeamId": 718,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558745,
+   "matchweek": 23,
+   "homeTeamId": 674,
+   "awayTeamId": 1909,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558746,
+   "matchweek": 23,
+   "homeTeamId": 666,
+   "awayTeamId": 670,
+   "kickoff": "2027-02-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558729,
+   "matchweek": 24,
+   "homeTeamId": 6806,
+   "awayTeamId": 674,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558730,
+   "matchweek": 24,
+   "homeTeamId": 1915,
+   "awayTeamId": 682,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558731,
+   "matchweek": 24,
+   "homeTeamId": 1909,
+   "awayTeamId": 684,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558732,
+   "matchweek": 24,
+   "homeTeamId": 670,
+   "awayTeamId": 673,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558733,
+   "matchweek": 24,
+   "homeTeamId": 680,
+   "awayTeamId": 666,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558734,
+   "matchweek": 24,
+   "homeTeamId": 678,
+   "awayTeamId": 675,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558735,
+   "matchweek": 24,
+   "homeTeamId": 672,
+   "awayTeamId": 677,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558736,
+   "matchweek": 24,
+   "homeTeamId": 1920,
+   "awayTeamId": 676,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558737,
+   "matchweek": 24,
+   "homeTeamId": 1912,
+   "awayTeamId": 718,
+   "kickoff": "2027-02-27T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558720,
+   "matchweek": 25,
+   "homeTeamId": 666,
+   "awayTeamId": 682,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558721,
+   "matchweek": 25,
+   "homeTeamId": 675,
+   "awayTeamId": 673,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558722,
+   "matchweek": 25,
+   "homeTeamId": 718,
+   "awayTeamId": 670,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558723,
+   "matchweek": 25,
+   "homeTeamId": 674,
+   "awayTeamId": 676,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558724,
+   "matchweek": 25,
+   "homeTeamId": 680,
+   "awayTeamId": 678,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558725,
+   "matchweek": 25,
+   "homeTeamId": 677,
+   "awayTeamId": 1912,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558726,
+   "matchweek": 25,
+   "homeTeamId": 684,
+   "awayTeamId": 672,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558727,
+   "matchweek": 25,
+   "homeTeamId": 1920,
+   "awayTeamId": 1915,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558728,
+   "matchweek": 25,
+   "homeTeamId": 6806,
+   "awayTeamId": 1909,
+   "kickoff": "2027-03-06T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558711,
+   "matchweek": 26,
+   "homeTeamId": 678,
+   "awayTeamId": 684,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558712,
+   "matchweek": 26,
+   "homeTeamId": 1909,
+   "awayTeamId": 680,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558713,
+   "matchweek": 26,
+   "homeTeamId": 670,
+   "awayTeamId": 1915,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558714,
+   "matchweek": 26,
+   "homeTeamId": 718,
+   "awayTeamId": 675,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558715,
+   "matchweek": 26,
+   "homeTeamId": 1912,
+   "awayTeamId": 674,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558716,
+   "matchweek": 26,
+   "homeTeamId": 682,
+   "awayTeamId": 6806,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558717,
+   "matchweek": 26,
+   "homeTeamId": 672,
+   "awayTeamId": 666,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558718,
+   "matchweek": 26,
+   "homeTeamId": 676,
+   "awayTeamId": 677,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558719,
+   "matchweek": 26,
+   "homeTeamId": 673,
+   "awayTeamId": 1920,
+   "kickoff": "2027-03-13T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558702,
+   "matchweek": 27,
+   "homeTeamId": 676,
+   "awayTeamId": 6806,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558703,
+   "matchweek": 27,
+   "homeTeamId": 675,
+   "awayTeamId": 1909,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558704,
+   "matchweek": 27,
+   "homeTeamId": 682,
+   "awayTeamId": 670,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558705,
+   "matchweek": 27,
+   "homeTeamId": 684,
+   "awayTeamId": 673,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558706,
+   "matchweek": 27,
+   "homeTeamId": 1912,
+   "awayTeamId": 1920,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558707,
+   "matchweek": 27,
+   "homeTeamId": 1915,
+   "awayTeamId": 678,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558708,
+   "matchweek": 27,
+   "homeTeamId": 677,
+   "awayTeamId": 674,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558709,
+   "matchweek": 27,
+   "homeTeamId": 680,
+   "awayTeamId": 672,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558710,
+   "matchweek": 27,
+   "homeTeamId": 666,
+   "awayTeamId": 718,
+   "kickoff": "2027-03-20T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558693,
+   "matchweek": 28,
+   "homeTeamId": 674,
+   "awayTeamId": 682,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558694,
+   "matchweek": 28,
+   "homeTeamId": 1920,
+   "awayTeamId": 675,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558695,
+   "matchweek": 28,
+   "homeTeamId": 673,
+   "awayTeamId": 677,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558696,
+   "matchweek": 28,
+   "homeTeamId": 678,
+   "awayTeamId": 666,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558697,
+   "matchweek": 28,
+   "homeTeamId": 1909,
+   "awayTeamId": 1912,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558698,
+   "matchweek": 28,
+   "homeTeamId": 670,
+   "awayTeamId": 684,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558699,
+   "matchweek": 28,
+   "homeTeamId": 6806,
+   "awayTeamId": 680,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558700,
+   "matchweek": 28,
+   "homeTeamId": 718,
+   "awayTeamId": 1915,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558701,
+   "matchweek": 28,
+   "homeTeamId": 672,
+   "awayTeamId": 676,
+   "kickoff": "2027-04-03T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558684,
+   "matchweek": 29,
+   "homeTeamId": 680,
+   "awayTeamId": 675,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558685,
+   "matchweek": 29,
+   "homeTeamId": 1909,
+   "awayTeamId": 1920,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558686,
+   "matchweek": 29,
+   "homeTeamId": 1915,
+   "awayTeamId": 673,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558687,
+   "matchweek": 29,
+   "homeTeamId": 677,
+   "awayTeamId": 670,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558688,
+   "matchweek": 29,
+   "homeTeamId": 672,
+   "awayTeamId": 682,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558689,
+   "matchweek": 29,
+   "homeTeamId": 676,
+   "awayTeamId": 678,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558690,
+   "matchweek": 29,
+   "homeTeamId": 1912,
+   "awayTeamId": 666,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558691,
+   "matchweek": 29,
+   "homeTeamId": 684,
+   "awayTeamId": 674,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558692,
+   "matchweek": 29,
+   "homeTeamId": 6806,
+   "awayTeamId": 718,
+   "kickoff": "2027-04-10T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558675,
+   "matchweek": 30,
+   "homeTeamId": 666,
+   "awayTeamId": 1915,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558676,
+   "matchweek": 30,
+   "homeTeamId": 673,
+   "awayTeamId": 680,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558677,
+   "matchweek": 30,
+   "homeTeamId": 670,
+   "awayTeamId": 672,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558678,
+   "matchweek": 30,
+   "homeTeamId": 718,
+   "awayTeamId": 676,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558679,
+   "matchweek": 30,
+   "homeTeamId": 682,
+   "awayTeamId": 1909,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558680,
+   "matchweek": 30,
+   "homeTeamId": 684,
+   "awayTeamId": 1912,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558681,
+   "matchweek": 30,
+   "homeTeamId": 1920,
+   "awayTeamId": 677,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558682,
+   "matchweek": 30,
+   "homeTeamId": 675,
+   "awayTeamId": 6806,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558683,
+   "matchweek": 30,
+   "homeTeamId": 674,
+   "awayTeamId": 678,
+   "kickoff": "2027-04-24T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558666,
+   "matchweek": 31,
+   "homeTeamId": 718,
+   "awayTeamId": 674,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558667,
+   "matchweek": 31,
+   "homeTeamId": 673,
+   "awayTeamId": 676,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558668,
+   "matchweek": 31,
+   "homeTeamId": 6806,
+   "awayTeamId": 666,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558669,
+   "matchweek": 31,
+   "homeTeamId": 677,
+   "awayTeamId": 680,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558670,
+   "matchweek": 31,
+   "homeTeamId": 1915,
+   "awayTeamId": 684,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558671,
+   "matchweek": 31,
+   "homeTeamId": 678,
+   "awayTeamId": 1920,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558672,
+   "matchweek": 31,
+   "homeTeamId": 670,
+   "awayTeamId": 1909,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558673,
+   "matchweek": 31,
+   "homeTeamId": 1912,
+   "awayTeamId": 682,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558674,
+   "matchweek": 31,
+   "homeTeamId": 675,
+   "awayTeamId": 672,
+   "kickoff": "2027-05-01T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558657,
+   "matchweek": 32,
+   "homeTeamId": 674,
+   "awayTeamId": 670,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558658,
+   "matchweek": 32,
+   "homeTeamId": 676,
+   "awayTeamId": 675,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558659,
+   "matchweek": 32,
+   "homeTeamId": 666,
+   "awayTeamId": 677,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558660,
+   "matchweek": 32,
+   "homeTeamId": 684,
+   "awayTeamId": 6806,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558661,
+   "matchweek": 32,
+   "homeTeamId": 1920,
+   "awayTeamId": 718,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558662,
+   "matchweek": 32,
+   "homeTeamId": 1909,
+   "awayTeamId": 673,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558663,
+   "matchweek": 32,
+   "homeTeamId": 682,
+   "awayTeamId": 678,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558664,
+   "matchweek": 32,
+   "homeTeamId": 680,
+   "awayTeamId": 1915,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558665,
+   "matchweek": 32,
+   "homeTeamId": 672,
+   "awayTeamId": 1912,
+   "kickoff": "2027-05-08T00:00:00Z",
+   "status": "tbc"
+  },
+  {
+   "id": 558648,
+   "matchweek": 33,
+   "homeTeamId": 682,
+   "awayTeamId": 684,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558649,
+   "matchweek": 33,
+   "homeTeamId": 718,
+   "awayTeamId": 673,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558650,
+   "matchweek": 33,
+   "homeTeamId": 666,
+   "awayTeamId": 675,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558651,
+   "matchweek": 33,
+   "homeTeamId": 678,
+   "awayTeamId": 6806,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558652,
+   "matchweek": 33,
+   "homeTeamId": 670,
+   "awayTeamId": 680,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558653,
+   "matchweek": 33,
+   "homeTeamId": 674,
+   "awayTeamId": 1915,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558654,
+   "matchweek": 33,
+   "homeTeamId": 1920,
+   "awayTeamId": 672,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558655,
+   "matchweek": 33,
+   "homeTeamId": 676,
+   "awayTeamId": 1912,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558656,
+   "matchweek": 33,
+   "homeTeamId": 677,
+   "awayTeamId": 1909,
+   "kickoff": "2027-05-16T12:30:00Z"
+  },
+  {
+   "id": 558639,
+   "matchweek": 34,
+   "homeTeamId": 1915,
+   "awayTeamId": 676,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558640,
+   "matchweek": 34,
+   "homeTeamId": 673,
+   "awayTeamId": 674,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558641,
+   "matchweek": 34,
+   "homeTeamId": 6806,
+   "awayTeamId": 1920,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558642,
+   "matchweek": 34,
+   "homeTeamId": 1909,
+   "awayTeamId": 678,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558643,
+   "matchweek": 34,
+   "homeTeamId": 684,
+   "awayTeamId": 666,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558644,
+   "matchweek": 34,
+   "homeTeamId": 675,
+   "awayTeamId": 677,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558645,
+   "matchweek": 34,
+   "homeTeamId": 680,
+   "awayTeamId": 682,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558646,
+   "matchweek": 34,
+   "homeTeamId": 1912,
+   "awayTeamId": 670,
+   "kickoff": "2027-05-23T12:30:00Z"
+  },
+  {
+   "id": 558647,
+   "matchweek": 34,
+   "homeTeamId": 672,
+   "awayTeamId": 718,
+   "kickoff": "2027-05-23T12:30:00Z"
+  }
+ ],
+ "ratings": {
+  "teams": {
+   "666": 0.485539811201276,
+   "670": -0.39946248826779823,
+   "672": -0.7370200563313414,
+   "673": 0.1815456672340515,
+   "674": 0.8050006360474247,
+   "675": 0.7507158538636635,
+   "676": 0.08378267125402333,
+   "677": 0.0443730187720897,
+   "678": 0.6153564995956604,
+   "680": -0.29111290048071886,
+   "682": 0.45400913034584306,
+   "684": -0.3483466681254738,
+   "718": -0.021971922949953846,
+   "1909": -0.5406202509987147,
+   "1912": -0.2001417949261985,
+   "1915": -0.029791559162861306,
+   "1920": -0.49531768957908123,
+   "6806": -0.35910477858201484
+  },
+  "oddsFetchedAt": "2026-10-23T21:20:36.650Z"
+ }
+}
