@@ -24,7 +24,8 @@ export type StandingsResponse = {
 
 // One League's entry in config/leagues.json, hand-edited.
 export type LeagueConfig = {
-  league: string // football-data.org's competition code, which also names the League in links and data, e.g. "PL"
+  league: string // names the League in links and data, e.g. "PL"; also football-data.org's competition code unless competition says otherwise
+  competition?: string // football-data.org's competition code, when it isn't the League's own, e.g. "PD" for LaLiga's "LL"
   name: string // as fans call it, for the League tabs and header, e.g. "LaLiga" where football-data.org says "Primera Division"
   season: number
   championsLeaguePlaces: number

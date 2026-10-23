@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import matches from '../test/recorded/PL/matches.json'
 import standings from '../test/recorded/PL/standings.json'
-import pdMatches from '../test/recorded/PD/matches.json'
-import pdStandings from '../test/recorded/PD/standings.json'
+import llMatches from '../test/recorded/LL/matches.json'
+import llStandings from '../test/recorded/LL/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
@@ -271,8 +271,8 @@ describe('update Ratings', () => {
 })
 
 // LaLiga's entry as committed, but with no Deductions, which only the recorded standings can justify.
-const LALIGA = { ...(leagues as LeagueConfig[]).find((l) => l.league === 'PD')!, deductions: [] }
-const runLaLiga = (odds?: OddsResponse) => update({ matches: pdMatches, standings: pdStandings, config: LALIGA, now, odds }).season
+const LALIGA = { ...(leagues as LeagueConfig[]).find((l) => l.league === 'LL')!, deductions: [] }
+const runLaLiga = (odds?: OddsResponse) => update({ matches: llMatches, standings: llStandings, config: LALIGA, now, odds }).season
 // The recorded teams, named as The Odds API named them on 2026-10-22.
 const LALIGA_TEAMS = Object.entries({
   81: 'Barcelona', 78: 'Atlético Madrid', 86: 'Real Madrid', 90: 'Real Betis', 92: 'Real Sociedad', 559: 'Sevilla', 263: 'Alavés',
@@ -282,7 +282,7 @@ const LALIGA_TEAMS = Object.entries({
 
 describe('update LaLiga', () => {
   it('publishes LaLiga’s config, passing the standings guard', () => {
-    expect(runLaLiga()).toMatchObject({ league: 'PD', leagueName: 'LaLiga', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'headToHeadFirst' })
+    expect(runLaLiga()).toMatchObject({ league: 'LL', leagueName: 'LaLiga', season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks: 'headToHeadFirst' })
   })
 
   it('publishes all 20 teams, and its Results and Fixtures', () => {

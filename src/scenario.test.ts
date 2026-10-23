@@ -48,13 +48,13 @@ describe('scenario link', () => {
 })
 
 describe('which League a link opens', () => {
-  const leagues = ['PL', 'PD', 'BL1']
-  const laLiga = { league: 'PD', season: 2026, fixtures: [{ id: 21 }], teams: [{ id: 86 }] }
+  const leagues = ['PL', 'LL', 'BL1']
+  const laLiga = { league: 'LL', season: 2026, fixtures: [{ id: 21 }], teams: [{ id: 86 }] }
 
   it('opens a LaLiga link on LaLiga, with its Locks and My team', () => {
-    expect(leagueOf('PD2026:21a:86', leagues)).toBe('PD')
-    expect(decode(laLiga, 'PD2026:21a:86')).toEqual({ locks: { 21: 'away' }, myTeam: 86 })
-    expect(decode(season, 'PD2026:21a:86')).toEqual({ locks: {} })
+    expect(leagueOf('LL2026:21a:86', leagues)).toBe('LL')
+    expect(decode(laLiga, 'LL2026:21a:86')).toEqual({ locks: { 21: 'away' }, myTeam: 86 })
+    expect(decode(season, 'LL2026:21a:86')).toEqual({ locks: {} })
   })
 
   it('opens a pre-v2 Premier League link on the Premier League', () => {
@@ -64,14 +64,14 @@ describe('which League a link opens', () => {
 
   it('reads a League code with a digit in it, and a percent-encoded link', () => {
     expect(leagueOf('BL12026:11h', leagues)).toBe('BL1')
-    expect(leagueOf('PD2026%3A21a', leagues)).toBe('PD')
+    expect(leagueOf('LL2026%3A21a', leagues)).toBe('LL')
   })
 
   it('opens a link from an old season on its League', () => {
-    expect(leagueOf('PD2025:21a', leagues)).toBe('PD')
+    expect(leagueOf('LL2025:21a', leagues)).toBe('LL')
   })
 
   it('names no League for an unknown League, a malformed link or no link', () => {
-    for (const hash of ['SA2026:11h', 'PD:21a', 'PD26:21a', 'garbage', ':::', '%E0%A4%A', '']) expect(leagueOf(hash, leagues)).toBeUndefined()
+    for (const hash of ['SA2026:11h', 'LL:21a', 'LL26:21a', 'garbage', ':::', '%E0%A4%A', '']) expect(leagueOf(hash, leagues)).toBeUndefined()
   })
 })

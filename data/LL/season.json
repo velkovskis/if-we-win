@@ -1,5 +1,5 @@
 {
- "league": "PD",
+ "league": "LL",
  "season": 2026,
  "championsLeaguePlaces": 4,
  "relegationPlaces": 3,
@@ -72,7 +72,7 @@
   },
   {
    "id": 77,
-   "name": "Athletic",
+   "name": "Athletic Bilbao",
    "crest": "https://crests.football-data.org/77.png"
   },
   {

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import plMatches from '../test/recorded/PL/matches.json'
 import plStandings from '../test/recorded/PL/standings.json'
-import pdMatches from '../test/recorded/PD/matches.json'
-import pdStandings from '../test/recorded/PD/standings.json'
+import llMatches from '../test/recorded/LL/matches.json'
+import llStandings from '../test/recorded/LL/standings.json'
 import { table, type TieBreaks } from './table.ts'
 import { update, type MatchesResponse, type Result } from './update.ts'
 
@@ -107,7 +107,7 @@ describe('table', () => {
   // LaLiga's has teams level on points that haven't yet played each other home and away, ranked by goal difference.
   it.each<[string, TieBreaks, MatchesResponse, typeof plStandings]>([
     ['PL', 'premierLeague', plMatches, plStandings],
-    ['PD', 'headToHeadFirst', pdMatches, pdStandings],
+    ['LL', 'headToHeadFirst', llMatches, llStandings],
   ])('matches the official standings for the recorded %s season', (league, tieBreaks, matches, standings) => {
     const config = { league, name: league, season: 2026, championsLeaguePlaces: 4, relegationPlaces: 3, tieBreaks, oddsSportKey: '', oddsAliases: {}, firstSnapshot: '2026-10-27', deductions: [] }
     const season = update({ matches, standings, config, now: new Date('2026-10-22T20:00:00Z') }).season

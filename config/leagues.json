@@ -9,14 +9,14 @@
   "oddsSportKey": "soccer_epl",
   "oddsAliases": {},
   "teamNames": {
-   "351": "Nott'm Forest",
    "397": "Brighton"
   },
   "firstSnapshot": "2026-10-27",
   "deductions": []
  },
  {
-  "league": "PD",
+  "league": "LL",
+  "competition": "PD",
   "name": "LaLiga",
   "season": 2026,
   "championsLeaguePlaces": 4,
@@ -36,6 +36,7 @@
    "Real Sociedad": "Real Sociedad de Fútbol"
   },
   "teamNames": {
+   "77": "Athletic Bilbao",
    "78": "Atlético Madrid",
    "81": "Barcelona",
    "559": "Sevilla",

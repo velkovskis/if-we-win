@@ -21,7 +21,7 @@ let lastRequest = 0
 async function get(config: LeagueConfig, resource: string) {
   await sleep(Math.max(0, lastRequest + 6_500 - Date.now()))
   lastRequest = Date.now()
-  const url = `https://api.football-data.org/v4/competitions/${config.league}/${resource}?season=${config.season}`
+  const url = `https://api.football-data.org/v4/competitions/${config.competition ?? config.league}/${resource}?season=${config.season}`
   const res = await fetch(url, { headers: { 'X-Auth-Token': key! } })
   if (!res.ok) throw new Error(`${url}: ${res.status} ${await res.text()}`)
   return res.json()
