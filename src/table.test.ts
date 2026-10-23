@@ -142,8 +142,8 @@ describe('table', () => {
     const rows = table([1, 2, 3, 4].map(team), [
       result(1, 2, 1, 1), // level in every head-to-head criterion
       result(2, 1, 1, 1),
-      result(3, 2, 1, 2), // 2: 4 pts, +1, 3 scored, 3 away
-      result(1, 4, 2, 1), // 1: 4 pts, +1, 3 scored, 1 away
+      result(3, 2, 1, 2), // 2: 5 pts, +1, 4 scored, 3 away
+      result(1, 4, 2, 1), // 1: 5 pts, +1, 4 scored, 1 away
     ], [], 'bundesliga')
     expect(rows.map((r) => r.team.id).slice(0, 2)).toEqual([2, 1])
   })

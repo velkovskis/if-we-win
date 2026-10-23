@@ -270,7 +270,7 @@
       <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm bg-cl"></span>Champions League places</li>
       <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm bg-rel"></span>Relegation</li>
       {#if season.relegationPlayOffPlace}
-        <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm border-[1.5px] border-rel"></span>Relegation play-off</li>
+        <li class="flex items-center gap-1.5"><span class="h-3 w-1.5 rounded-sm border-[1.5px] border-rel"></span>Relegation play-off place</li>
       {/if}
     </ul>
   </div>
