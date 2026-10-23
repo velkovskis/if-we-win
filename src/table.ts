@@ -74,8 +74,9 @@ type Meeting<T> = { home: T; away: T; homeGoals: number; awayGoals: number }
 // eredivisie (KNVB Reglement Wedstrijden Betaald Voetbal, juli 2026, art. 17 lid 1 and lid 4a): points, fewest matches
 // played (the most "verliespunten", points dropped, ranks lower; it only matters during the season), goal difference,
 // goals scored, then in the meetings so far between all the teams still level, head-to-head points, goal difference,
-// goals scored and away goals. During the season what is left goes by club name, as here; after it, by a deciding match,
-// which the Forecast's coin flip stands in for.
+// goals scored and away goals. During the season what is left goes by club name, as here.
+// ponytail: after the season what is left goes to a deciding match, which the Forecast's coin flip stands in for;
+// simulate it if a Title or Relegation Chance ever hinges on one, as for serieA.
 // Whatever the order, `fallback` settles what is left.
 export function rank<T extends Standing>(teams: T[], meetings: Meeting<T>[], tieBreaks: TieBreaks, fallback: (a: T, b: T) => number): T[] {
   const overall = (a: T, b: T) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor
@@ -138,8 +139,8 @@ function settle<T>(order: T[], compare: (a: T, b: T) => number, settleLevel: (le
 
 // ponytail: scans every meeting for each tie, about 1.7× the Forecast's run time under headToHeadFirst (ties on points alone
 // are common); index the meetings by team if Forecasts get slow.
-// Each team's points, goal difference, goals scored and away goals in the meetings between the teams in `level` only, its away goals,
-// wins and away wins in all meetings, and how many meetings there were between the teams in `level`.
+// Each team's points, goal difference, goals scored and away goals in the meetings between the teams in `level` only,
+// its away goals, wins and away wins in all meetings, and how many meetings there were between the teams in `level`.
 function headToHead<T>(level: T[], meetings: Meeting<T>[]) {
   const stats = new Map(level.map((t) => [t, { points: 0, goalDifference: 0, goalsFor: 0, awayGoals: 0, allAwayGoals: 0, allWins: 0, allAwayWins: 0 }]))
   let played = 0

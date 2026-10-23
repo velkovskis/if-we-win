@@ -462,7 +462,6 @@ describe('update Ligue 1', () => {
   })
 })
 
-// Each due Snapshot runs two full Forecasts, so a test that takes two can pass 5 seconds on a busy machine.
 // The Eredivisie's entry as committed, but with no Deductions, which only the recorded standings can justify.
 const EREDIVISIE = { ...LEAGUES.find((l) => l.league === 'ED')!, deductions: [] }
 const runEredivisie = (odds?: OddsResponse) => update({ matches: edMatches, standings: edStandings, config: EREDIVISIE, now, odds }).season
@@ -508,6 +507,7 @@ describe('update Eredivisie', () => {
   })
 })
 
+// Each due Snapshot runs two full Forecasts, so a test that takes two can pass 5 seconds on a busy machine.
 describe('update Snapshot', { timeout: 30_000 }, () => {
   const snapshotAt = (iso: string, lastSnapshot?: string, ratings?: Ratings, league: Partial<LeagueConfig> = {}) =>
     update({ matches, standings, config: { ...config, ...league }, now: new Date(iso), lastSnapshot, ratings }).snapshot
