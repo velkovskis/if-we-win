@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-10-25T00:20:30.716Z",
+ "updatedAt": "2026-10-25T13:11:26.639Z",
  "teams": [
   {
    "id": 523,
@@ -22,19 +22,24 @@
    "crest": "https://crests.football-data.org/524.png"
   },
   {
-   "id": 1045,
-   "name": "Paris FC",
-   "crest": "https://crests.football-data.org/1045.png"
-  },
-  {
    "id": 521,
    "name": "Lille",
    "crest": "https://crests.football-data.org/521.png"
   },
   {
+   "id": 1045,
+   "name": "Paris FC",
+   "crest": "https://crests.football-data.org/1045.png"
+  },
+  {
    "id": 548,
    "name": "Monaco",
    "crest": "https://crests.football-data.org/548.png"
+  },
+  {
+   "id": 546,
+   "name": "Lens",
+   "crest": "https://crests.football-data.org/546.png"
   },
   {
    "id": 529,
@@ -50,11 +55,6 @@
    "id": 522,
    "name": "Nice",
    "crest": "https://crests.football-data.org/522.png"
-  },
-  {
-   "id": 546,
-   "name": "Lens",
-   "crest": "https://crests.football-data.org/546.png"
   },
   {
    "id": 516,
@@ -806,16 +806,20 @@
     "home": 1,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559652,
    "matchweek": 8,
    "homeTeamId": 546,
    "awayTeamId": 1045,
-   "kickoff": "2026-10-24T18:45:00Z"
-  },
+   "kickoff": "2026-10-24T18:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559650,
    "matchweek": 8,

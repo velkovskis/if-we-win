@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-10-25T00:20:30.716Z",
+ "updatedAt": "2026-10-25T13:11:26.639Z",
  "teams": [
   {
    "id": 65,
@@ -36,6 +36,11 @@
    "crest": "https://crests.football-data.org/64.png"
   },
   {
+   "id": 58,
+   "name": "Aston Villa",
+   "crest": "https://crests.football-data.org/58.png"
+  },
+  {
    "id": 402,
    "name": "Brentford",
    "crest": "https://crests.football-data.org/402.png"
@@ -61,14 +66,19 @@
    "crest": "https://crests.football-data.org/322.png"
   },
   {
+   "id": 73,
+   "name": "Tottenham",
+   "crest": "https://crests.football-data.org/73.png"
+  },
+  {
+   "id": 63,
+   "name": "Fulham",
+   "crest": "https://crests.football-data.org/63.png"
+  },
+  {
    "id": 67,
    "name": "Newcastle",
    "crest": "https://crests.football-data.org/67.png"
-  },
-  {
-   "id": 58,
-   "name": "Aston Villa",
-   "crest": "https://crests.football-data.org/58.png"
   },
   {
    "id": 66,
@@ -91,19 +101,9 @@
    "crest": "https://crests.football-data.org/351.png"
   },
   {
-   "id": 73,
-   "name": "Tottenham",
-   "crest": "https://crests.football-data.org/73.png"
-  },
-  {
    "id": 1076,
    "name": "Coventry City",
    "crest": "https://crests.football-data.org/1076.png"
-  },
-  {
-   "id": 63,
-   "name": "Fulham",
-   "crest": "https://crests.football-data.org/63.png"
   },
   {
    "id": 71,
@@ -892,37 +892,53 @@
     "home": 1,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560614,
    "matchweek": 8,
    "homeTeamId": 58,
    "awayTeamId": 65,
-   "kickoff": "2026-10-24T11:30:00Z"
+   "kickoff": "2026-10-24T11:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
   },
   {
    "id": 560616,
    "matchweek": 8,
    "homeTeamId": 57,
    "awayTeamId": 62,
-   "kickoff": "2026-10-24T14:00:00Z"
+   "kickoff": "2026-10-24T14:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 560618,
    "matchweek": 8,
    "homeTeamId": 1076,
    "awayTeamId": 63,
-   "kickoff": "2026-10-24T14:00:00Z"
+   "kickoff": "2026-10-24T14:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
   },
   {
    "id": 560617,
    "matchweek": 8,
    "homeTeamId": 61,
    "awayTeamId": 73,
-   "kickoff": "2026-10-24T16:30:00Z"
-  },
+   "kickoff": "2026-10-24T16:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560612,
    "matchweek": 8,
@@ -3061,27 +3077,27 @@
  ],
  "ratings": {
   "teams": {
-   "57": 0.6469626516527575,
-   "58": -0.22472686973635034,
-   "61": 0.2779838997424933,
-   "62": -0.05022350274563677,
-   "63": -0.29672453074850436,
-   "64": 0.22968102834797918,
-   "65": 0.6053991804024254,
-   "66": 0.04125095289456743,
-   "67": -0.055836151502082466,
-   "71": -0.3729555265976926,
-   "73": 0.08623072835025944,
-   "322": -0.4158473074620878,
-   "341": -0.05789417564699718,
-   "349": -0.22140402420443486,
-   "351": 0.25950211741134244,
-   "354": -0.3764883006505941,
-   "397": 0.1974503975331843,
-   "402": 0.37778066505730834,
-   "1044": 0.014396834185403017,
-   "1076": -0.6630263752439203
+   "57": 0.5920603251372476,
+   "58": 0.052773036450279344,
+   "61": 0.20277024806453806,
+   "62": -0.1543244146802175,
+   "63": -0.1748902045172453,
+   "64": 0.27274376823646695,
+   "65": 0.7388937335065519,
+   "66": 0.0399329926165625,
+   "67": -0.17269063070094068,
+   "71": -0.3177188623345918,
+   "73": 0.07379084859762106,
+   "322": -0.49370099628979447,
+   "341": -0.021218546572045787,
+   "349": -0.2769825189912517,
+   "351": 0.03704872310456385,
+   "354": -0.40054830366609223,
+   "397": 0.31951400788878437,
+   "402": 0.19992824271681217,
+   "1044": 0.06627598731095116,
+   "1076": -0.5813193964385184
   },
-  "oddsFetchedAt": "2026-10-24T07:17:57.036Z"
+  "oddsFetchedAt": "2026-10-25T13:11:26.639Z"
  }
 }
