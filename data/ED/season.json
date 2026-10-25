@@ -9,12 +9,17 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Eredivisie",
- "updatedAt": "2026-10-25T17:39:48.774Z",
+ "updatedAt": "2026-10-25T20:51:19.404Z",
  "teams": [
   {
    "id": 675,
    "name": "Feyenoord",
    "crest": "https://crests.football-data.org/675.png"
+  },
+  {
+   "id": 678,
+   "name": "Ajax",
+   "crest": "https://crests.football-data.org/678.png"
   },
   {
    "id": 674,
@@ -25,11 +30,6 @@
    "id": 682,
    "name": "AZ",
    "crest": "https://crests.football-data.org/682.png"
-  },
-  {
-   "id": 678,
-   "name": "Ajax",
-   "crest": "https://crests.football-data.org/678.png"
   },
   {
    "id": 1920,
@@ -1070,16 +1070,20 @@
     "home": 1,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558856,
    "matchweek": 10,
    "homeTeamId": 6806,
    "awayTeamId": 678,
-   "kickoff": "2026-10-25T15:45:00Z"
-  },
+   "kickoff": "2026-10-25T15:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558855,
    "matchweek": 10,

@@ -9,8 +9,13 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-10-25T17:39:48.774Z",
+ "updatedAt": "2026-10-25T20:51:19.404Z",
  "teams": [
+  {
+   "id": 529,
+   "name": "Rennes",
+   "crest": "https://crests.football-data.org/529.png"
+  },
   {
    "id": 521,
    "name": "Lille",
@@ -42,9 +47,9 @@
    "crest": "https://crests.football-data.org/546.png"
   },
   {
-   "id": 529,
-   "name": "Rennes",
-   "crest": "https://crests.football-data.org/529.png"
+   "id": 516,
+   "name": "Marseille",
+   "crest": "https://crests.football-data.org/516.png"
   },
   {
    "id": 525,
@@ -57,16 +62,6 @@
    "crest": "https://crests.football-data.org/522.png"
   },
   {
-   "id": 516,
-   "name": "Marseille",
-   "crest": "https://crests.football-data.org/516.png"
-  },
-  {
-   "id": 512,
-   "name": "Brest",
-   "crest": "https://crests.football-data.org/512.png"
-  },
-  {
    "id": 511,
    "name": "Toulouse",
    "crest": "https://crests.football-data.org/511.png"
@@ -77,9 +72,9 @@
    "crest": "https://crests.football-data.org/519.png"
   },
   {
-   "id": 576,
-   "name": "Strasbourg",
-   "crest": "https://crests.football-data.org/576.png"
+   "id": 512,
+   "name": "Brest",
+   "crest": "https://crests.football-data.org/512.png"
   },
   {
    "id": 532,
@@ -90,6 +85,11 @@
    "id": 535,
    "name": "Le Mans",
    "crest": "https://crests.football-data.org/535.png"
+  },
+  {
+   "id": 576,
+   "name": "Strasbourg",
+   "crest": "https://crests.football-data.org/576.png"
   },
   {
    "id": 531,
@@ -828,44 +828,64 @@
     "home": 1,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559649,
    "matchweek": 8,
    "homeTeamId": 516,
    "awayTeamId": 533,
-   "kickoff": "2026-10-25T16:15:00Z"
+   "kickoff": "2026-10-25T16:15:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 3
+   }
   },
   {
    "id": 559651,
    "matchweek": 8,
    "homeTeamId": 529,
    "awayTeamId": 576,
-   "kickoff": "2026-10-25T16:15:00Z"
+   "kickoff": "2026-10-25T16:15:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
   },
   {
    "id": 559653,
    "matchweek": 8,
    "homeTeamId": 532,
    "awayTeamId": 525,
-   "kickoff": "2026-10-25T16:15:00Z"
+   "kickoff": "2026-10-25T16:15:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
   },
   {
    "id": 559655,
    "matchweek": 8,
    "homeTeamId": 511,
    "awayTeamId": 531,
-   "kickoff": "2026-10-25T16:15:00Z"
+   "kickoff": "2026-10-25T16:15:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
   },
   {
    "id": 559656,
    "matchweek": 8,
    "homeTeamId": 519,
    "awayTeamId": 535,
-   "kickoff": "2026-10-25T16:15:00Z"
-  },
+   "kickoff": "2026-10-25T16:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559648,
    "matchweek": 8,
@@ -2654,25 +2674,25 @@
  ],
  "ratings": {
   "teams": {
-   "511": 0.028883225943943682,
-   "512": 0.21098208432547638,
-   "516": 0.2447900785899751,
-   "519": -0.3932389658095537,
-   "521": -0.06816688260517922,
-   "522": -0.1415103641496962,
-   "523": 0.4263282950416067,
-   "524": 1.116570874830092,
-   "525": 0.013283821810032946,
-   "529": 0.1400968684824569,
-   "531": -0.4406357711957641,
-   "532": -0.29747753745709793,
-   "533": -0.29433828126931183,
-   "535": -0.4863964626996997,
-   "546": -0.003733102832292168,
-   "548": 0.06571188524110523,
-   "576": -0.12659799443839093,
-   "1045": 0.006230136259455905
+   "511": 0.05258718034650529,
+   "512": -0.03254364895790571,
+   "516": 0.2895398639545228,
+   "519": -0.43173114749776853,
+   "521": 0.20916275216149804,
+   "522": 0.007718486976496272,
+   "523": 0.24234402439219768,
+   "524": 0.9928396444257613,
+   "525": -0.2051407392689856,
+   "529": 0.28778226546100594,
+   "531": -0.3936689856876877,
+   "532": -0.4978609123227216,
+   "533": -0.455841305052484,
+   "535": -0.43764614794506373,
+   "546": 0.27147359198267085,
+   "548": 0.15542921054272707,
+   "576": -0.16124632368750688,
+   "1045": 0.11167471416062348
   },
-  "oddsFetchedAt": "2026-10-24T20:50:14.170Z"
+  "oddsFetchedAt": "2026-10-25T20:51:19.404Z"
  }
 }
