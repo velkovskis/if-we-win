@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-10-25T13:11:26.639Z",
+ "updatedAt": "2026-10-25T17:39:48.774Z",
  "teams": [
   {
    "id": 65,
@@ -26,19 +26,14 @@
    "crest": "https://crests.football-data.org/397.png"
   },
   {
-   "id": 61,
-   "name": "Chelsea",
-   "crest": "https://crests.football-data.org/61.png"
-  },
-  {
    "id": 64,
    "name": "Liverpool",
    "crest": "https://crests.football-data.org/64.png"
   },
   {
-   "id": 58,
-   "name": "Aston Villa",
-   "crest": "https://crests.football-data.org/58.png"
+   "id": 61,
+   "name": "Chelsea",
+   "crest": "https://crests.football-data.org/61.png"
   },
   {
    "id": 402,
@@ -46,9 +41,24 @@
    "crest": "https://crests.football-data.org/402.png"
   },
   {
+   "id": 67,
+   "name": "Newcastle",
+   "crest": "https://crests.football-data.org/67.png"
+  },
+  {
+   "id": 58,
+   "name": "Aston Villa",
+   "crest": "https://crests.football-data.org/58.png"
+  },
+  {
    "id": 341,
    "name": "Leeds United",
    "crest": "https://crests.football-data.org/341.png"
+  },
+  {
+   "id": 322,
+   "name": "Hull City",
+   "crest": "https://crests.football-data.org/322.png"
   },
   {
    "id": 62,
@@ -61,9 +71,9 @@
    "crest": "https://crests.football-data.org/349.png"
   },
   {
-   "id": 322,
-   "name": "Hull City",
-   "crest": "https://crests.football-data.org/322.png"
+   "id": 1044,
+   "name": "Bournemouth",
+   "crest": "https://crests.football-data.org/bournemouth.png"
   },
   {
    "id": 73,
@@ -76,11 +86,6 @@
    "crest": "https://crests.football-data.org/63.png"
   },
   {
-   "id": 67,
-   "name": "Newcastle",
-   "crest": "https://crests.football-data.org/67.png"
-  },
-  {
    "id": 66,
    "name": "Man United",
    "crest": "https://crests.football-data.org/66.png"
@@ -89,11 +94,6 @@
    "id": 354,
    "name": "Crystal Palace",
    "crest": "https://crests.football-data.org/354.png"
-  },
-  {
-   "id": 1044,
-   "name": "Bournemouth",
-   "crest": "https://crests.football-data.org/bournemouth.png"
   },
   {
    "id": 351,
@@ -936,37 +936,53 @@
     "home": 0,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560612,
    "matchweek": 8,
    "homeTeamId": 64,
    "awayTeamId": 397,
-   "kickoff": "2026-10-25T14:00:00Z"
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 560613,
    "matchweek": 8,
    "homeTeamId": 354,
    "awayTeamId": 67,
-   "kickoff": "2026-10-25T14:00:00Z"
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 560615,
    "matchweek": 8,
    "homeTeamId": 66,
    "awayTeamId": 1044,
-   "kickoff": "2026-10-25T14:00:00Z"
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 3
+   }
   },
   {
    "id": 560619,
    "matchweek": 8,
    "homeTeamId": 322,
    "awayTeamId": 402,
-   "kickoff": "2026-10-25T14:00:00Z"
-  },
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560621,
    "matchweek": 8,

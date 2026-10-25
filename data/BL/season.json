@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Bundesliga",
- "updatedAt": "2026-10-25T13:11:26.639Z",
+ "updatedAt": "2026-10-25T17:39:48.774Z",
  "teams": [
   {
    "id": 4,
@@ -57,6 +57,11 @@
    "crest": "https://crests.football-data.org/16.png"
   },
   {
+   "id": 2,
+   "name": "Hoffenheim",
+   "crest": "https://crests.football-data.org/2.png"
+  },
+  {
    "id": 7,
    "name": "Hamburg",
    "crest": "https://crests.football-data.org/7.png"
@@ -75,11 +80,6 @@
    "id": 19,
    "name": "Frankfurt",
    "crest": "https://crests.football-data.org/19.png"
-  },
-  {
-   "id": 2,
-   "name": "Hoffenheim",
-   "crest": "https://crests.football-data.org/2.png"
   },
   {
    "id": 10,
@@ -773,16 +773,20 @@
     "home": 1,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 565835,
    "matchweek": 7,
    "homeTeamId": 2,
    "awayTeamId": 3,
-   "kickoff": "2026-10-25T14:30:00Z"
-  },
+   "kickoff": "2026-10-25T14:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 565836,
    "matchweek": 7,

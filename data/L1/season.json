@@ -9,8 +9,18 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-10-25T13:11:26.639Z",
+ "updatedAt": "2026-10-25T17:39:48.774Z",
  "teams": [
+  {
+   "id": 521,
+   "name": "Lille",
+   "crest": "https://crests.football-data.org/521.png"
+  },
+  {
+   "id": 548,
+   "name": "Monaco",
+   "crest": "https://crests.football-data.org/548.png"
+  },
   {
    "id": 523,
    "name": "Lyon",
@@ -22,19 +32,9 @@
    "crest": "https://crests.football-data.org/524.png"
   },
   {
-   "id": 521,
-   "name": "Lille",
-   "crest": "https://crests.football-data.org/521.png"
-  },
-  {
    "id": 1045,
    "name": "Paris FC",
    "crest": "https://crests.football-data.org/1045.png"
-  },
-  {
-   "id": 548,
-   "name": "Monaco",
-   "crest": "https://crests.football-data.org/548.png"
   },
   {
    "id": 546,
@@ -817,16 +817,20 @@
     "home": 2,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559650,
    "matchweek": 8,
    "homeTeamId": 548,
    "awayTeamId": 521,
-   "kickoff": "2026-10-25T14:00:00Z"
-  },
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559649,
    "matchweek": 8,

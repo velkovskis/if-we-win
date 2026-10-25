@@ -8,17 +8,17 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-25T13:11:26.639Z",
+ "updatedAt": "2026-10-25T17:39:48.774Z",
  "teams": [
-  {
-   "id": 110,
-   "name": "Lazio",
-   "crest": "https://crests.football-data.org/110.png"
-  },
   {
    "id": 108,
    "name": "Inter",
    "crest": "https://crests.football-data.org/108.png"
+  },
+  {
+   "id": 110,
+   "name": "Lazio",
+   "crest": "https://crests.football-data.org/110.png"
   },
   {
    "id": 100,
@@ -86,14 +86,14 @@
    "crest": "https://crests.football-data.org/5911.png"
   },
   {
-   "id": 115,
-   "name": "Udinese",
-   "crest": "https://crests.football-data.org/115.png"
-  },
-  {
    "id": 107,
    "name": "Genoa",
    "crest": "https://crests.football-data.org/107.png"
+  },
+  {
+   "id": 115,
+   "name": "Udinese",
+   "crest": "https://crests.football-data.org/115.png"
   },
   {
    "id": 99,
@@ -936,30 +936,42 @@
     "home": 2,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558563,
    "matchweek": 8,
    "homeTeamId": 108,
    "awayTeamId": 99,
-   "kickoff": "2026-10-25T11:30:00Z"
+   "kickoff": "2026-10-25T11:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
   },
   {
    "id": 558562,
    "matchweek": 8,
    "homeTeamId": 102,
    "awayTeamId": 470,
-   "kickoff": "2026-10-25T14:00:00Z"
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 4
+   }
   },
   {
    "id": 558568,
    "matchweek": 8,
    "homeTeamId": 107,
    "awayTeamId": 454,
-   "kickoff": "2026-10-25T14:00:00Z"
-  },
+   "kickoff": "2026-10-25T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558566,
    "matchweek": 8,
