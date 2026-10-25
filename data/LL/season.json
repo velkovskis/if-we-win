@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-10-25T00:20:30.716Z",
+ "updatedAt": "2026-10-25T07:35:42.325Z",
  "teams": [
   {
    "id": 81,
@@ -46,6 +46,11 @@
    "crest": "https://crests.football-data.org/263.png"
   },
   {
+   "id": 94,
+   "name": "Villarreal",
+   "crest": "https://crests.football-data.org/94.png"
+  },
+  {
    "id": 558,
    "name": "Celta",
    "crest": "https://crests.football-data.org/558.png"
@@ -61,14 +66,19 @@
    "crest": "https://crests.football-data.org/79.png"
   },
   {
+   "id": 5335,
+   "name": "Racing Santander",
+   "crest": "https://crests.football-data.org/5335.png"
+  },
+  {
    "id": 88,
    "name": "Levante",
    "crest": "https://crests.football-data.org/88.png"
   },
   {
-   "id": 94,
-   "name": "Villarreal",
-   "crest": "https://crests.football-data.org/94.png"
+   "id": 285,
+   "name": "Elche",
+   "crest": "https://crests.football-data.org/285.png"
   },
   {
    "id": 77,
@@ -76,29 +86,19 @@
    "crest": "https://crests.football-data.org/77.png"
   },
   {
-   "id": 87,
-   "name": "Rayo Vallecano",
-   "crest": "https://crests.football-data.org/87.png"
-  },
-  {
    "id": 82,
    "name": "Getafe",
    "crest": "https://crests.football-data.org/82.png"
   },
   {
+   "id": 87,
+   "name": "Rayo Vallecano",
+   "crest": "https://crests.football-data.org/87.png"
+  },
+  {
    "id": 80,
    "name": "Espanyol",
    "crest": "https://crests.football-data.org/80.png"
-  },
-  {
-   "id": 5335,
-   "name": "Racing Santander",
-   "crest": "https://crests.football-data.org/5335.png"
-  },
-  {
-   "id": 285,
-   "name": "Elche",
-   "crest": "https://crests.football-data.org/285.png"
   },
   {
    "id": 95,
@@ -1101,6 +1101,50 @@
     "home": 1,
     "away": 1
    }
+  },
+  {
+   "id": 564718,
+   "matchweek": 10,
+   "homeTeamId": 87,
+   "awayTeamId": 285,
+   "kickoff": "2026-10-24T12:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 3
+   }
+  },
+  {
+   "id": 564727,
+   "matchweek": 10,
+   "homeTeamId": 5335,
+   "awayTeamId": 80,
+   "kickoff": "2026-10-24T14:15:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  },
+  {
+   "id": 564722,
+   "matchweek": 10,
+   "homeTeamId": 95,
+   "awayTeamId": 94,
+   "kickoff": "2026-10-24T16:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  },
+  {
+   "id": 564724,
+   "matchweek": 10,
+   "homeTeamId": 78,
+   "awayTeamId": 560,
+   "kickoff": "2026-10-24T19:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
   }
  ],
  "fixtures": [
@@ -1111,34 +1155,6 @@
    "awayTeamId": 77,
    "kickoff": "2026-10-10T12:00:00Z",
    "status": "postponed"
-  },
-  {
-   "id": 564718,
-   "matchweek": 10,
-   "homeTeamId": 87,
-   "awayTeamId": 285,
-   "kickoff": "2026-10-24T12:00:00Z"
-  },
-  {
-   "id": 564727,
-   "matchweek": 10,
-   "homeTeamId": 5335,
-   "awayTeamId": 80,
-   "kickoff": "2026-10-24T14:15:00Z"
-  },
-  {
-   "id": 564722,
-   "matchweek": 10,
-   "homeTeamId": 95,
-   "awayTeamId": 94,
-   "kickoff": "2026-10-24T16:30:00Z"
-  },
-  {
-   "id": 564724,
-   "matchweek": 10,
-   "homeTeamId": 78,
-   "awayTeamId": 560,
-   "kickoff": "2026-10-24T19:00:00Z"
   },
   {
    "id": 564720,

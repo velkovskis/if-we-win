@@ -8,17 +8,17 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-24T20:50:14.170Z",
+ "updatedAt": "2026-10-25T07:35:42.325Z",
  "teams": [
-  {
-   "id": 108,
-   "name": "Inter",
-   "crest": "https://crests.football-data.org/108.png"
-  },
   {
    "id": 110,
    "name": "Lazio",
    "crest": "https://crests.football-data.org/110.png"
+  },
+  {
+   "id": 108,
+   "name": "Inter",
+   "crest": "https://crests.football-data.org/108.png"
   },
   {
    "id": 100,
@@ -26,14 +26,14 @@
    "crest": "https://crests.football-data.org/100.png"
   },
   {
-   "id": 98,
-   "name": "Milan",
-   "crest": "https://crests.football-data.org/98.png"
-  },
-  {
    "id": 7397,
    "name": "Como",
    "crest": "https://crests.football-data.org/7397.png"
+  },
+  {
+   "id": 98,
+   "name": "Milan",
+   "crest": "https://crests.football-data.org/98.png"
   },
   {
    "id": 470,
@@ -51,14 +51,14 @@
    "crest": "https://crests.football-data.org/104.png"
   },
   {
-   "id": 109,
-   "name": "Juventus",
-   "crest": "https://crests.football-data.org/109.png"
-  },
-  {
    "id": 113,
    "name": "Napoli",
    "crest": "https://crests.football-data.org/113.png"
+  },
+  {
+   "id": 109,
+   "name": "Juventus",
+   "crest": "https://crests.football-data.org/109.png"
   },
   {
    "id": 102,
@@ -71,6 +71,11 @@
    "crest": "https://crests.football-data.org/5890.png"
   },
   {
+   "id": 103,
+   "name": "Bologna",
+   "crest": "https://crests.football-data.org/103.png"
+  },
+  {
    "id": 471,
    "name": "Sassuolo",
    "crest": "https://crests.football-data.org/471.png"
@@ -79,11 +84,6 @@
    "id": 5911,
    "name": "Monza",
    "crest": "https://crests.football-data.org/5911.png"
-  },
-  {
-   "id": 103,
-   "name": "Bologna",
-   "crest": "https://crests.football-data.org/103.png"
   },
   {
    "id": 115,
@@ -892,37 +892,53 @@
     "home": 3,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558560,
    "matchweek": 8,
    "homeTeamId": 104,
    "awayTeamId": 103,
-   "kickoff": "2026-10-24T13:00:00Z"
+   "kickoff": "2026-10-24T13:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 558561,
    "matchweek": 8,
    "homeTeamId": 7397,
    "awayTeamId": 471,
-   "kickoff": "2026-10-24T13:00:00Z"
+   "kickoff": "2026-10-24T13:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 558564,
    "matchweek": 8,
    "homeTeamId": 113,
    "awayTeamId": 100,
-   "kickoff": "2026-10-24T16:00:00Z"
+   "kickoff": "2026-10-24T16:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 3
+   }
   },
   {
    "id": 558565,
    "matchweek": 8,
    "homeTeamId": 110,
    "awayTeamId": 112,
-   "kickoff": "2026-10-24T18:45:00Z"
-  },
+   "kickoff": "2026-10-24T18:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558563,
    "matchweek": 8,
