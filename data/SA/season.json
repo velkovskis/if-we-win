@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-25T20:51:19.404Z",
+ "updatedAt": "2026-10-26T00:23:37.425Z",
  "teams": [
   {
    "id": 108,
@@ -26,14 +26,14 @@
    "crest": "https://crests.football-data.org/100.png"
   },
   {
-   "id": 7397,
-   "name": "Como",
-   "crest": "https://crests.football-data.org/7397.png"
-  },
-  {
    "id": 98,
    "name": "Milan",
    "crest": "https://crests.football-data.org/98.png"
+  },
+  {
+   "id": 7397,
+   "name": "Como",
+   "crest": "https://crests.football-data.org/7397.png"
   },
   {
    "id": 470,
@@ -980,16 +980,20 @@
     "home": 0,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558559,
    "matchweek": 8,
    "homeTeamId": 115,
    "awayTeamId": 98,
-   "kickoff": "2026-10-25T19:45:00Z"
-  },
+   "kickoff": "2026-10-25T19:45:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558556,
    "matchweek": 9,
