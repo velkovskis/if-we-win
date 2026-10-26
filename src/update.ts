@@ -19,8 +19,12 @@ export type MatchesResponse = {
 }
 
 export type StandingsResponse = {
-  standings: { type: string; table: { team: ProviderTeam; points: number }[] }[]
+  standings: { type: string; table: { team: ProviderTeam; points: number; playedGames: number }[] }[]
 }
+
+// football-data.org's standings have counted matches its matches feed doesn't show as finished yet. Not a fault of ours:
+// the caller keeps the League's last good data and tries again next run.
+export class FeedsOutOfSync extends Error {}
 
 // One League's entry in config/leagues.json, hand-edited.
 export type LeagueConfig = {
@@ -109,10 +113,17 @@ export function update(input: {
   const { homeAdvantage = DEFAULT_SETTINGS.homeAdvantage, strengthNoise = DEFAULT_SETTINGS.strengthNoise } = input.config
   for (const d of deductions) if (!teams.some((t) => t.id === d.teamId)) throw new Error(`Deduction for unknown team ${d.teamId}`)
 
-  // Standings guard: a mismatch usually means a Deduction is missing from the League's config.
-  const official = new Map(total.table.map((r) => [r.team.id, r.points]))
-  const mismatches = table(teams, results, deductions, tieBreaks).flatMap((r) => {
-    const points = official.get(r.team.id)
+  // Standings guard. Games played disagreeing means the provider's two feeds are out of sync; points disagreeing on
+  // the same games played usually means a Deduction is missing from the League's config.
+  const official = new Map(total.table.map((r) => [r.team.id, r]))
+  const rows = table(teams, results, deductions, tieBreaks)
+  const behind = rows.flatMap((r) => {
+    const played = official.get(r.team.id)?.playedGames
+    return r.played === played ? [] : [`${r.team.name} (id ${r.team.id}): ${r.played} finished in the matches feed, ${played} played in the standings`]
+  })
+  if (behind.length) throw new FeedsOutOfSync(`The standings count matches the matches feed hasn't finished yet:\n${behind.join('\n')}`)
+  const mismatches = rows.flatMap((r) => {
+    const points = official.get(r.team.id)?.points
     return r.points === points ? [] : [`${r.team.name} (id ${r.team.id}): computed ${r.points}, official ${points}`]
   })
   if (mismatches.length) throw new Error(`Points disagree with the official standings:\n${mismatches.join('\n')}`)

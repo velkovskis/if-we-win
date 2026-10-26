@@ -1,11 +1,12 @@
 // The scheduled job's shell: for each League, fetch, call Update, write the Season and any Snapshot due.
 // Each League is on its own: if Update throws (e.g. the standings guard), that League writes nothing and keeps its last
-// good data, the rest carry on, and the script exits non-zero naming every League that failed.
+// good data, the rest carry on, and the script exits non-zero naming every League that failed. The provider's feeds
+// being out of sync only warns, until the League's data is over a day old and the site shows its stale-data banner.
 // Usage: FOOTBALL_DATA_API_KEY=... ODDS_API_KEY=... node scripts/update.ts
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { setTimeout as sleep } from 'node:timers/promises'
 import type { OddsResponse } from '../src/ratings.ts'
-import { update, type LeagueConfig, type Season } from '../src/update.ts'
+import { FeedsOutOfSync, update, type LeagueConfig, type Season } from '../src/update.ts'
 
 const key = process.env.FOOTBALL_DATA_API_KEY
 if (!key) throw new Error('FOOTBALL_DATA_API_KEY is not set')
@@ -75,11 +76,21 @@ async function updateLeague(config: LeagueConfig) {
   }
 }
 
+// Over a day old: the same line the site's stale-data banner draws.
+async function stale(config: LeagueConfig) {
+  const { updatedAt }: Partial<Season> = JSON.parse(await readFile(`data/${config.league}/season.json`, 'utf8').catch(() => '{}'))
+  return !updatedAt || now.getTime() - Date.parse(updatedAt) > 24 * 3_600_000
+}
+
 const failed: string[] = []
 for (const config of leagues) {
   try {
     await updateLeague(config)
   } catch (e) {
+    if (e instanceof FeedsOutOfSync && !(await stale(config))) {
+      console.warn(`::warning::${config.league} skipped, keeping its last good data: ${e.message}`)
+      continue
+    }
     // An ::error:: line also shows on the Actions run's summary.
     console.error(`::error::${config.league} failed, keeping its last good data: ${(e as Error).message}`)
     failed.push(config.league)

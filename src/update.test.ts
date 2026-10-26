@@ -14,7 +14,7 @@ import edStandings from '../test/recorded/ED/standings.json'
 import leagues from '../config/leagues.json'
 import { DEFAULT_SETTINGS, outcomeProbabilities } from './forecast.ts'
 import type { OddsResponse, Ratings } from './ratings.ts'
-import { update, type Deduction, type LeagueConfig, type MatchesResponse, type StandingsResponse } from './update.ts'
+import { FeedsOutOfSync, update, type Deduction, type LeagueConfig, type MatchesResponse, type StandingsResponse } from './update.ts'
 
 const config: LeagueConfig = {
   league: 'PL',
@@ -157,6 +157,18 @@ describe('update', () => {
 
   it('names every team that disagrees', () => {
     expect(() => run(matches, editPoints({ 65: 18, 57: 17 }))).toThrow(/Man City.*\n.*Arsenal \(id 57\): computed 18, official 17/)
+  })
+
+  it('fails as feeds out of sync when the standings count a match the matches feed hasn’t finished, naming both teams', () => {
+    const lagging = editMatch(FINISHED_ID, { status: 'TIMED', score: { fullTime: { home: null, away: null } } })
+    expect(() => run(lagging)).toThrow(FeedsOutOfSync)
+    expect(() => run(lagging)).toThrow(/Arsenal \(id 57\): 6 finished in the matches feed, 7 played in the standings\n.*Coventry/)
+  })
+
+  it('fails a missing Deduction as an ordinary error, not as feeds out of sync', () => {
+    const error = (() => { try { run(matches, editPoints({ 65: 18 })) } catch (e) { return e } })()
+    expect(error).toBeInstanceOf(Error)
+    expect(error).not.toBeInstanceOf(FeedsOutOfSync)
   })
 
   it('rejects a Deduction for a team not in the league', () => {
