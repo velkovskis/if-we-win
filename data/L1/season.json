@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-10-27T07:52:24.308Z",
+ "updatedAt": "2026-10-27T14:31:49.737Z",
  "teams": [
   {
    "id": 524,
@@ -905,32 +905,18 @@
    "kickoff": "2026-10-30T18:00:00Z"
   },
   {
+   "id": 559646,
+   "matchweek": 9,
+   "homeTeamId": 522,
+   "awayTeamId": 529,
+   "kickoff": "2026-10-30T18:00:00Z"
+  },
+  {
    "id": 559639,
    "matchweek": 9,
    "homeTeamId": 521,
    "awayTeamId": 546,
    "kickoff": "2026-10-30T20:05:00Z"
-  },
-  {
-   "id": 559646,
-   "matchweek": 9,
-   "homeTeamId": 522,
-   "awayTeamId": 529,
-   "kickoff": "2026-10-31T16:15:00Z"
-  },
-  {
-   "id": 559640,
-   "matchweek": 9,
-   "homeTeamId": 523,
-   "awayTeamId": 532,
-   "kickoff": "2026-10-31T19:45:00Z"
-  },
-  {
-   "id": 559641,
-   "matchweek": 9,
-   "homeTeamId": 525,
-   "awayTeamId": 512,
-   "kickoff": "2026-10-31T19:45:00Z"
   },
   {
    "id": 559643,
@@ -947,6 +933,13 @@
    "kickoff": "2026-11-01T14:00:00Z"
   },
   {
+   "id": 559640,
+   "matchweek": 9,
+   "homeTeamId": 523,
+   "awayTeamId": 532,
+   "kickoff": "2026-11-01T16:15:00Z"
+  },
+  {
    "id": 559642,
    "matchweek": 9,
    "homeTeamId": 1045,
@@ -959,6 +952,13 @@
    "homeTeamId": 516,
    "awayTeamId": 511,
    "kickoff": "2026-11-01T19:45:00Z"
+  },
+  {
+   "id": 559641,
+   "matchweek": 9,
+   "homeTeamId": 525,
+   "awayTeamId": 512,
+   "kickoff": "2026-11-02T19:45:00Z"
   },
   {
    "id": 559638,
