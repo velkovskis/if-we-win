@@ -1,0 +1,240 @@
+{
+ "date": "2026-10-27T07:52:24.308Z",
+ "ratings": {
+  "teams": {
+   "57": 0.663890535077106,
+   "58": -0.0059633481867400525,
+   "61": 0.25242421487895716,
+   "62": -0.12657985229198687,
+   "63": -0.15658707362074342,
+   "64": 0.316190459800793,
+   "65": 0.7849499976326859,
+   "66": -0.010882205703858632,
+   "67": -0.14579724936950925,
+   "71": -0.19594921564341297,
+   "73": 0.13298478993398008,
+   "322": -0.6577432415305672,
+   "341": -0.003436100903553018,
+   "349": -0.47140174596276174,
+   "351": -0.005604123353836653,
+   "354": -0.42851733410436277,
+   "397": 0.36789416711455075,
+   "402": 0.14814466582331146,
+   "1044": 0.06929230655421528,
+   "1076": -0.5248772716544177
+  },
+  "oddsFetchedAt": "2026-10-26T15:12:09.447Z"
+ },
+ "seed": 1,
+ "settings": {
+  "simulations": 20000,
+  "strengthNoise": 0.2,
+  "homeAdvantage": 0.2,
+  "championsLeaguePlaces": 4,
+  "relegationPlaces": 3
+ },
+ "baseline": {
+  "57": {
+   "title": 0.3799,
+   "championsLeague": 0.95755,
+   "relegation": 0
+  },
+  "58": {
+   "title": 0.00065,
+   "championsLeague": 0.0822,
+   "relegation": 0.0239
+  },
+  "61": {
+   "title": 0.0095,
+   "championsLeague": 0.3306,
+   "relegation": 0.00225
+  },
+  "62": {
+   "title": 0.0001,
+   "championsLeague": 0.0227,
+   "relegation": 0.08515
+  },
+  "63": {
+   "title": 0.00005,
+   "championsLeague": 0.0081,
+   "relegation": 0.17735
+  },
+  "64": {
+   "title": 0.02505,
+   "championsLeague": 0.51795,
+   "relegation": 0.00065
+  },
+  "65": {
+   "title": 0.5336,
+   "championsLeague": 0.9766,
+   "relegation": 0
+  },
+  "66": {
+   "title": 0.0002,
+   "championsLeague": 0.026,
+   "relegation": 0.08375
+  },
+  "67": {
+   "title": 0.00005,
+   "championsLeague": 0.0201,
+   "relegation": 0.09255
+  },
+  "71": {
+   "title": 0,
+   "championsLeague": 0.0064,
+   "relegation": 0.2338
+  },
+  "73": {
+   "title": 0.001,
+   "championsLeague": 0.08855,
+   "relegation": 0.0224
+  },
+  "322": {
+   "title": 0,
+   "championsLeague": 0.0003,
+   "relegation": 0.63845
+  },
+  "341": {
+   "title": 0.00085,
+   "championsLeague": 0.0731,
+   "relegation": 0.02825
+  },
+  "349": {
+   "title": 0.00005,
+   "championsLeague": 0.00145,
+   "relegation": 0.3791
+  },
+  "351": {
+   "title": 0,
+   "championsLeague": 0.01965,
+   "relegation": 0.09875
+  },
+  "354": {
+   "title": 0,
+   "championsLeague": 0.00065,
+   "relegation": 0.4774
+  },
+  "397": {
+   "title": 0.04615,
+   "championsLeague": 0.63615,
+   "relegation": 0.00015
+  },
+  "402": {
+   "title": 0.0022,
+   "championsLeague": 0.1501,
+   "relegation": 0.00945
+  },
+  "1044": {
+   "title": 0.00065,
+   "championsLeague": 0.08175,
+   "relegation": 0.02665
+  },
+  "1076": {
+   "title": 0,
+   "championsLeague": 0.0001,
+   "relegation": 0.62
+  }
+ },
+ "benchmark": {
+  "57": {
+   "title": 0.2159,
+   "championsLeague": 0.56455,
+   "relegation": 0.01265
+  },
+  "58": {
+   "title": 0.0325,
+   "championsLeague": 0.17565,
+   "relegation": 0.12635
+  },
+  "61": {
+   "title": 0.05155,
+   "championsLeague": 0.24335,
+   "relegation": 0.0863
+  },
+  "62": {
+   "title": 0.02795,
+   "championsLeague": 0.15265,
+   "relegation": 0.14445
+  },
+  "63": {
+   "title": 0.01705,
+   "championsLeague": 0.1121,
+   "relegation": 0.19755
+  },
+  "64": {
+   "title": 0.07565,
+   "championsLeague": 0.31115,
+   "relegation": 0.0555
+  },
+  "65": {
+   "title": 0.21865,
+   "championsLeague": 0.5645,
+   "relegation": 0.0125
+  },
+  "66": {
+   "title": 0.01375,
+   "championsLeague": 0.09145,
+   "relegation": 0.22655
+  },
+  "67": {
+   "title": 0.0343,
+   "championsLeague": 0.17825,
+   "relegation": 0.12795
+  },
+  "71": {
+   "title": 0.0072,
+   "championsLeague": 0.06195,
+   "relegation": 0.3146
+  },
+  "73": {
+   "title": 0.02215,
+   "championsLeague": 0.13265,
+   "relegation": 0.17545
+  },
+  "322": {
+   "title": 0.0283,
+   "championsLeague": 0.15415,
+   "relegation": 0.1425
+  },
+  "341": {
+   "title": 0.0345,
+   "championsLeague": 0.18545,
+   "relegation": 0.11815
+  },
+  "349": {
+   "title": 0.02565,
+   "championsLeague": 0.1483,
+   "relegation": 0.1516
+  },
+  "351": {
+   "title": 0.01045,
+   "championsLeague": 0.0778,
+   "relegation": 0.2631
+  },
+  "354": {
+   "title": 0.012,
+   "championsLeague": 0.0881,
+   "relegation": 0.2431
+  },
+  "397": {
+   "title": 0.10395,
+   "championsLeague": 0.3671,
+   "relegation": 0.0402
+  },
+  "402": {
+   "title": 0.0359,
+   "championsLeague": 0.18745,
+   "relegation": 0.1174
+  },
+  "1044": {
+   "title": 0.02305,
+   "championsLeague": 0.12945,
+   "relegation": 0.1695
+  },
+  "1076": {
+   "title": 0.00955,
+   "championsLeague": 0.07395,
+   "relegation": 0.2746
+  }
+ }
+}
