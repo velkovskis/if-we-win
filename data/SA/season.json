@@ -8,17 +8,17 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-28T16:38:43.825Z",
+ "updatedAt": "2026-10-28T22:35:30.971Z",
  "teams": [
-  {
-   "id": 110,
-   "name": "Lazio",
-   "crest": "https://crests.football-data.org/110.png"
-  },
   {
    "id": 108,
    "name": "Inter",
    "crest": "https://crests.football-data.org/108.png"
+  },
+  {
+   "id": 110,
+   "name": "Lazio",
+   "crest": "https://crests.football-data.org/110.png"
   },
   {
    "id": 100,
@@ -34,6 +34,11 @@
    "id": 98,
    "name": "Milan",
    "crest": "https://crests.football-data.org/98.png"
+  },
+  {
+   "id": 113,
+   "name": "Napoli",
+   "crest": "https://crests.football-data.org/113.png"
   },
   {
    "id": 470,
@@ -56,9 +61,9 @@
    "crest": "https://crests.football-data.org/104.png"
   },
   {
-   "id": 113,
-   "name": "Napoli",
-   "crest": "https://crests.football-data.org/113.png"
+   "id": 103,
+   "name": "Bologna",
+   "crest": "https://crests.football-data.org/103.png"
   },
   {
    "id": 102,
@@ -66,14 +71,14 @@
    "crest": "https://crests.football-data.org/102.png"
   },
   {
+   "id": 107,
+   "name": "Genoa",
+   "crest": "https://crests.football-data.org/107.png"
+  },
+  {
    "id": 5890,
    "name": "Lecce",
    "crest": "https://crests.football-data.org/5890.png"
-  },
-  {
-   "id": 103,
-   "name": "Bologna",
-   "crest": "https://crests.football-data.org/103.png"
   },
   {
    "id": 471,
@@ -86,24 +91,19 @@
    "crest": "https://crests.football-data.org/5911.png"
   },
   {
-   "id": 107,
-   "name": "Genoa",
-   "crest": "https://crests.football-data.org/107.png"
-  },
-  {
    "id": 115,
    "name": "Udinese",
    "crest": "https://crests.football-data.org/115.png"
   },
   {
-   "id": 99,
-   "name": "Fiorentina",
-   "crest": "https://crests.football-data.org/99.png"
-  },
-  {
    "id": 112,
    "name": "Parma",
    "crest": "https://crests.football-data.org/112.png"
+  },
+  {
+   "id": 99,
+   "name": "Fiorentina",
+   "crest": "https://crests.football-data.org/99.png"
   },
   {
    "id": 454,
@@ -1024,44 +1024,64 @@
     "home": 1,
     "away": 3
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558549,
    "matchweek": 9,
    "homeTeamId": 98,
    "awayTeamId": 103,
-   "kickoff": "2026-10-28T17:30:00Z"
+   "kickoff": "2026-10-28T17:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 4
+   }
   },
   {
    "id": 558550,
    "matchweek": 9,
    "homeTeamId": 454,
    "awayTeamId": 108,
-   "kickoff": "2026-10-28T17:30:00Z"
+   "kickoff": "2026-10-28T17:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 558553,
    "matchweek": 9,
    "homeTeamId": 112,
    "awayTeamId": 115,
-   "kickoff": "2026-10-28T17:30:00Z"
+   "kickoff": "2026-10-28T17:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
   },
   {
    "id": 558552,
    "matchweek": 9,
    "homeTeamId": 107,
    "awayTeamId": 109,
-   "kickoff": "2026-10-28T19:45:00Z"
+   "kickoff": "2026-10-28T19:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 558554,
    "matchweek": 9,
    "homeTeamId": 5911,
    "awayTeamId": 113,
-   "kickoff": "2026-10-28T19:45:00Z"
-  },
+   "kickoff": "2026-10-28T19:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 4
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558558,
    "matchweek": 9,
@@ -3299,27 +3319,27 @@
  ],
  "ratings": {
   "teams": {
-   "98": 0.33634583611800756,
-   "99": 0.03529896093047667,
-   "100": 0.5266357952964683,
-   "102": 0.03344769400642173,
-   "103": -0.08252068913200893,
-   "104": -0.34114283100751597,
-   "107": -0.24495267892735567,
-   "108": 0.8012034817227224,
-   "109": 0.5814158678130908,
-   "110": 0.27069817721634226,
-   "112": -0.6229599686370726,
-   "113": 0.30252546251281776,
-   "115": -0.37470270961523366,
-   "454": -0.4270122913183056,
-   "470": -0.05867586747843405,
-   "471": -0.22326156765705985,
-   "586": -0.02955636852906588,
-   "5890": -0.4491575074376975,
-   "5911": -0.4137619376317536,
-   "7397": 0.37382356918858306
+   "98": 0.3041611819295768,
+   "99": 0.02889409842431151,
+   "100": 0.5406808103399975,
+   "102": 0.05749474294686291,
+   "103": -0.07586156440812987,
+   "104": -0.3878300827708979,
+   "107": -0.19889015793330075,
+   "108": 0.8333881359111527,
+   "109": 0.4800465965425622,
+   "110": 0.3173854289797242,
+   "112": -0.5982082255028377,
+   "113": 0.4038947337833464,
+   "115": -0.38874772465876284,
+   "454": -0.4701478183841633,
+   "470": -0.062457401898590295,
+   "471": -0.2657853671912371,
+   "586": -0.044558461268952736,
+   "5890": -0.47620939908267595,
+   "5911": -0.4204210623556326,
+   "7397": 0.41695909625444083
   },
-  "oddsFetchedAt": "2026-10-27T20:42:42.717Z"
+  "oddsFetchedAt": "2026-10-28T22:35:30.971Z"
  }
 }
