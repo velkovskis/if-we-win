@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-29T05:48:48.493Z",
+ "updatedAt": "2026-10-29T19:38:42.798Z",
  "teams": [
   {
    "id": 108,
@@ -36,14 +36,14 @@
    "crest": "https://crests.football-data.org/98.png"
   },
   {
-   "id": 113,
-   "name": "Napoli",
-   "crest": "https://crests.football-data.org/113.png"
-  },
-  {
    "id": 470,
    "name": "Frosinone",
    "crest": "https://crests.football-data.org/470.png"
+  },
+  {
+   "id": 113,
+   "name": "Napoli",
+   "crest": "https://crests.football-data.org/113.png"
   },
   {
    "id": 109,
@@ -1079,16 +1079,20 @@
     "home": 1,
     "away": 4
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558558,
    "matchweek": 9,
    "homeTeamId": 470,
    "awayTeamId": 5890,
-   "kickoff": "2026-10-29T17:30:00Z"
-  },
+   "kickoff": "2026-10-29T17:30:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558551,
    "matchweek": 9,
