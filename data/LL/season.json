@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-10-30T05:49:35.722Z",
+ "updatedAt": "2026-10-30T19:22:36.823Z",
  "teams": [
   {
    "id": 81,
@@ -1204,14 +1204,6 @@
  ],
  "fixtures": [
   {
-   "id": 564698,
-   "matchweek": 8,
-   "homeTeamId": 87,
-   "awayTeamId": 77,
-   "kickoff": "2026-10-10T12:00:00Z",
-   "status": "postponed"
-  },
-  {
    "id": 564737,
    "matchweek": 11,
    "homeTeamId": 94,
@@ -1580,6 +1572,14 @@
    "awayTeamId": 88,
    "kickoff": "2026-12-06T00:00:00Z",
    "status": "tbc"
+  },
+  {
+   "id": 564698,
+   "matchweek": 8,
+   "homeTeamId": 87,
+   "awayTeamId": 77,
+   "kickoff": "2026-12-09T19:00:00Z",
+   "status": "postponed"
   },
   {
    "id": 564778,
