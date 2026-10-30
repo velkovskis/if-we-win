@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-10-30T19:22:36.823Z",
+ "updatedAt": "2026-10-30T23:46:54.464Z",
  "teams": [
   {
    "id": 524,
@@ -17,14 +17,14 @@
    "crest": "https://crests.football-data.org/524.png"
   },
   {
-   "id": 529,
-   "name": "Rennes",
-   "crest": "https://crests.football-data.org/529.png"
-  },
-  {
    "id": 521,
    "name": "Lille",
    "crest": "https://crests.football-data.org/521.png"
+  },
+  {
+   "id": 529,
+   "name": "Rennes",
+   "crest": "https://crests.football-data.org/529.png"
   },
   {
    "id": 548,
@@ -42,6 +42,11 @@
    "crest": "https://crests.football-data.org/1045.png"
   },
   {
+   "id": 522,
+   "name": "Nice",
+   "crest": "https://crests.football-data.org/522.png"
+  },
+  {
    "id": 546,
    "name": "Lens",
    "crest": "https://crests.football-data.org/546.png"
@@ -55,11 +60,6 @@
    "id": 525,
    "name": "Lorient",
    "crest": "https://crests.football-data.org/525.png"
-  },
-  {
-   "id": 522,
-   "name": "Nice",
-   "crest": "https://crests.football-data.org/522.png"
   },
   {
    "id": 511,
@@ -894,30 +894,42 @@
     "home": 2,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559644,
    "matchweek": 9,
    "homeTeamId": 533,
    "awayTeamId": 524,
-   "kickoff": "2026-10-30T18:00:00Z"
+   "kickoff": "2026-10-30T18:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 5
+   }
   },
   {
    "id": 559646,
    "matchweek": 9,
    "homeTeamId": 522,
    "awayTeamId": 529,
-   "kickoff": "2026-10-30T18:00:00Z"
+   "kickoff": "2026-10-30T18:00:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 2
+   }
   },
   {
    "id": 559639,
    "matchweek": 9,
    "homeTeamId": 521,
    "awayTeamId": 546,
-   "kickoff": "2026-10-30T20:05:00Z"
-  },
+   "kickoff": "2026-10-30T20:05:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559643,
    "matchweek": 9,

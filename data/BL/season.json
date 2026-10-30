@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Bundesliga",
- "updatedAt": "2026-10-30T19:22:36.823Z",
+ "updatedAt": "2026-10-30T23:46:54.464Z",
  "teams": [
   {
    "id": 5,
@@ -32,6 +32,11 @@
    "crest": "https://crests.football-data.org/3.png"
   },
   {
+   "id": 719,
+   "name": "Elversberg",
+   "crest": "https://crests.football-data.org/719.png"
+  },
+  {
    "id": 721,
    "name": "RB Leipzig",
    "crest": "https://crests.football-data.org/721.png"
@@ -45,11 +50,6 @@
    "id": 15,
    "name": "Mainz",
    "crest": "https://crests.football-data.org/15.png"
-  },
-  {
-   "id": 719,
-   "name": "Elversberg",
-   "crest": "https://crests.football-data.org/719.png"
   },
   {
    "id": 16,
@@ -795,16 +795,20 @@
     "home": 1,
     "away": 3
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 565846,
    "matchweek": 8,
    "homeTeamId": 719,
    "awayTeamId": 15,
-   "kickoff": "2026-10-30T19:30:00Z"
-  },
+   "kickoff": "2026-10-30T19:30:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 565839,
    "matchweek": 8,
