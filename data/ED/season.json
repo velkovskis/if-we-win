@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Eredivisie",
- "updatedAt": "2026-10-31T18:34:00.572Z",
+ "updatedAt": "2026-10-31T23:24:10.566Z",
  "teams": [
   {
    "id": 675,
@@ -52,14 +52,14 @@
    "crest": "https://crests.football-data.org/677.png"
   },
   {
-   "id": 718,
-   "name": "Go Ahead",
-   "crest": "https://crests.football-data.org/718.png"
-  },
-  {
    "id": 1909,
    "name": "Cambuur",
    "crest": "https://crests.football-data.org/1909.png"
+  },
+  {
+   "id": 718,
+   "name": "Go Ahead",
+   "crest": "https://crests.football-data.org/718.png"
   },
   {
    "id": 676,
@@ -1103,37 +1103,53 @@
     "home": 1,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558852,
    "matchweek": 11,
    "homeTeamId": 673,
    "awayTeamId": 1915,
-   "kickoff": "2026-10-31T17:45:00Z"
+   "kickoff": "2026-10-31T17:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
   },
   {
    "id": 558853,
    "matchweek": 11,
    "homeTeamId": 674,
    "awayTeamId": 672,
-   "kickoff": "2026-10-31T17:45:00Z"
+   "kickoff": "2026-10-31T17:45:00Z",
+   "scoreline": {
+    "home": 7,
+    "away": 0
+   }
   },
   {
    "id": 558850,
    "matchweek": 11,
    "homeTeamId": 1909,
    "awayTeamId": 718,
-   "kickoff": "2026-10-31T20:00:00Z"
+   "kickoff": "2026-10-31T20:00:00Z",
+   "scoreline": {
+    "home": 4,
+    "away": 0
+   }
   },
   {
    "id": 558851,
    "matchweek": 11,
    "homeTeamId": 678,
    "awayTeamId": 682,
-   "kickoff": "2026-10-31T20:00:00Z"
-  },
+   "kickoff": "2026-10-31T20:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558849,
    "matchweek": 11,

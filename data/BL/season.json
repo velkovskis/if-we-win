@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Bundesliga",
- "updatedAt": "2026-10-31T18:34:00.572Z",
+ "updatedAt": "2026-10-31T23:24:10.566Z",
  "teams": [
   {
    "id": 5,
@@ -861,16 +861,20 @@
     "home": 2,
     "away": 4
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 565845,
    "matchweek": 8,
    "homeTeamId": 5,
    "awayTeamId": 4,
-   "kickoff": "2026-10-31T17:30:00Z"
-  },
+   "kickoff": "2026-10-31T17:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 565841,
    "matchweek": 8,
