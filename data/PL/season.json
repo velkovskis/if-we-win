@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-10-31T05:41:20.296Z",
+ "updatedAt": "2026-10-31T18:34:00.572Z",
  "teams": [
   {
    "id": 65,
@@ -26,19 +26,29 @@
    "crest": "https://crests.football-data.org/397.png"
   },
   {
-   "id": 64,
-   "name": "Liverpool",
-   "crest": "https://crests.football-data.org/64.png"
-  },
-  {
    "id": 61,
    "name": "Chelsea",
    "crest": "https://crests.football-data.org/61.png"
   },
   {
+   "id": 64,
+   "name": "Liverpool",
+   "crest": "https://crests.football-data.org/64.png"
+  },
+  {
    "id": 402,
    "name": "Brentford",
    "crest": "https://crests.football-data.org/402.png"
+  },
+  {
+   "id": 1044,
+   "name": "Bournemouth",
+   "crest": "https://crests.football-data.org/bournemouth.png"
+  },
+  {
+   "id": 322,
+   "name": "Hull City",
+   "crest": "https://crests.football-data.org/322.png"
   },
   {
    "id": 341,
@@ -56,9 +66,9 @@
    "crest": "https://crests.football-data.org/58.png"
   },
   {
-   "id": 322,
-   "name": "Hull City",
-   "crest": "https://crests.football-data.org/322.png"
+   "id": 349,
+   "name": "Ipswich Town",
+   "crest": "https://crests.football-data.org/349.png"
   },
   {
    "id": 62,
@@ -66,19 +76,14 @@
    "crest": "https://crests.football-data.org/62.png"
   },
   {
-   "id": 349,
-   "name": "Ipswich Town",
-   "crest": "https://crests.football-data.org/349.png"
-  },
-  {
-   "id": 1044,
-   "name": "Bournemouth",
-   "crest": "https://crests.football-data.org/bournemouth.png"
-  },
-  {
    "id": 73,
    "name": "Tottenham",
    "crest": "https://crests.football-data.org/73.png"
+  },
+  {
+   "id": 1076,
+   "name": "Coventry City",
+   "crest": "https://crests.football-data.org/1076.png"
   },
   {
    "id": 63,
@@ -99,11 +104,6 @@
    "id": 351,
    "name": "Nottingham",
    "crest": "https://crests.football-data.org/351.png"
-  },
-  {
-   "id": 1076,
-   "name": "Coventry City",
-   "crest": "https://crests.football-data.org/1076.png"
   },
   {
    "id": 71,
@@ -991,51 +991,75 @@
     "home": 0,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560626,
    "matchweek": 9,
    "homeTeamId": 61,
    "awayTeamId": 66,
-   "kickoff": "2026-10-31T12:30:00Z"
+   "kickoff": "2026-10-31T12:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 560623,
    "matchweek": 9,
    "homeTeamId": 65,
    "awayTeamId": 397,
-   "kickoff": "2026-10-31T15:00:00Z"
+   "kickoff": "2026-10-31T15:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
   },
   {
    "id": 560624,
    "matchweek": 9,
    "homeTeamId": 1044,
    "awayTeamId": 341,
-   "kickoff": "2026-10-31T15:00:00Z"
+   "kickoff": "2026-10-31T15:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 560625,
    "matchweek": 9,
    "homeTeamId": 1076,
    "awayTeamId": 71,
-   "kickoff": "2026-10-31T15:00:00Z"
+   "kickoff": "2026-10-31T15:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
   },
   {
    "id": 560629,
    "matchweek": 9,
    "homeTeamId": 322,
    "awayTeamId": 349,
-   "kickoff": "2026-10-31T15:00:00Z"
+   "kickoff": "2026-10-31T15:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
   },
   {
    "id": 560630,
    "matchweek": 9,
    "homeTeamId": 402,
    "awayTeamId": 351,
-   "kickoff": "2026-10-31T15:00:00Z"
-  },
+   "kickoff": "2026-10-31T15:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560627,
    "matchweek": 9,
@@ -3097,27 +3121,27 @@
  ],
  "ratings": {
   "teams": {
-   "57": 0.5249321125671715,
-   "58": 0.11681112874402697,
-   "61": 0.30678516157229946,
-   "62": -0.04170851858426211,
-   "63": -0.070744975178207,
-   "64": 0.23313499571157223,
-   "65": 0.7744712040175123,
-   "66": 0.1216175668994125,
-   "67": -0.07647363703537968,
-   "71": -0.11388742172618355,
-   "73": 0.035387603497769905,
-   "322": -0.7110410546020786,
-   "341": -0.11569387253163328,
-   "349": -0.5508427035243281,
-   "351": -0.005239824496471331,
-   "354": -0.49373007927954293,
-   "397": 0.37933007759571286,
-   "402": 0.1468232500999585,
-   "1044": -0.0125531846979385,
-   "1076": -0.44559453627789497
+   "57": 0.5249638396686279,
+   "58": 0.07619254477542753,
+   "61": 0.3440714704770446,
+   "62": 0.02365896957302382,
+   "63": -0.08053869758878138,
+   "64": 0.22988487595578777,
+   "65": 0.7729531797025063,
+   "66": 0.03622782553986069,
+   "67": -0.05306450457792157,
+   "71": -0.15117373063092862,
+   "73": 0.030700320055349242,
+   "322": -0.7108599661756312,
+   "341": -0.11100658908921267,
+   "349": -0.5609317534279521,
+   "351": -0.0037218001814657785,
+   "354": -0.5383269975818402,
+   "397": 0.3494072749457721,
+   "402": 0.17674605274989946,
+   "1044": -0.0024641347943149474,
+   "1076": -0.3503852288033181
   },
-  "oddsFetchedAt": "2026-10-30T19:22:36.823Z"
+  "oddsFetchedAt": "2026-10-31T18:34:00.572Z"
  }
 }

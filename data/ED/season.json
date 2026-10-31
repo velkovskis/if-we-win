@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Eredivisie",
- "updatedAt": "2026-10-31T05:41:20.296Z",
+ "updatedAt": "2026-10-31T18:34:00.572Z",
  "teams": [
   {
    "id": 675,
@@ -1092,16 +1092,20 @@
     "home": 0,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558854,
    "matchweek": 11,
    "homeTeamId": 675,
    "awayTeamId": 1920,
-   "kickoff": "2026-10-31T15:30:00Z"
-  },
+   "kickoff": "2026-10-31T15:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558852,
    "matchweek": 11,

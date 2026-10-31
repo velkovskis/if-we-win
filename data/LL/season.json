@@ -8,17 +8,17 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-10-31T05:41:20.296Z",
+ "updatedAt": "2026-10-31T18:34:00.572Z",
  "teams": [
-  {
-   "id": 81,
-   "name": "Barcelona",
-   "crest": "https://crests.football-data.org/81.png"
-  },
   {
    "id": 78,
    "name": "Atlético Madrid",
    "crest": "https://crests.football-data.org/78.png"
+  },
+  {
+   "id": 81,
+   "name": "Barcelona",
+   "crest": "https://crests.football-data.org/81.png"
   },
   {
    "id": 86,
@@ -51,14 +51,19 @@
    "crest": "https://crests.football-data.org/77.png"
   },
   {
+   "id": 94,
+   "name": "Villarreal",
+   "crest": "https://crests.football-data.org/94.png"
+  },
+  {
    "id": 558,
    "name": "Celta",
    "crest": "https://crests.football-data.org/558.png"
   },
   {
-   "id": 94,
-   "name": "Villarreal",
-   "crest": "https://crests.football-data.org/94.png"
+   "id": 87,
+   "name": "Rayo Vallecano",
+   "crest": "https://crests.football-data.org/87.png"
   },
   {
    "id": 560,
@@ -81,19 +86,14 @@
    "crest": "https://crests.football-data.org/5335.png"
   },
   {
-   "id": 88,
-   "name": "Levante",
-   "crest": "https://crests.football-data.org/88.png"
-  },
-  {
    "id": 285,
    "name": "Elche",
    "crest": "https://crests.football-data.org/285.png"
   },
   {
-   "id": 87,
-   "name": "Rayo Vallecano",
-   "crest": "https://crests.football-data.org/87.png"
+   "id": 88,
+   "name": "Levante",
+   "crest": "https://crests.football-data.org/88.png"
   },
   {
    "id": 82,
@@ -1211,23 +1211,31 @@
     "home": 0,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 564730,
    "matchweek": 11,
    "homeTeamId": 88,
    "awayTeamId": 78,
-   "kickoff": "2026-10-31T13:00:00Z"
+   "kickoff": "2026-10-31T13:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 564735,
    "matchweek": 11,
    "homeTeamId": 87,
    "awayTeamId": 558,
-   "kickoff": "2026-10-31T15:15:00Z"
-  },
+   "kickoff": "2026-10-31T15:15:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 564736,
    "matchweek": 11,

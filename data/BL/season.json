@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Bundesliga",
- "updatedAt": "2026-10-31T05:41:20.296Z",
+ "updatedAt": "2026-10-31T18:34:00.572Z",
  "teams": [
   {
    "id": 5,
@@ -27,16 +27,6 @@
    "crest": "https://crests.football-data.org/17.png"
   },
   {
-   "id": 3,
-   "name": "Leverkusen",
-   "crest": "https://crests.football-data.org/3.png"
-  },
-  {
-   "id": 719,
-   "name": "Elversberg",
-   "crest": "https://crests.football-data.org/719.png"
-  },
-  {
    "id": 721,
    "name": "RB Leipzig",
    "crest": "https://crests.football-data.org/721.png"
@@ -45,6 +35,16 @@
    "id": 12,
    "name": "Bremen",
    "crest": "https://crests.football-data.org/12.png"
+  },
+  {
+   "id": 3,
+   "name": "Leverkusen",
+   "crest": "https://crests.football-data.org/3.png"
+  },
+  {
+   "id": 719,
+   "name": "Elversberg",
+   "crest": "https://crests.football-data.org/719.png"
   },
   {
    "id": 15,
@@ -57,9 +57,19 @@
    "crest": "https://crests.football-data.org/16.png"
   },
   {
+   "id": 10,
+   "name": "Stuttgart",
+   "crest": "https://crests.football-data.org/10.png"
+  },
+  {
    "id": 2,
    "name": "Hoffenheim",
    "crest": "https://crests.football-data.org/2.png"
+  },
+  {
+   "id": 29,
+   "name": "Paderborn",
+   "crest": "https://crests.football-data.org/29.png"
   },
   {
    "id": 7,
@@ -72,19 +82,9 @@
    "crest": "https://crests.football-data.org/1.png"
   },
   {
-   "id": 29,
-   "name": "Paderborn",
-   "crest": "https://crests.football-data.org/29.png"
-  },
-  {
    "id": 19,
    "name": "Frankfurt",
    "crest": "https://crests.football-data.org/19.png"
-  },
-  {
-   "id": 10,
-   "name": "Stuttgart",
-   "crest": "https://crests.football-data.org/10.png"
   },
   {
    "id": 6,
@@ -806,44 +806,64 @@
     "home": 4,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 565839,
    "matchweek": 8,
    "homeTeamId": 18,
    "awayTeamId": 29,
-   "kickoff": "2026-10-31T14:30:00Z"
+   "kickoff": "2026-10-31T14:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
   },
   {
    "id": 565840,
    "matchweek": 8,
    "homeTeamId": 6,
    "awayTeamId": 721,
-   "kickoff": "2026-10-31T14:30:00Z"
+   "kickoff": "2026-10-31T14:30:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 565842,
    "matchweek": 8,
    "homeTeamId": 16,
    "awayTeamId": 17,
-   "kickoff": "2026-10-31T14:30:00Z"
+   "kickoff": "2026-10-31T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
   },
   {
    "id": 565843,
    "matchweek": 8,
    "homeTeamId": 12,
    "awayTeamId": 2,
-   "kickoff": "2026-10-31T14:30:00Z"
+   "kickoff": "2026-10-31T14:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 565847,
    "matchweek": 8,
    "homeTeamId": 3,
    "awayTeamId": 10,
-   "kickoff": "2026-10-31T14:30:00Z"
-  },
+   "kickoff": "2026-10-31T14:30:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 4
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 565845,
    "matchweek": 8,
@@ -2704,25 +2724,25 @@
  ],
  "ratings": {
   "teams": {
-   "1": -0.1973756802095793,
-   "2": 0.03024459007980913,
-   "3": 0.5362686275027536,
-   "4": 0.4519812476826995,
-   "5": 1.2518272333041192,
-   "6": -0.3435803733157764,
-   "7": -0.46975060489223996,
-   "10": 0.2730980685986974,
-   "12": -0.26423705310226675,
-   "15": 0.19308312412768497,
-   "16": -0.28242026530567227,
-   "17": 0.11565679191999957,
-   "18": -0.32832427514266793,
-   "19": -0.017798124449893343,
-   "28": -0.41860276356282916,
-   "29": -0.4200072487354146,
-   "719": -0.419166264052391,
-   "721": 0.3078955921483911
+   "1": -0.18827729504043597,
+   "2": 0.05792480359800773,
+   "3": 0.5402778996007699,
+   "4": 0.4711573260568035,
+   "5": 1.2626711499649186,
+   "6": -0.37126058683397606,
+   "7": -0.4982227397404436,
+   "10": 0.30189729773489127,
+   "12": -0.2930362822384607,
+   "15": 0.18223920746688627,
+   "16": -0.28839434100718236,
+   "17": 0.1059281281135739,
+   "18": -0.38031823104634455,
+   "19": 0.009295464921036846,
+   "28": -0.42202356518994555,
+   "29": -0.36662459369485323,
+   "719": -0.438342342426495,
+   "721": 0.31386966784990117
   },
-  "oddsFetchedAt": "2026-10-30T19:22:36.823Z"
+  "oddsFetchedAt": "2026-10-31T18:34:00.572Z"
  }
 }

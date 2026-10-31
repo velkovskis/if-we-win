@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-10-31T05:41:20.296Z",
+ "updatedAt": "2026-10-31T18:34:00.572Z",
  "teams": [
   {
    "id": 108,
@@ -46,6 +46,11 @@
    "crest": "https://crests.football-data.org/113.png"
   },
   {
+   "id": 103,
+   "name": "Bologna",
+   "crest": "https://crests.football-data.org/103.png"
+  },
+  {
    "id": 109,
    "name": "Juventus",
    "crest": "https://crests.football-data.org/109.png"
@@ -59,11 +64,6 @@
    "id": 104,
    "name": "Cagliari",
    "crest": "https://crests.football-data.org/104.png"
-  },
-  {
-   "id": 103,
-   "name": "Bologna",
-   "crest": "https://crests.football-data.org/103.png"
   },
   {
    "id": 102,
@@ -1101,16 +1101,20 @@
     "home": 2,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558539,
    "matchweek": 10,
    "homeTeamId": 103,
    "awayTeamId": 5911,
-   "kickoff": "2026-10-31T14:00:00Z"
-  },
+   "kickoff": "2026-10-31T14:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558542,
    "matchweek": 10,
