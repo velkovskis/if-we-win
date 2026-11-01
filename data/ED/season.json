@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Eredivisie",
- "updatedAt": "2026-11-01T06:04:53.850Z",
+ "updatedAt": "2026-11-01T13:25:01.886Z",
  "teams": [
   {
    "id": 675,
@@ -77,14 +77,14 @@
    "crest": "https://crests.football-data.org/670.png"
   },
   {
-   "id": 6806,
-   "name": "Sparta",
-   "crest": "https://crests.football-data.org/6806.png"
-  },
-  {
    "id": 684,
    "name": "PEC Zwolle",
    "crest": "https://crests.football-data.org/684.png"
+  },
+  {
+   "id": 6806,
+   "name": "Sparta",
+   "crest": "https://crests.football-data.org/6806.png"
   },
   {
    "id": 1912,
@@ -1147,16 +1147,20 @@
     "home": 1,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558849,
    "matchweek": 11,
    "homeTeamId": 684,
    "awayTeamId": 680,
-   "kickoff": "2026-11-01T11:15:00Z"
-  },
+   "kickoff": "2026-11-01T11:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558848,
    "matchweek": 11,
