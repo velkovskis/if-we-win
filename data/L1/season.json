@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-01T13:25:01.886Z",
+ "updatedAt": "2026-11-01T18:56:36.102Z",
  "teams": [
   {
    "id": 524,
@@ -22,16 +22,6 @@
    "crest": "https://crests.football-data.org/521.png"
   },
   {
-   "id": 529,
-   "name": "Rennes",
-   "crest": "https://crests.football-data.org/529.png"
-  },
-  {
-   "id": 548,
-   "name": "Monaco",
-   "crest": "https://crests.football-data.org/548.png"
-  },
-  {
    "id": 523,
    "name": "Lyon",
    "crest": "https://crests.football-data.org/523.png"
@@ -40,6 +30,16 @@
    "id": 1045,
    "name": "Paris FC",
    "crest": "https://crests.football-data.org/1045.png"
+  },
+  {
+   "id": 529,
+   "name": "Rennes",
+   "crest": "https://crests.football-data.org/529.png"
+  },
+  {
+   "id": 548,
+   "name": "Monaco",
+   "crest": "https://crests.football-data.org/548.png"
   },
   {
    "id": 522,
@@ -67,6 +67,11 @@
    "crest": "https://crests.football-data.org/511.png"
   },
   {
+   "id": 576,
+   "name": "Strasbourg",
+   "crest": "https://crests.football-data.org/576.png"
+  },
+  {
    "id": 519,
    "name": "Auxerre",
    "crest": "https://crests.football-data.org/519.png"
@@ -85,11 +90,6 @@
    "id": 531,
    "name": "Troyes",
    "crest": "https://crests.football-data.org/531.png"
-  },
-  {
-   "id": 576,
-   "name": "Strasbourg",
-   "crest": "https://crests.football-data.org/576.png"
   },
   {
    "id": 535,
@@ -938,30 +938,42 @@
     "home": 2,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559647,
    "matchweek": 9,
    "homeTeamId": 576,
    "awayTeamId": 519,
-   "kickoff": "2026-11-01T14:00:00Z"
+   "kickoff": "2026-11-01T14:00:00Z",
+   "scoreline": {
+    "home": 5,
+    "away": 1
+   }
   },
   {
    "id": 559640,
    "matchweek": 9,
    "homeTeamId": 523,
    "awayTeamId": 532,
-   "kickoff": "2026-11-01T16:15:00Z"
+   "kickoff": "2026-11-01T16:15:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 559642,
    "matchweek": 9,
    "homeTeamId": 1045,
    "awayTeamId": 548,
-   "kickoff": "2026-11-01T16:15:00Z"
-  },
+   "kickoff": "2026-11-01T16:15:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559645,
    "matchweek": 9,

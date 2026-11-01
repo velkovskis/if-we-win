@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Bundesliga",
- "updatedAt": "2026-11-01T13:25:01.886Z",
+ "updatedAt": "2026-11-01T18:56:36.102Z",
  "teams": [
   {
    "id": 5,
@@ -47,6 +47,11 @@
    "crest": "https://crests.football-data.org/719.png"
   },
   {
+   "id": 19,
+   "name": "Frankfurt",
+   "crest": "https://crests.football-data.org/19.png"
+  },
+  {
    "id": 15,
    "name": "Mainz",
    "crest": "https://crests.football-data.org/15.png"
@@ -67,6 +72,11 @@
    "crest": "https://crests.football-data.org/2.png"
   },
   {
+   "id": 1,
+   "name": "Köln",
+   "crest": "https://crests.football-data.org/1.png"
+  },
+  {
    "id": 29,
    "name": "Paderborn",
    "crest": "https://crests.football-data.org/29.png"
@@ -77,24 +87,14 @@
    "crest": "https://crests.football-data.org/7.png"
   },
   {
-   "id": 1,
-   "name": "Köln",
-   "crest": "https://crests.football-data.org/1.png"
-  },
-  {
-   "id": 19,
-   "name": "Frankfurt",
-   "crest": "https://crests.football-data.org/19.png"
+   "id": 28,
+   "name": "Union Berlin",
+   "crest": "https://crests.football-data.org/28.png"
   },
   {
    "id": 6,
    "name": "Schalke",
    "crest": "https://crests.football-data.org/6.png"
-  },
-  {
-   "id": 28,
-   "name": "Union Berlin",
-   "crest": "https://crests.football-data.org/28.png"
   },
   {
    "id": 18,
@@ -872,23 +872,31 @@
     "home": 2,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 565841,
    "matchweek": 8,
    "homeTeamId": 28,
    "awayTeamId": 1,
-   "kickoff": "2026-11-01T14:30:00Z"
+   "kickoff": "2026-11-01T14:30:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
   },
   {
    "id": 565844,
    "matchweek": 8,
    "homeTeamId": 19,
    "awayTeamId": 7,
-   "kickoff": "2026-11-01T16:30:00Z"
-  },
+   "kickoff": "2026-11-01T16:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 565852,
    "matchweek": 9,
@@ -2728,25 +2736,25 @@
  ],
  "ratings": {
   "teams": {
-   "1": -0.18827729504043597,
-   "2": 0.05792480359800773,
-   "3": 0.5402778996007699,
-   "4": 0.4711573260568035,
-   "5": 1.2626711499649186,
-   "6": -0.37126058683397606,
-   "7": -0.4982227397404436,
-   "10": 0.30189729773489127,
-   "12": -0.2930362822384607,
-   "15": 0.18223920746688627,
-   "16": -0.28839434100718236,
-   "17": 0.1059281281135739,
-   "18": -0.38031823104634455,
-   "19": 0.009295464921036846,
-   "28": -0.42202356518994555,
-   "29": -0.36662459369485323,
-   "719": -0.438342342426495,
-   "721": 0.31386966784990117
+   "1": -0.2008129760938053,
+   "2": 0.054436786739098256,
+   "3": 0.5528135806541392,
+   "4": 0.47353760367578895,
+   "5": 1.2240754474997577,
+   "6": -0.36777256997506647,
+   "7": -0.4985845410661534,
+   "10": 0.27578764483716783,
+   "12": -0.26692662934073724,
+   "15": 0.2208349099320468,
+   "16": -0.2885905176637234,
+   "17": 0.13770511160174934,
+   "18": -0.37995642972063476,
+   "19": 0.008902092727321422,
+   "28": -0.45380054867812103,
+   "29": -0.3662312215011378,
+   "719": -0.44072262004548046,
+   "721": 0.3140658445064422
   },
-  "oddsFetchedAt": "2026-10-31T18:34:00.572Z"
+  "oddsFetchedAt": "2026-11-01T18:56:36.102Z"
  }
 }
