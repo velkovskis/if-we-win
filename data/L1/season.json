@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-01T18:56:36.102Z",
+ "updatedAt": "2026-11-01T23:35:52.581Z",
  "teams": [
   {
    "id": 524,
@@ -37,6 +37,11 @@
    "crest": "https://crests.football-data.org/529.png"
   },
   {
+   "id": 516,
+   "name": "Marseille",
+   "crest": "https://crests.football-data.org/516.png"
+  },
+  {
    "id": 548,
    "name": "Monaco",
    "crest": "https://crests.football-data.org/548.png"
@@ -50,11 +55,6 @@
    "id": 546,
    "name": "Lens",
    "crest": "https://crests.football-data.org/546.png"
-  },
-  {
-   "id": 516,
-   "name": "Marseille",
-   "crest": "https://crests.football-data.org/516.png"
   },
   {
    "id": 525,
@@ -971,16 +971,20 @@
     "home": 3,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559645,
    "matchweek": 9,
    "homeTeamId": 516,
    "awayTeamId": 511,
-   "kickoff": "2026-11-01T19:45:00Z"
-  },
+   "kickoff": "2026-11-01T19:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559641,
    "matchweek": 9,
