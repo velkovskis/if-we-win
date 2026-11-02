@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-11-02T06:02:44.581Z",
+ "updatedAt": "2026-11-02T23:30:28.482Z",
  "teams": [
   {
    "id": 81,
@@ -46,6 +46,11 @@
    "crest": "https://crests.football-data.org/77.png"
   },
   {
+   "id": 560,
+   "name": "Deportivo",
+   "crest": "https://crests.football-data.org/560.png"
+  },
+  {
    "id": 94,
    "name": "Villarreal",
    "crest": "https://crests.football-data.org/94.png"
@@ -69,11 +74,6 @@
    "id": 82,
    "name": "Getafe",
    "crest": "https://crests.football-data.org/82.png"
-  },
-  {
-   "id": 560,
-   "name": "Deportivo",
-   "crest": "https://crests.football-data.org/560.png"
   },
   {
    "id": 80,
@@ -1299,16 +1299,20 @@
     "home": 2,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 564731,
    "matchweek": 11,
    "homeTeamId": 560,
    "awayTeamId": 79,
-   "kickoff": "2026-11-02T20:00:00Z"
-  },
+   "kickoff": "2026-11-02T20:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 564740,
    "matchweek": 12,
