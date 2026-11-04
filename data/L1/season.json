@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-04T12:08:54.109Z",
+ "updatedAt": "2026-11-04T19:45:21.858Z",
  "teams": [
   {
    "id": 524,
@@ -1008,14 +1008,14 @@
    "matchweek": 10,
    "homeTeamId": 519,
    "awayTeamId": 1045,
-   "kickoff": "2026-11-07T16:15:00Z"
+   "kickoff": "2026-11-07T18:00:00Z"
   },
   {
    "id": 559635,
    "matchweek": 10,
    "homeTeamId": 524,
    "awayTeamId": 531,
-   "kickoff": "2026-11-07T19:45:00Z"
+   "kickoff": "2026-11-07T20:05:00Z"
   },
   {
    "id": 559636,
