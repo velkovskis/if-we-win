@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-11-07T16:26:23.451Z",
+ "updatedAt": "2026-11-07T21:51:05.709Z",
  "teams": [
   {
    "id": 110,
@@ -16,14 +16,14 @@
    "crest": "https://crests.football-data.org/110.png"
   },
   {
-   "id": 108,
-   "name": "Inter",
-   "crest": "https://crests.football-data.org/108.png"
-  },
-  {
    "id": 100,
    "name": "Roma",
    "crest": "https://crests.football-data.org/100.png"
+  },
+  {
+   "id": 108,
+   "name": "Inter",
+   "crest": "https://crests.football-data.org/108.png"
   },
   {
    "id": 7397,
@@ -46,6 +46,11 @@
    "crest": "https://crests.football-data.org/109.png"
   },
   {
+   "id": 103,
+   "name": "Bologna",
+   "crest": "https://crests.football-data.org/103.png"
+  },
+  {
    "id": 104,
    "name": "Cagliari",
    "crest": "https://crests.football-data.org/104.png"
@@ -54,11 +59,6 @@
    "id": 113,
    "name": "Napoli",
    "crest": "https://crests.football-data.org/113.png"
-  },
-  {
-   "id": 103,
-   "name": "Bologna",
-   "crest": "https://crests.football-data.org/103.png"
   },
   {
    "id": 586,
@@ -81,14 +81,14 @@
    "crest": "https://crests.football-data.org/5890.png"
   },
   {
-   "id": 112,
-   "name": "Parma",
-   "crest": "https://crests.football-data.org/112.png"
-  },
-  {
    "id": 99,
    "name": "Fiorentina",
    "crest": "https://crests.football-data.org/99.png"
+  },
+  {
+   "id": 112,
+   "name": "Parma",
+   "crest": "https://crests.football-data.org/112.png"
   },
   {
    "id": 471,
@@ -1244,23 +1244,31 @@
     "home": 1,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558535,
    "matchweek": 11,
    "homeTeamId": 112,
    "awayTeamId": 103,
-   "kickoff": "2026-11-07T17:00:00Z"
+   "kickoff": "2026-11-07T17:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
   },
   {
    "id": 558531,
    "matchweek": 11,
    "homeTeamId": 100,
    "awayTeamId": 471,
-   "kickoff": "2026-11-07T19:45:00Z"
-  },
+   "kickoff": "2026-11-07T19:45:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558533,
    "matchweek": 11,

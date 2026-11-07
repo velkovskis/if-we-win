@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-11-07T16:26:23.451Z",
+ "updatedAt": "2026-11-07T21:51:05.709Z",
  "teams": [
   {
    "id": 57,
@@ -61,6 +61,11 @@
    "crest": "https://crests.football-data.org/73.png"
   },
   {
+   "id": 67,
+   "name": "Newcastle",
+   "crest": "https://crests.football-data.org/67.png"
+  },
+  {
    "id": 58,
    "name": "Aston Villa",
    "crest": "https://crests.football-data.org/58.png"
@@ -71,11 +76,6 @@
    "crest": "https://crests.football-data.org/322.png"
   },
   {
-   "id": 67,
-   "name": "Newcastle",
-   "crest": "https://crests.football-data.org/67.png"
-  },
-  {
    "id": 349,
    "name": "Ipswich Town",
    "crest": "https://crests.football-data.org/349.png"
@@ -84,6 +84,11 @@
    "id": 63,
    "name": "Fulham",
    "crest": "https://crests.football-data.org/63.png"
+  },
+  {
+   "id": 351,
+   "name": "Nottingham",
+   "crest": "https://crests.football-data.org/351.png"
   },
   {
    "id": 1076,
@@ -99,11 +104,6 @@
    "id": 354,
    "name": "Crystal Palace",
    "crest": "https://crests.football-data.org/354.png"
-  },
-  {
-   "id": 351,
-   "name": "Nottingham",
-   "crest": "https://crests.football-data.org/351.png"
   },
   {
    "id": 71,
@@ -1123,30 +1123,42 @@
     "home": 1,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560640,
    "matchweek": 10,
    "homeTeamId": 57,
    "awayTeamId": 322,
-   "kickoff": "2026-11-07T15:00:00Z"
+   "kickoff": "2026-11-07T15:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
   },
   {
    "id": 560633,
    "matchweek": 10,
    "homeTeamId": 63,
    "awayTeamId": 67,
-   "kickoff": "2026-11-07T15:00:00Z"
+   "kickoff": "2026-11-07T15:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
   },
   {
    "id": 560641,
    "matchweek": 10,
    "homeTeamId": 351,
    "awayTeamId": 65,
-   "kickoff": "2026-11-07T17:30:00Z"
-  },
+   "kickoff": "2026-11-07T17:30:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560635,
    "matchweek": 10,
