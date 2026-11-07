@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-11-06T21:29:39.135Z",
+ "updatedAt": "2026-11-07T01:55:40.863Z",
  "teams": [
   {
    "id": 57,
@@ -31,6 +31,11 @@
    "crest": "https://crests.football-data.org/61.png"
   },
   {
+   "id": 62,
+   "name": "Everton",
+   "crest": "https://crests.football-data.org/62.png"
+  },
+  {
    "id": 64,
    "name": "Liverpool",
    "crest": "https://crests.football-data.org/64.png"
@@ -39,11 +44,6 @@
    "id": 402,
    "name": "Brentford",
    "crest": "https://crests.football-data.org/402.png"
-  },
-  {
-   "id": 62,
-   "name": "Everton",
-   "crest": "https://crests.football-data.org/62.png"
   },
   {
    "id": 1044,
@@ -1101,16 +1101,20 @@
     "home": 0,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560634,
    "matchweek": 10,
    "homeTeamId": 62,
    "awayTeamId": 1076,
-   "kickoff": "2026-11-06T20:00:00Z"
-  },
+   "kickoff": "2026-11-06T20:00:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560632,
    "matchweek": 10,

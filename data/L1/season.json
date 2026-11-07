@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-06T21:29:39.135Z",
+ "updatedAt": "2026-11-07T01:55:40.863Z",
  "teams": [
   {
    "id": 524,
@@ -57,6 +57,11 @@
    "crest": "https://crests.football-data.org/546.png"
   },
   {
+   "id": 511,
+   "name": "Toulouse",
+   "crest": "https://crests.football-data.org/511.png"
+  },
+  {
    "id": 512,
    "name": "Brest",
    "crest": "https://crests.football-data.org/512.png"
@@ -65,11 +70,6 @@
    "id": 525,
    "name": "Lorient",
    "crest": "https://crests.football-data.org/525.png"
-  },
-  {
-   "id": 511,
-   "name": "Toulouse",
-   "crest": "https://crests.football-data.org/511.png"
   },
   {
    "id": 576,
@@ -993,16 +993,20 @@
     "home": 0,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559638,
    "matchweek": 10,
    "homeTeamId": 511,
    "awayTeamId": 576,
-   "kickoff": "2026-11-06T19:45:00Z"
-  },
+   "kickoff": "2026-11-06T19:45:00Z",
+   "scoreline": {
+    "home": 3,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559637,
    "matchweek": 10,

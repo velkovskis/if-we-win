@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-11-06T21:29:39.135Z",
+ "updatedAt": "2026-11-07T01:55:40.863Z",
  "teams": [
   {
    "id": 81,
@@ -51,6 +51,11 @@
    "crest": "https://crests.football-data.org/560.png"
   },
   {
+   "id": 263,
+   "name": "Alavés",
+   "crest": "https://crests.football-data.org/263.png"
+  },
+  {
    "id": 94,
    "name": "Villarreal",
    "crest": "https://crests.football-data.org/94.png"
@@ -59,11 +64,6 @@
    "id": 558,
    "name": "Celta",
    "crest": "https://crests.football-data.org/558.png"
-  },
-  {
-   "id": 263,
-   "name": "Alavés",
-   "crest": "https://crests.football-data.org/263.png"
   },
   {
    "id": 87,
@@ -1310,16 +1310,20 @@
     "home": 2,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 564740,
    "matchweek": 12,
    "homeTeamId": 559,
    "awayTeamId": 263,
-   "kickoff": "2026-11-06T20:00:00Z"
-  },
+   "kickoff": "2026-11-06T20:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 564744,
    "matchweek": 12,
@@ -1454,84 +1458,74 @@
    "kickoff": "2026-11-23T20:00:00Z"
   },
   {
-   "id": 564758,
+   "id": 564765,
    "matchweek": 14,
-   "homeTeamId": 558,
-   "awayTeamId": 94,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564759,
-   "matchweek": 14,
-   "homeTeamId": 285,
-   "awayTeamId": 78,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
+   "homeTeamId": 88,
+   "awayTeamId": 5335,
+   "kickoff": "2026-11-27T20:00:00Z"
   },
   {
    "id": 564760,
    "matchweek": 14,
    "homeTeamId": 90,
    "awayTeamId": 87,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564761,
-   "matchweek": 14,
-   "homeTeamId": 95,
-   "awayTeamId": 79,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564762,
-   "matchweek": 14,
-   "homeTeamId": 86,
-   "awayTeamId": 263,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564763,
-   "matchweek": 14,
-   "homeTeamId": 80,
-   "awayTeamId": 82,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564764,
-   "matchweek": 14,
-   "homeTeamId": 92,
-   "awayTeamId": 559,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564765,
-   "matchweek": 14,
-   "homeTeamId": 88,
-   "awayTeamId": 5335,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
-  },
-  {
-   "id": 564766,
-   "matchweek": 14,
-   "homeTeamId": 560,
-   "awayTeamId": 81,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
+   "kickoff": "2026-11-28T13:00:00Z"
   },
   {
    "id": 564767,
    "matchweek": 14,
    "homeTeamId": 84,
    "awayTeamId": 77,
-   "kickoff": "2026-11-29T00:00:00Z",
-   "status": "tbc"
+   "kickoff": "2026-11-28T15:15:00Z"
+  },
+  {
+   "id": 564759,
+   "matchweek": 14,
+   "homeTeamId": 285,
+   "awayTeamId": 78,
+   "kickoff": "2026-11-28T17:30:00Z"
+  },
+  {
+   "id": 564762,
+   "matchweek": 14,
+   "homeTeamId": 86,
+   "awayTeamId": 263,
+   "kickoff": "2026-11-28T20:00:00Z"
+  },
+  {
+   "id": 564761,
+   "matchweek": 14,
+   "homeTeamId": 95,
+   "awayTeamId": 79,
+   "kickoff": "2026-11-29T13:00:00Z"
+  },
+  {
+   "id": 564766,
+   "matchweek": 14,
+   "homeTeamId": 560,
+   "awayTeamId": 81,
+   "kickoff": "2026-11-29T15:15:00Z"
+  },
+  {
+   "id": 564758,
+   "matchweek": 14,
+   "homeTeamId": 558,
+   "awayTeamId": 94,
+   "kickoff": "2026-11-29T17:30:00Z"
+  },
+  {
+   "id": 564764,
+   "matchweek": 14,
+   "homeTeamId": 92,
+   "awayTeamId": 559,
+   "kickoff": "2026-11-29T20:00:00Z"
+  },
+  {
+   "id": 564763,
+   "matchweek": 14,
+   "homeTeamId": 80,
+   "awayTeamId": 82,
+   "kickoff": "2026-11-30T20:00:00Z"
   },
   {
    "id": 564768,
