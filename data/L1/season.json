@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-08T16:40:15.248Z",
+ "updatedAt": "2026-11-08T22:05:39.637Z",
  "teams": [
   {
    "id": 524,
@@ -27,24 +27,14 @@
    "crest": "https://crests.football-data.org/1045.png"
   },
   {
-   "id": 523,
-   "name": "Lyon",
-   "crest": "https://crests.football-data.org/523.png"
-  },
-  {
-   "id": 529,
-   "name": "Rennes",
-   "crest": "https://crests.football-data.org/529.png"
-  },
-  {
    "id": 516,
    "name": "Marseille",
    "crest": "https://crests.football-data.org/516.png"
   },
   {
-   "id": 548,
-   "name": "Monaco",
-   "crest": "https://crests.football-data.org/548.png"
+   "id": 523,
+   "name": "Lyon",
+   "crest": "https://crests.football-data.org/523.png"
   },
   {
    "id": 522,
@@ -52,14 +42,14 @@
    "crest": "https://crests.football-data.org/522.png"
   },
   {
-   "id": 546,
-   "name": "Lens",
-   "crest": "https://crests.football-data.org/546.png"
+   "id": 548,
+   "name": "Monaco",
+   "crest": "https://crests.football-data.org/548.png"
   },
   {
-   "id": 511,
-   "name": "Toulouse",
-   "crest": "https://crests.football-data.org/511.png"
+   "id": 529,
+   "name": "Rennes",
+   "crest": "https://crests.football-data.org/529.png"
   },
   {
    "id": 512,
@@ -72,6 +62,16 @@
    "crest": "https://crests.football-data.org/525.png"
   },
   {
+   "id": 546,
+   "name": "Lens",
+   "crest": "https://crests.football-data.org/546.png"
+  },
+  {
+   "id": 511,
+   "name": "Toulouse",
+   "crest": "https://crests.football-data.org/511.png"
+  },
+  {
    "id": 576,
    "name": "Strasbourg",
    "crest": "https://crests.football-data.org/576.png"
@@ -82,6 +82,11 @@
    "crest": "https://crests.football-data.org/519.png"
   },
   {
+   "id": 535,
+   "name": "Le Mans",
+   "crest": "https://crests.football-data.org/535.png"
+  },
+  {
    "id": 532,
    "name": "Angers",
    "crest": "https://crests.football-data.org/532.png"
@@ -90,11 +95,6 @@
    "id": 531,
    "name": "Troyes",
    "crest": "https://crests.football-data.org/531.png"
-  },
-  {
-   "id": 535,
-   "name": "Le Mans",
-   "crest": "https://crests.football-data.org/535.png"
   },
   {
    "id": 533,
@@ -1037,44 +1037,64 @@
     "home": 1,
     "away": 2
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559631,
    "matchweek": 10,
    "homeTeamId": 535,
    "awayTeamId": 548,
-   "kickoff": "2026-11-08T16:15:00Z"
+   "kickoff": "2026-11-08T16:15:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 1
+   }
   },
   {
    "id": 559632,
    "matchweek": 10,
    "homeTeamId": 512,
    "awayTeamId": 523,
-   "kickoff": "2026-11-08T16:15:00Z"
+   "kickoff": "2026-11-08T16:15:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 559633,
    "matchweek": 10,
    "homeTeamId": 533,
    "awayTeamId": 525,
-   "kickoff": "2026-11-08T16:15:00Z"
+   "kickoff": "2026-11-08T16:15:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 559634,
    "matchweek": 10,
    "homeTeamId": 532,
    "awayTeamId": 522,
-   "kickoff": "2026-11-08T16:15:00Z"
+   "kickoff": "2026-11-08T16:15:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
   },
   {
    "id": 559630,
    "matchweek": 10,
    "homeTeamId": 546,
    "awayTeamId": 516,
-   "kickoff": "2026-11-08T19:45:00Z"
-  },
+   "kickoff": "2026-11-08T19:45:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559622,
    "matchweek": 11,
@@ -2730,25 +2750,25 @@
  ],
  "ratings": {
   "teams": {
-   "511": -0.1960546864703813,
-   "512": 0.03567274295534904,
-   "516": 0.12898414460839625,
-   "519": -0.45259814162435275,
-   "521": 0.23341793380837186,
-   "522": 0.02561032921002201,
-   "523": 0.2953974860828143,
-   "524": 1.036114536319553,
-   "525": -0.12092530373676069,
-   "529": 0.2510349516606376,
-   "531": -0.38091372472559826,
-   "532": -0.47721419549548266,
-   "533": -0.4224240252185408,
-   "535": -0.5105960021513734,
-   "546": 0.0677373619194328,
-   "548": 0.24731613190348703,
-   "576": 0.0085614452563904,
-   "1045": 0.23538584969806636
+   "511": -0.20686557135912334,
+   "512": 0.031211727307315758,
+   "516": 0.13646107284696812,
+   "519": -0.46613690466724483,
+   "521": 0.23438856951818682,
+   "522": 0.020075430336416407,
+   "523": 0.2944268503729995,
+   "524": 1.0416494351931584,
+   "525": -0.10975263869710823,
+   "529": 0.2398622866209851,
+   "531": -0.3604595378147469,
+   "532": -0.4752823790241441,
+   "533": -0.44287821212939216,
+   "535": -0.5180729303899454,
+   "546": 0.07854824680817496,
+   "548": 0.2608548949463791,
+   "576": 0.013022460904423662,
+   "1045": 0.23345403322672797
   },
-  "oddsFetchedAt": "2026-11-07T21:51:05.709Z"
+  "oddsFetchedAt": "2026-11-08T22:05:39.637Z"
  }
 }

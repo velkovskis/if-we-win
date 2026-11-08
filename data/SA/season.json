@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Serie A",
- "updatedAt": "2026-11-08T16:40:15.248Z",
+ "updatedAt": "2026-11-08T22:05:39.637Z",
  "teams": [
   {
    "id": 110,
@@ -16,14 +16,14 @@
    "crest": "https://crests.football-data.org/110.png"
   },
   {
-   "id": 100,
-   "name": "Roma",
-   "crest": "https://crests.football-data.org/100.png"
-  },
-  {
    "id": 108,
    "name": "Inter",
    "crest": "https://crests.football-data.org/108.png"
+  },
+  {
+   "id": 100,
+   "name": "Roma",
+   "crest": "https://crests.football-data.org/100.png"
   },
   {
    "id": 98,
@@ -1299,23 +1299,31 @@
     "home": 0,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558530,
    "matchweek": 11,
    "homeTeamId": 108,
    "awayTeamId": 7397,
-   "kickoff": "2026-11-08T17:00:00Z"
+   "kickoff": "2026-11-08T17:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
   },
   {
    "id": 558529,
    "matchweek": 11,
    "homeTeamId": 99,
    "awayTeamId": 109,
-   "kickoff": "2026-11-08T19:45:00Z"
-  },
+   "kickoff": "2026-11-08T19:45:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558525,
    "matchweek": 12,
