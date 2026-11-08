@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Eredivisie",
- "updatedAt": "2026-11-07T21:51:05.709Z",
+ "updatedAt": "2026-11-08T01:26:36.212Z",
  "teams": [
   {
    "id": 675,
@@ -47,6 +47,11 @@
    "crest": "https://crests.football-data.org/673.png"
   },
   {
+   "id": 718,
+   "name": "Go Ahead",
+   "crest": "https://crests.football-data.org/718.png"
+  },
+  {
    "id": 677,
    "name": "Groningen",
    "crest": "https://crests.football-data.org/677.png"
@@ -55,11 +60,6 @@
    "id": 1909,
    "name": "Cambuur",
    "crest": "https://crests.football-data.org/1909.png"
-  },
-  {
-   "id": 718,
-   "name": "Go Ahead",
-   "crest": "https://crests.football-data.org/718.png"
   },
   {
    "id": 6806,
@@ -1224,16 +1224,20 @@
     "home": 3,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 558843,
    "matchweek": 12,
    "homeTeamId": 670,
    "awayTeamId": 718,
-   "kickoff": "2026-11-07T20:00:00Z"
-  },
+   "kickoff": "2026-11-07T20:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 1
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 558840,
    "matchweek": 12,
