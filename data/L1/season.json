@@ -9,7 +9,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Ligue 1",
- "updatedAt": "2026-11-08T01:26:36.212Z",
+ "updatedAt": "2026-11-08T16:40:15.248Z",
  "teams": [
   {
    "id": 524,
@@ -17,14 +17,14 @@
    "crest": "https://crests.football-data.org/524.png"
   },
   {
-   "id": 1045,
-   "name": "Paris FC",
-   "crest": "https://crests.football-data.org/1045.png"
-  },
-  {
    "id": 521,
    "name": "Lille",
    "crest": "https://crests.football-data.org/521.png"
+  },
+  {
+   "id": 1045,
+   "name": "Paris FC",
+   "crest": "https://crests.football-data.org/1045.png"
   },
   {
    "id": 523,
@@ -1026,16 +1026,20 @@
     "home": 1,
     "away": 0
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 559636,
    "matchweek": 10,
    "homeTeamId": 529,
    "awayTeamId": 521,
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
+   "kickoff": "2026-11-08T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 559631,
    "matchweek": 10,

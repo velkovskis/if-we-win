@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "LaLiga",
- "updatedAt": "2026-11-08T01:26:36.212Z",
+ "updatedAt": "2026-11-08T16:40:15.248Z",
  "teams": [
   {
    "id": 81,
@@ -91,14 +91,14 @@
    "crest": "https://crests.football-data.org/79.png"
   },
   {
-   "id": 285,
-   "name": "Elche",
-   "crest": "https://crests.football-data.org/285.png"
-  },
-  {
    "id": 88,
    "name": "Levante",
    "crest": "https://crests.football-data.org/88.png"
+  },
+  {
+   "id": 285,
+   "name": "Elche",
+   "crest": "https://crests.football-data.org/285.png"
   },
   {
    "id": 95,
@@ -1365,16 +1365,20 @@
     "home": 0,
     "away": 3
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 564738,
    "matchweek": 12,
    "homeTeamId": 285,
    "awayTeamId": 90,
-   "kickoff": "2026-11-08T13:00:00Z"
-  },
+   "kickoff": "2026-11-08T13:00:00Z",
+   "scoreline": {
+    "home": 0,
+    "away": 2
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 564743,
    "matchweek": 12,

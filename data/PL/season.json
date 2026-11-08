@@ -8,7 +8,7 @@
  "strengthNoise": 0.2,
  "deductions": [],
  "leagueName": "Premier League",
- "updatedAt": "2026-11-08T01:26:36.212Z",
+ "updatedAt": "2026-11-08T16:40:15.248Z",
  "teams": [
   {
    "id": 57,
@@ -16,14 +16,19 @@
    "crest": "https://crests.football-data.org/57.png"
   },
   {
+   "id": 397,
+   "name": "Brighton",
+   "crest": "https://crests.football-data.org/397.png"
+  },
+  {
    "id": 65,
    "name": "Man City",
    "crest": "https://crests.football-data.org/65.png"
   },
   {
-   "id": 397,
-   "name": "Brighton",
-   "crest": "https://crests.football-data.org/397.png"
+   "id": 64,
+   "name": "Liverpool",
+   "crest": "https://crests.football-data.org/64.png"
   },
   {
    "id": 61,
@@ -36,9 +41,9 @@
    "crest": "https://crests.football-data.org/62.png"
   },
   {
-   "id": 64,
-   "name": "Liverpool",
-   "crest": "https://crests.football-data.org/64.png"
+   "id": 1044,
+   "name": "Bournemouth",
+   "crest": "https://crests.football-data.org/bournemouth.png"
   },
   {
    "id": 402,
@@ -49,11 +54,6 @@
    "id": 341,
    "name": "Leeds United",
    "crest": "https://crests.football-data.org/341.png"
-  },
-  {
-   "id": 1044,
-   "name": "Bournemouth",
-   "crest": "https://crests.football-data.org/bournemouth.png"
   },
   {
    "id": 73,
@@ -96,6 +96,11 @@
    "crest": "https://crests.football-data.org/1076.png"
   },
   {
+   "id": 71,
+   "name": "Sunderland",
+   "crest": "https://crests.football-data.org/71.png"
+  },
+  {
    "id": 66,
    "name": "Man United",
    "crest": "https://crests.football-data.org/66.png"
@@ -104,11 +109,6 @@
    "id": 354,
    "name": "Crystal Palace",
    "crest": "https://crests.football-data.org/354.png"
-  },
-  {
-   "id": 71,
-   "name": "Sunderland",
-   "crest": "https://crests.football-data.org/71.png"
   }
  ],
  "results": [
@@ -1156,37 +1156,53 @@
     "home": 3,
     "away": 1
    }
-  }
- ],
- "fixtures": [
+  },
   {
    "id": 560635,
    "matchweek": 10,
    "homeTeamId": 354,
    "awayTeamId": 64,
-   "kickoff": "2026-11-08T14:00:00Z"
+   "kickoff": "2026-11-08T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 3
+   }
   },
   {
    "id": 560636,
    "matchweek": 10,
    "homeTeamId": 71,
    "awayTeamId": 61,
-   "kickoff": "2026-11-08T14:00:00Z"
+   "kickoff": "2026-11-08T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 0
+   }
   },
   {
    "id": 560637,
    "matchweek": 10,
    "homeTeamId": 349,
    "awayTeamId": 1044,
-   "kickoff": "2026-11-08T14:00:00Z"
+   "kickoff": "2026-11-08T14:00:00Z",
+   "scoreline": {
+    "home": 1,
+    "away": 2
+   }
   },
   {
    "id": 560638,
    "matchweek": 10,
    "homeTeamId": 397,
    "awayTeamId": 402,
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
+   "kickoff": "2026-11-08T14:00:00Z",
+   "scoreline": {
+    "home": 2,
+    "away": 0
+   }
+  }
+ ],
+ "fixtures": [
   {
    "id": 560639,
    "matchweek": 10,
@@ -3157,27 +3173,27 @@
  ],
  "ratings": {
   "teams": {
-   "57": 0.7211491154391937,
-   "58": 0.04700471741155139,
-   "61": 0.2788626319147364,
-   "62": -0.10563009075969165,
-   "63": 0.10030070987731853,
-   "64": 0.3503095002921281,
-   "65": 0.7614288279660343,
-   "66": 0.07021009591182387,
-   "67": -0.1742934339314818,
-   "71": -0.28612247599188445,
-   "73": 0.061731990772966275,
-   "322": -0.6189368625386789,
-   "341": 0.004535660516979395,
-   "349": -0.5216712212764892,
-   "351": -0.04096048446948627,
-   "354": -0.5800555199991128,
-   "397": 0.34912083868341237,
-   "402": 0.14196412918853368,
-   "1044": 0.08916562364931696,
-   "1076": -0.6458148381684748
+   "57": 0.7193178890969418,
+   "58": 0.054660221842926564,
+   "61": 0.28094994138167406,
+   "62": -0.06402722633919208,
+   "63": 0.10083891410449397,
+   "64": 0.3471141133508985,
+   "65": 0.7608906237388587,
+   "66": 0.0734054828530536,
+   "67": -0.17246220758922998,
+   "71": -0.2937779804232598,
+   "73": 0.03818922999379971,
+   "322": -0.6206523365566617,
+   "341": 0.0024483510500419264,
+   "349": -0.4981284604973231,
+   "351": -0.038146539226247556,
+   "354": -0.5474962645459346,
+   "397": 0.3508363127013957,
+   "402": 0.10036126476803411,
+   "1044": 0.0863516784060782,
+   "1076": -0.678374093621653
   },
-  "oddsFetchedAt": "2026-11-07T16:26:23.451Z"
+  "oddsFetchedAt": "2026-11-08T16:40:15.248Z"
  }
 }
